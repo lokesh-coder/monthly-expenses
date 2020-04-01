@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:monex/widgets/modules/pager/model.dart';
+import 'package:provider/provider.dart';
+
+class Pager extends StatelessWidget {
+  final Widget Function(int index, dynamic data, PageController ctrl) builder;
+  final List data;
+  final bool isMaster;
+  final int visibleItems;
+  final int initialPage;
+  Pager({Key key, this.builder, this.data, this.visibleItems, this.initialPage})
+      : isMaster = false,
+        super(key: key);
+
+  Pager.master(
+      {Key key, this.builder, this.data, this.visibleItems, this.initialPage})
+      : isMaster = true,
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final pagerModel = Provider.of<PagerModel>(context, listen: false);
+
+    PageController ctrl;
+    ScrollPhysics physics;
+    if (isMaster) {
+      ctrl = pagerModel.createController(
+        key: key,
+        visibleItems: visibleItems,
+        initialPage: initialPage,
+        isMaster: true,
+      );
+      physics = AlwaysScrollableScrollPhysics();
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        ctrl.position.notifyListeners();
+      });
+    } else {
+      ctrl = pagerModel.createController(
+        key: key,
+        visibleItems: visibleItems,
+        initialPage: initialPage,
+      );
+      physics = NeverScrollableScrollPhysics();
+    }
+
+    return Selector(
+      selector: (ctx, PagerModel model) => model.currentOffset,
+      builder: (ctx, offset, child) {
+        return PageView.builder(
+          scrollDirection: Axis.horizontal,
+          controller: ctrl,
+          itemCount: data.length,
+          physics: physics,
+          itemBuilder: (_, int index) {
+            return builder(index, data[index], ctrl);
+          },
+        );
+      },
+    );
+  }
+}

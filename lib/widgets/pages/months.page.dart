@@ -3,8 +3,10 @@ import 'package:monex/widgets/banner-board.dart';
 import 'package:monex/widgets/containers/month-view.container.dart';
 import 'package:monex/widgets/editor.dart';
 import 'package:monex/widgets/modules/pager/pager.dart';
+import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/modules/sandwich/sandwich.dart';
 import 'package:monex/widgets/shared/app-shell.dart';
+import 'package:provider/provider.dart';
 
 class MonthsPage extends StatelessWidget {
   const MonthsPage({Key key}) : super(key: key);
@@ -12,6 +14,14 @@ class MonthsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppShell(
+      onBackBtnPress: () {
+        var sandwich = Provider.of<SandwichModel>(context, listen: false);
+        if (sandwich.isRevealed) {
+          sandwich.slideDown();
+          return Future.value(false);
+        }
+        return Future.value(true);
+      },
       child: Sandwich(
         safeHeight: MediaQuery.of(context).padding.top,
         translateOffset: 111.0,
@@ -23,9 +33,7 @@ class MonthsPage extends StatelessWidget {
           data: List.filled(10, 0),
           visibleItems: 1,
           builder: (index, data, ctrl) {
-            return BannerBoard(
-              name: 'solapuria',
-            );
+            return BannerBoard(index, data, ctrl);
           },
         ),
       ),

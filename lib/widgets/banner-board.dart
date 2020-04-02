@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
+
+import 'modules/sandwich/model.dart';
 
 class BannerBoard extends StatelessWidget {
-  final String name;
+  final int index;
+  final dynamic data;
+  final PageController ctrl;
 
-  const BannerBoard({Key key, this.name}) : super(key: key);
+  const BannerBoard(this.index, this.data, this.ctrl, {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // var sandwich = Provider.of<SandwichModel>(context, listen: true);
+    // print('@@#### ${sandwich.yDistance}');
     return Container(
-      color: Colors.white,
+      color: Color(0xff6156A4),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
@@ -38,16 +46,18 @@ class BannerBoard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      name,
+                      'hello-$index',
                       style: TextStyle(
-                          fontSize: 19, color: MonexColors.labelActive),
+                        fontSize: 19,
+                        color: Colors.white30,
+                      ),
                     ),
                     Text(
                       '3200',
                       style: TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.w800,
-                        color: MonexColors.primary,
+                        color: Colors.white70,
                       ),
                     ),
                   ],

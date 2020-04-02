@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/widgets/containers/payments-view.container.dart';
 import 'package:monex/widgets/modules/pager/pager.dart';
 import 'package:monex/widgets/month-control.dart';
-import 'package:monex/widgets/transactions.dart';
 
 class MonthViewContainer extends StatelessWidget {
   const MonthViewContainer({Key key}) : super(key: key);
@@ -30,7 +30,8 @@ class MonthViewContainer extends StatelessWidget {
                 flex: 1,
                 child: Pager(
                   builder: (int index, dynamic data, PageController ctrl) {
-                    return Transactions(index: index, data: data, ctrl: ctrl);
+                    return PaymentsViewContainer(
+                        index: index, data: data, ctrl: ctrl);
                   },
                   data: data,
                   initialPage: 2,
@@ -39,14 +40,14 @@ class MonthViewContainer extends StatelessWidget {
               ),
               Container(
                 height: 70,
-                color: MonexColors.primary,
+                color: Color(0xffECEBF4),
                 child: Pager.master(
                   builder: (int index, dynamic data, PageController ctrl) {
                     return MonthControl(index, data, ctrl);
                   },
                   data: data,
                   initialPage: 2,
-                  visibleItems: 5,
+                  visibleItems: 4,
                 ),
               )
             ],

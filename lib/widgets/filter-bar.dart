@@ -7,15 +7,11 @@ class FilterBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xffDCC6B6).withOpacity(0.05),
+      color: Color(0xff6156A4),
       child: Column(
         children: <Widget>[
-          Divider(
-            color: MonexColors.border,
-            height: 2,
-          ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -31,8 +27,11 @@ class FilterBar extends StatelessWidget {
                       width: 8,
                     ),
                     Text(
-                      'All',
-                      style: TextStyle(fontWeight: FontWeight.w500),
+                      'ALL',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white.withOpacity(0.8),
+                      ),
                     ),
                   ],
                 ),
@@ -51,7 +50,13 @@ class FilterBar extends StatelessWidget {
                       SizedBox(
                         width: 8,
                       ),
-                      Text('Credit'),
+                      Text(
+                        'CREDIT',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white.withOpacity(0.8),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -70,17 +75,19 @@ class FilterBar extends StatelessWidget {
                       SizedBox(
                         width: 8,
                       ),
-                      Text('Debit'),
+                      Text(
+                        'DEBIT',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white.withOpacity(0.8),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          Divider(
-            color: MonexColors.border,
-            height: 1,
-          )
         ],
       ),
     );

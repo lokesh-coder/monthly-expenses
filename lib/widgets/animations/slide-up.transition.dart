@@ -1,20 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:monex/widgets/modules/sandwich/model.dart';
+import 'package:provider/provider.dart';
 
-class SlideUpTransition extends StatelessWidget {
-  final double offset;
+class SlideUpTransition extends StatefulWidget {
+  final double contentHeight;
   final Widget child;
 
-  const SlideUpTransition({Key key, this.offset, this.child}) : super(key: key);
+  const SlideUpTransition({Key key, this.contentHeight, this.child})
+      : super(key: key);
+
+  @override
+  _SlideUpTransitionState createState() => _SlideUpTransitionState();
+}
+
+class _SlideUpTransitionState extends State<SlideUpTransition>
+    with SingleTickerProviderStateMixin {
+  Animation<double> animation;
+  AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+    animation = Tween(begin: 0.0, end: widget.contentHeight).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.easeInOutQuint,
+      ),
+    )..addListener(() {
+        Provider.of<SandwichModel>(context, listen: false)
+            .setYDistance((animation.value / widget.contentHeight).abs());
+        setState(() {});
+      });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    var isRevealed =
+        Provider.of<SandwichModel>(context, listen: true).isRevealed;
+    if (isRevealed) {
+      controller.forward();
+    } else {
+      controller.reverse();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return TweenAnimationBuilder(
-      tween: Tween(begin: 0.0, end: offset),
-      duration: Duration(milliseconds: 200),
-      curve: Curves.easeInOutQuint,
-      builder: (ctx, val, _) {
-        return Transform.translate(offset: Offset(0, val), child: child);
-      },
+    return Transform.translate(
+      offset: Offset(0, animation.value),
+      child: widget.child,
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
   }
 }

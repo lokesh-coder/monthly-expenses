@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:monex/widgets/animations/slide-up.transition.dart';
-import 'package:monex/widgets/modules/sandwich/model.dart';
-import 'package:provider/provider.dart';
 
 class Sandwich extends StatelessWidget {
   final Widget bottomChild;
@@ -23,49 +21,43 @@ class Sandwich extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('TOP ${MediaQuery.of(context).padding.top}');
+    print('CALLL');
+    return Stack(
+      // fit: StackFit.expand,
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(
+            top: (translateOffset + visibleContentHeight).abs(),
+          ),
+          child: bottomChild,
+        ),
+        Builder(
+          builder: (context) {
+            double screenHeight = MediaQuery.of(context).size.height;
+            double translateDistance =
+                screenHeight - (translateOffset + safeHeight);
+            double contentHeight = -(translateDistance - visibleContentHeight);
 
-    return ChangeNotifierProvider(
-      create: (_) => SandwichModel(),
-      child: Stack(
-        // fit: StackFit.expand,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(
-              top: (translateOffset - safeHeight).abs(),
-            ),
-            child: bottomChild,
-          ),
-          Consumer<SandwichModel>(
-            child: Container(
-              color: Colors.white,
-              child: middleChild,
-              margin: EdgeInsets.only(
-                top: translateOffset,
+            return SlideUpTransition(
+              contentHeight: contentHeight,
+              child: Container(
+                color: Colors.white,
+                child: middleChild,
+                margin: EdgeInsets.only(
+                  top: translateOffset,
+                ),
               ),
-            ),
-            builder: (context, sandwich, child) {
-              double screenHeight = MediaQuery.of(context).size.height;
-              double translateDistance =
-                  screenHeight - (translateOffset + safeHeight);
-              double offset = sandwich.isRevealed
-                  ? -(translateDistance - visibleContentHeight)
-                  : 0.0;
-              return SlideUpTransition(
-                offset: offset,
-                child: child,
-              );
-            },
+            );
+          },
+        ),
+        SizedBox(
+          height: translateOffset,
+          child: Container(
+            // color: Colors.pink,
+            child: topChild,
           ),
-          SizedBox(
-            height: translateOffset,
-            child: Container(
-              // color: Colors.pink,
-              child: topChild,
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

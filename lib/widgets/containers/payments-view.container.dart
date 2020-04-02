@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:monex/widgets/filter-bar.dart';
-import 'package:monex/widgets/ledger.dart';
+import 'package:monex/widgets/modules/sandwich/model.dart';
+import 'package:monex/widgets/payments.dart';
 import 'package:provider/provider.dart';
 
-import 'modules/sandwich/model.dart';
-
-class Transactions extends StatelessWidget {
+class PaymentsViewContainer extends StatelessWidget {
   final dynamic data;
   final int index;
   final PageController ctrl;
 
-  const Transactions({Key key, this.index, this.data, this.ctrl})
+  const PaymentsViewContainer({Key key, this.index, this.data, this.ctrl})
       : super(key: key);
 
   @override
@@ -20,7 +19,7 @@ class Transactions extends StatelessWidget {
       child: Column(
         children: <Widget>[
           FilterBar(),
-          Ledger(),
+          Payments(),
           Text(
             data,
             style: TextStyle(

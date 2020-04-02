@@ -38,15 +38,10 @@ class PagerModel with ChangeNotifier {
   }
 
   offsetChange() {
-    currentOffset = masterController.position.pixels * masterVisibleItems;
-
     workerControllers.forEach((w) {
       if (w.worker.hasClients) {
-        w.worker.animateTo(
-          currentOffset / (1 / w.worker.viewportFraction),
-          duration: Duration(milliseconds: 100),
-          curve: Curves.linear,
-        );
+        currentOffset = masterController.position.pixels * masterVisibleItems;
+        w.worker.jumpTo(currentOffset / (1 / w.worker.viewportFraction));
       }
     });
   }

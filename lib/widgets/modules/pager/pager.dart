@@ -24,6 +24,7 @@ class Pager extends StatelessWidget {
 
     PageController ctrl;
     ScrollPhysics physics;
+    bool pageSnap;
     if (isMaster) {
       ctrl = pagerModel.createController(
         key: key,
@@ -32,6 +33,7 @@ class Pager extends StatelessWidget {
         isMaster: true,
       );
       physics = AlwaysScrollableScrollPhysics();
+      pageSnap = true;
       SchedulerBinding.instance.addPostFrameCallback((_) {
         ctrl.position.notifyListeners();
       });
@@ -42,6 +44,7 @@ class Pager extends StatelessWidget {
         initialPage: initialPage,
       );
       physics = NeverScrollableScrollPhysics();
+      pageSnap = false;
     }
 
     return Selector(
@@ -52,6 +55,7 @@ class Pager extends StatelessWidget {
           controller: ctrl,
           itemCount: data.length,
           physics: physics,
+          pageSnapping: pageSnap,
           itemBuilder: (_, int index) {
             return builder(index, data[index], ctrl);
           },

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/widgets/filter-bar.dart';
+import 'package:monex/widgets/modules/sandwich/model.dart';
+import 'package:monex/widgets/shared/amount.dart';
+import 'package:monex/widgets/shared/percentage.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
-
-import 'modules/sandwich/model.dart';
 
 class BannerBoard extends StatelessWidget {
   final int index;
@@ -15,80 +17,70 @@ class BannerBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var sandwich = Provider.of<SandwichModel>(context, listen: true);
-    // print('@@#### ${sandwich.yDistance}');
     return Container(
-      color: Color(0xff6156A4),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Row(
-              children: <Widget>[
-                new CircularPercentIndicator(
-                  radius: 60.0,
-                  lineWidth: 8.0,
-                  percent: 0.25,
-                  center: new Text(
-                    "25%",
-                    style:
-                        TextStyle(fontSize: 12, color: MonexColors.labelActive),
-                  ),
-                  progressColor: MonexColors.green,
-                  circularStrokeCap: CircularStrokeCap.round,
-                  backgroundColor: MonexColors.light,
+      // color: Color(0xff6156A4),
+      child: Selector(
+        selector: (ctx, SandwichModel model) => model.yDistance,
+        builder: (ctx, val, child) {
+          print('###>> ${(60 / val)}');
+
+          return Stack(
+            // fit: StackFit.expand,
+            alignment: Alignment.topCenter,
+            children: <Widget>[
+              AnimatedPositioned(
+                top: 60 - (60 * val),
+                duration: Duration(milliseconds: 200),
+                curve: Curves.decelerate,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  color: Color(0xff6156A4),
+                  child: FilterBar(),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              Container(
+                height: 80,
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                color: Color(0xff6156A4),
+                child: Row(
                   children: <Widget>[
-                    Text(
-                      'hello-$index',
-                      style: TextStyle(
-                        fontSize: 19,
-                        color: Colors.white30,
-                      ),
+                    Percentage(value: 33),
+                    SizedBox(width: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          '2019',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white30,
+                          ),
+                        ),
+                        Text(
+                          'hello-$index',
+                          style: TextStyle(
+                              fontSize: 19,
+                              color: Colors.white30,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ],
                     ),
-                    Text(
-                      '3200',
-                      style: TextStyle(
-                        fontSize: 21,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white70,
+                    Expanded(
+                      flex: 1,
+                      child: Amount(
+                        value: 5699,
+                        isCredit: true,
+                        size: AmountSize.LG,
                       ),
-                    ),
+                    )
                   ],
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      IconButton(
-                        icon: Icon(
-                          Icons.add,
-                          color: MonexColors.label,
-                        ),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.settings,
-                          color: MonexColors.label,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/models/DateUtil.dart';
 import 'package:monex/source/models/payments.model.dart';
 import 'package:monex/widgets/modules/pager/model.dart';
 import 'package:monex/widgets/modules/sandwich/model.dart';
@@ -17,6 +18,8 @@ class MyApp extends StatelessWidget {
       statusBarBrightness: Brightness.dark,
     ));
 
+    // print('@@@ ${DateUtil().getAllDaysInMonth(DateTime.now())}');
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => PagerModel()),
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Monex',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: MonexColors.primary,
           fontFamily: 'Circular',
         ),
         debugShowCheckedModeBanner: false,

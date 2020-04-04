@@ -19,7 +19,7 @@ class Editor extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          FormHeader(),
+          // FormHeader(),
           Expanded(
             child: PaymentForm(),
           ),

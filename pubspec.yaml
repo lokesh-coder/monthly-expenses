@@ -29,6 +29,8 @@ dependencies:
   sembast: ^2.4.1+1
   uuid: ^2.0.4
   percent_indicator: ^2.1.1+1
+  date_picker_timeline: ^1.2.0
+  jiffy: ^3.0.1
 
 dev_dependencies:
   flutter_test:

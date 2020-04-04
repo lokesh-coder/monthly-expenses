@@ -13,16 +13,18 @@ class MonthViewContainer extends StatelessWidget {
       child: Builder(
         builder: (ctx) {
           var data = [
-            'one',
-            'two',
-            'three',
-            'four',
-            'five',
-            'six',
-            'seven',
-            'eight',
-            'nine',
-            'ten'
+            'January',
+            'Febraury',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
           ];
           return Column(
             children: <Widget>[
@@ -39,8 +41,14 @@ class MonthViewContainer extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 70,
-                color: Color(0xffECEBF4),
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Color(0xffffffff),
+                  border: Border(
+                    bottom: BorderSide(color: MonexColors.inputBorder),
+                    top: BorderSide(color: MonexColors.inputBorder),
+                  ),
+                ),
                 child: Pager.master(
                   builder: (int index, dynamic data, PageController ctrl) {
                     return MonthControl(index, data, ctrl);

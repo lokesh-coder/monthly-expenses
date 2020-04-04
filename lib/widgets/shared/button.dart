@@ -10,14 +10,15 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      color: MonexColors.light,
+      color: MonexColors.primary,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Text(
         label.toUpperCase(),
         style: TextStyle(
           fontSize: 15,
           letterSpacing: -0.5,
-          color: MonexColors.title,
+          color: Colors.white70,
         ),
       ),
       onPressed: onPressed,

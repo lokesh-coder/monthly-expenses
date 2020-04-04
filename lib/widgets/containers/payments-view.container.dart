@@ -15,27 +15,25 @@ class PaymentsViewContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sandwich = Provider.of<SandwichModel>(context, listen: false);
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          FilterBar(),
-          Payments(),
-          Text(
-            data,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
-            textAlign: TextAlign.center,
+    return Column(
+      children: <Widget>[
+        // FilterBar(),
+        Payments(),
+        Text(
+          data,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
           ),
-          FlatButton(
-            onPressed: () {
-              sandwich.slideUp();
-            },
-            child: Text('move top'),
-          ),
-        ],
-      ),
+          textAlign: TextAlign.center,
+        ),
+        FlatButton(
+          onPressed: () {
+            sandwich.slideUp();
+          },
+          child: Text('move top'),
+        ),
+      ],
     );
   }
 }

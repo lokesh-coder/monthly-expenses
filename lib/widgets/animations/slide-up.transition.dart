@@ -51,8 +51,10 @@ class _SlideUpTransitionState extends State<SlideUpTransition>
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: Offset(0, animation.value),
+    return Positioned(
+      left: 0,
+      right: 0,
+      top: animation.value,
       child: widget.child,
     );
   }

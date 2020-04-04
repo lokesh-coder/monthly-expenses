@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:monex/widgets/filter-bar.dart';
 import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/payments.dart';
 import 'package:provider/provider.dart';

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
 import 'package:monex/widgets/filter-bar.dart';
 import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/shared/amount.dart';
 import 'package:monex/widgets/shared/percentage.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class BannerBoard extends StatelessWidget {

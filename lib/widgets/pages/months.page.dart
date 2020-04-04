@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:monex/widgets/banner-board.dart';
 import 'package:monex/widgets/containers/month-view.container.dart';
 import 'package:monex/widgets/editor.dart';
-import 'package:monex/widgets/filter-bar.dart';
-import 'package:monex/widgets/modules/pager/pager.dart';
 import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/modules/sandwich/sandwich.dart';
 import 'package:monex/widgets/shared/app-shell.dart';

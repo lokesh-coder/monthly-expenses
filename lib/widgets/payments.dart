@@ -22,7 +22,6 @@ class Payments extends StatelessWidget {
       child: SingleChildScrollView(
         child: Consumer<PaymentsModel>(
           builder: (context, paymentsModel, child) {
-            print('==> ${paymentsModel.payments}');
             return Column(
               children: <Widget>[
                 Card(

@@ -1,12 +1,12 @@
 class Payment {
-  final String id;
-  final String label;
-  final int lastModifiedTime;
-  final int createdTime;
-  final int date;
-  final bool isCredit;
-  final double amount;
-  final String categoryID;
+  String id;
+  String label;
+  int lastModifiedTime;
+  int createdTime;
+  int date;
+  bool isCredit;
+  double amount;
+  String categoryID;
 
   Payment({
     this.id,

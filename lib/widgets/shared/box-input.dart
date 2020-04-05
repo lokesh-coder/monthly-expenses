@@ -3,7 +3,7 @@ import 'package:monex/config/colors.dart';
 
 enum InputType { CURRENCY, TEXT, NONE }
 
-class BoxInput extends StatelessWidget {
+class BoxInput extends StatefulWidget {
   final String label;
   final bool isPrimary;
   final String placeholder;
@@ -15,7 +15,7 @@ class BoxInput extends StatelessWidget {
   final Function onChanged;
   final Function validator;
 
-  const BoxInput({
+  BoxInput({
     Key key,
     this.label,
     this.placeholder = '',
@@ -30,6 +30,22 @@ class BoxInput extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _BoxInputState createState() => _BoxInputState();
+}
+
+class _BoxInputState extends State<BoxInput> {
+  final _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text = widget.initialValue;
+    _controller.addListener(() {
+      _controller.text = widget.initialValue;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -38,7 +54,7 @@ class BoxInput extends StatelessWidget {
           bottom: BorderSide(
             color: MonexColors.inputBorder,
           ),
-          right: hasRightBorder
+          right: widget.hasRightBorder
               ? BorderSide(
                   color: MonexColors.inputBorder,
                 )
@@ -50,34 +66,36 @@ class BoxInput extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           TextFormField(
-            readOnly: inputType == InputType.NONE ? true : false,
-            initialValue: initialValue,
+            controller: _controller,
+            readOnly: widget.inputType == InputType.NONE ? true : false,
             style: TextStyle(
               color: MonexColors.inputValue,
-              fontSize: isPrimary ? 30 : 20,
-              fontWeight: isPrimary ? FontWeight.w800 : FontWeight.w400,
+              fontSize: widget.isPrimary ? 30 : 20,
+              fontWeight: widget.isPrimary ? FontWeight.w800 : FontWeight.w400,
             ),
             keyboardAppearance: Brightness.dark,
             keyboardType: _getKeyboardType(),
-            onTap: onClick,
+            onTap: widget.onClick,
             onEditingComplete: () {
               print('editing complete');
             },
-            onChanged: onChanged,
-            validator: validator,
-            onSaved: onSaved,
+            onChanged: (v) {
+              print('it git changed to $v');
+            },
+            validator: widget.validator,
+            onSaved: widget.onSaved,
             decoration: InputDecoration(
               isDense: true,
               contentPadding: EdgeInsets.symmetric(vertical: 10),
               border: InputBorder.none,
-              hintText: placeholder,
+              hintText: widget.placeholder,
               hintStyle: TextStyle(color: MonexColors.inputPlaceholder),
             ),
           ),
           Visibility(
-            visible: !isPrimary,
+            visible: !widget.isPrimary,
             child: Text(
-              label.toUpperCase(),
+              widget.label.toUpperCase(),
               style: TextStyle(
                 letterSpacing: -1,
                 color: MonexColors.inputLabel,
@@ -91,11 +109,17 @@ class BoxInput extends StatelessWidget {
   }
 
   _getKeyboardType() {
-    if (inputType == InputType.CURRENCY) {
+    if (widget.inputType == InputType.CURRENCY) {
       return TextInputType.numberWithOptions(
         decimal: true,
         signed: false,
       );
     }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

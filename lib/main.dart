@@ -17,8 +17,6 @@ class MyApp extends StatelessWidget {
       statusBarBrightness: Brightness.dark,
     ));
 
-    // print('@@@ ${DateUtil().getAllDaysInMonth(DateTime.now())}');
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => PagerModel()),

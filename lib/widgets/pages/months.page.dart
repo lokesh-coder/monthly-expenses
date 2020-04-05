@@ -13,7 +13,6 @@ class MonthsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('==< ${MediaQuery.of(context).padding.top}');
     return AppShell(
       drawer: Theme(
         data: Theme.of(context).copyWith(

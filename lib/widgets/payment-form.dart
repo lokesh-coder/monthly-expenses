@@ -24,7 +24,7 @@ class _PaymentFormState extends State<PaymentForm> {
   var data = Map();
   var payment = Payment(
     amount: 0.0,
-    categoryID: 'TAX',
+    categoryID: 'BILLS',
     createdTime: null,
     date: DateTime(2020).millisecondsSinceEpoch,
     isCredit: true,
@@ -124,8 +124,11 @@ class _PaymentFormState extends State<PaymentForm> {
                 context: context,
                 initialValue: payment.categoryID,
                 onSelect: (cid) {
-                  data['category'] = cid;
                   sheet.close();
+                  setState(() {
+                    data['category'] = cid;
+                    payment.categoryID = cid;
+                  });
                 },
               ),
             );
@@ -197,7 +200,6 @@ class _PaymentFormState extends State<PaymentForm> {
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
-          print('!!!data $data');
         }
       },
     );

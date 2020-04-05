@@ -11,7 +11,6 @@ class DueDayPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List weeks = DateUtil().getAllDaysInMonth(DateTime.now());
-    print('@@@=> $weeks');
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),

@@ -16,14 +16,10 @@ class BannerBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Color(0xff6156A4),
       child: Selector(
         selector: (ctx, SandwichModel model) => model.yDistance,
         builder: (ctx, val, child) {
-          print('###>> ${(60 / val)}');
-
           return Stack(
-            // fit: StackFit.expand,
             alignment: Alignment.topCenter,
             children: <Widget>[
               AnimatedPositioned(

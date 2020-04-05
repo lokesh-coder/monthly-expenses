@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class BottomSheetData {
   Function(String title, Widget child) open;
+  Function() close;
   BottomSheetData();
 }
 
@@ -54,6 +55,8 @@ class PickableBottomSheet extends StatelessWidget {
           },
         );
       };
+
+      data.close = () => Navigator.of(context).pop();
       return builder(context, data);
     });
   }

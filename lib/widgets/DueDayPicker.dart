@@ -3,11 +3,15 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/models/DateUtil.dart';
 
 class DueDayPicker extends StatelessWidget {
-  const DueDayPicker({Key key}) : super(key: key);
+  final Function onSelect;
+  final DateTime selected;
+
+  const DueDayPicker({Key key, this.selected, this.onSelect}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List weeks = DateUtil().getAllDaysInMonth(DateTime.now());
+    print('@@@=> $weeks');
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
@@ -38,14 +42,26 @@ class DueDayPicker extends StatelessWidget {
     );
   }
 
-  Widget _getDayWidget(date) {
+  Widget _getDayWidget(dateObj) {
+    if (dateObj == "") {
+      dateObj = {"date": "", "dateTime": null};
+    }
+    var isSelecteDate = selected.day.toString() == dateObj["date"].toString();
     return Expanded(
       child: Center(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: Text(
-            date.toString(),
-            style: TextStyle(fontSize: 18, color: MonexColors.inputValue),
+        child: GestureDetector(
+          onTap: () => onSelect(dateObj['dateTime']),
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+              dateObj["date"].toString(),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: isSelecteDate ? FontWeight.w800 : FontWeight.w400,
+                color:
+                    isSelecteDate ? MonexColors.green : MonexColors.inputValue,
+              ),
+            ),
           ),
         ),
       ),

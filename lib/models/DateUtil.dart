@@ -33,7 +33,7 @@ class DateUtil {
           }),
         );
       }
-      weeks[weeks.length - 1][d.day] = d.date;
+      weeks[weeks.length - 1][d.day] = {"date": d.date, "dateTime": d.dateTime};
     }
 
     return weeks.map((x) => x.values).map((x) => x.toList()).toList();

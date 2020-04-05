@@ -7,9 +7,13 @@ class BoxInput extends StatelessWidget {
   final String label;
   final bool isPrimary;
   final String placeholder;
+  final dynamic initialValue;
   final InputType inputType;
   final bool hasRightBorder;
   final Function onClick;
+  final Function onSaved;
+  final Function onChanged;
+  final Function validator;
 
   const BoxInput({
     Key key,
@@ -19,6 +23,10 @@ class BoxInput extends StatelessWidget {
     this.inputType = InputType.NONE,
     this.hasRightBorder = false,
     this.onClick,
+    this.onSaved,
+    this.onChanged,
+    this.initialValue,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -27,14 +35,15 @@ class BoxInput extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       decoration: BoxDecoration(
         border: Border(
-            bottom: BorderSide(
-              color: MonexColors.inputBorder,
-            ),
-            right: hasRightBorder
-                ? BorderSide(
-                    color: MonexColors.inputBorder,
-                  )
-                : BorderSide.none),
+          bottom: BorderSide(
+            color: MonexColors.inputBorder,
+          ),
+          right: hasRightBorder
+              ? BorderSide(
+                  color: MonexColors.inputBorder,
+                )
+              : BorderSide.none,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -42,6 +51,7 @@ class BoxInput extends StatelessWidget {
         children: <Widget>[
           TextFormField(
             readOnly: inputType == InputType.NONE ? true : false,
+            initialValue: initialValue,
             style: TextStyle(
               color: MonexColors.inputValue,
               fontSize: isPrimary ? 30 : 20,
@@ -50,6 +60,12 @@ class BoxInput extends StatelessWidget {
             keyboardAppearance: Brightness.dark,
             keyboardType: _getKeyboardType(),
             onTap: onClick,
+            onEditingComplete: () {
+              print('editing complete');
+            },
+            onChanged: onChanged,
+            validator: validator,
+            onSaved: onSaved,
             decoration: InputDecoration(
               isDense: true,
               contentPadding: EdgeInsets.symmetric(vertical: 10),

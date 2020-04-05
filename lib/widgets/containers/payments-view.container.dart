@@ -16,8 +16,7 @@ class PaymentsViewContainer extends StatelessWidget {
     final sandwich = Provider.of<SandwichModel>(context, listen: false);
     return Column(
       children: <Widget>[
-        // FilterBar(),
-        Payments(),
+        Expanded(child: Payments()),
         Text(
           data,
           style: TextStyle(

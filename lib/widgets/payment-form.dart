@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/models/DateUtil.dart';
 import 'package:monex/source/models/payment.model.dart';
+import 'package:monex/source/models/payments.model.dart';
 import 'package:monex/widgets/shared/CategoryInput.dart';
 import 'package:monex/widgets/shared/DayInput.dart';
 import 'package:monex/widgets/shared/PickableBottomSheet.dart';
@@ -22,6 +23,7 @@ class PaymentForm extends StatefulWidget {
 }
 
 class _PaymentFormState extends State<PaymentForm> {
+  SandwichModel sandwich;
   var payment = Payment(
     amount: 0.0,
     categoryID: 'BILLS',
@@ -30,6 +32,12 @@ class _PaymentFormState extends State<PaymentForm> {
     isCredit: true,
     label: 'hoya',
   );
+
+  @override
+  void initState() {
+    super.initState();
+    sandwich = Provider.of<SandwichModel>(context, listen: false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -189,8 +197,7 @@ class _PaymentFormState extends State<PaymentForm> {
           size: 32,
         ),
         onPressed: () {
-          var model = Provider.of<SandwichModel>(context, listen: false);
-          model.slideDown();
+          sandwich.slideDown();
         },
       ),
     );
@@ -203,6 +210,9 @@ class _PaymentFormState extends State<PaymentForm> {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
           print(payment.toJson());
+          Provider.of<PaymentsModel>(context, listen: false)
+              .insertPayment(payment);
+          sandwich.slideDown();
         }
       },
     );

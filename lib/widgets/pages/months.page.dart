@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/source/models/payments.model.dart';
 import 'package:monex/widgets/banner-board.dart';
 import 'package:monex/widgets/containers/month-view.container.dart';
 import 'package:monex/widgets/editor.dart';
@@ -13,6 +14,9 @@ class MonthsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var payments = Provider.of<PaymentsModel>(context, listen: false);
+    // payments.dropDb();
+    payments.fetchPayments();
     return AppShell(
       drawer: Theme(
         data: Theme.of(context).copyWith(

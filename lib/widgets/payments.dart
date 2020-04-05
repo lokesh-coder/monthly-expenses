@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:monex/data/categories.dart';
+import 'package:monex/source/models/payment.model.dart';
 import 'package:monex/source/models/payments.model.dart';
 import 'package:provider/provider.dart';
 
@@ -19,96 +21,47 @@ class Payments extends StatelessWidget {
     return Container(
       // color: Color(0xffF2F3F7),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: SingleChildScrollView(
-        child: Consumer<PaymentsModel>(
-          builder: (context, paymentsModel, child) {
-            return Column(
-              children: <Widget>[
-                Card(
-                  elevation: 0,
-                  // color: MonexColors.card,
-                  child: ListTile(
-                    dense: true,
-                    contentPadding: EdgeInsets.all(0),
-                    leading: Image.asset(
-                      'assets/icons/icons8-beetroot-and-carrot-100.png',
-                      width: 40,
-                    ),
-                    onTap: () {
-                      _paymentsModel.fetchPayments();
-                    },
-                    title: Text(
-                      'Vegetables',
-                      style: style,
-                    ),
-                    subtitle: Text(
-                      'GROCERIES',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                    ),
-                    trailing: Text(
-                      '14000',
-                    ),
+      child: Consumer<PaymentsModel>(
+        builder: (context, paymentsModel, child) {
+          List payments = paymentsModel.payments;
+          return ListView.separated(
+            itemCount: payments.length,
+            separatorBuilder: (_, __) {
+              return Divider(
+                height: 1,
+              );
+            },
+            itemBuilder: (_, index) {
+              Payment data = payments[index];
+              List category =
+                  CatagoriesList().findCategoryById(data.categoryID);
+              return Card(
+                elevation: 0,
+                // color: MonexColors.card,
+                child: ListTile(
+                  dense: true,
+                  contentPadding: EdgeInsets.all(0),
+                  leading: Image.asset(
+                    category[0],
+                    width: 40,
                   ),
-                ),
-                Divider(
-                  height: 1,
-                ),
-                Card(
-                  elevation: 0,
-                  child: ListTile(
-                    dense: true,
-                    contentPadding: EdgeInsets.all(0),
-                    onTap: () {
-                      _paymentsModel.seed();
-                    },
-                    leading: Image.asset(
-                      'assets/icons/icons8-check-for-payment-100.png',
-                      width: 40,
-                    ),
-                    title: Text(
-                      'HDFC personal loan',
-                      style: style,
-                    ),
-                    subtitle: Text(
-                      'BANKING',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                    ),
-                    trailing: Text(
-                      '14000',
-                    ),
+                  onTap: () {
+                    _paymentsModel.fetchPayments();
+                  },
+                  title: Text(
+                    data.label,
+                    style: style,
                   ),
-                ),
-                Divider(
-                  height: 1,
-                ),
-                Card(
-                  elevation: 0,
-                  child: ListTile(
-                    dense: true,
-                    contentPadding: EdgeInsets.all(0),
-                    onTap: () {},
-                    leading: Image.asset(
-                      'assets/icons/icons8-cinema-100.png',
-                      width: 40,
-                    ),
-                    subtitle: Text(
-                      'ENTERTAINMENT',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                    ),
-                    title: Text(
-                      'Netflix subscription',
-                      style: style,
-                    ),
-                    trailing: Text('14000'),
+                  subtitle: Text(
+                    category[1],
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                   ),
+                  trailing: Text(data.amount.toString()),
                 ),
-              ],
-            );
-          },
-        ),
+              );
+            },
+          );
+        },
       ),
     );
   }

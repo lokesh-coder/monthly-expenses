@@ -35,6 +35,10 @@ class PaymentsModel with ChangeNotifier {
     return payments;
   }
 
+  dropDb() async {
+    await PaymentDao().dropDb();
+  }
+
   seed() async {
     await PaymentDao().dropDb();
     await PaymentDao().dumpData(SeedData().data);

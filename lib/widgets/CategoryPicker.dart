@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/data/categories.dart';
 
 class CategoryPicker extends StatelessWidget {
   final Function onSelect;
@@ -15,34 +16,14 @@ class CategoryPicker extends StatelessWidget {
       child: Wrap(
         runSpacing: 10,
         spacing: 5,
-        children: _getAllCategories()
+        children: CatagoriesList()
+            .categories
             .map(
               (c) => _getCategoryWidget(c[0], c[1], c[2]),
             )
             .toList(),
       ),
     );
-  }
-
-  List<List<String>> _getAllCategories() {
-    List<List<String>> icons = [
-      ['beetroot-and-carrot', 'Groceries', 'GROCERIES'],
-      ['check-for-payment', 'Cash', 'CASH'],
-      ['cinema', 'Movies', 'MOVIES'],
-      ['money-box', 'Savings', 'SAVINGS'],
-      ['online-store', 'Shopping', 'SHOPPING'],
-      ['receipt-approved', 'Bills', 'BILLS'],
-      ['restaurant', 'Food', 'FOOD'],
-      ['tax', 'Tax', 'TAX'],
-      ['taxi-back-view', 'Transport', 'TRANSPORT'],
-      ['treatment', 'Medical', 'TREATMENT'],
-      ['transaction-approved', 'General', 'TRANS_APPROVED'],
-    ];
-
-    return icons.map((icon) {
-      icon[0] = 'assets/icons/icons8-${icon[0]}-100.png';
-      return icon;
-    }).toList();
   }
 
   Widget _getCategoryWidget(path, name, id) {

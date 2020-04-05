@@ -38,4 +38,8 @@ class DateUtil {
 
     return weeks.map((x) => x.values).map((x) => x.toList()).toList();
   }
+
+  showFormattedDayOfMonth(DateTime dt) {
+    return Jiffy(dt).format('do MMM');
+  }
 }

@@ -40,9 +40,10 @@ class _BoxInputState extends State<BoxInput> {
   void initState() {
     super.initState();
     _controller.text = widget.initialValue;
-    _controller.addListener(() {
-      _controller.text = widget.initialValue;
-    });
+    if (widget.inputType == InputType.NONE)
+      _controller.addListener(() {
+        _controller.text = widget.initialValue;
+      });
   }
 
   @override

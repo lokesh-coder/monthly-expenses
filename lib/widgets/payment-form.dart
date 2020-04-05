@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/models/DateUtil.dart';
 import 'package:monex/source/models/payment.model.dart';
 import 'package:monex/widgets/shared/CategoryInput.dart';
 import 'package:monex/widgets/shared/DayInput.dart';
@@ -21,7 +22,6 @@ class PaymentForm extends StatefulWidget {
 }
 
 class _PaymentFormState extends State<PaymentForm> {
-  var data = Map();
   var payment = Payment(
     amount: 0.0,
     categoryID: 'BILLS',
@@ -79,7 +79,7 @@ class _PaymentFormState extends State<PaymentForm> {
           inputType: InputType.CURRENCY,
           initialValue: payment.amount.toString(),
           onSaved: (amount) {
-            data['amount'] = amount;
+            payment.amount = double.parse(amount);
           },
         ),
         Container(
@@ -104,7 +104,7 @@ class _PaymentFormState extends State<PaymentForm> {
       inputType: InputType.TEXT,
       initialValue: payment.label,
       onSaved: (label) {
-        data['label'] = label;
+        payment.label = label;
       },
     );
   }
@@ -126,7 +126,6 @@ class _PaymentFormState extends State<PaymentForm> {
                 onSelect: (cid) {
                   sheet.close();
                   setState(() {
-                    data['category'] = cid;
                     payment.categoryID = cid;
                   });
                 },
@@ -144,15 +143,18 @@ class _PaymentFormState extends State<PaymentForm> {
         return BoxInput(
           label: 'Payment date',
           placeholder: 'today',
-          initialValue: DateTime(payment.date).toIso8601String(),
+          initialValue: DateUtil().showFormattedDayOfMonth(
+              DateTime.fromMillisecondsSinceEpoch(payment.date)),
           onClick: () {
             sheet.open(
               'pick a day',
               DayInputFormField(
                 context: context,
-                initialValue: DateTime(payment.date),
+                initialValue: DateTime.fromMillisecondsSinceEpoch(payment.date),
                 onSelect: (dt) {
-                  data['date'] = dt;
+                  setState(() {
+                    payment.date = dt.millisecondsSinceEpoch;
+                  });
                   sheet.close();
                 },
               ),
@@ -170,7 +172,7 @@ class _PaymentFormState extends State<PaymentForm> {
       falsyData: [Icons.sentiment_dissatisfied, 'Debit', MonexColors.red],
       initialValue: payment.isCredit,
       onSaved: (val) {
-        data['isCredit'] = val;
+        payment.isCredit = val;
       },
     );
   }
@@ -200,6 +202,7 @@ class _PaymentFormState extends State<PaymentForm> {
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
+          print(payment.toJson());
         }
       },
     );

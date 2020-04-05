@@ -24,7 +24,7 @@ class PaymentForm extends StatefulWidget {
 
 class _PaymentFormState extends State<PaymentForm> {
   Payment payment;
-  String saveBtnName;
+  bool isNew;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +44,12 @@ class _PaymentFormState extends State<PaymentForm> {
                   isCredit: true,
                   label: '',
                 );
-                saveBtnName = 'Add new entry';
+                isNew = true;
               } else {
                 Payment activePayment =
                     paymentsModel.getPayment(paymentsModel.active);
                 payment = activePayment;
-                saveBtnName = 'Edit entry';
+                isNew = false;
               }
 
               return Form(
@@ -62,7 +62,7 @@ class _PaymentFormState extends State<PaymentForm> {
                         physics: BouncingScrollPhysics(),
                         child: Column(
                           children: <Widget>[
-                            _amountField(context),
+                            _amountField(context, sandwichModel, paymentsModel),
                             _labelField(),
                             Row(
                               children: <Widget>[
@@ -90,7 +90,8 @@ class _PaymentFormState extends State<PaymentForm> {
     );
   }
 
-  _amountField(context) {
+  _amountField(
+      context, SandwichModel sandwichModel, PaymentsModel paymentsModel) {
     return Stack(
       alignment: Alignment.centerRight,
       children: <Widget>[
@@ -111,7 +112,18 @@ class _PaymentFormState extends State<PaymentForm> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               _toggleBtn(context),
-              FormIconButton(label: 'Delete', icon: Icons.delete)
+              Visibility(
+                visible: !isNew,
+                child: FormIconButton(
+                  label: 'Delete',
+                  icon: Icons.delete,
+                  onClick: () {
+                    paymentsModel.deletePayment(payment.id);
+                    paymentsModel.setActivePayment(null);
+                    sandwichModel.slideDown();
+                  },
+                ),
+              )
             ],
           ),
         )
@@ -219,7 +231,7 @@ class _PaymentFormState extends State<PaymentForm> {
 
   Button _saveBtn(SandwichModel sandwichModel, PaymentsModel paymentsModel) {
     return Button(
-      label: saveBtnName,
+      label: isNew ? 'Add new entry' : 'Edit entry',
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();

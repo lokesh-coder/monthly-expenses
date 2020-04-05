@@ -23,56 +23,70 @@ class PaymentForm extends StatefulWidget {
 }
 
 class _PaymentFormState extends State<PaymentForm> {
-  SandwichModel sandwich;
-  var payment = Payment(
-    amount: 0.0,
-    categoryID: 'BILLS',
-    createdTime: null,
-    date: DateTime(2020).millisecondsSinceEpoch,
-    isCredit: true,
-    label: 'hoya',
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    sandwich = Provider.of<SandwichModel>(context, listen: false);
-  }
+  Payment payment;
+  String saveBtnName;
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Column(
-                children: <Widget>[
-                  _amountField(context),
-                  _labelField(),
-                  Row(
-                    children: <Widget>[
-                      Expanded(flex: 1, child: _categoryField()),
-                      Expanded(flex: 1, child: _dateField()),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+    return Consumer<SandwichModel>(
+      builder: (context, sandwichModel, child) {
+        return Visibility(
+          visible: sandwichModel.isRevealed,
+          child: Consumer<PaymentsModel>(
+            builder: (context, paymentsModel, child) {
+              if (paymentsModel.active == null) {
+                payment = Payment(
+                  amount: 0.0,
+                  categoryID: 'TAX',
+                  createdTime: null,
+                  date: DateTime.parse(DateTime.now().toString())
+                      .millisecondsSinceEpoch,
+                  isCredit: true,
+                  label: '',
+                );
+                saveBtnName = 'Add new entry';
+              } else {
+                Payment activePayment =
+                    paymentsModel.getPayment(paymentsModel.active);
+                payment = activePayment;
+                saveBtnName = 'Edit entry';
+              }
+
+              return Form(
+                key: formKey,
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child: Column(
+                          children: <Widget>[
+                            _amountField(context),
+                            _labelField(),
+                            Row(
+                              children: <Widget>[
+                                Expanded(flex: 1, child: _categoryField()),
+                                Expanded(flex: 1, child: _dateField()),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(child: _saveBtn(sandwichModel, paymentsModel)),
+                        _closeBtn(context, sandwichModel),
+                      ],
+                    )
+                  ],
+                ),
+              );
+            },
           ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: _saveBtn(),
-              ),
-              _closeBtn(context),
-            ],
-          )
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -185,7 +199,7 @@ class _PaymentFormState extends State<PaymentForm> {
     );
   }
 
-  _closeBtn(context) {
+  _closeBtn(context, sandwich) {
     return Container(
       color: MonexColors.primary.withOpacity(0.8),
       height: 58,
@@ -203,16 +217,21 @@ class _PaymentFormState extends State<PaymentForm> {
     );
   }
 
-  Button _saveBtn() {
+  Button _saveBtn(SandwichModel sandwichModel, PaymentsModel paymentsModel) {
     return Button(
-      label: 'add entry',
+      label: saveBtnName,
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
           print(payment.toJson());
-          Provider.of<PaymentsModel>(context, listen: false)
-              .insertPayment(payment);
-          sandwich.slideDown();
+          if (payment.id == null) {
+            paymentsModel.insertPayment(payment);
+          } else {
+            paymentsModel.updatePayment(payment);
+          }
+
+          paymentsModel.setActivePayment(null);
+          sandwichModel.slideDown();
         }
       },
     );

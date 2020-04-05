@@ -6,6 +6,12 @@ import 'package:monex/source/seed.dart';
 class PaymentsModel with ChangeNotifier {
   List<Payment> payments = [];
   bool isLoading = false;
+  String active;
+
+  setActivePayment(String paymentID) {
+    active = paymentID;
+    notifyListeners();
+  }
 
   fetchPayments() async {
     isLoading = true;
@@ -33,6 +39,12 @@ class PaymentsModel with ChangeNotifier {
 
   getPayments() {
     return payments;
+  }
+
+  getPayment(String paymentID) {
+    return payments.firstWhere((p) {
+      return p.id == paymentID;
+    }, orElse: () => null);
   }
 
   dropDb() async {

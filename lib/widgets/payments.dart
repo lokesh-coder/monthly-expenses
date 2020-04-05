@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/data/categories.dart';
 import 'package:monex/source/models/payment.model.dart';
 import 'package:monex/source/models/payments.model.dart';
+import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:provider/provider.dart';
 
 class Payments extends StatelessWidget {
@@ -9,8 +10,7 @@ class Payments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PaymentsModel _paymentsModel =
-        Provider.of<PaymentsModel>(context, listen: false);
+    final sandwich = Provider.of<SandwichModel>(context, listen: false);
 
     var style = TextStyle(
       color: Color(0xff7E93B2),
@@ -19,7 +19,6 @@ class Payments extends StatelessWidget {
     );
 
     return Container(
-      // color: Color(0xffF2F3F7),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Consumer<PaymentsModel>(
         builder: (context, paymentsModel, child) {
@@ -37,7 +36,6 @@ class Payments extends StatelessWidget {
                   CatagoriesList().findCategoryById(data.categoryID);
               return Card(
                 elevation: 0,
-                // color: MonexColors.card,
                 child: ListTile(
                   dense: true,
                   contentPadding: EdgeInsets.all(0),
@@ -46,7 +44,8 @@ class Payments extends StatelessWidget {
                     width: 40,
                   ),
                   onTap: () {
-                    _paymentsModel.fetchPayments();
+                    paymentsModel.setActivePayment(data.id);
+                    sandwich.slideUp();
                   },
                   title: Text(
                     data.label,

@@ -55,7 +55,7 @@ class _MonthControlState extends State<MonthControl> {
                 }
               },
               child: Text(
-                widget.data.toString(),
+                widget.data['monthName'],
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(color: Color(0xff757193)),
               ),

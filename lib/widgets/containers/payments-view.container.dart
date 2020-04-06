@@ -20,7 +20,7 @@ class PaymentsViewContainer extends StatelessWidget {
       children: <Widget>[
         Expanded(child: Payments()),
         Text(
-          data,
+          data['monthName'],
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,

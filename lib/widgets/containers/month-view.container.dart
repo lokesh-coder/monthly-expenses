@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/models/DateUtil.dart';
 import 'package:monex/widgets/containers/payments-view.container.dart';
 import 'package:monex/widgets/modules/pager/pager.dart';
 import 'package:monex/widgets/month-control.dart';
@@ -9,23 +10,12 @@ class MonthViewContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var monthRange = 3;
+
     return Container(
       child: Builder(
         builder: (ctx) {
-          var data = [
-            'January',
-            'Febraury',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-          ];
+          var data = DateUtil().getMonthRange(monthRange);
           return Column(
             children: <Widget>[
               Expanded(
@@ -36,7 +26,7 @@ class MonthViewContainer extends StatelessWidget {
                         index: index, data: data, ctrl: ctrl);
                   },
                   data: data,
-                  initialPage: 2,
+                  initialPage: monthRange,
                   visibleItems: 1,
                 ),
               ),
@@ -54,7 +44,7 @@ class MonthViewContainer extends StatelessWidget {
                     return MonthControl(index, data, ctrl);
                   },
                   data: data,
-                  initialPage: 2,
+                  initialPage: monthRange,
                   visibleItems: 4,
                 ),
               )

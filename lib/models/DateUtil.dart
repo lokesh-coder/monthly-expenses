@@ -42,4 +42,25 @@ class DateUtil {
   showFormattedDayOfMonth(DateTime dt) {
     return Jiffy(dt).format('do MMM');
   }
+
+  getMonthRange(int rangeCount) {
+    DateTime currMonth = DateTime.now();
+    List ranges = List((rangeCount * 2) + 1);
+
+    ranges.asMap().forEach((index, r) {
+      var month = (Jiffy(currMonth)
+            ..subtract(months: rangeCount)
+            ..add(months: index)
+            ..startOf(Units.MONTH))
+          .dateTime;
+
+      ranges[index] =
+          Map.from({"dateTime": month, "monthName": getMonthName(month)});
+    });
+    return ranges;
+  }
+
+  getMonthName(DateTime dt) {
+    return Jiffy(dt).format('MMMM');
+  }
 }

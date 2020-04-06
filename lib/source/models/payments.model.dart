@@ -10,9 +10,15 @@ class PaymentsModel with ChangeNotifier {
   Map<String, List<Payment>> paymentsByMonth = {};
   bool isLoading = false;
   String active;
+  DateTime activeMonth;
 
   setActivePayment(String paymentID) {
     active = paymentID;
+    notifyListeners();
+  }
+
+  setActiveMonth(DateTime dt) {
+    activeMonth = dt;
     notifyListeners();
   }
 

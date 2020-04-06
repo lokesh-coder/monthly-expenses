@@ -39,8 +39,10 @@ class _PaymentFormState extends State<PaymentForm> {
                   amount: 0.0,
                   categoryID: 'TAX',
                   createdTime: null,
-                  date: DateTime.parse(DateTime.now().toString())
-                      .millisecondsSinceEpoch,
+                  date: paymentsModel.activeMonth == null
+                      ? DateTime.parse(DateTime.now().toString())
+                          .millisecondsSinceEpoch
+                      : paymentsModel.activeMonth.millisecondsSinceEpoch,
                   isCredit: true,
                   label: '',
                 );
@@ -48,6 +50,7 @@ class _PaymentFormState extends State<PaymentForm> {
               } else {
                 Payment activePayment =
                     paymentsModel.getPayment(paymentsModel.active);
+
                 payment = activePayment;
                 isNew = false;
               }
@@ -174,11 +177,15 @@ class _PaymentFormState extends State<PaymentForm> {
   _dateField() {
     return PickableBottomSheet(
       builder: (context, sheet) {
+        String dateDisplay = DateUtil().showFormattedDayOfMonth(
+          DateTime.fromMillisecondsSinceEpoch(payment.date),
+        );
+
         return BoxInput(
+          inputType: InputType.NONE,
           label: 'Payment date',
           placeholder: 'today',
-          initialValue: DateUtil().showFormattedDayOfMonth(
-              DateTime.fromMillisecondsSinceEpoch(payment.date)),
+          initialValue: dateDisplay,
           onClick: () {
             sheet.open(
               'pick a day',

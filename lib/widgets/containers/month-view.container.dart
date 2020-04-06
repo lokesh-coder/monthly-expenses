@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/models/DateUtil.dart';
+import 'package:monex/source/models/payments.model.dart';
 import 'package:monex/widgets/containers/payments-view.container.dart';
 import 'package:monex/widgets/modules/pager/pager.dart';
 import 'package:monex/widgets/month-control.dart';
+import 'package:provider/provider.dart';
 
 class MonthViewContainer extends StatelessWidget {
   const MonthViewContainer({Key key}) : super(key: key);
@@ -28,6 +30,7 @@ class MonthViewContainer extends StatelessWidget {
                   data: data,
                   initialPage: monthRange,
                   visibleItems: 1,
+                  onPageChange: (curr) {},
                 ),
               ),
               Container(
@@ -46,6 +49,10 @@ class MonthViewContainer extends StatelessWidget {
                   data: data,
                   initialPage: monthRange,
                   visibleItems: 4,
+                  onPageChange: (curr) {
+                    Provider.of<PaymentsModel>(context, listen: false)
+                        .setActiveMonth(curr['dateTime']);
+                  },
                 ),
               )
             ],

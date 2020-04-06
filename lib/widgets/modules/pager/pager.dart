@@ -9,12 +9,24 @@ class Pager extends StatelessWidget {
   final bool isMaster;
   final int visibleItems;
   final int initialPage;
-  Pager({Key key, this.builder, this.data, this.visibleItems, this.initialPage})
+  final Function onPageChange;
+  Pager(
+      {Key key,
+      this.builder,
+      this.data,
+      this.visibleItems,
+      this.initialPage,
+      this.onPageChange})
       : isMaster = false,
         super(key: key);
 
   Pager.master(
-      {Key key, this.builder, this.data, this.visibleItems, this.initialPage})
+      {Key key,
+      this.builder,
+      this.data,
+      this.visibleItems,
+      this.initialPage,
+      this.onPageChange})
       : isMaster = true,
         super(key: key);
 
@@ -54,6 +66,9 @@ class Pager extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           controller: ctrl,
           itemCount: data.length,
+          onPageChanged: (index) {
+            onPageChange(data[index]);
+          },
           physics: physics,
           pageSnapping: pageSnap,
           itemBuilder: (_, int index) {

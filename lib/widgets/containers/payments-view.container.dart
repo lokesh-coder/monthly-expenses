@@ -18,7 +18,7 @@ class PaymentsViewContainer extends StatelessWidget {
     final paymentsModel = Provider.of<PaymentsModel>(context, listen: false);
     return Column(
       children: <Widget>[
-        Expanded(child: Payments()),
+        Expanded(child: Payments(data)),
         Text(
           data['monthName'],
           style: TextStyle(

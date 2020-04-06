@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:monex/models/DateUtil.dart';
 import 'package:monex/source/dao/payment.dao.dart';
 import 'package:monex/source/models/payment.model.dart';
 import 'package:monex/source/seed.dart';
+import "package:collection/collection.dart";
 
 class PaymentsModel with ChangeNotifier {
   List<Payment> payments = [];
+  Map<String, List<Payment>> paymentsByMonth = {};
   bool isLoading = false;
   String active;
 
@@ -18,6 +21,7 @@ class PaymentsModel with ChangeNotifier {
     List<Payment> paymentsFromDB = await PaymentDao().getAllPayments();
     isLoading = false;
     payments = paymentsFromDB;
+    paymentsByMonth = Map.from(groupPaymentsByMonth());
     notifyListeners();
   }
 
@@ -45,6 +49,13 @@ class PaymentsModel with ChangeNotifier {
     return payments.firstWhere((p) {
       return p.id == paymentID;
     }, orElse: () => null);
+  }
+
+  Map groupPaymentsByMonth() {
+    return groupBy(payments, (Payment p) {
+      return DateUtil()
+          .getUniqueMonthFormat(DateTime.fromMillisecondsSinceEpoch(p.date));
+    });
   }
 
   dropDb() async {

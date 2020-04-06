@@ -63,4 +63,8 @@ class DateUtil {
   getMonthName(DateTime dt) {
     return Jiffy(dt).format('MMMM');
   }
+
+  getUniqueMonthFormat(DateTime dt) {
+    return Jiffy(dt).format('MMMy');
+  }
 }

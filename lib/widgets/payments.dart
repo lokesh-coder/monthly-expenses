@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:monex/data/categories.dart';
+import 'package:monex/models/DateUtil.dart';
 import 'package:monex/source/models/payment.model.dart';
 import 'package:monex/source/models/payments.model.dart';
 import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:provider/provider.dart';
 
 class Payments extends StatelessWidget {
-  const Payments({Key key}) : super(key: key);
+  final Map data;
+  const Payments(this.data, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,11 @@ class Payments extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Consumer<PaymentsModel>(
         builder: (context, paymentsModel, child) {
-          List payments = paymentsModel.payments;
+          String monthKeyName =
+              DateUtil().getUniqueMonthFormat(data['dateTime']);
+          List payments = paymentsModel.paymentsByMonth[monthKeyName];
           return ListView.separated(
-            itemCount: payments.length,
+            itemCount: payments == null ? 0 : payments.length,
             separatorBuilder: (_, __) {
               return Divider(
                 height: 1,

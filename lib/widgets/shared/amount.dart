@@ -19,7 +19,7 @@ class Amount extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: RichText(
         text: TextSpan(
-          text: '3200',
+          text: value.toString(),
           style: TextStyle(
             fontSize: fontSize,
             fontFamily: 'Circular',

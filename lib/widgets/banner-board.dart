@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:monex/models/DateUtil.dart';
+import 'package:monex/source/models/payment.model.dart';
+import 'package:monex/source/models/payments.model.dart';
 import 'package:monex/widgets/filter-bar.dart';
 import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/shared/amount.dart';
@@ -13,8 +16,25 @@ class BannerBoard extends StatelessWidget {
   const BannerBoard(this.index, this.data, this.ctrl, {Key key})
       : super(key: key);
 
+  getTotal(List<Payment> payments) {
+    if (payments == null) return 0.0;
+    return payments
+        .map((x) => x.isCredit ? x.amount : -(x.amount))
+        .reduce((v, e) => v + e);
+  }
+
   @override
   Widget build(BuildContext context) {
+    PaymentsModel paymentsModel =
+        Provider.of<PaymentsModel>(context, listen: true);
+    List<Payment> monthlyPayments =
+        paymentsModel.getPaymentsForMonth(paymentsModel.activeMonth);
+
+    String monthName = DateUtil().getMonthName(paymentsModel.activeMonth);
+    String year = DateUtil().getYear(paymentsModel.activeMonth);
+
+    double remainingAmount = getTotal(monthlyPayments);
+
     return Container(
       child: Selector(
         selector: (ctx, SandwichModel model) => model.yDistance,
@@ -46,14 +66,14 @@ class BannerBoard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          '2019',
+                          year,
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white30,
                           ),
                         ),
                         Text(
-                          'hello-$index',
+                          monthName,
                           style: TextStyle(
                               fontSize: 19,
                               color: Colors.white30,
@@ -64,8 +84,8 @@ class BannerBoard extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Amount(
-                        value: 5699,
-                        isCredit: true,
+                        value: remainingAmount.abs(),
+                        isCredit: remainingAmount >= 0,
                         size: AmountSize.LG,
                       ),
                     )

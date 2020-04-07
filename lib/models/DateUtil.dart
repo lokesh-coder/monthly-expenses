@@ -64,6 +64,10 @@ class DateUtil {
     return Jiffy(dt).format('MMMM');
   }
 
+  getYear(DateTime dt) {
+    return Jiffy(dt).format('y');
+  }
+
   getUniqueMonthFormat(DateTime dt) {
     return Jiffy(dt).format('MMMy');
   }

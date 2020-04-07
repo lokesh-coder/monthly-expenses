@@ -22,7 +22,7 @@ class _SlideUpTransitionState extends State<SlideUpTransition>
   void initState() {
     super.initState();
     controller = AnimationController(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 400),
       vsync: this,
     );
     animation = Tween(begin: 0.0, end: widget.contentHeight).animate(

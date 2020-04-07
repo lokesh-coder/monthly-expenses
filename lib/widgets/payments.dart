@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
 import 'package:monex/data/categories.dart';
 import 'package:monex/models/DateUtil.dart';
 import 'package:monex/source/models/payment.model.dart';
@@ -45,7 +46,7 @@ class Payments extends StatelessWidget {
                   contentPadding: EdgeInsets.all(0),
                   leading: Image.asset(
                     category[0],
-                    width: 40,
+                    width: 35,
                   ),
                   onTap: () {
                     paymentsModel.setActivePayment(data.id);
@@ -56,10 +57,18 @@ class Payments extends StatelessWidget {
                     style: style,
                   ),
                   subtitle: Text(
-                    category[1],
+                    category[1].toString().toUpperCase(),
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                   ),
-                  trailing: Text(data.amount.toString()),
+                  trailing: Text(
+                    data.amount.toString(),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: data.isCredit
+                            ? MonexColors.green
+                            : MonexColors.red),
+                  ),
                 ),
               );
             },

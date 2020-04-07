@@ -51,6 +51,11 @@ class PaymentsModel with ChangeNotifier {
     return payments;
   }
 
+  getPaymentsForMonth(DateTime dt) {
+    String monthKey = DateUtil().getUniqueMonthFormat(dt);
+    return paymentsByMonth[monthKey];
+  }
+
   getPayment(String paymentID) {
     return payments.firstWhere((p) {
       return p.id == paymentID;

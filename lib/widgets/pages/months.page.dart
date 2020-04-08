@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/source/models/payments.model.dart';
 import 'package:monex/widgets/banner-board.dart';
 import 'package:monex/widgets/containers/month-view.container.dart';
+import 'package:monex/widgets/drawer.dart';
 import 'package:monex/widgets/editor.dart';
 import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/modules/sandwich/sandwich.dart';
@@ -24,19 +25,7 @@ class MonthsPage extends StatelessWidget {
           canvasColor: Colors
               .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
         ),
-        child: Drawer(
-          child: SafeArea(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              margin: EdgeInsets.all(10),
-              child: Text('dd'),
-            ),
-          ),
-        ),
+        child: AppDrawer(),
       ),
       header: Header(
         title:

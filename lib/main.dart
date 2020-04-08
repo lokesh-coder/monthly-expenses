@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/source/models/payments.model.dart';
 import 'package:monex/widgets/modules/pager/model.dart';
 import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/pages/months.page.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+  setupServiceLocator();
+}
 
 class MyApp extends StatelessWidget {
   @override

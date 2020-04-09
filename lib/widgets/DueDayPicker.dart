@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
-import 'package:monex/models/DateUtil.dart';
+import 'package:monex/helpers/date_helper.dart';
 
 class DueDayPicker extends StatelessWidget {
   final Function onSelect;
@@ -10,7 +10,7 @@ class DueDayPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List weeks = DateUtil().getAllDaysInMonth(DateTime.now());
+    List weeks = DateHelper.getAllDaysInMonth(DateTime.now());
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),

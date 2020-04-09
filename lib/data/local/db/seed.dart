@@ -1,4 +1,4 @@
-import 'package:monex/source/models/payment.model.dart';
+import 'package:monex/models/payment.model.dart';
 
 class SeedData {
   final List<Payment> data = [

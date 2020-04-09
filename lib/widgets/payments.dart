@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
-import 'package:monex/data/categories.dart';
-import 'package:monex/models/DateUtil.dart';
+import 'package:monex/data/data_repository.dart';
+import 'package:monex/data/local/object/files/categories.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/source/models/payment.model.dart';
 import 'package:monex/stores/paymens/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
@@ -26,7 +27,7 @@ class Payments extends StatelessWidget {
       child: Observer(
         builder: (context) {
           String monthKeyName =
-              DateUtil().getUniqueMonthFormat(data['dateTime']);
+              DateHelper.getUniqueMonthFormat(data['dateTime']);
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
           return ListView.separated(
             itemCount: payments == null ? 0 : payments.length,
@@ -37,8 +38,10 @@ class Payments extends StatelessWidget {
             },
             itemBuilder: (_, index) {
               Payment data = payments[index];
-              List category =
-                  CatagoriesList().findCategoryById(data.categoryID);
+              List category = sl<DataRepo>()
+                  .obj
+                  .get<Catagories>('categories')
+                  .findCategoryById(data.categoryID);
               return Card(
                 elevation: 0,
                 child: ListTile(

@@ -1,4 +1,5 @@
-class CatagoriesList {
+class Catagories {
+  List finalCategories = [];
   List<List<String>> _categories = [
     ['beetroot-and-carrot', 'Groceries', 'GROCERIES'],
     ['check-for-payment', 'Cash', 'CASH'],
@@ -13,15 +14,15 @@ class CatagoriesList {
     ['transaction-approved', 'General', 'TRANS_APPROVED'],
   ];
 
-  List get categories {
-    return _categories.map((icon) {
-      icon[0] = 'assets/icons/icons8-${icon[0]}-100.png';
-      return icon;
+  List get all {
+    finalCategories = _categories.map((icon) {
+      return ['assets/icons/icons8-${icon[0]}-100.png', icon[1], icon[2]];
     }).toList();
+    return finalCategories;
   }
 
   findCategoryById(String categoryID) {
-    return categories.firstWhere((c) {
+    return all.firstWhere((c) {
       return c[2] == categoryID;
     }, orElse: () => null);
   }

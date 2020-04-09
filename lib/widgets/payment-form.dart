@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
-import 'package:monex/models/DateUtil.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/source/models/payment.model.dart';
 import 'package:monex/stores/paymens/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/widgets/shared/CategoryInput.dart';
@@ -182,9 +182,8 @@ class _PaymentFormState extends State<PaymentForm> {
   _dateField() {
     return PickableBottomSheet(
       builder: (context, sheet) {
-        String dateDisplay = DateUtil().showFormattedDayOfMonth(
-          DateTime.fromMillisecondsSinceEpoch(payment.date),
-        );
+        DateTime dt = DateTime.fromMillisecondsSinceEpoch(payment.date);
+        String dateDisplay = DateHelper.getFormattedDayOfMonth(dt);
 
         return BoxInput(
           inputType: InputType.NONE,

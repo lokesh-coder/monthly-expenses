@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
-import 'package:monex/data/categories.dart';
+import 'package:monex/data/data_repository.dart';
+import 'package:monex/data/local/object/files/categories.dart';
+import 'package:monex/service_locator/service_locator.dart';
 
 class CategoryPicker extends StatelessWidget {
   final Function onSelect;
@@ -16,8 +18,10 @@ class CategoryPicker extends StatelessWidget {
       child: Wrap(
         runSpacing: 10,
         spacing: 5,
-        children: CatagoriesList()
-            .categories
+        children: sl<DataRepo>()
+            .obj
+            .get<Catagories>('categories')
+            .all
             .map(
               (c) => _getCategoryWidget(c[0], c[1], c[2]),
             )

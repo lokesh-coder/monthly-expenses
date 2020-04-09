@@ -9,6 +9,13 @@ part of 'payments.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PaymentsStore on PaymentsBase, Store {
+  Computed<dynamic> _$totalAmountOfActiveMonthComputed;
+
+  @override
+  dynamic get totalAmountOfActiveMonth =>
+      (_$totalAmountOfActiveMonthComputed ??=
+              Computed<dynamic>(() => super.totalAmountOfActiveMonth))
+          .value;
   Computed<Map<String, List<Payment>>> _$paymentsByMonthComputed;
 
   @override
@@ -152,7 +159,7 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   @override
   String toString() {
     final string =
-        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},activeMonth: ${activeMonth.toString()},paymentsByMonth: ${paymentsByMonth.toString()}';
+        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},paymentsByMonth: ${paymentsByMonth.toString()}';
     return '{$string}';
   }
 }

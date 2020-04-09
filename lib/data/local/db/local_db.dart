@@ -1,5 +1,5 @@
 import 'package:monex/data/local/db/config.dart';
-import 'package:monex/source/models/payment.model.dart';
+import 'package:monex/models/payment.model.dart';
 import 'package:sembast/sembast.dart';
 import 'package:uuid/uuid.dart';
 

@@ -1,17 +1,17 @@
 import 'package:jiffy/jiffy.dart';
 
-class DateUtil {
-  int getTotalDaysInMonth(DateTime dateTime) {
+class DateHelper {
+  static int getTotalDaysInMonth(DateTime dateTime) {
     Jiffy date = Jiffy(dateTime);
     return date.daysInMonth;
   }
 
-  int getDayOfWeek(DateTime dateTime) {
+  static int getDayOfWeek(DateTime dateTime) {
     Jiffy date = Jiffy(dateTime);
     return date.day;
   }
 
-  getAllDaysInMonth(DateTime dateTime) {
+  static List getAllDaysInMonth(DateTime dateTime) {
     Jiffy date = Jiffy(dateTime);
     List<Map> weeks = List();
     int daysInMonth = getTotalDaysInMonth(dateTime);
@@ -39,11 +39,11 @@ class DateUtil {
     return weeks.map((x) => x.values).map((x) => x.toList()).toList();
   }
 
-  showFormattedDayOfMonth(DateTime dt) {
+  static String getFormattedDayOfMonth(DateTime dt) {
     return Jiffy(dt).format('do MMM');
   }
 
-  getMonthRange(int rangeCount) {
+  static List getMonthRange(int rangeCount) {
     DateTime currMonth = DateTime.now();
     List ranges = List((rangeCount * 2) + 1);
 
@@ -54,21 +54,21 @@ class DateUtil {
             ..startOf(Units.MONTH))
           .dateTime;
 
-      ranges[index] =
-          Map.from({"dateTime": month, "monthName": getMonthName(month)});
+      ranges[index] = Map.from(
+          {"dateTime": month, "monthName": DateHelper.getMonthName(month)});
     });
     return ranges;
   }
 
-  getMonthName(DateTime dt) {
+  static String getMonthName(DateTime dt) {
     return Jiffy(dt).format('MMMM');
   }
 
-  getYear(DateTime dt) {
+  static String getYear(DateTime dt) {
     return Jiffy(dt).format('y');
   }
 
-  getUniqueMonthFormat(DateTime dt) {
+  static String getUniqueMonthFormat(DateTime dt) {
     return Jiffy(dt).format('MMMy');
   }
 }

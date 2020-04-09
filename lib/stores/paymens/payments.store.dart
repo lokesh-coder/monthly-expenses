@@ -1,9 +1,9 @@
 import 'package:mobx/mobx.dart';
 import 'package:monex/data/data_repository.dart';
-import 'package:monex/models/DateUtil.dart';
-import 'package:monex/source/models/payment.model.dart';
-import 'package:monex/source/seed.dart';
+import 'package:monex/data/local/db/seed.dart';
 import "package:collection/collection.dart";
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/payment.model.dart';
 
 part 'payments.store.g.dart';
 
@@ -24,6 +24,15 @@ abstract class PaymentsBase with Store {
 
   @observable
   DateTime activeMonth;
+
+  @computed
+  get totalAmountOfActiveMonth {
+    List<Payment> monthlyPayments = getPaymentsForMonth(activeMonth);
+    if (monthlyPayments.length == 0) return 0.0;
+    return monthlyPayments
+        .map((x) => x.isCredit ? x.amount : -(x.amount))
+        .reduce((v, e) => v + e);
+  }
 
   @computed
   Map<String, List<Payment>> get paymentsByMonth {
@@ -79,8 +88,9 @@ abstract class PaymentsBase with Store {
     fetchPayments();
   }
 
-  getPaymentsForMonth(DateTime dt) {
-    String monthKey = DateUtil().getUniqueMonthFormat(dt);
+  List<Payment> getPaymentsForMonth(DateTime dt) {
+    String monthKey = DateHelper.getUniqueMonthFormat(dt);
+    if (paymentsByMonth[monthKey] == null) return [];
     return paymentsByMonth[monthKey];
   }
 
@@ -92,8 +102,8 @@ abstract class PaymentsBase with Store {
 
   Map groupPaymentsByMonth() {
     return groupBy(payments, (Payment p) {
-      return DateUtil()
-          .getUniqueMonthFormat(DateTime.fromMillisecondsSinceEpoch(p.date));
+      DateTime dt = DateTime.fromMillisecondsSinceEpoch(p.date);
+      return DateHelper.getUniqueMonthFormat(dt);
     });
   }
 }

@@ -28,7 +28,6 @@ class AppDrawer extends StatelessWidget {
                   divisions: 12,
                   value: sl<SettingsStore>().monthsViewRange.toDouble(),
                   onChanged: (value) {
-                    print('##### ${value.toInt()}');
                     sl<SettingsStore>().changeMonthsViewRange(value.toInt());
                   },
                 ),

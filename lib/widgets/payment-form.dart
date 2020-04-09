@@ -247,7 +247,6 @@ class _PaymentFormState extends State<PaymentForm> {
         var paymentsStore = sl<PaymentsStore>();
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
-          print(payment.toJson());
           if (payment.id == null) {
             paymentsStore.insertPayment(payment);
           } else {

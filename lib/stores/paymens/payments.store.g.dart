@@ -75,6 +75,23 @@ mixin _$PaymentsStore on PaymentsBase, Store {
     }, _$activeAtom, name: '${_$activeAtom.name}_set');
   }
 
+  final _$filterByAtom = Atom(name: 'PaymentsBase.filterBy');
+
+  @override
+  PaymentType get filterBy {
+    _$filterByAtom.context.enforceReadPolicy(_$filterByAtom);
+    _$filterByAtom.reportObserved();
+    return super.filterBy;
+  }
+
+  @override
+  set filterBy(PaymentType value) {
+    _$filterByAtom.context.conditionallyRunInAction(() {
+      super.filterBy = value;
+      _$filterByAtom.reportChanged();
+    }, _$filterByAtom, name: '${_$filterByAtom.name}_set');
+  }
+
   final _$activeMonthAtom = Atom(name: 'PaymentsBase.activeMonth');
 
   @override
@@ -137,6 +154,16 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   final _$PaymentsBaseActionController = ActionController(name: 'PaymentsBase');
 
   @override
+  void changeFilter(dynamic filterValue) {
+    final _$actionInfo = _$PaymentsBaseActionController.startAction();
+    try {
+      return super.changeFilter(filterValue);
+    } finally {
+      _$PaymentsBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setActivePayment(String paymentID) {
     final _$actionInfo = _$PaymentsBaseActionController.startAction();
     try {
@@ -159,7 +186,7 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   @override
   String toString() {
     final string =
-        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},paymentsByMonth: ${paymentsByMonth.toString()}';
+        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},filterBy: ${filterBy.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},paymentsByMonth: ${paymentsByMonth.toString()}';
     return '{$string}';
   }
 }

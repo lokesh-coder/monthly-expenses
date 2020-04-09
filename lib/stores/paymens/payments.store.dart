@@ -7,6 +7,8 @@ import 'package:monex/models/payment.model.dart';
 
 part 'payments.store.g.dart';
 
+enum PaymentType { DEBIT, CREDIT, ALL }
+
 class PaymentsStore = PaymentsBase with _$PaymentsStore;
 
 abstract class PaymentsBase with Store {
@@ -23,6 +25,9 @@ abstract class PaymentsBase with Store {
   String active;
 
   @observable
+  PaymentType filterBy = PaymentType.ALL;
+
+  @observable
   DateTime activeMonth;
 
   @computed
@@ -32,6 +37,11 @@ abstract class PaymentsBase with Store {
     return monthlyPayments
         .map((x) => x.isCredit ? x.amount : -(x.amount))
         .reduce((v, e) => v + e);
+  }
+
+  @action
+  void changeFilter(filterValue) {
+    filterBy = filterValue;
   }
 
   @computed
@@ -101,9 +111,32 @@ abstract class PaymentsBase with Store {
   }
 
   Map groupPaymentsByMonth() {
-    return groupBy(payments, (Payment p) {
+    var filteredPayments = filterPaymentByType(payments);
+    return groupBy(filteredPayments, (Payment p) {
       DateTime dt = DateTime.fromMillisecondsSinceEpoch(p.date);
       return DateHelper.getUniqueMonthFormat(dt);
     });
+  }
+
+  ObservableList<Payment> filterPaymentByType(
+      ObservableList<Payment> payments) {
+    return payments
+        .where(
+          (p) {
+            if (filterBy == PaymentType.ALL) {
+              return true;
+            }
+            if (filterBy == PaymentType.CREDIT) {
+              return p.isCredit == true;
+            }
+            if (filterBy == PaymentType.DEBIT) {
+              return p.isCredit == false;
+            }
+
+            return false;
+          },
+        )
+        .toList()
+        .asObservable();
   }
 }

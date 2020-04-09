@@ -62,10 +62,10 @@ class BoxInput extends StatelessWidget {
             keyboardType: _getKeyboardType(),
             onTap: onClick,
             onEditingComplete: () {
-              print('editing complete');
+              // print('editing complete');
             },
             onChanged: (v) {
-              print('it git changed to $v');
+              // print('it git changed to $v');
             },
             validator: validator,
             onSaved: onSaved,

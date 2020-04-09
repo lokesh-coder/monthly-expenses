@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 
 class FilterBar extends StatelessWidget {
   const FilterBar({Key key}) : super(key: key);

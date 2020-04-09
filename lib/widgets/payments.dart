@@ -6,7 +6,7 @@ import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class Payments extends StatelessWidget {

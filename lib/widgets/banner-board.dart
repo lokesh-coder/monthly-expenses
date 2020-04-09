@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/widgets/filter-bar.dart';
 import 'package:monex/widgets/shared/amount.dart';

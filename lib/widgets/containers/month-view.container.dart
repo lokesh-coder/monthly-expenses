@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/widgets/containers/payments-view.container.dart';
 import 'package:monex/widgets/modules/pager/pager.dart';

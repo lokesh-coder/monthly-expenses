@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/widgets/banner-board.dart';
 import 'package:monex/widgets/containers/month-view.container.dart';

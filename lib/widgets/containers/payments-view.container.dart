@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monex/source/models/payments.model.dart';
-import 'package:monex/widgets/modules/sandwich/model.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/widgets/payments.dart';
-import 'package:provider/provider.dart';
 
 class PaymentsViewContainer extends StatelessWidget {
   final dynamic data;
@@ -14,8 +14,6 @@ class PaymentsViewContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sandwich = Provider.of<SandwichModel>(context, listen: false);
-    final paymentsModel = Provider.of<PaymentsModel>(context, listen: false);
     return Column(
       children: <Widget>[
         Expanded(child: Payments(data)),
@@ -29,8 +27,8 @@ class PaymentsViewContainer extends StatelessWidget {
         ),
         FlatButton(
           onPressed: () {
-            paymentsModel.setActivePayment(null);
-            sandwich.slideUp();
+            sl<PaymentsStore>().setActivePayment(null);
+            sl<SandwichStore>().changeVisibility(true);
           },
           child: Text('move top'),
         ),

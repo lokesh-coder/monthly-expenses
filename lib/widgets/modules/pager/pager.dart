@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:monex/widgets/modules/pager/model.dart';
-import 'package:provider/provider.dart';
+import 'package:monex/widgets/modules/pager/pager_helper.dart';
+
+final pagerHelper = PagerHelper();
 
 class Pager extends StatelessWidget {
   final Widget Function(int index, dynamic data, PageController ctrl) builder;
@@ -32,13 +33,11 @@ class Pager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pagerModel = Provider.of<PagerModel>(context, listen: false);
-
     PageController ctrl;
     ScrollPhysics physics;
     bool pageSnap;
     if (isMaster) {
-      ctrl = pagerModel.createController(
+      ctrl = pagerHelper.createController(
         key: key,
         visibleItems: visibleItems,
         initialPage: initialPage,
@@ -50,7 +49,7 @@ class Pager extends StatelessWidget {
         ctrl.position.notifyListeners();
       });
     } else {
-      ctrl = pagerModel.createController(
+      ctrl = pagerHelper.createController(
         key: key,
         visibleItems: visibleItems,
         initialPage: initialPage,
@@ -59,22 +58,17 @@ class Pager extends StatelessWidget {
       pageSnap = false;
     }
 
-    return Selector(
-      selector: (ctx, PagerModel model) => model.currentOffset,
-      builder: (ctx, offset, child) {
-        return PageView.builder(
-          scrollDirection: Axis.horizontal,
-          controller: ctrl,
-          itemCount: data.length,
-          onPageChanged: (index) {
-            onPageChange(data[index]);
-          },
-          physics: physics,
-          pageSnapping: pageSnap,
-          itemBuilder: (_, int index) {
-            return builder(index, data[index], ctrl);
-          },
-        );
+    return PageView.builder(
+      scrollDirection: Axis.horizontal,
+      controller: ctrl,
+      itemCount: data.length,
+      onPageChanged: (index) {
+        onPageChange(data[index]);
+      },
+      physics: physics,
+      pageSnapping: pageSnap,
+      itemBuilder: (_, int index) {
+        return builder(index, data[index], ctrl);
       },
     );
   }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/models/DateUtil.dart';
+import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/source/models/payment.model.dart';
-import 'package:monex/source/models/payments.model.dart';
+import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/widgets/filter-bar.dart';
-import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/shared/amount.dart';
 import 'package:monex/widgets/shared/percentage.dart';
-import 'package:provider/provider.dart';
 
 class BannerBoard extends StatelessWidget {
   final int index;
@@ -25,76 +26,73 @@ class BannerBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PaymentsModel paymentsModel =
-        Provider.of<PaymentsModel>(context, listen: true);
+    var paymentsStore = sl<PaymentsStore>();
     List<Payment> monthlyPayments =
-        paymentsModel.getPaymentsForMonth(paymentsModel.activeMonth);
+        paymentsStore.getPaymentsForMonth(paymentsStore.activeMonth);
 
-    String monthName = DateUtil().getMonthName(paymentsModel.activeMonth);
-    String year = DateUtil().getYear(paymentsModel.activeMonth);
+    String monthName = DateUtil().getMonthName(paymentsStore.activeMonth);
+    String year = DateUtil().getYear(paymentsStore.activeMonth);
 
     double remainingAmount = getTotal(monthlyPayments);
 
     return Container(
-      child: Selector(
-        selector: (ctx, SandwichModel model) => model.yDistance,
-        builder: (ctx, val, child) {
-          return Stack(
-            alignment: Alignment.topCenter,
-            children: <Widget>[
-              AnimatedPositioned(
-                top: 60 - (60 * val),
-                duration: Duration(milliseconds: 200),
-                curve: Curves.decelerate,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                  color: Color(0xff6156A4),
-                  child: FilterBar(),
-                ),
-              ),
-              Container(
-                height: 80,
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+          Observer(builder: (context) {
+            double offset = sl<SandwichStore>().topOffset;
+            return AnimatedPositioned(
+              top: 60 - (60 * offset),
+              duration: Duration(milliseconds: 200),
+              curve: Curves.decelerate,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                 color: Color(0xff6156A4),
-                child: Row(
+                child: FilterBar(),
+              ),
+            );
+          }),
+          Container(
+            height: 80,
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            color: Color(0xff6156A4),
+            child: Row(
+              children: <Widget>[
+                Percentage(value: 33),
+                SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Percentage(value: 33),
-                    SizedBox(width: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          year,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white30,
-                          ),
-                        ),
-                        Text(
-                          monthName,
-                          style: TextStyle(
-                              fontSize: 19,
-                              color: Colors.white30,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Amount(
-                        value: remainingAmount.abs(),
-                        isCredit: remainingAmount >= 0,
-                        size: AmountSize.LG,
+                    Text(
+                      year,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white30,
                       ),
-                    )
+                    ),
+                    Text(
+                      monthName,
+                      style: TextStyle(
+                          fontSize: 19,
+                          color: Colors.white30,
+                          fontWeight: FontWeight.w700),
+                    ),
                   ],
                 ),
-              ),
-            ],
-          );
-        },
+                Expanded(
+                  flex: 1,
+                  child: Amount(
+                    value: remainingAmount.abs(),
+                    isCredit: remainingAmount >= 0,
+                    size: AmountSize.LG,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

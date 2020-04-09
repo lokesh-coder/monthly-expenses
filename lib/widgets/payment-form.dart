@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/models/DateUtil.dart';
+import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/source/models/payment.model.dart';
-import 'package:monex/source/models/payments.model.dart';
+import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/widgets/shared/CategoryInput.dart';
 import 'package:monex/widgets/shared/DayInput.dart';
 import 'package:monex/widgets/shared/PickableBottomSheet.dart';
@@ -10,8 +13,6 @@ import 'package:monex/widgets/shared/ToggleIconFormField.dart';
 import 'package:monex/widgets/shared/box-input.dart';
 import 'package:monex/widgets/shared/button.dart';
 import 'package:monex/widgets/shared/form-icon-button.dart';
-import 'package:provider/provider.dart';
-import 'modules/sandwich/model.dart';
 
 final formKey = GlobalKey<FormState>();
 
@@ -28,28 +29,30 @@ class _PaymentFormState extends State<PaymentForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SandwichModel>(
-      builder: (context, sandwichModel, child) {
+    return Observer(
+      builder: (context) {
+        var sandwichStore = sl<SandwichStore>();
+        var paymentsStore = sl<PaymentsStore>();
         return Visibility(
-          visible: sandwichModel.isRevealed,
-          child: Consumer<PaymentsModel>(
-            builder: (context, paymentsModel, child) {
-              if (paymentsModel.active == null) {
+          visible: sandwichStore.isOpen,
+          child: Observer(
+            builder: (context) {
+              if (paymentsStore.active == null) {
                 payment = Payment(
                   amount: 0.0,
                   categoryID: 'TAX',
                   createdTime: null,
-                  date: paymentsModel.activeMonth == null
+                  date: paymentsStore.activeMonth == null
                       ? DateTime.parse(DateTime.now().toString())
                           .millisecondsSinceEpoch
-                      : paymentsModel.activeMonth.millisecondsSinceEpoch,
+                      : paymentsStore.activeMonth.millisecondsSinceEpoch,
                   isCredit: true,
                   label: '',
                 );
                 isNew = true;
               } else {
                 Payment activePayment =
-                    paymentsModel.getPayment(paymentsModel.active);
+                    paymentsStore.getPayment(paymentsStore.active);
 
                 payment = activePayment;
                 isNew = false;
@@ -65,7 +68,7 @@ class _PaymentFormState extends State<PaymentForm> {
                         physics: BouncingScrollPhysics(),
                         child: Column(
                           children: <Widget>[
-                            _amountField(context, sandwichModel, paymentsModel),
+                            _amountField(context),
                             _labelField(),
                             Row(
                               children: <Widget>[
@@ -79,8 +82,8 @@ class _PaymentFormState extends State<PaymentForm> {
                     ),
                     Row(
                       children: <Widget>[
-                        Expanded(child: _saveBtn(sandwichModel, paymentsModel)),
-                        _closeBtn(context, sandwichModel),
+                        Expanded(child: _saveBtn()),
+                        _closeBtn(context),
                       ],
                     )
                   ],
@@ -93,8 +96,7 @@ class _PaymentFormState extends State<PaymentForm> {
     );
   }
 
-  _amountField(
-      context, SandwichModel sandwichModel, PaymentsModel paymentsModel) {
+  _amountField(context) {
     return Stack(
       alignment: Alignment.centerRight,
       children: <Widget>[
@@ -121,9 +123,12 @@ class _PaymentFormState extends State<PaymentForm> {
                   label: 'Delete',
                   icon: Icons.delete,
                   onClick: () {
-                    paymentsModel.deletePayment(payment.id);
-                    paymentsModel.setActivePayment(null);
-                    sandwichModel.slideDown();
+                    var sandwichStore = sl<SandwichStore>();
+                    sandwichStore.changeVisibility(false);
+
+                    var paymentsStore = sl<PaymentsStore>();
+                    paymentsStore.deletePayment(payment.id);
+                    paymentsStore.setActivePayment(null);
                   },
                 ),
               )
@@ -218,7 +223,7 @@ class _PaymentFormState extends State<PaymentForm> {
     );
   }
 
-  _closeBtn(context, sandwich) {
+  _closeBtn(context) {
     return Container(
       color: MonexColors.primary.withOpacity(0.8),
       height: 58,
@@ -230,27 +235,28 @@ class _PaymentFormState extends State<PaymentForm> {
           size: 32,
         ),
         onPressed: () {
-          sandwich.slideDown();
+          sl<SandwichStore>().changeVisibility(false);
         },
       ),
     );
   }
 
-  Button _saveBtn(SandwichModel sandwichModel, PaymentsModel paymentsModel) {
+  Button _saveBtn() {
     return Button(
       label: isNew ? 'Add new entry' : 'Edit entry',
       onPressed: () {
+        var paymentsStore = sl<PaymentsStore>();
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
           print(payment.toJson());
           if (payment.id == null) {
-            paymentsModel.insertPayment(payment);
+            paymentsStore.insertPayment(payment);
           } else {
-            paymentsModel.updatePayment(payment);
+            paymentsStore.updatePayment(payment);
           }
 
-          paymentsModel.setActivePayment(null);
-          sandwichModel.slideDown();
+          paymentsStore.setActivePayment(null);
+          sl<SandwichStore>().changeVisibility(false);
         }
       },
     );

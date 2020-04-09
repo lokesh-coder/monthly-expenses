@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/data/categories.dart';
 import 'package:monex/models/DateUtil.dart';
+import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/source/models/payment.model.dart';
-import 'package:monex/source/models/payments.model.dart';
-import 'package:monex/widgets/modules/sandwich/model.dart';
-import 'package:provider/provider.dart';
+import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class Payments extends StatelessWidget {
   final Map data;
@@ -13,21 +14,20 @@ class Payments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sandwich = Provider.of<SandwichModel>(context, listen: false);
-
     var style = TextStyle(
       color: Color(0xff7E93B2),
       fontSize: 16,
       fontWeight: FontWeight.w500,
     );
+    var paymentsStore = sl<PaymentsStore>();
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Consumer<PaymentsModel>(
-        builder: (context, paymentsModel, child) {
+      child: Observer(
+        builder: (context) {
           String monthKeyName =
               DateUtil().getUniqueMonthFormat(data['dateTime']);
-          List payments = paymentsModel.paymentsByMonth[monthKeyName];
+          List payments = paymentsStore.paymentsByMonth[monthKeyName];
           return ListView.separated(
             itemCount: payments == null ? 0 : payments.length,
             separatorBuilder: (_, __) {
@@ -49,8 +49,8 @@ class Payments extends StatelessWidget {
                     width: 35,
                   ),
                   onTap: () {
-                    paymentsModel.setActivePayment(data.id);
-                    sandwich.slideUp();
+                    paymentsStore.setActivePayment(data.id);
+                    sl<SandwichStore>().changeVisibility(true);
                   },
                   title: Text(
                     data.label,

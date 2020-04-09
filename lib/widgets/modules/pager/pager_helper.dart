@@ -7,7 +7,7 @@ class Worker {
   Worker({this.key, this.worker});
 }
 
-class PagerModel with ChangeNotifier {
+class PagerHelper {
   PageController masterController;
   List<Worker> workerControllers = [];
   int masterVisibleItems = 1;

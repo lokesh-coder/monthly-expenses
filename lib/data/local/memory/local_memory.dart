@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:monex/data/local/memory/constants.dart';
+import 'package:monex/data/local/memory/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalMemory {
@@ -11,10 +11,10 @@ class LocalMemory {
 
   Future<void> changeMonthsViewRange(int range) {
     return memory
-        .then((x) => x.setInt(LocalMemoryKeys.months_view_range, range));
+        .then((x) => x.setInt(LocalMemoryConfig.months_view_range, range));
   }
 
   Future<int> get monthsViewRange {
-    return memory.then((x) => x.getInt(LocalMemoryKeys.months_view_range));
+    return memory.then((x) => x.getInt(LocalMemoryConfig.months_view_range));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:monex/widgets/modules/sandwich/model.dart';
-import 'package:provider/provider.dart';
+import 'package:mobx/mobx.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class SlideUpTransition extends StatefulWidget {
   final double contentHeight;
@@ -17,6 +18,7 @@ class _SlideUpTransitionState extends State<SlideUpTransition>
     with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
+  ReactionDisposer storeDispose;
 
   @override
   void initState() {
@@ -31,8 +33,8 @@ class _SlideUpTransitionState extends State<SlideUpTransition>
         curve: Curves.easeInOutQuint,
       ),
     )..addListener(() {
-        Provider.of<SandwichModel>(context, listen: false)
-            .setYDistance((animation.value / widget.contentHeight).abs());
+        double offset = (animation.value / widget.contentHeight).abs();
+        sl<SandwichStore>().changeOffset(offset);
         setState(() {});
       });
   }
@@ -40,13 +42,13 @@ class _SlideUpTransitionState extends State<SlideUpTransition>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    var isRevealed =
-        Provider.of<SandwichModel>(context, listen: true).isRevealed;
-    if (isRevealed) {
-      controller.forward();
-    } else {
-      controller.reverse();
-    }
+    reaction((_) => sl<SandwichStore>().isOpen, (isOpen) {
+      if (isOpen) {
+        controller.forward();
+      } else {
+        controller.reverse();
+      }
+    });
   }
 
   @override
@@ -63,5 +65,6 @@ class _SlideUpTransitionState extends State<SlideUpTransition>
   void dispose() {
     super.dispose();
     controller.dispose();
+    storeDispose();
   }
 }

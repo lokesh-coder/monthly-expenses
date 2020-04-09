@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:monex/source/models/payments.model.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/paymens/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/widgets/banner-board.dart';
 import 'package:monex/widgets/containers/month-view.container.dart';
 import 'package:monex/widgets/drawer.dart';
 import 'package:monex/widgets/editor.dart';
-import 'package:monex/widgets/modules/sandwich/model.dart';
 import 'package:monex/widgets/modules/sandwich/sandwich.dart';
 import 'package:monex/widgets/shared/app-shell.dart';
 import 'package:monex/widgets/shared/header.dart';
-import 'package:provider/provider.dart';
 
 class MonthsPage extends StatelessWidget {
   const MonthsPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var payments = Provider.of<PaymentsModel>(context, listen: false);
-    // payments.dropDb();
-    payments.fetchPayments();
+    sl<PaymentsStore>().fetchPayments();
     return AppShell(
       drawer: Theme(
         data: Theme.of(context).copyWith(
@@ -34,9 +32,9 @@ class MonthsPage extends StatelessWidget {
         action: IconButton(onPressed: () {}, icon: Icon(Icons.add)),
       ),
       onBackBtnPress: () {
-        var sandwich = Provider.of<SandwichModel>(context, listen: false);
-        if (sandwich.isRevealed) {
-          sandwich.slideDown();
+        var store = sl<SandwichStore>();
+        if (store.isOpen) {
+          store.changeVisibility(false);
           return Future.value(false);
         }
         return Future.value(true);

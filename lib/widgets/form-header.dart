@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
-import 'package:provider/provider.dart';
-
-import 'modules/sandwich/model.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class FormHeader extends StatelessWidget {
   const FormHeader({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final sandwich = Provider.of<SandwichModel>(context, listen: false);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
@@ -26,7 +24,7 @@ class FormHeader extends StatelessWidget {
               icon: Icon(Icons.close),
               color: MonexColors.title.withOpacity(0.3),
               onPressed: () {
-                sandwich.slideDown();
+                sl<SandwichStore>().changeVisibility(false);
               }),
         ],
       ),

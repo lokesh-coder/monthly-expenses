@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'modules/sandwich/model.dart';
 
 class MonthControl extends StatefulWidget {
   final int index;
@@ -36,7 +33,6 @@ class _MonthControlState extends State<MonthControl> {
 
   @override
   Widget build(BuildContext context) {
-    final sandwich = Provider.of<SandwichModel>(context, listen: false);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
       child: Center(
@@ -45,20 +41,10 @@ class _MonthControlState extends State<MonthControl> {
           child: AnimatedOpacity(
             opacity: (0.35 * (fs + 2)).clamp(0.0, 1.0),
             duration: Duration(milliseconds: 400),
-            child: GestureDetector(
-              onPanUpdate: (details) {
-                if (details.delta.dy < -2) {
-                  sandwich.slideUp();
-                }
-                if (details.delta.dy > 2) {
-                  sandwich.slideDown();
-                }
-              },
-              child: Text(
-                widget.data['monthName'],
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(color: Color(0xff757193)),
-              ),
+            child: Text(
+              widget.data['monthName'],
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: Color(0xff757193)),
             ),
           ),
         ),

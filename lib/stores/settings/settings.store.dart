@@ -12,7 +12,7 @@ abstract class SettingsBase with Store {
   }
 
   @observable
-  int monthsViewRange = 0;
+  int monthsViewRange = 1;
 
   @action
   void changeMonthsViewRange(int range) {
@@ -21,6 +21,7 @@ abstract class SettingsBase with Store {
   }
 
   init() async {
-    monthsViewRange = await repo.memory.monthsViewRange;
+    var range = await repo.memory.monthsViewRange;
+    if (range != null) monthsViewRange = range;
   }
 }

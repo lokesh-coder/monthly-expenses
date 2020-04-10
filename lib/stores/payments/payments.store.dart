@@ -31,9 +31,9 @@ abstract class PaymentsBase with Store {
   DateTime activeMonth;
 
   @computed
-  get totalAmountOfActiveMonth {
+  num get totalAmountOfActiveMonth {
     List<Payment> monthlyPayments = getPaymentsForMonth(activeMonth);
-    if (monthlyPayments.length == 0) return 0.0;
+    if (monthlyPayments.length == 0) return 0;
     return monthlyPayments
         .map((x) => x.isCredit ? x.amount : -(x.amount))
         .reduce((v, e) => v + e);

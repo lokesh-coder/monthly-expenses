@@ -5,7 +5,7 @@ class Payment {
   int createdTime;
   int date;
   bool isCredit;
-  double amount;
+  num amount;
   String categoryID;
 
   Payment({

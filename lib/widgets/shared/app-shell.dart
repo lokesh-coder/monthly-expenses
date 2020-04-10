@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:monex/helpers/layout_helper.dart';
 
-final GlobalKey key = new GlobalKey<ScaffoldState>();
+final GlobalKey scaffoldKey = new GlobalKey<ScaffoldState>();
 
 class AppShell extends StatelessWidget {
   final Widget child;
@@ -17,7 +18,7 @@ class AppShell extends StatelessWidget {
     return WillPopScope(
       onWillPop: onBackBtnPress == null ? _onBackBtnPress : onBackBtnPress,
       child: Scaffold(
-        key: key,
+        key: scaffoldKey,
         drawer: drawer,
         appBar: header,
         body: child,

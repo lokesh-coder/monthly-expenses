@@ -40,7 +40,6 @@ class MonthsPage extends StatelessWidget {
         return Future.value(true);
       },
       child: Sandwich(
-        safeHeight: MediaQuery.of(context).padding.top,
         translateOffset: 80.0,
         dynamicContent: 40.0,
         visibleContentHeight: 60.0,

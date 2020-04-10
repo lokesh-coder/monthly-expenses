@@ -14,16 +14,21 @@ class Catagories {
     ['transaction-approved', 'General', 'TRANS_APPROVED'],
   ];
 
-  List get all {
-    finalCategories = _categories.map((icon) {
-      return ['assets/icons/icons8-${icon[0]}-100.png', icon[1], icon[2]];
-    }).toList();
+  List get defaultCategory {
+    return all[0];
+  }
+
+  List<List<String>> get all {
+    if (finalCategories.length == 0)
+      finalCategories = _categories.map((icon) {
+        return ['assets/icons/icons8-${icon[0]}-100.png', icon[1], icon[2]];
+      }).toList();
     return finalCategories;
   }
 
-  findCategoryById(String categoryID) {
+  List<String> findCategoryById(String categoryID) {
     return all.firstWhere((c) {
       return c[2] == categoryID;
-    }, orElse: () => null);
+    }, orElse: () => []);
   }
 }

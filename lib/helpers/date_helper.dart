@@ -71,4 +71,16 @@ class DateHelper {
   static String getUniqueMonthFormat(DateTime dt) {
     return Jiffy(dt).format('MMMy');
   }
+
+  static int dtToMs(DateTime dt) {
+    return dt.millisecondsSinceEpoch;
+  }
+
+  static DateTime msToDt(int ms) {
+    return DateTime.fromMillisecondsSinceEpoch(ms);
+  }
+
+  static int get toMs {
+    return DateTime.now().millisecondsSinceEpoch;
+  }
 }

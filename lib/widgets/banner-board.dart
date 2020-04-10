@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/helpers/layout_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
@@ -32,7 +33,7 @@ class BannerBoard extends StatelessWidget {
                 duration: Duration(milliseconds: 200),
                 curve: Curves.decelerate,
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
+                  width: LayoutHelper.screenWidth,
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                   color: Color(0xff6156A4),
                   child: FilterBar(),

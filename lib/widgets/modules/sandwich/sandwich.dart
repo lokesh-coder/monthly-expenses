@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/helpers/layout_helper.dart';
 import 'package:monex/widgets/animations/slide-up.transition.dart';
 
 class Sandwich extends StatelessWidget {
@@ -6,7 +7,6 @@ class Sandwich extends StatelessWidget {
   final Widget middleChild;
   final Widget topChild;
   final double translateOffset;
-  final double safeHeight;
   final double dynamicContent;
   final double visibleContentHeight;
 
@@ -16,7 +16,6 @@ class Sandwich extends StatelessWidget {
     this.middleChild,
     this.topChild,
     this.translateOffset,
-    this.safeHeight,
     this.dynamicContent,
     this.visibleContentHeight,
   }) : super(key: key);
@@ -24,7 +23,6 @@ class Sandwich extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      // fit: StackFit.expand,
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(
@@ -33,7 +31,8 @@ class Sandwich extends StatelessWidget {
           child: bottomChild,
         ),
         Builder(builder: (context) {
-          double screenHeight = MediaQuery.of(context).size.height;
+          double safeHeight = LayoutHelper.statusBarHeight;
+          double screenHeight = LayoutHelper.screenHeight;
           double appbarHeight = kToolbarHeight;
           double translateDistance =
               screenHeight - (translateOffset + safeHeight + appbarHeight);
@@ -43,9 +42,8 @@ class Sandwich extends StatelessWidget {
             child: SingleChildScrollView(
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height -
-                      kToolbarHeight -
-                      safeHeight,
+                  maxHeight:
+                      screenHeight - LayoutHelper.appBarHeight - safeHeight,
                 ),
                 child: Container(
                   color: Colors.white,

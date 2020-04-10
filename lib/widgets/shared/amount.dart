@@ -5,7 +5,7 @@ enum AmountSize { SM, MD, LG }
 
 class Amount extends StatelessWidget {
   final bool isCredit;
-  final double value;
+  final num value;
   final AmountSize size;
 
   const Amount({Key key, this.value, this.isCredit, this.size = AmountSize.SM})

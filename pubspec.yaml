@@ -21,6 +21,7 @@ dependencies:
   flutter_mobx: ^1.0.0
   shared_preferences: ^0.5.6+3
   get_it: ^4.0.1
+  flutter_keyboard_visibility: ^0.7.0
 
 dev_dependencies:
   flutter_test:

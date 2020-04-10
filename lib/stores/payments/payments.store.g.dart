@@ -9,13 +9,12 @@ part of 'payments.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PaymentsStore on PaymentsBase, Store {
-  Computed<dynamic> _$totalAmountOfActiveMonthComputed;
+  Computed<num> _$totalAmountOfActiveMonthComputed;
 
   @override
-  dynamic get totalAmountOfActiveMonth =>
-      (_$totalAmountOfActiveMonthComputed ??=
-              Computed<dynamic>(() => super.totalAmountOfActiveMonth))
-          .value;
+  num get totalAmountOfActiveMonth => (_$totalAmountOfActiveMonthComputed ??=
+          Computed<num>(() => super.totalAmountOfActiveMonth))
+      .value;
   Computed<Map<String, List<Payment>>> _$paymentsByMonthComputed;
 
   @override

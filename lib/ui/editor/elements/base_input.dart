@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
-
-enum InputType { CURRENCY, TEXT, NONE }
+import 'package:monex/models/enums.dart';
 
 class BaseInput extends StatelessWidget {
   final String label;

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/common/app-shell.dart';
+import 'package:monex/ui/common/header.dart';
 import 'package:monex/ui/core/sandwich_container.dart';
 import 'package:monex/ui/editor/editor.dart';
 import 'package:monex/ui/months/months.dart';
 import 'package:monex/widgets/banner-board.dart';
 import 'package:monex/widgets/drawer.dart';
-import 'package:monex/widgets/shared/app-shell.dart';
-import 'package:monex/widgets/shared/header.dart';
 
-class MonthsPage extends StatelessWidget {
-  const MonthsPage({Key key}) : super(key: key);
+class MainPage extends StatelessWidget {
+  const MainPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +19,12 @@ class MonthsPage extends StatelessWidget {
     return AppShell(
       drawer: Theme(
         data: Theme.of(context).copyWith(
-          // Set the transparency here
-          canvasColor: Colors
-              .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+          canvasColor: Colors.transparent,
         ),
         child: AppDrawer(),
       ),
       header: Header(
-        title:
-            Text('monthly expences', style: TextStyle(color: Colors.white70)),
+        title: 'Montly expenses',
         leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
         action: IconButton(onPressed: () {}, icon: Icon(Icons.add)),
       ),
@@ -42,7 +39,7 @@ class MonthsPage extends StatelessWidget {
       child: SandwichContainer(
         bottomChild: Editor(),
         middleChild: Months(),
-        topChild: BannerBoard(0, [], PageController()),
+        topChild: BannerBoard(),
       ),
     );
   }

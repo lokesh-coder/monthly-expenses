@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/models/enums.dart';
 import 'package:monex/ui/editor/elements/base_input.dart';
 
 class AmountInput extends StatelessWidget {

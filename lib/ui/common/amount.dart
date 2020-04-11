@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
-
-enum AmountSize { SM, MD, LG }
+import 'package:monex/models/enums.dart';
 
 class Amount extends StatelessWidget {
   final bool isCredit;

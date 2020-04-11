@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/dimensions.dart';
 import 'package:monex/helpers/layout_helper.dart';
-import 'package:monex/widgets/animations/slide-up.transition.dart';
+import 'package:monex/ui/core/slide_transform.dart';
 
 class SandwichContainer extends StatelessWidget {
   final Widget bottomChild;
@@ -44,7 +44,7 @@ class SandwichContainer extends StatelessWidget {
         double slidableH = screenH - topToBannerH;
         double contentHeight = -(slidableH - monthsBarH);
 
-        return SlideUpTransition(
+        return SlideTransform(
           contentHeight: contentHeight,
           child: SingleChildScrollView(
             child: ConstrainedBox(

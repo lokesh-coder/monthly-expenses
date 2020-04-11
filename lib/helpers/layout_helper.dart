@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monex/widgets/shared/app-shell.dart';
+import 'package:monex/ui/common/app-shell.dart';
 
 class LayoutHelper {
   static bool get isKeyboardOpen {

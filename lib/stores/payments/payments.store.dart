@@ -3,11 +3,10 @@ import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/db/seed.dart';
 import "package:collection/collection.dart";
 import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
 
 part 'payments.store.g.dart';
-
-enum PaymentType { DEBIT, CREDIT, ALL }
 
 class PaymentsStore = PaymentsBase with _$PaymentsStore;
 

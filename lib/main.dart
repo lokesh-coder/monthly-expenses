@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/widgets/pages/months.page.dart';
+import 'package:monex/ui/main_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // debugShowMaterialGrid: true,
-      home: MonthsPage(),
+      home: MainPage(),
     );
   }
 }

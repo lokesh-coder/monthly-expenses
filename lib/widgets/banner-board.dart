@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/dimensions.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/layout_helper.dart';
+import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/common/amount.dart';
 import 'package:monex/widgets/filter-bar.dart';
-import 'package:monex/widgets/shared/amount.dart';
 import 'package:monex/widgets/shared/percentage.dart';
 
 class BannerBoard extends StatelessWidget {
-  final int index;
-  final dynamic data;
-  final PageController ctrl;
-
-  const BannerBoard(this.index, this.data, this.ctrl, {Key key})
-      : super(key: key);
+  const BannerBoard({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +41,7 @@ class BannerBoard extends StatelessWidget {
           Observer(
             builder: (context) {
               return Container(
-                height: 80,
+                height: Dimensions.bannerBarHeight,
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 color: Color(0xff6156A4),
                 child: Row(

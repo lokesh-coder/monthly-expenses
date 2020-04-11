@@ -3,18 +3,18 @@ import 'package:mobx/mobx.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
-class SlideUpTransition extends StatefulWidget {
+class SlideTransform extends StatefulWidget {
   final double contentHeight;
   final Widget child;
 
-  const SlideUpTransition({Key key, this.contentHeight, this.child})
+  const SlideTransform({Key key, this.contentHeight, this.child})
       : super(key: key);
 
   @override
-  _SlideUpTransitionState createState() => _SlideUpTransitionState();
+  _SlideTransformState createState() => _SlideTransformState();
 }
 
-class _SlideUpTransitionState extends State<SlideUpTransition>
+class _SlideTransformState extends State<SlideTransform>
     with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;

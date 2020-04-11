@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/layout_helper.dart';
@@ -25,14 +26,14 @@ class BannerBoard extends StatelessWidget {
           Observer(
             builder: (context) {
               double offset = sl<SandwichStore>().topOffset;
+              double bannerH = Dimensions.bannerBarHeight - 1;
               return AnimatedPositioned(
-                top: 60 - (60 * offset),
+                top: bannerH - (bannerH * offset),
                 duration: Duration(milliseconds: 200),
                 curve: Curves.decelerate,
                 child: Container(
+                  height: Dimensions.filtersBarHeight,
                   width: LayoutHelper.screenWidth,
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                  color: Color(0xff6156A4),
                   child: FilterBar(),
                 ),
               );
@@ -42,8 +43,8 @@ class BannerBoard extends StatelessWidget {
             builder: (context) {
               return Container(
                 height: Dimensions.bannerBarHeight,
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                color: Color(0xff6156A4),
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                color: Clrs.primary,
                 child: Row(
                   children: <Widget>[
                     Percentage(value: 33),

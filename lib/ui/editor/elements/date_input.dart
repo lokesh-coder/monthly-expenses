@@ -22,11 +22,19 @@ class _DateInputState extends State<DateInput> {
   @override
   void initState() {
     super.initState();
+    currVal = widget.value ?? DateHelper.toMs;
+  }
+
+  @override
+  didUpdateWidget(x) {
+    super.didUpdateWidget(x);
+    setState(() {
+      currVal = widget.value;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    currVal = widget.value ?? DateHelper.dtToMs(DateTime.now());
     return BottomModal(
       builder: (context, control) {
         return BaseInput(

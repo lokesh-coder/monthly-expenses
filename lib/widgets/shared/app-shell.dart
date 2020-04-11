@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:monex/helpers/layout_helper.dart';
 
 final GlobalKey scaffoldKey = new GlobalKey<ScaffoldState>();
 

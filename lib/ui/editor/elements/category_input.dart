@@ -29,6 +29,14 @@ class _CategoryInputState extends State<CategoryInput> {
   }
 
   @override
+  didUpdateWidget(x) {
+    super.didUpdateWidget(x);
+    setState(() {
+      currVal = widget.value;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: _boxDecoration(),
@@ -37,7 +45,7 @@ class _CategoryInputState extends State<CategoryInput> {
           return BaseInput(
             placeholder: 'type short name',
             validator: (String x) => null,
-            value: _displayText(currVal)[1],
+            value: _catMeta(currVal)[1],
             inputType: InputType.NONE,
             label: 'category',
             onSaved: (id) => widget.onSaved(currVal),
@@ -56,7 +64,7 @@ class _CategoryInputState extends State<CategoryInput> {
         });
         control.close();
       },
-      selected: _displayText(currVal)[2],
+      selected: _catMeta(currVal)[2],
     );
     control.open('Categoriess', picker);
   }
@@ -67,7 +75,7 @@ class _CategoryInputState extends State<CategoryInput> {
     );
   }
 
-  _displayText(String catID) {
+  _catMeta(String catID) {
     var categoriesObj = sl<DataRepo>().obj.get<Catagories>('categories');
     var category = catID == null
         ? categoriesObj.defaultCategory

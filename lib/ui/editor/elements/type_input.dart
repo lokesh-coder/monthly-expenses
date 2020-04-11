@@ -62,7 +62,7 @@ class _TypeInputState extends State<TypeInput> with TickerProviderStateMixin {
         widget.onTap(currVal);
       },
       child: Container(
-        width: 90,
+        width: 80,
         color: Colors.transparent,
         padding: EdgeInsets.symmetric(vertical: 12),
         child: Column(

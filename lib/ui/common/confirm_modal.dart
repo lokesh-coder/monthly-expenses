@@ -35,7 +35,7 @@ class ConfirmModal extends StatelessWidget {
             barrierDismissible: true,
             barrierLabel:
                 MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            barrierColor: MonexColors.primary.withOpacity(0.6),
+            barrierColor: MonexColors.primary.withOpacity(0.2),
             transitionDuration: const Duration(milliseconds: 200),
             pageBuilder: (
               BuildContext buildContext,

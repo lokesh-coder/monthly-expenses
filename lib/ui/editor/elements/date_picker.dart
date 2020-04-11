@@ -10,7 +10,7 @@ class DatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List weeks = DateHelper.getAllDaysInMonth(DateTime.now());
+    List weeks = DateHelper.getAllDaysInMonth(selected);
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),

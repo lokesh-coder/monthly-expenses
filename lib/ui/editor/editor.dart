@@ -7,6 +7,8 @@ import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/common/confirm_modal.dart';
+import 'package:monex/ui/editor/elements/delete_button.dart';
 
 import 'elements/action_button.dart';
 import 'elements/type_input.dart';
@@ -41,7 +43,7 @@ class _EditorState extends State<Editor> {
           child: GestureDetector(
             onTap: () => _closeKeyboard(context),
             child: Container(
-              color: Colors.transparent,
+              color: MonexColors.light.withOpacity(0.5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [_formArea(), _actionArea(context)],
@@ -69,7 +71,7 @@ class _EditorState extends State<Editor> {
     return ActionButton(
       label: 'save',
       onClose: () {
-        sl<SandwichStore>().changeVisibility(false);
+        sandwichStore.changeVisibility(false);
       },
       onSubmit: () {
         if (formKey.currentState.validate()) {
@@ -85,7 +87,7 @@ class _EditorState extends State<Editor> {
       key: formKey,
       child: Column(
         children: [
-          _withBtns(_amountInput(), _typeInput()),
+          _withBtns(_amountInput(), _typeInput(), _deleteBtn()),
           _line(),
           _labelInput(),
           _line(),
@@ -111,6 +113,19 @@ class _EditorState extends State<Editor> {
       onTap: (x) {
         payment.isCredit = x;
       },
+    );
+  }
+
+  Widget _deleteBtn() {
+    return Visibility(
+      visible: !isNew,
+      child: ConfirmModal(
+        builder: (context, control) {
+          return DeleteButton(
+            onTap: () => _delete(control),
+          );
+        },
+      ),
     );
   }
 
@@ -164,7 +179,7 @@ class _EditorState extends State<Editor> {
     FocusScope.of(context).requestFocus(new FocusNode());
   }
 
-  int _defaultDate() {
+  int get _defaultDate {
     return paymentsStore.activeMonth == null
         ? DateHelper.toMs
         : DateHelper.dtToMs(paymentsStore.activeMonth);
@@ -177,7 +192,7 @@ class _EditorState extends State<Editor> {
         amount: null,
         categoryID: null,
         createdTime: null,
-        date: _defaultDate(),
+        date: _defaultDate,
         isCredit: true,
         label: null,
       );
@@ -191,7 +206,6 @@ class _EditorState extends State<Editor> {
   _save() {
     payment.lastModifiedTime = DateHelper.toMs;
     if (isNew) payment.createdTime = payment.lastModifiedTime;
-    print('+++ ${payment.toJson()}');
 
     if (payment.id == null) {
       paymentsStore.insertPayment(payment);
@@ -200,6 +214,19 @@ class _EditorState extends State<Editor> {
     }
 
     paymentsStore.setActivePayment(null);
-    sl<SandwichStore>().changeVisibility(false);
+    sandwichStore.changeVisibility(false);
+  }
+
+  void _delete(ConfirmModalControl control) {
+    control.title = 'Are you sure?';
+    control.yesLabel = 'Delete';
+    control.noLabel = 'cancel';
+    control.icon = Icons.delete;
+    control.onYes = () {
+      sandwichStore.changeVisibility(false);
+      paymentsStore.deletePayment(payment.id);
+      paymentsStore.setActivePayment(null);
+    };
+    control.open();
   }
 }

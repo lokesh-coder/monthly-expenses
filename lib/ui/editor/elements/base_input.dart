@@ -58,7 +58,7 @@ class BaseInput extends StatelessWidget {
     return AbsorbPointer(
       absorbing: inputType == InputType.NONE ? true : false,
       child: TextFormField(
-        key: ValueKey(value),
+        key: UniqueKey(),
         initialValue: value,
         style: _inputStyle,
         keyboardType: _getKeyboardType(),

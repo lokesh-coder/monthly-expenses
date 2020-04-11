@@ -49,7 +49,7 @@ class _CategoryInputState extends State<CategoryInput> {
             value: _catMeta(currVal)[1],
             inputType: InputType.NONE,
             label: 'category',
-            onSaved: (id) => widget.onSaved(currVal),
+            onSaved: (id) => widget.onSaved(_catMeta(currVal)[2]),
             onTap: () => _picker(control),
           );
         },

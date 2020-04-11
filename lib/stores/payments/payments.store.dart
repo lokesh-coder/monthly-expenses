@@ -38,6 +38,19 @@ abstract class PaymentsBase with Store {
         .reduce((v, e) => v + e);
   }
 
+  @computed
+  Map get allPaymentsOfActiveMonth {
+    List<Payment> monthlyPayments = getPaymentsForMonth(activeMonth, false);
+    Map allPayments = {'credit': 0, 'debit': 0, 'activeType': filterBy};
+    if (monthlyPayments.length == 0) return allPayments;
+
+    monthlyPayments.forEach((p) {
+      var type = p.isCredit ? 'credit' : 'debit';
+      allPayments[type] = allPayments[type] + p.amount;
+    });
+    return allPayments;
+  }
+
   @action
   void changeFilter(filterValue) {
     filterBy = filterValue;
@@ -46,6 +59,11 @@ abstract class PaymentsBase with Store {
   @computed
   Map<String, List<Payment>> get paymentsByMonth {
     return Map.from(groupPaymentsByMonth());
+  }
+
+  @computed
+  Map<String, List<Payment>> get paymentsByMonthWithoutFilter {
+    return Map.from(groupPaymentsByMonth(false));
   }
 
   @action
@@ -97,10 +115,12 @@ abstract class PaymentsBase with Store {
     fetchPayments();
   }
 
-  List<Payment> getPaymentsForMonth(DateTime dt) {
+  List<Payment> getPaymentsForMonth(DateTime dt, [bool withFilter = true]) {
     String monthKey = DateHelper.getMonthYear(dt);
-    if (paymentsByMonth[monthKey] == null) return [];
-    return paymentsByMonth[monthKey];
+    var monthlyPayments =
+        withFilter ? paymentsByMonth : paymentsByMonthWithoutFilter;
+    if (monthlyPayments[monthKey] == null) return [];
+    return monthlyPayments[monthKey];
   }
 
   getPayment(String paymentID) {
@@ -109,9 +129,9 @@ abstract class PaymentsBase with Store {
     }, orElse: () => null);
   }
 
-  Map groupPaymentsByMonth() {
-    var filteredPayments = filterPaymentByType(payments);
-    return groupBy(filteredPayments, (Payment p) {
+  Map groupPaymentsByMonth([bool withFilter = true]) {
+    var allPayments = withFilter ? filterPaymentByType(payments) : payments;
+    return groupBy(allPayments, (Payment p) {
       DateTime dt = DateTime.fromMillisecondsSinceEpoch(p.date);
       return DateHelper.getMonthYear(dt);
     });

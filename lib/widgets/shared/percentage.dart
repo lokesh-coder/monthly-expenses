@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class Percentage extends StatelessWidget {
@@ -9,17 +13,44 @@ class Percentage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircularPercentIndicator(
-      radius: 50.0,
-      lineWidth: 4.0,
-      percent: value / 100,
-      center: new Text(
-        "${value.round()}%",
-        style: TextStyle(fontSize: 12, color: Colors.white38),
-      ),
-      progressColor: Clrs.green,
-      circularStrokeCap: CircularStrokeCap.round,
-      backgroundColor: Colors.white12,
-    );
+    PaymentsStore paymentsStore = sl<PaymentsStore>();
+
+    return Observer(builder: (context) {
+      var values = _getValues(paymentsStore.allPaymentsOfActiveMonth);
+      return CircularPercentIndicator(
+        radius: 50.0,
+        lineWidth: 4.0,
+        percent: values[0] / values[1],
+        animation: true,
+        animationDuration: 200,
+        center: new Text(
+          "${((values[0] / values[1]) * 100).round()}%",
+          style: TextStyle(fontSize: 12, color: Colors.white38),
+        ),
+        progressColor: values[2] == PaymentType.CREDIT ? Clrs.green : Clrs.red,
+        circularStrokeCap: CircularStrokeCap.round,
+        backgroundColor: Colors.white12,
+      );
+    });
+  }
+
+  _getValues(Map data) {
+    num total = data['credit'] + data['debit'];
+    num scale;
+    PaymentType type;
+
+    if (data['activeType'] == PaymentType.ALL) {
+      scale = data['credit'] - data['debit'];
+      type = scale >= 0 ? PaymentType.CREDIT : PaymentType.DEBIT;
+    }
+    if (data['activeType'] == PaymentType.CREDIT) {
+      scale = data['credit'];
+      type = PaymentType.CREDIT;
+    }
+    if (data['activeType'] == PaymentType.DEBIT) {
+      scale = data['debit'];
+      type = PaymentType.DEBIT;
+    }
+    return [scale.abs(), total, type];
   }
 }

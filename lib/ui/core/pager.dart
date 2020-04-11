@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:monex/widgets/modules/pager/pager_helper.dart';
+import 'package:monex/helpers/pager_helper.dart';
 
 final pagerHelper = PagerHelper();
 

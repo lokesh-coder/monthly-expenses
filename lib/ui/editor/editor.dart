@@ -43,7 +43,7 @@ class _EditorState extends State<Editor> {
           child: GestureDetector(
             onTap: () => _closeKeyboard(context),
             child: Container(
-              color: MonexColors.light.withOpacity(0.5),
+              color: Clrs.light.withOpacity(0.5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [_formArea(), _actionArea(context)],
@@ -169,7 +169,7 @@ class _EditorState extends State<Editor> {
 
   _line() {
     return Divider(
-      color: MonexColors.inputBorder,
+      color: Clrs.inputBorder,
       height: 1,
       thickness: 1,
     );

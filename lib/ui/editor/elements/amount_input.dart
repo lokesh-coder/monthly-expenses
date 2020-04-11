@@ -33,7 +33,7 @@ class AmountInput extends StatelessWidget {
             child: Text('₹',
                 style: TextStyle(
                   fontSize: 25,
-                  color: MonexColors.inputValue.withOpacity(0.5),
+                  color: Clrs.inputValue.withOpacity(0.5),
                 )),
           )
         ],

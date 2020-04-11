@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MonexColors {
+class Clrs {
   static const Color primary = Color(0xff6156A4);
   static const Color light = Color(0xffF5F8FC);
   static const Color green = Color(0xff33B284);

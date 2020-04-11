@@ -13,7 +13,7 @@ class Amount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = isCredit ? MonexColors.green : MonexColors.red;
+    Color color = isCredit ? Clrs.green : Clrs.red;
     double fontSize = _getFontSizeMap()[size];
     return Align(
       alignment: Alignment.centerRight,

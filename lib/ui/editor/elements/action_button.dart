@@ -13,7 +13,7 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: MonexColors.primary,
+      color: Clrs.primary,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[_primary(), _secondary()],
@@ -32,7 +32,7 @@ class ActionButton extends StatelessWidget {
       child: Container(
         height: btnHeight,
         child: FlatButton(
-          color: MonexColors.primary,
+          color: Clrs.primary,
           padding: EdgeInsets.all(20),
           child: text,
           onPressed: onSubmit,

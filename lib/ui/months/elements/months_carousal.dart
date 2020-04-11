@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class MonthControl extends StatefulWidget {
+class MonthsCarousal extends StatefulWidget {
   final int index;
   final dynamic data;
   final PageController ctrl;
   final double scaleDistance = 2;
 
-  const MonthControl(this.index, this.data, this.ctrl, {Key key})
+  const MonthsCarousal(this.index, this.data, this.ctrl, {Key key})
       : super(key: key);
 
   @override
-  _MonthControlState createState() => _MonthControlState();
+  _MonthsCarousalState createState() => _MonthsCarousalState();
 }
 
-class _MonthControlState extends State<MonthControl> {
+class _MonthsCarousalState extends State<MonthsCarousal> {
   double fs = -1;
 
   _scrollListener() {

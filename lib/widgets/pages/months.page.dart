@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/core/sandwich_container.dart';
 import 'package:monex/ui/editor/editor.dart';
+import 'package:monex/ui/months/months.dart';
 import 'package:monex/widgets/banner-board.dart';
-import 'package:monex/widgets/containers/month-view.container.dart';
 import 'package:monex/widgets/drawer.dart';
-import 'package:monex/widgets/modules/sandwich/sandwich.dart';
 import 'package:monex/widgets/shared/app-shell.dart';
 import 'package:monex/widgets/shared/header.dart';
 
@@ -39,12 +39,9 @@ class MonthsPage extends StatelessWidget {
         }
         return Future.value(true);
       },
-      child: Sandwich(
-        translateOffset: 80.0,
-        dynamicContent: 40.0,
-        visibleContentHeight: 60.0,
+      child: SandwichContainer(
         bottomChild: Editor(),
-        middleChild: MonthViewContainer(),
+        middleChild: Months(),
         topChild: BannerBoard(0, [], PageController()),
       ),
     );

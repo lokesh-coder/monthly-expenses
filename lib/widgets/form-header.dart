@@ -17,12 +17,12 @@ class FormHeader extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.delete),
-            color: MonexColors.title.withOpacity(0.3),
+            color: Clrs.title.withOpacity(0.3),
             onPressed: () {},
           ),
           IconButton(
               icon: Icon(Icons.close),
-              color: MonexColors.title.withOpacity(0.3),
+              color: Clrs.title.withOpacity(0.3),
               onPressed: () {
                 sl<SandwichStore>().changeVisibility(false);
               }),

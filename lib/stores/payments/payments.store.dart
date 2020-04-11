@@ -99,7 +99,7 @@ abstract class PaymentsBase with Store {
   }
 
   List<Payment> getPaymentsForMonth(DateTime dt) {
-    String monthKey = DateHelper.getUniqueMonthFormat(dt);
+    String monthKey = DateHelper.getMonthYear(dt);
     if (paymentsByMonth[monthKey] == null) return [];
     return paymentsByMonth[monthKey];
   }
@@ -114,7 +114,7 @@ abstract class PaymentsBase with Store {
     var filteredPayments = filterPaymentByType(payments);
     return groupBy(filteredPayments, (Payment p) {
       DateTime dt = DateTime.fromMillisecondsSinceEpoch(p.date);
-      return DateHelper.getUniqueMonthFormat(dt);
+      return DateHelper.getMonthYear(dt);
     });
   }
 

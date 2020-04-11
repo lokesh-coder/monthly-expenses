@@ -42,7 +42,7 @@ class BaseInput extends StatelessWidget {
 
   Widget _textField() {
     var _inputStyle = TextStyle(
-      color: MonexColors.inputValue,
+      color: Clrs.inputValue,
       fontSize: isPrimary ? 30 : 20,
       fontWeight: isPrimary ? FontWeight.w800 : FontWeight.w400,
     );
@@ -52,7 +52,7 @@ class BaseInput extends StatelessWidget {
       contentPadding: EdgeInsets.symmetric(vertical: 10),
       border: InputBorder.none,
       hintText: placeholder,
-      hintStyle: TextStyle(color: MonexColors.inputPlaceholder),
+      hintStyle: TextStyle(color: Clrs.inputPlaceholder),
     );
 
     return AbsorbPointer(
@@ -73,7 +73,7 @@ class BaseInput extends StatelessWidget {
   Widget _label() {
     var _textStyle = TextStyle(
       letterSpacing: -1,
-      color: MonexColors.inputLabel,
+      color: Clrs.inputLabel,
       fontWeight: FontWeight.w600,
     );
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -31,6 +32,11 @@ class AppDrawer extends StatelessWidget {
                     sl<SettingsStore>().changeMonthsViewRange(value.toInt());
                   },
                 ),
+                FlatButton(
+                    onPressed: () {
+                      sl<PaymentsStore>().dropDb();
+                    },
+                    child: Text('Delete DB'))
               ],
             );
           }),

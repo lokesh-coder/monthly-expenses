@@ -58,8 +58,7 @@ class DatePicker extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: isSelecteDate ? FontWeight.w800 : FontWeight.w400,
-                color:
-                    isSelecteDate ? MonexColors.green : MonexColors.inputValue,
+                color: isSelecteDate ? Clrs.green : Clrs.inputValue,
               ),
             ),
           ),
@@ -82,7 +81,7 @@ class DatePicker extends StatelessWidget {
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w600,
-        color: MonexColors.inputLabel,
+        color: Clrs.inputLabel,
       ),
     );
 

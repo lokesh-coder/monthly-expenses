@@ -82,7 +82,7 @@ class _TypeInputState extends State<TypeInput> with TickerProviderStateMixin {
     return Text(
       currVal ? 'CREDIT' : 'DEBIT',
       style: TextStyle(
-        color: MonexColors.inputLabel,
+        color: Clrs.inputLabel,
         fontWeight: FontWeight.w600,
         fontSize: 11,
       ),
@@ -93,7 +93,7 @@ class _TypeInputState extends State<TypeInput> with TickerProviderStateMixin {
     return Icon(
       currVal ? Icons.sentiment_satisfied : Icons.sentiment_dissatisfied,
       size: 27,
-      color: currVal ? MonexColors.green : MonexColors.red,
+      color: currVal ? Clrs.green : Clrs.red,
     );
   }
 }

@@ -71,7 +71,7 @@ class _CategoryInputState extends State<CategoryInput> {
 
   BoxDecoration _boxDecoration() {
     return BoxDecoration(
-      border: Border(right: BorderSide(color: MonexColors.inputBorder)),
+      border: Border(right: BorderSide(color: Clrs.inputBorder)),
     );
   }
 

@@ -15,7 +15,7 @@ class DeleteButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 12),
         child: Column(
           children: <Widget>[
-            Icon(Icons.delete, size: 27, color: MonexColors.inputLabel),
+            Icon(Icons.delete, size: 27, color: Clrs.inputLabel),
             SizedBox(height: 10),
             _label(),
           ],
@@ -28,7 +28,7 @@ class DeleteButton extends StatelessWidget {
     return Text(
       'DELETE',
       style: TextStyle(
-        color: MonexColors.inputLabel,
+        color: Clrs.inputLabel,
         fontWeight: FontWeight.w600,
         fontSize: 11,
       ),

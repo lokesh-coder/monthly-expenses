@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/widgets/containers/payments-view.container.dart';
-import 'package:monex/widgets/modules/pager/pager.dart';
-import 'package:monex/widgets/month-control.dart';
+import 'package:monex/ui/core/pager.dart';
+import 'package:monex/ui/months/elements/months_carousal.dart';
+import 'package:monex/ui/months/elements/payments_carousal.dart';
 
-class MonthViewContainer extends StatelessWidget {
-  const MonthViewContainer({Key key}) : super(key: key);
+class Months extends StatelessWidget {
+  const Months({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class MonthViewContainer extends StatelessWidget {
                 flex: 1,
                 child: Pager(
                   builder: (int index, dynamic data, PageController ctrl) {
-                    return PaymentsViewContainer(
+                    return PaymentsCarousal(
                       index: index,
                       data: data,
                       ctrl: ctrl,
@@ -44,17 +45,17 @@ class MonthViewContainer extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 60,
+                height: Dimensions.monthsBarHeight,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: MonexColors.inputBorder),
-                    top: BorderSide(color: MonexColors.inputBorder),
+                    bottom: BorderSide(color: Clrs.inputBorder),
+                    top: BorderSide(color: Clrs.inputBorder),
                   ),
                 ),
                 child: Pager.master(
                   builder: (int index, dynamic data, PageController ctrl) {
-                    return MonthControl(index, data, ctrl);
+                    return MonthsCarousal(index, data, ctrl);
                   },
                   data: totalMonths,
                   initialPage: settingsStore.monthsViewRange,

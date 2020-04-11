@@ -33,7 +33,7 @@ class FilterBar extends StatelessWidget {
                           Icon(
                             Icons.lens,
                             size: 13,
-                            color: MonexColors.yellow,
+                            color: Clrs.yellow,
                           ),
                           SizedBox(
                             width: 8,
@@ -64,7 +64,7 @@ class FilterBar extends StatelessWidget {
                           Icon(
                             Icons.lens,
                             size: 13,
-                            color: MonexColors.green,
+                            color: Clrs.green,
                           ),
                           SizedBox(
                             width: 8,
@@ -95,7 +95,7 @@ class FilterBar extends StatelessWidget {
                           Icon(
                             Icons.lens,
                             size: 13,
-                            color: MonexColors.red,
+                            color: Clrs.red,
                           ),
                           SizedBox(
                             width: 8,

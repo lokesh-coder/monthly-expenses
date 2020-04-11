@@ -35,7 +35,7 @@ class ConfirmModal extends StatelessWidget {
             barrierDismissible: true,
             barrierLabel:
                 MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            barrierColor: MonexColors.primary.withOpacity(0.2),
+            barrierColor: Clrs.primary.withOpacity(0.2),
             transitionDuration: const Duration(milliseconds: 200),
             pageBuilder: (
               BuildContext buildContext,
@@ -67,7 +67,7 @@ class ConfirmModal extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
           boxShadow: [
             BoxShadow(
-              color: MonexColors.primary.withOpacity(0.3),
+              color: Clrs.primary.withOpacity(0.3),
               blurRadius: 10,
               offset: Offset(0, 4),
             )
@@ -97,7 +97,7 @@ class ConfirmModal extends StatelessWidget {
         style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.normal,
-          color: MonexColors.inputValue,
+          color: Clrs.inputValue,
         ),
       ),
     );
@@ -105,7 +105,7 @@ class ConfirmModal extends StatelessWidget {
 
   _actionBtns(BuildContext context, ConfirmModalControl control) {
     var btnStyle = TextStyle(
-      color: MonexColors.label,
+      color: Clrs.label,
       letterSpacing: -0.5,
       fontWeight: FontWeight.w600,
     );
@@ -121,7 +121,7 @@ class ConfirmModal extends StatelessWidget {
           },
           child: Text(
             control.yesLabel.toUpperCase(),
-            style: btnStyle.copyWith(color: MonexColors.primary),
+            style: btnStyle.copyWith(color: Clrs.primary),
           ),
         ),
         FlatButton(

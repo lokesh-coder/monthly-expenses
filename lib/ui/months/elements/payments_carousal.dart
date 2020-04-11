@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
-import 'package:monex/widgets/payments.dart';
+import 'package:monex/ui/months/elements/payments.dart';
 
-class PaymentsViewContainer extends StatelessWidget {
+class PaymentsCarousal extends StatelessWidget {
   final dynamic data;
   final int index;
   final PageController ctrl;
 
-  const PaymentsViewContainer({Key key, this.index, this.data, this.ctrl})
+  const PaymentsCarousal({Key key, this.index, this.data, this.ctrl})
       : super(key: key);
 
   @override

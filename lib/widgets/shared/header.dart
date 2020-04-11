@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/helpers/layout_helper.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
   final IconButton action;
@@ -19,5 +20,5 @@ class Header extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(LayoutHelper.appBarHeight);
 }

@@ -17,7 +17,7 @@ class Percentage extends StatelessWidget {
         "${value.round()}%",
         style: TextStyle(fontSize: 12, color: Colors.white38),
       ),
-      progressColor: MonexColors.green,
+      progressColor: Clrs.green,
       circularStrokeCap: CircularStrokeCap.round,
       backgroundColor: Colors.white12,
     );

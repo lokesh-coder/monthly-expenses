@@ -13,14 +13,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: MonexColors.primary,
+      statusBarColor: Clrs.primary,
       statusBarBrightness: Brightness.dark,
     ));
 
     return MaterialApp(
       title: 'Monex',
       theme: ThemeData(
-        primaryColor: MonexColors.primary,
+        primaryColor: Clrs.primary,
         fontFamily: 'Circular',
       ),
       debugShowCheckedModeBanner: false,

@@ -68,7 +68,7 @@ class DateHelper {
     return Jiffy(dt).format('y');
   }
 
-  static String getUniqueMonthFormat(DateTime dt) {
+  static String getMonthYear(DateTime dt) {
     return Jiffy(dt).format('MMMy');
   }
 

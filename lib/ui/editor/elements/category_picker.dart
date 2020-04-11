@@ -30,9 +30,8 @@ class CategoryPicker extends StatelessWidget {
   }
 
   Widget _category(path, name, id) {
-    Color color = selected == id
-        ? MonexColors.primary.withOpacity(.1)
-        : Colors.transparent;
+    Color color =
+        selected == id ? Clrs.primary.withOpacity(.1) : Colors.transparent;
 
     return GestureDetector(
       onTap: () => onSelect(id),
@@ -44,7 +43,7 @@ class CategoryPicker extends StatelessWidget {
           children: <Widget>[
             Image.asset(path, width: 30),
             SizedBox(height: 10),
-            Text(name, style: TextStyle(color: MonexColors.inputLabel)),
+            Text(name, style: TextStyle(color: Clrs.inputLabel)),
           ],
         ),
       ),

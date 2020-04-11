@@ -16,25 +16,25 @@ class Percentage extends StatelessWidget {
     PaymentsStore paymentsStore = sl<PaymentsStore>();
 
     return Observer(builder: (context) {
-      var values = _getValues(paymentsStore.allPaymentsOfActiveMonth);
+      List data = _data(paymentsStore.allPaymentsOfActiveMonth);
       return CircularPercentIndicator(
         radius: 50.0,
         lineWidth: 4.0,
-        percent: values[0] / values[1],
+        percent: _getValue(data[0], data[1]),
         animation: true,
         animationDuration: 200,
         center: new Text(
-          "${((values[0] / values[1]) * 100).round()}%",
+          "${(_getValue(data[0], data[1]) * 100).round()}%",
           style: TextStyle(fontSize: 12, color: Colors.white38),
         ),
-        progressColor: values[2] == PaymentType.CREDIT ? Clrs.green : Clrs.red,
+        progressColor: data[2] == PaymentType.CREDIT ? Clrs.green : Clrs.red,
         circularStrokeCap: CircularStrokeCap.round,
         backgroundColor: Colors.white12,
       );
     });
   }
 
-  _getValues(Map data) {
+  _data(Map data) {
     num total = data['credit'] + data['debit'];
     num scale;
     PaymentType type;
@@ -52,5 +52,10 @@ class Percentage extends StatelessWidget {
       type = PaymentType.DEBIT;
     }
     return [scale.abs(), total, type];
+  }
+
+  double _getValue(num value, num total) {
+    if (total == 0) return 0.0;
+    return (value / total);
   }
 }

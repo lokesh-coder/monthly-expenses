@@ -23,6 +23,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^1.7.2
   mobx_codegen: ^1.0.0
+  flutter_launcher_icons: "^0.7.3"
 
 # The following section is specific to Flutter.
 flutter:
@@ -45,15 +46,11 @@ flutter:
     - assets/icons/icons8-transaction-approved-100.png
     - assets/icons/icons8-treatment-100.png
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
+flutter_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/images/app-icon.png"
+
   fonts:
     - family: Circular
       fonts:

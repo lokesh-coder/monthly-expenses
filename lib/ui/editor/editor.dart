@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/layout_helper.dart';
+import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -186,20 +187,22 @@ class _EditorState extends State<Editor> {
   }
 
   _data() {
+    payment = paymentsStore.getPayment(paymentsStore.active);
+
     if (paymentsStore.active == null) {
       isNew = true;
+      var isDebit = paymentsStore.filterBy == PaymentType.DEBIT;
       return Payment(
         amount: null,
         categoryID: null,
         createdTime: null,
         date: _defaultDate,
-        isCredit: true,
+        isCredit: !isDebit,
         label: null,
       );
     }
 
     isNew = false;
-    payment = paymentsStore.getPayment(paymentsStore.active);
     return payment;
   }
 

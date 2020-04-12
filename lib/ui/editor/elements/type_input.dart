@@ -52,6 +52,14 @@ class _TypeInputState extends State<TypeInput> with TickerProviderStateMixin {
   }
 
   @override
+  didUpdateWidget(x) {
+    super.didUpdateWidget(x);
+    setState(() {
+      currVal = widget.value;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {

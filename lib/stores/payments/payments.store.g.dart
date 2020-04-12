@@ -15,12 +15,27 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   num get totalAmountOfActiveMonth => (_$totalAmountOfActiveMonthComputed ??=
           Computed<num>(() => super.totalAmountOfActiveMonth))
       .value;
+  Computed<Map<dynamic, dynamic>> _$allPaymentsOfActiveMonthComputed;
+
+  @override
+  Map<dynamic, dynamic> get allPaymentsOfActiveMonth =>
+      (_$allPaymentsOfActiveMonthComputed ??= Computed<Map<dynamic, dynamic>>(
+              () => super.allPaymentsOfActiveMonth))
+          .value;
   Computed<Map<String, List<Payment>>> _$paymentsByMonthComputed;
 
   @override
   Map<String, List<Payment>> get paymentsByMonth =>
       (_$paymentsByMonthComputed ??=
               Computed<Map<String, List<Payment>>>(() => super.paymentsByMonth))
+          .value;
+  Computed<Map<String, List<Payment>>> _$paymentsByMonthWithoutFilterComputed;
+
+  @override
+  Map<String, List<Payment>> get paymentsByMonthWithoutFilter =>
+      (_$paymentsByMonthWithoutFilterComputed ??=
+              Computed<Map<String, List<Payment>>>(
+                  () => super.paymentsByMonthWithoutFilter))
           .value;
 
   final _$paymentsAtom = Atom(name: 'PaymentsBase.payments');
@@ -185,7 +200,7 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   @override
   String toString() {
     final string =
-        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},filterBy: ${filterBy.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},paymentsByMonth: ${paymentsByMonth.toString()}';
+        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},filterBy: ${filterBy.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},allPaymentsOfActiveMonth: ${allPaymentsOfActiveMonth.toString()},paymentsByMonth: ${paymentsByMonth.toString()},paymentsByMonthWithoutFilter: ${paymentsByMonthWithoutFilter.toString()}';
     return '{$string}';
   }
 }

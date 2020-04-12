@@ -35,7 +35,7 @@ class ConfirmModal extends StatelessWidget {
             barrierDismissible: true,
             barrierLabel:
                 MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            barrierColor: Clrs.primary.withOpacity(0.2),
+            barrierColor: Colors.black26.withOpacity(0.2),
             transitionDuration: const Duration(milliseconds: 200),
             pageBuilder: (
               BuildContext buildContext,
@@ -63,11 +63,11 @@ class ConfirmModal extends StatelessWidget {
         width: LayoutHelper.screenWidth / 1.5,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Clrs.dark,
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
           boxShadow: [
             BoxShadow(
-              color: Clrs.primary.withOpacity(0.3),
+              color: Clrs.dark.withOpacity(0.3),
               blurRadius: 10,
               offset: Offset(0, 4),
             )

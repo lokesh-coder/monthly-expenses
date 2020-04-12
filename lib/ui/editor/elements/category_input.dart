@@ -13,8 +13,10 @@ class CategoryInput extends StatefulWidget {
   final Function(String) onSaved;
   final Function validator;
   final String value;
+  final bool isCredit;
 
-  const CategoryInput({Key key, this.value, this.onSaved, this.validator})
+  const CategoryInput(
+      {Key key, this.value, this.onSaved, this.validator, this.isCredit})
       : super(key: key);
 
   @override
@@ -60,6 +62,7 @@ class _CategoryInputState extends State<CategoryInput> {
 
   void _picker(BottomModalControl control) {
     Widget picker = CategoryPicker(
+      isCredit: widget.isCredit,
       onSelect: (id) {
         setState(() {
           currVal = id;

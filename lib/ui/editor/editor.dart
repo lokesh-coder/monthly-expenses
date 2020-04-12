@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/layout_helper.dart';
-import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/confirm_modal.dart';
@@ -30,29 +31,36 @@ class Editor extends StatefulWidget {
 class _EditorState extends State<Editor> {
   var sandwichStore = sl<SandwichStore>();
   var paymentsStore = sl<PaymentsStore>();
-  bool isNew = true;
+  var formStore = sl<FormStore>();
+
+  ReactionDisposer disposeOne;
+  ReactionDisposer disposeTwo;
+
   Payment payment;
 
   @override
+  void initState() {
+    super.initState();
+    disposeOne = reaction((_) => sandwichStore.isOpen, (x) {
+      formStore.initForm();
+    });
+
+    disposeTwo = reaction((_) => paymentsStore.activeMonth, (x) {
+      formStore.changeDate(DateHelper.dtToMs(x));
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        payment = _data();
-        return AnimatedOpacity(
-          duration: Duration(milliseconds: 400),
-          opacity: sandwichStore.isOpen ? 1 : 0,
-          child: GestureDetector(
-            onTap: () => _closeKeyboard(context),
-            child: Container(
-              color: Clrs.light.withOpacity(0.5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [_formArea(), _actionArea(context)],
-              ),
-            ),
-          ),
-        );
-      },
+    return GestureDetector(
+      onTap: () => _closeKeyboard(context),
+      child: Container(
+        color: Clrs.light.withOpacity(0.5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [_formArea(), _actionArea(context)],
+        ),
+      ),
     );
   }
 
@@ -100,61 +108,74 @@ class _EditorState extends State<Editor> {
   }
 
   Widget _amountInput() {
-    return AmountInput(
-      value: payment.amount,
-      onSaved: (x) {
-        payment.amount = x;
-      },
-    );
+    return Observer(builder: (context) {
+      return AmountInput(
+        value: formStore.amount,
+        onSaved: (x) {
+          formStore.changeAmount(x);
+        },
+      );
+    });
   }
 
   Widget _typeInput() {
-    return TypeInput(
-      value: payment.isCredit,
-      onTap: (x) {
-        payment.isCredit = x;
-      },
-    );
+    return Observer(builder: (context) {
+      return TypeInput(
+        value: formStore.isCredit,
+        onTap: (x) {
+          formStore.changeType(x);
+        },
+      );
+    });
   }
 
   Widget _deleteBtn() {
-    return Visibility(
-      visible: !isNew,
-      child: ConfirmModal(
-        builder: (context, control) {
-          return DeleteButton(
-            onTap: () => _delete(control),
-          );
-        },
-      ),
-    );
+    return Observer(builder: (context) {
+      return Visibility(
+        visible: !formStore.isNew,
+        child: ConfirmModal(
+          builder: (context, control) {
+            return DeleteButton(
+              onTap: () => _delete(control),
+            );
+          },
+        ),
+      );
+    });
   }
 
   Widget _labelInput() {
-    return LabelInput(
-      value: payment.label,
-      onSaved: (x) {
-        payment.label = x;
-      },
-    );
+    return Observer(builder: (context) {
+      return LabelInput(
+        value: formStore.label,
+        onSaved: (x) {
+          formStore.changeLabel(x);
+        },
+      );
+    });
   }
 
   Widget _categoryInput() {
-    return CategoryInput(
-      value: payment.categoryID,
-      onSaved: (x) {
-        payment.categoryID = x;
-      },
-    );
+    return Observer(builder: (context) {
+      return CategoryInput(
+        value: formStore.categoryID,
+        isCredit: formStore.isCredit,
+        onSaved: (x) {
+          formStore.changeCategoryID(x);
+        },
+      );
+    });
   }
 
   Widget _dateInput() {
-    return DateInput(
-      value: payment.date,
-      onSaved: (x) {
-        payment.date = x;
-      },
-    );
+    return Observer(builder: (context) {
+      return DateInput(
+        value: formStore.date,
+        onSaved: (x) {
+          formStore.changeDate(x);
+        },
+      );
+    });
   }
 
   Widget _row(List<Widget> children) {
@@ -180,35 +201,10 @@ class _EditorState extends State<Editor> {
     FocusScope.of(context).requestFocus(new FocusNode());
   }
 
-  int get _defaultDate {
-    return paymentsStore.activeMonth == null
-        ? DateHelper.toMs
-        : DateHelper.dtToMs(paymentsStore.activeMonth);
-  }
-
-  _data() {
-    payment = paymentsStore.getPayment(paymentsStore.active);
-
-    if (paymentsStore.active == null) {
-      isNew = true;
-      var isDebit = paymentsStore.filterBy == PaymentType.DEBIT;
-      return Payment(
-        amount: null,
-        categoryID: null,
-        createdTime: null,
-        date: _defaultDate,
-        isCredit: !isDebit,
-        label: null,
-      );
-    }
-
-    isNew = false;
-    return payment;
-  }
-
   _save() {
-    payment.lastModifiedTime = DateHelper.toMs;
-    if (isNew) payment.createdTime = payment.lastModifiedTime;
+    print('data ${formStore.data.toJson()}');
+
+    Payment payment = formStore.data;
 
     if (payment.id == null) {
       paymentsStore.insertPayment(payment);
@@ -231,5 +227,12 @@ class _EditorState extends State<Editor> {
       paymentsStore.setActivePayment(null);
     };
     control.open();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    disposeOne();
+    disposeTwo();
   }
 }

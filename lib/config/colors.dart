@@ -15,4 +15,5 @@ class Clrs {
   static const Color inputLabel = Color(0xff9EB0C7);
   static const Color inputPlaceholder = Color(0xffE1E9F3);
   static const Color inputBorder = Color(0xffD8E3F1);
+  static const Color dark = Color(0xff29263D);
 }

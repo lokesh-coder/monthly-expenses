@@ -29,9 +29,10 @@ class _DateInputState extends State<DateInput> {
   @override
   didUpdateWidget(x) {
     super.didUpdateWidget(x);
-    setState(() {
-      currVal = widget.value;
-    });
+    if (currVal != widget.value)
+      setState(() {
+        currVal = widget.value ?? DateHelper.toMs;
+      });
   }
 
   @override

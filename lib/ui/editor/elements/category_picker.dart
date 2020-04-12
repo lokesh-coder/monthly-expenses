@@ -10,7 +10,8 @@ import 'package:monex/service_locator/service_locator.dart';
 class CategoryPicker extends StatelessWidget {
   final Function onSelect;
   final String selected;
-  const CategoryPicker({Key key, this.selected, this.onSelect})
+  final bool isCredit;
+  const CategoryPicker({Key key, this.selected, this.onSelect, this.isCredit})
       : super(key: key);
 
   @override
@@ -25,8 +26,9 @@ class CategoryPicker extends StatelessWidget {
   }
 
   List<Widget> _categories() {
+    var type = isCredit ? 'CREDIT' : 'DEBIT';
     var categoriesObj = sl<DataRepo>().obj.get<Catagories>('categories');
-    var categories = categoriesObj.all.map((c) => _category(c));
+    var categories = categoriesObj.filterBy(type).map((c) => _category(c));
     return categories.toList();
   }
 

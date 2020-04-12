@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
+import 'package:monex/models/category.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
@@ -46,10 +47,10 @@ class _CategoryInputState extends State<CategoryInput> {
           return BaseInput(
             placeholder: 'type short name',
             validator: (String x) => null,
-            value: _catMeta(currVal)[1],
+            value: _catMeta(currVal).name,
             inputType: InputType.NONE,
             label: 'category',
-            onSaved: (id) => widget.onSaved(_catMeta(currVal)[2]),
+            onSaved: (id) => widget.onSaved(_catMeta(currVal).id),
             onTap: () => _picker(control),
           );
         },
@@ -65,7 +66,7 @@ class _CategoryInputState extends State<CategoryInput> {
         });
         control.close();
       },
-      selected: _catMeta(currVal)[2],
+      selected: _catMeta(currVal).id,
     );
     control.open('Categoriess', picker);
   }
@@ -76,7 +77,7 @@ class _CategoryInputState extends State<CategoryInput> {
     );
   }
 
-  _catMeta(String catID) {
+  Category _catMeta(String catID) {
     var categoriesObj = sl<DataRepo>().obj.get<Catagories>('categories');
     var category = catID == null
         ? categoriesObj.defaultCategory

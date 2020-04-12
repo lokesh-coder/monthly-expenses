@@ -4,6 +4,7 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/category.dart';
 import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -34,7 +35,7 @@ class Payments extends StatelessWidget {
   }
 
   _payment(Payment data, PaymentsStore paymentsStore) {
-    List category = sl<DataRepo>()
+    Category category = sl<DataRepo>()
         .obj
         .get<Catagories>('categories')
         .findCategoryById(data.categoryID);
@@ -49,7 +50,7 @@ class Payments extends StatelessWidget {
       dense: true,
       contentPadding: EdgeInsets.all(0),
       leading: Image.asset(
-        category[0],
+        category.path,
         width: 35,
       ),
       onTap: () {
@@ -58,7 +59,7 @@ class Payments extends StatelessWidget {
       },
       title: Text(data.label, style: style),
       subtitle: Text(
-        category[1].toString().toUpperCase(),
+        category.name.toUpperCase(),
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
       ),
       trailing: Text(

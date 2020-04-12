@@ -1,34 +1,107 @@
+import 'package:monex/models/category.dart';
+
 class Catagories {
-  List finalCategories = [];
-  List<List<String>> _categories = [
-    ['beetroot-and-carrot', 'Groceries', 'GROCERIES'],
-    ['check-for-payment', 'Cash', 'CASH'],
-    ['cinema', 'Movies', 'MOVIES'],
-    ['money-box', 'Savings', 'SAVINGS'],
-    ['online-store', 'Shopping', 'SHOPPING'],
-    ['receipt-approved', 'Bills', 'BILLS'],
-    ['restaurant', 'Food', 'FOOD'],
-    ['tax', 'Tax', 'TAX'],
-    ['taxi-back-view', 'Transport', 'TRANSPORT'],
-    ['treatment', 'Medical', 'TREATMENT'],
-    ['transaction-approved', 'General', 'TRANS_APPROVED'],
+  List<Category> finalCategories = [];
+  List<Category> _categories = [
+    Category(
+      id: 'GROCERIES',
+      name: 'Groceries',
+      path: _path('beetroot-and-carrot'),
+      group: '',
+      type: ['DEBIT'],
+    ),
+    Category(
+      id: 'SALARY',
+      name: 'Salary',
+      path: _path('check-for-payment'),
+      group: '',
+      type: ['CREDIT'],
+    ),
+    Category(
+      id: 'MOVIES',
+      name: 'Movies',
+      path: _path('cinema'),
+      group: '',
+      type: ['DEBIT'],
+    ),
+    Category(
+      id: 'SAVINGS',
+      name: 'Savings',
+      path: _path('money-box'),
+      group: '',
+      type: ['CREDIT'],
+    ),
+    Category(
+      id: 'SHOPPING',
+      name: 'Shopping',
+      path: _path('online-store'),
+      group: '',
+      type: ['DEBIT'],
+    ),
+    Category(
+      id: 'BILLS',
+      name: 'Bills',
+      path: _path('receipt-approved'),
+      group: '',
+      type: ['DEBIT'],
+    ),
+    Category(
+      id: 'FOOD',
+      name: 'Food',
+      path: _path('restaurant'),
+      group: '',
+      type: ['DEBIT'],
+    ),
+    Category(
+      id: 'TAX',
+      name: 'Tax',
+      path: _path('tax'),
+      group: '',
+      type: ['DEBIT'],
+    ),
+    Category(
+      id: 'TRANSPORT',
+      name: 'Transport',
+      path: _path('taxi-back-view'),
+      group: '',
+      type: ['DEBIT'],
+    ),
+    Category(
+      id: 'TREATMENT',
+      name: 'Medical',
+      path: _path('treatment'),
+      group: '',
+      type: ['DEBIT'],
+    ),
+    Category(
+      id: 'TRANS_APPROVED',
+      name: 'General',
+      path: _path('transaction-approved'),
+      group: '',
+      type: ['DEBIT'],
+    ),
   ];
 
-  List get defaultCategory {
-    return all[0];
+  Category get defaultCategory {
+    return _categories[0];
   }
 
-  List<List<String>> get all {
-    if (finalCategories.length == 0)
-      finalCategories = _categories.map((icon) {
-        return ['assets/icons/icons8-${icon[0]}-100.png', icon[1], icon[2]];
-      }).toList();
-    return finalCategories;
+  List<Category> get all {
+    return _categories;
   }
 
-  List<String> findCategoryById(String categoryID) {
-    return all.firstWhere((c) {
-      return c[2] == categoryID;
-    }, orElse: () => []);
+  List<Category> filterBy(type) {
+    return _categories.where((c) => c.type.contains(type)).toList();
+  }
+
+  Category findCategoryById(String categoryID) {
+    return _categories.firstWhere(
+      (c) => c.id == categoryID,
+      orElse: () => null,
+    );
+  }
+
+  static String _path(name) {
+    return 'assets/icons/icons8-$name-100.png';
   }
 }

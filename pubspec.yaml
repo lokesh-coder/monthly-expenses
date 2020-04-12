@@ -46,11 +46,6 @@ flutter:
     - assets/icons/icons8-transaction-approved-100.png
     - assets/icons/icons8-treatment-100.png
 
-flutter_icons:
-  android: "launcher_icon"
-  ios: false
-  image_path: "assets/images/app-icon.png"
-
   fonts:
     - family: Circular
       fonts:
@@ -62,6 +57,11 @@ flutter_icons:
           weight: 700
         - asset: assets/fonts/circular-std/CircularStd-Black.otf
           weight: 900
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/images/app-icon.png"
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

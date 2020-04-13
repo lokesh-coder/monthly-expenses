@@ -19,7 +19,7 @@ class AmountInput extends StatelessWidget {
         alignment: Alignment.centerLeft,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 30, top: 10, bottom: 10),
             child: BaseInput(
               isPrimary: true,
               onSaved: (String x) => onSaved(num.parse(x)),

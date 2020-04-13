@@ -26,7 +26,12 @@ class MainPage extends StatelessWidget {
       header: Header(
         title: 'Montly expenses',
         leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
-        action: IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+        action: IconButton(
+            onPressed: () {
+              sl<PaymentsStore>().setActivePayment(null);
+              sl<SandwichStore>().changeVisibility(true);
+            },
+            icon: Icon(Icons.add)),
       ),
       onBackBtnPress: () {
         var store = sl<SandwichStore>();

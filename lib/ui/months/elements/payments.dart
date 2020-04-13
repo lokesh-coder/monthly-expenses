@@ -19,12 +19,13 @@ class Payments extends StatelessWidget {
     var paymentsStore = sl<PaymentsStore>();
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       child: Observer(
         builder: (context) {
           String monthKeyName = DateHelper.getMonthYear(data['dateTime']);
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
           return ListView.separated(
+            physics: BouncingScrollPhysics(),
             itemCount: payments == null ? 0 : payments.length,
             separatorBuilder: (_, __) => Divider(height: 1),
             itemBuilder: (_, index) => _payment(payments[index], paymentsStore),
@@ -48,10 +49,10 @@ class Payments extends StatelessWidget {
 
     return ListTile(
       dense: true,
-      contentPadding: EdgeInsets.all(0),
+      contentPadding: EdgeInsets.symmetric(horizontal: 0),
       leading: Image.asset(
         category.path,
-        width: 35,
+        width: 30,
       ),
       onTap: () {
         paymentsStore.setActivePayment(data.id);
@@ -60,7 +61,8 @@ class Payments extends StatelessWidget {
       title: Text(data.label, style: style),
       subtitle: Text(
         category.name.toUpperCase(),
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+        style: TextStyle(
+            fontSize: 11, fontWeight: FontWeight.w600, color: Clrs.label),
       ),
       trailing: Text(
         data.amount.toString(),

@@ -41,10 +41,15 @@ class _MonthsCarousalState extends State<MonthsCarousal> {
           child: AnimatedOpacity(
             opacity: (0.35 * (fs + 2)).clamp(0.0, 1.0),
             duration: Duration(milliseconds: 400),
-            child: Text(
-              widget.data['monthName'],
+            child: AnimatedDefaultTextStyle(
+              duration: Duration(milliseconds: 200),
+              child: Text(widget.data['monthName']),
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Color(0xff757193)),
+              style: TextStyle(
+                fontFamily: 'Circular',
+                color: Color(0xff757193),
+                fontWeight: fs == 1 ? FontWeight.w500 : FontWeight.normal,
+              ),
             ),
           ),
         ),

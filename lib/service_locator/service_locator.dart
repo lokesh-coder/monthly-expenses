@@ -15,5 +15,5 @@ setupServiceLocator() {
   sl.registerSingleton<SettingsStore>(SettingsStore(sl<DataRepo>()));
   sl.registerLazySingleton<SandwichStore>(() => SandwichStore());
   sl.registerLazySingleton<PaymentsStore>(() => PaymentsStore(sl<DataRepo>()));
-  sl.registerLazySingleton<FormStore>(() => FormStore());
+  sl.registerLazySingleton<FormStore>(() => FormStore(sl<DataRepo>()));
 }

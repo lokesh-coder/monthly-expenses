@@ -1,4 +1,6 @@
 import 'package:mobx/mobx.dart';
+import 'package:monex/data/data_repository.dart';
+import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
@@ -11,6 +13,9 @@ part 'form.store.g.dart';
 class FormStore = FormBase with _$FormStore;
 
 abstract class FormBase with Store {
+  DataRepo repo;
+  FormBase(this.repo);
+
   PaymentsStore paymentsStore = sl<PaymentsStore>();
   SandwichStore sandwichStore = sl<SandwichStore>();
 
@@ -63,15 +68,15 @@ abstract class FormBase with Store {
   @action
   void reset() {
     var isDebit = paymentsStore.filterBy == PaymentType.DEBIT;
-    var date = paymentsStore.activeMonth == null
+    var dateInMs = paymentsStore.activeMonth == null
         ? DateHelper.toMs
         : DateHelper.dtToMs(paymentsStore.activeMonth);
 
     amount = null;
     label = null;
-    categoryID = null;
+    categoryID = this.repo.obj.get<Catagories>('categories').defaultCategory.id;
     isCredit = !isDebit;
-    date = date;
+    date = dateInMs;
     isNew = true;
   }
 

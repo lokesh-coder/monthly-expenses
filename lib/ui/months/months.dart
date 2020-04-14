@@ -5,6 +5,7 @@ import 'package:monex/config/dimensions.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/core/pager.dart';
 import 'package:monex/ui/months/elements/months_carousal.dart';
@@ -42,6 +43,19 @@ class Months extends StatelessWidget {
                   initialPage: settingsStore.monthsViewRange,
                   visibleItems: 1,
                   onPageChange: (curr) {},
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(0, 0),
+                child: GestureDetector(
+                  onPanUpdate: (d) {
+                    sl<SandwichStore>().changeVisibility(true);
+                  },
+                  child: Container(
+                    height: 7,
+                    width: 40,
+                    color: Clrs.label,
+                  ),
                 ),
               ),
               Container(

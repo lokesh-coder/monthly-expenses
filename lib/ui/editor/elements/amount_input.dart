@@ -1,44 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/ui/editor/elements/base_input.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/ui/common/bottom_modal.dart';
+import 'package:monex/ui/editor/elements/amount_numpad.dart';
 
 class AmountInput extends StatelessWidget {
-  final Function(num) onSaved;
-  final Function validator;
-  final num value;
-
-  const AmountInput({Key key, this.value, this.onSaved, this.validator})
-      : super(key: key);
+  const AmountInput({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // color: Colors.red,
-      child: Stack(
-        alignment: Alignment.centerLeft,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 30, top: 10, bottom: 10),
-            child: BaseInput(
-              isPrimary: true,
-              onSaved: (String x) => onSaved(num.parse(x)),
-              placeholder: '0.0',
-              validator: (String x) => x.isEmpty ? 'Amount is mandatory' : null,
-              value: value == null ? '' : value.toString(),
-              inputType: InputType.CURRENCY,
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(20),
-            child: Text('₹',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Clrs.inputValue.withOpacity(0.5),
-                )),
-          )
-        ],
+    var formStore = sl<FormStore>();
+
+    return BottomModal(
+      builder: (context, control) {
+        return GestureDetector(
+          onTap: () {
+            _numpad(control, formStore);
+          },
+          child: Observer(builder: (context) {
+            return Container(
+              child: _display(formStore),
+            );
+          }),
+        );
+      },
+    );
+  }
+
+  _display(FormStore formStore) {
+    if (formStore.amount == null) {
+      return Text(
+        '0.00',
+        style: TextStyle(
+          fontSize: 40,
+          color: Clrs.label.withOpacity(0.5),
+        ),
+      );
+    }
+
+    return Text(
+      formStore.amount.toString(),
+      style: TextStyle(
+        fontSize: 40,
+        color: Color(0xff4F4B71),
       ),
     );
+  }
+
+  _numpad(BottomModalControl control, FormStore formStore) {
+    Widget numpad = AmountNumpad(
+      close: control.close,
+      onSelect: (x) {
+        formStore.changeAmount(x);
+        control.close();
+      },
+      selected: formStore.amount.toString(),
+    );
+    control.showHeader = false;
+    control.open('Categoriess', numpad);
   }
 }

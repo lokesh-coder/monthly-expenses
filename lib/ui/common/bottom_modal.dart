@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:monex/ui/common/app-shell.dart';
 
 class BottomModalControl {
   Function(String title, Widget child) open;
+  bool showHeader = true;
   Function() close;
   BottomModalControl();
 }
@@ -23,11 +25,22 @@ class BottomModal extends StatelessWidget {
           FocusScope.of(context).requestFocus(new FocusNode());
 
           showModalBottomSheet(
-            isDismissible: false,
+            isDismissible: true,
             context: context,
             isScrollControlled: true,
+            useRootNavigator: true,
             backgroundColor: Colors.transparent,
-            builder: (ctx) => _layout(ctx, title, child),
+            builder: (ctx) {
+              return SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(scaffoldKey.currentContext)
+                          .viewInsets
+                          .bottom),
+                  child: _layout(ctx, title, child, data),
+                ),
+              );
+            },
           );
         };
 
@@ -37,25 +50,28 @@ class BottomModal extends StatelessWidget {
     );
   }
 
-  _content(ctx, title, child) {
+  _content(ctx, title, child, data) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Expanded(child: Text(title)),
-            IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () => Navigator.of(ctx).pop(),
-            )
-          ],
+        Visibility(
+          visible: data.showHeader,
+          child: Row(
+            children: <Widget>[
+              Expanded(child: Text(title)),
+              IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () => Navigator.of(ctx).pop(),
+              )
+            ],
+          ),
         ),
         child
       ],
     );
   }
 
-  _layout(ctx, title, child) {
+  _layout(ctx, title, child, data) {
     return Container(
       padding: EdgeInsets.all(10),
       child: Container(
@@ -64,7 +80,7 @@ class BottomModal extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        child: _content(ctx, title, child),
+        child: _content(ctx, title, child, data),
       ),
     );
   }

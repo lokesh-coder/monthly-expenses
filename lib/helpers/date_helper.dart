@@ -40,7 +40,11 @@ class DateHelper {
   }
 
   static String getFormattedDayOfMonth(DateTime dt) {
-    return Jiffy(dt).format('do MMM');
+    return Jiffy(dt).format('EEEE');
+  }
+
+  static String getDateOfMonth(DateTime dt) {
+    return Jiffy(dt).format('d');
   }
 
   static List getMonthRange(int rangeCount) {

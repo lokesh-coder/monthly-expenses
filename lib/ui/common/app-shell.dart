@@ -21,6 +21,7 @@ class AppShell extends StatelessWidget {
         drawer: drawer,
         appBar: header,
         body: child,
+        resizeToAvoidBottomInset: false,
       ),
     );
   }

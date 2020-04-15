@@ -58,6 +58,23 @@ flutter:
         - asset: assets/fonts/circular-std/CircularStd-Black.otf
           weight: 900
 
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/manrope/Manrope-ExtraLight.otf
+          weight: 200
+        - asset: assets/fonts/manrope/Manrope-Light.otf
+          weight: 300
+        - asset: assets/fonts/manrope/Manrope-Regular.otf
+          weight: 400
+        - asset: assets/fonts/manrope/Manrope-Medium.otf
+          weight: 500
+        - asset: assets/fonts/manrope/Manrope-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/manrope/Manrope-Bold.otf
+          weight: 700
+        - asset: assets/fonts/manrope/Manrope-ExtraBold.otf
+          weight: 800
+
 flutter_icons:
   android: "launcher_icon"
   ios: false

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/helpers/currency_helper.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/ui/common/amount.dart';
 
 class AmountNumpad extends StatefulWidget {
   final Function onSelect;
@@ -24,101 +27,115 @@ class _AmountNumpadState extends State<AmountNumpad> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 50),
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _display(),
-            Wrap(
-              runSpacing: 0,
-              spacing: 0,
-              children: _numpad(),
-            ),
-          ],
-        ),
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: <Widget>[
+          _display(),
+          _numpad(),
+          SizedBox(height: 20),
+          FloatingActionButton(
+            backgroundColor: Clrs.green,
+            child: Icon(Icons.check),
+            onPressed: () {
+              if (value == null) value = '';
+              widget.onSelect(num.parse(value));
+            },
+          ),
+        ],
       ),
     );
   }
 
-  List<Widget> _numpad() {
-    List rowOne = ['1', '2', '3', 'CLOSE'];
-    List rowTwo = ['4', '5', '6', 'CLEAR'];
-    List rowThree = ['7', '8', '9', '00'];
-    List rowFour = ['.', '0', 'REMOVE', 'SELECT'];
+  Widget _numpad() {
+    List rowOne = ['1', '2', '3'];
+    List rowTwo = ['4', '5', '6'];
+    List rowThree = ['7', '8', '9'];
+    List rowFour = [CurrencyHelper.separator, '0', 'REMOVE'];
 
-    List items = rowOne + rowTwo + rowThree + rowFour;
-    return items.map((c) => _btn(c)).toList();
+    List<Widget> items =
+        (rowOne + rowTwo + rowThree + rowFour).map((c) => _btn(c)).toList();
+
+    return Container(
+      padding: EdgeInsets.all(0),
+      decoration: BoxDecoration(
+        gradient: RadialGradient(
+          colors: [
+            Clrs.labelActive.withOpacity(0.3),
+            Colors.transparent,
+          ],
+          radius: 0.6,
+          focal: Alignment.center,
+        ),
+      ),
+      child: GridView(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 1,
+          mainAxisSpacing: 1,
+          crossAxisCount: 3,
+          childAspectRatio: 1.5,
+        ),
+        children: items,
+      ),
+    );
   }
 
   Widget _btn(String label) {
     var style = TextStyle(
-      color: Clrs.dark,
-      fontSize: 22,
+      color: Clrs.labelActive,
+      fontSize: 25,
     );
+
+    var icon = (x, [col = Clrs.labelActive]) => Icon(x, color: col);
 
     var child;
 
-    if (label == 'CLEAR')
-      child = Icon(Icons.delete_outline);
-    else if (label == 'SELECT')
-      child = Icon(Icons.check);
-    else if (label == 'CLOSE')
-      child = Icon(Icons.close);
-    else if (label == 'REMOVE')
-      child = Icon(Icons.backspace);
+    if (label == 'REMOVE')
+      child = icon(Icons.backspace);
     else
       child = Text(label, style: style);
 
     return GestureDetector(
       onTap: () {
-        if (label == 'CLEAR') {
-          value = '';
-        } else if (label == 'SELECT') {
-          if (value == null) value = '';
-          widget.onSelect(num.parse(value));
-          return;
-        } else if (label == 'CLOSE') {
-          widget.close();
-          return;
-        } else if (label == 'REMOVE') {
+        if (label != '.') label = '.';
+        if (label == 'REMOVE') {
           if (value.length == 0) return;
           value = value.substring(0, value.length - 1);
-        } else
-          value += label;
+        } else {
+          if (_isValidEntry(value, label)) value += label;
+        }
 
         setState(() {});
       },
-      child: FractionallySizedBox(
-        widthFactor: 0.25,
-        child: Container(
-          color: Colors.transparent,
-          padding: EdgeInsets.symmetric(vertical: 17),
-          child: Center(child: child),
+      child: Container(
+        decoration: BoxDecoration(
+          color: label == 'SELECT' ? Clrs.green : Colors.white,
         ),
+        child: Center(child: child),
       ),
     );
   }
 
   _display() {
-    var placeholder = Text(
-      "0.00",
-      style: TextStyle(
-        color: Clrs.label,
-        fontWeight: FontWeight.w700,
-        fontSize: 25,
-      ),
+    var placeholder = Amount(
+      0.00,
+      type: AmountDisplayType.PLACEHOLDER,
+      size: AmountDisplaySize.XL,
     );
-    var actual = Text(
-      value,
-      style: TextStyle(
-        color: Clrs.primary,
-        fontWeight: FontWeight.w700,
-        fontSize: 25,
-      ),
+    var actual = Amount(
+      num.parse(value == '' ? '0' : value),
+      type: AmountDisplayType.INPUT,
+      size: AmountDisplaySize.XL,
     );
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20),
       child: value == '' ? placeholder : actual,
     );
+  }
+
+  _isValidEntry(String value, String label) {
+    final decimalMatch = RegExp(r'\.[0-9]{3,}$');
+    return !decimalMatch.hasMatch(value + label);
   }
 }

@@ -25,6 +25,7 @@ class CategoryInput extends StatelessWidget {
               child: _imageIcon(formStore),
               name: _catMeta(formStore.categoryID).name.toUpperCase(),
               onTap: () => _picker(control, formStore),
+              storeKey: () => formStore.categoryID,
             );
           },
         );

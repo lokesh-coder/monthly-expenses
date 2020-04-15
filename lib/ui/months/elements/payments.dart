@@ -5,10 +5,12 @@ import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/models/category.dart';
+import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/common/amount.dart';
 
 class Payments extends StatelessWidget {
   final Map data;
@@ -24,6 +26,7 @@ class Payments extends StatelessWidget {
         builder: (context) {
           String monthKeyName = DateHelper.getMonthYear(data['dateTime']);
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
+          print('== $payments');
           return ListView.separated(
             physics: BouncingScrollPhysics(),
             itemCount: payments == null ? 0 : payments.length,
@@ -62,15 +65,15 @@ class Payments extends StatelessWidget {
       subtitle: Text(
         category.name.toUpperCase(),
         style: TextStyle(
-            fontSize: 11, fontWeight: FontWeight.w600, color: Clrs.label),
-      ),
-      trailing: Text(
-        data.amount.toString(),
-        style: TextStyle(
-          fontSize: 18,
+          fontSize: 11,
           fontWeight: FontWeight.w600,
-          color: data.isCredit ? Clrs.green : Clrs.red,
+          color: Clrs.label,
         ),
+      ),
+      trailing: Amount(
+        data.amount,
+        type:
+            data.isCredit ? AmountDisplayType.CREDIT : AmountDisplayType.DEBIT,
       ),
     );
   }

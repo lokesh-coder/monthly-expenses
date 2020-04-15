@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/ui/common/amount.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
 import 'package:monex/ui/editor/elements/amount_numpad.dart';
 
@@ -33,21 +35,17 @@ class AmountInput extends StatelessWidget {
 
   _display(FormStore formStore) {
     if (formStore.amount == null) {
-      return Text(
-        '0.00',
-        style: TextStyle(
-          fontSize: 40,
-          color: Clrs.label.withOpacity(0.5),
-        ),
+      return Amount(
+        0.00,
+        type: AmountDisplayType.PLACEHOLDER,
+        size: AmountDisplaySize.XL,
       );
     }
 
-    return Text(
-      formStore.amount.toString(),
-      style: TextStyle(
-        fontSize: 40,
-        color: Color(0xff4F4B71),
-      ),
+    return Amount(
+      formStore.amount,
+      type: AmountDisplayType.INPUT,
+      size: AmountDisplaySize.XL,
     );
   }
 

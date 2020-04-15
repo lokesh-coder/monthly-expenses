@@ -53,7 +53,7 @@ class _EditorState extends State<Editor> {
 
   @override
   Widget build(BuildContext context) {
-    if (!shouldLoad) return SizedBox.shrink();
+    if (!shouldLoad) return Container();
     return GestureDetector(
       onTap: () => _closeKeyboard(context),
       child: Container(

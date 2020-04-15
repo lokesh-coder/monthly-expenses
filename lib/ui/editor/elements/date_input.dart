@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/colors.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
@@ -21,6 +20,7 @@ class DateInput extends StatelessWidget {
             child: _icon(formStore),
             name: _displayDateMonth(formStore.date).toUpperCase(),
             onTap: () => _picker(control, formStore),
+            storeKey: () => formStore.date,
           );
         });
       },

@@ -72,9 +72,11 @@ class BannerBoard extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Amount(
-                        value: paymentsStore.totalAmountOfActiveMonth.abs(),
-                        isCredit: paymentsStore.totalAmountOfActiveMonth >= 0,
-                        size: AmountSize.LG,
+                        paymentsStore.totalAmountOfActiveMonth.abs(),
+                        type: paymentsStore.totalAmountOfActiveMonth >= 0
+                            ? AmountDisplayType.CREDIT
+                            : AmountDisplayType.DEBIT,
+                        size: AmountDisplaySize.LG,
                       ),
                     )
                   ],

@@ -1,49 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/models/enums.dart';
 
 class Amount extends StatelessWidget {
-  final bool isCredit;
   final num value;
-  final AmountSize size;
+  final AmountDisplaySize size;
+  final AmountDisplayType type;
 
-  const Amount({Key key, this.value, this.isCredit, this.size = AmountSize.SM})
+  const Amount(this.value,
+      {Key key,
+      this.size = AmountDisplaySize.SM,
+      this.type = AmountDisplayType.CREDIT})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Color color = isCredit ? Clrs.green : Clrs.red;
+    Color color = _getColor();
+
     double fontSize = _getFontSizeMap()[size];
-    return Align(
-      alignment: Alignment.centerRight,
-      child: RichText(
-        text: TextSpan(
-          text: value.toString(),
-          style: TextStyle(
-            fontSize: fontSize,
-            fontFamily: 'Circular',
-            fontWeight: FontWeight.w800,
-            color: color,
-          ),
-          children: <TextSpan>[
-            TextSpan(
-              text: ' ₹',
-              style: TextStyle(
-                fontSize: fontSize - 3,
-                color: color.withOpacity(0.8),
-              ),
+
+    return Container(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Text(
+            CurrencyHelper.getFormattedCurrency(value),
+            style: TextStyle(
+              fontSize: fontSize,
+              fontFamily: 'Manrope',
+              fontWeight: FontWeight.w600,
+              letterSpacing: -.5,
+              color: color,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
+  Color _getColor() {
+    Color color;
+    switch (type) {
+      case AmountDisplayType.CREDIT:
+        color = Clrs.green;
+        break;
+      case AmountDisplayType.DEBIT:
+        color = Clrs.red;
+        break;
+      case AmountDisplayType.INPUT:
+        color = Clrs.dark;
+        break;
+      case AmountDisplayType.PLACEHOLDER:
+        color = Clrs.label;
+        break;
+      default:
+        color = Clrs.primary;
+    }
+    return color;
+  }
+
   Map<dynamic, double> _getFontSizeMap() {
     return {
-      AmountSize.SM: 20.0,
-      AmountSize.MD: 22.0,
-      AmountSize.LG: 25.0,
+      AmountDisplaySize.XS: 18.0,
+      AmountDisplaySize.SM: 20.0,
+      AmountDisplaySize.MD: 22.0,
+      AmountDisplaySize.LG: 25.0,
+      AmountDisplaySize.XL: 30.0,
     };
   }
 }

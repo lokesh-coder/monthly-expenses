@@ -5,66 +5,25 @@ import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/editor/elements/icon_card.dart';
 
-class TypeInput extends StatefulWidget {
+class TypeInput extends StatelessWidget {
   const TypeInput({Key key}) : super(key: key);
 
   @override
-  _TypeInputState createState() => _TypeInputState();
-}
-
-class _TypeInputState extends State<TypeInput> with TickerProviderStateMixin {
-  FormStore formStore = sl<FormStore>();
-  AnimationController motionController;
-  Animation motionAnimation;
-  double size = 1.0;
-
-  @override
-  void initState() {
-    super.initState();
-    motionController = AnimationController(
-      duration: Duration(milliseconds: 200),
-      vsync: this,
-      lowerBound: 1,
-      upperBound: 2,
-    );
-
-    motionAnimation = CurvedAnimation(
-      parent: motionController,
-      curve: Curves.fastLinearToSlowEaseIn,
-    );
-
-    motionController.addStatusListener((status) {
-      setState(() {
-        if (status == AnimationStatus.completed) {
-          motionController.reverse();
-        }
-      });
-    });
-
-    motionController.addListener(() {
-      setState(() {
-        size = motionController.value;
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    FormStore formStore = sl<FormStore>();
     return Observer(
       builder: (context) {
         return IconCard(
-          child: Transform.scale(scale: size, child: _icon()),
+          child: _icon(formStore),
           name: formStore.isCredit ? 'CREDIT' : 'DEBIT',
-          onTap: () {
-            motionController.forward();
-            formStore.changeType(!formStore.isCredit);
-          },
+          onTap: () => formStore.changeType(!formStore.isCredit),
+          storeKey: () => formStore.isCredit,
         );
       },
     );
   }
 
-  Widget _icon() {
+  Widget _icon(FormStore formStore) {
     return Icon(
       formStore.isCredit
           ? Icons.sentiment_satisfied

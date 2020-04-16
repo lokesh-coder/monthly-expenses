@@ -3,6 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/settings/settings.store.dart';
+import 'package:monex/ui/common/fade_transition.dart';
+import 'package:monex/ui/settings/settings.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key key}) : super(key: key);
@@ -33,10 +35,20 @@ class AppDrawer extends StatelessWidget {
                   },
                 ),
                 FlatButton(
+                  onPressed: () {
+                    sl<PaymentsStore>().dropDb();
+                  },
+                  child: Text('Delete DB'),
+                ),
+                FlatButton(
                     onPressed: () {
-                      sl<PaymentsStore>().dropDb();
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        FadeRoute(page: Settings()),
+                      );
                     },
-                    child: Text('Delete DB'))
+                    child: Text('settings'))
               ],
             );
           }),

@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:monex/ui/common/app-shell.dart';
 
 class LayoutHelper {
+  static GlobalKey<ScaffoldState> mainPageKey = new GlobalKey<ScaffoldState>();
+
   static bool get isKeyboardOpen {
-    return MediaQuery.of(scaffoldKey.currentContext).viewInsets.bottom > 0;
+    return MediaQuery.of(LayoutHelper.mainPageKey.currentContext)
+            .viewInsets
+            .bottom >
+        0;
   }
 
   static double get screenWidth {
-    return MediaQuery.of(scaffoldKey.currentContext).size.width;
+    BuildContext ctx = LayoutHelper.mainPageKey.currentContext;
+    return MediaQuery.of(ctx).size.width;
   }
 
   static double get screenHeight {
-    return MediaQuery.of(scaffoldKey.currentContext).size.height;
+    BuildContext ctx = LayoutHelper.mainPageKey.currentContext;
+    return MediaQuery.of(ctx).size.height;
   }
 
   static double get statusBarHeight {
-    return MediaQuery.of(scaffoldKey.currentContext).padding.top;
+    BuildContext ctx = LayoutHelper.mainPageKey.currentContext;
+    return MediaQuery.of(ctx).padding.top;
   }
 
   static double get appBarHeight {

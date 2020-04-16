@@ -58,8 +58,11 @@ class DateHelper {
             ..startOf(Units.MONTH))
           .dateTime;
 
-      ranges[index] = Map.from(
-          {"dateTime": month, "monthName": DateHelper.getMonthName(month)});
+      ranges[index] = Map.from({
+        "dateTime": month,
+        "monthName": DateHelper.getMonthName(month),
+        "year": DateHelper.getYear(month)
+      });
     });
     return ranges;
   }
@@ -86,5 +89,12 @@ class DateHelper {
 
   static int get toMs {
     return DateTime.now().millisecondsSinceEpoch;
+  }
+
+  static getMonthRangeDisplayText(int count) {
+    List ranges = DateHelper.getMonthRange(count);
+    String start = '${ranges.first['monthName']} ${ranges.first['year']}';
+    String end = '${ranges.last['monthName']} ${ranges.last['year']}';
+    return '$start to $end';
   }
 }

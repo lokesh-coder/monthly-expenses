@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/helpers/layout_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
@@ -17,6 +18,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     sl<PaymentsStore>().fetchPayments();
     return AppShell(
+      scaffoldKey: LayoutHelper.mainPageKey,
       drawer: Theme(
         data: Theme.of(context).copyWith(
           canvasColor: Colors.transparent,
@@ -25,7 +27,11 @@ class MainPage extends StatelessWidget {
       ),
       header: Header(
         title: 'Montly expenses',
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+        leading: IconButton(
+            onPressed: () {
+              LayoutHelper.mainPageKey.currentState.openDrawer();
+            },
+            icon: Icon(Icons.menu)),
         action: IconButton(
             onPressed: () {
               sl<PaymentsStore>().setActivePayment(null);

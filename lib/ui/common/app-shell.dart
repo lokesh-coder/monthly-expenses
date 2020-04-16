@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-final GlobalKey scaffoldKey = new GlobalKey<ScaffoldState>();
-
 class AppShell extends StatelessWidget {
   final Widget child;
   final Widget header;
   final Widget drawer;
   final Future<bool> Function() onBackBtnPress;
+  final Key scaffoldKey;
 
   const AppShell(
-      {Key key, this.child, this.header, this.drawer, this.onBackBtnPress})
+      {Key key,
+      this.child,
+      this.header,
+      this.drawer,
+      this.onBackBtnPress,
+      this.scaffoldKey})
       : super(key: key);
 
   @override

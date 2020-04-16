@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monex/ui/common/app-shell.dart';
+import 'package:monex/helpers/layout_helper.dart';
 
 class BottomModalControl {
   Function(String title, Widget child) open;
@@ -34,9 +34,11 @@ class BottomModal extends StatelessWidget {
               return SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(scaffoldKey.currentContext)
-                          .viewInsets
-                          .bottom),
+                    bottom:
+                        MediaQuery.of(LayoutHelper.mainPageKey.currentContext)
+                            .viewInsets
+                            .bottom,
+                  ),
                   child: _layout(ctx, title, child, data),
                 ),
               );

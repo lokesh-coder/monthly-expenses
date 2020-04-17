@@ -26,7 +26,6 @@ class Payments extends StatelessWidget {
         builder: (context) {
           String monthKeyName = DateHelper.getMonthYear(data['dateTime']);
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
-          print('== $payments');
           return ListView.separated(
             physics: BouncingScrollPhysics(),
             itemCount: payments == null ? 0 : payments.length,

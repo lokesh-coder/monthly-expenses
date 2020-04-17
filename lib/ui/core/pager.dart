@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:monex/helpers/pager_helper.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 
 final pagerHelper = PagerHelper();
 
-class Pager extends StatelessWidget {
+class Pager extends StatefulWidget {
   final Widget Function(int index, dynamic data, PageController ctrl) builder;
   final List data;
   final bool isMaster;
@@ -32,15 +34,33 @@ class Pager extends StatelessWidget {
         super(key: key);
 
   @override
+  _PagerState createState() => _PagerState();
+}
+
+class _PagerState extends State<Pager> {
+  PageController ctrl;
+  ScrollPhysics physics;
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.data.length != oldWidget.data.length)
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        var currMonth = sl<SettingsStore>().monthsViewRange;
+        if (currMonth.toDouble() != ctrl.page && widget.isMaster) {
+          ctrl.jumpToPage(currMonth);
+        }
+      });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    PageController ctrl;
-    ScrollPhysics physics;
     bool pageSnap;
-    if (isMaster) {
+    if (widget.isMaster) {
       ctrl = pagerHelper.createController(
-        key: key,
-        visibleItems: visibleItems,
-        initialPage: initialPage,
+        key: widget.key,
+        visibleItems: widget.visibleItems,
+        initialPage: widget.initialPage,
         isMaster: true,
       );
       physics = AlwaysScrollableScrollPhysics();
@@ -50,9 +70,9 @@ class Pager extends StatelessWidget {
       });
     } else {
       ctrl = pagerHelper.createController(
-        key: key,
-        visibleItems: visibleItems,
-        initialPage: initialPage,
+        key: widget.key,
+        visibleItems: widget.visibleItems,
+        initialPage: widget.initialPage,
       );
       physics = NeverScrollableScrollPhysics();
       pageSnap = false;
@@ -61,14 +81,14 @@ class Pager extends StatelessWidget {
     return PageView.builder(
       scrollDirection: Axis.horizontal,
       controller: ctrl,
-      itemCount: data.length,
+      itemCount: widget.data.length,
       onPageChanged: (index) {
-        onPageChange(data[index]);
+        widget.onPageChange(widget.data[index]);
       },
       physics: physics,
       pageSnapping: pageSnap,
       itemBuilder: (_, int index) {
-        return builder(index, data[index], ctrl);
+        return widget.builder(index, widget.data[index], ctrl);
       },
     );
   }

@@ -5,6 +5,8 @@ import 'package:monex/ui/common/header.dart';
 
 import 'elements/month_range/display.dart';
 import 'elements/month_range/edit.dart';
+import 'elements/sort/display.dart';
+import 'elements/sort/edit.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key key}) : super(key: key);
@@ -17,10 +19,15 @@ class Settings extends StatelessWidget {
         action: IconButton(icon: Icon(Icons.close), onPressed: () {}),
       ),
       child: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
           Expander(
             headBuilder: (_, dataCtx) => MonthRangeDisplay(dataCtx),
             bodyBuilder: (_, __) => MonthRangeEdit(),
+          ),
+          Expander(
+            headBuilder: (_, dataCtx) => SortDisplay(dataCtx),
+            bodyBuilder: (_, __) => SortEdit(),
           ),
         ],
       ),

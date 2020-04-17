@@ -26,10 +26,11 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
     return Column(
       children: <Widget>[
         Text(
-          'Choose month range',
+          '${(_value.round()).toString()} Months',
           style: TextStyle(
+            color: Clrs.inputValue,
             fontSize: 22,
-            color: Clrs.label,
+            fontWeight: FontWeight.w600,
           ),
         ),
         SizedBox(
@@ -60,14 +61,6 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
                 _value = value;
               });
             },
-          ),
-        ),
-        Text(
-          '${(_value.round()).toString()} Months',
-          style: TextStyle(
-            color: Clrs.inputValue,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
           ),
         ),
         SizedBox(

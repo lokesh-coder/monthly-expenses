@@ -1,5 +1,7 @@
 import 'package:monex/data/local/object/files/categories.dart';
 
+import 'files/sort_strategies.dart';
+
 class LocalObject {
   Map _objects = {};
 
@@ -17,5 +19,6 @@ class LocalObject {
 
   _init() {
     register('categories', Catagories());
+    register('sorting', SortStrategies());
   }
 }

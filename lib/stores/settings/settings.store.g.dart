@@ -26,6 +26,23 @@ mixin _$SettingsStore on SettingsBase, Store {
     }, _$monthsViewRangeAtom, name: '${_$monthsViewRangeAtom.name}_set');
   }
 
+  final _$sortByAtom = Atom(name: 'SettingsBase.sortBy');
+
+  @override
+  int get sortBy {
+    _$sortByAtom.context.enforceReadPolicy(_$sortByAtom);
+    _$sortByAtom.reportObserved();
+    return super.sortBy;
+  }
+
+  @override
+  set sortBy(int value) {
+    _$sortByAtom.context.conditionallyRunInAction(() {
+      super.sortBy = value;
+      _$sortByAtom.reportChanged();
+    }, _$sortByAtom, name: '${_$sortByAtom.name}_set');
+  }
+
   final _$SettingsBaseActionController = ActionController(name: 'SettingsBase');
 
   @override
@@ -39,8 +56,19 @@ mixin _$SettingsStore on SettingsBase, Store {
   }
 
   @override
+  void changeSortBy(int id) {
+    final _$actionInfo = _$SettingsBaseActionController.startAction();
+    try {
+      return super.changeSortBy(id);
+    } finally {
+      _$SettingsBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
-    final string = 'monthsViewRange: ${monthsViewRange.toString()}';
+    final string =
+        'monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()}';
     return '{$string}';
   }
 }

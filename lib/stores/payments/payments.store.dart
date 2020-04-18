@@ -130,7 +130,8 @@ abstract class PaymentsBase with Store {
     var p = PaymentsHelper.filter(payments, filterBy);
 
     var sortID = sl<SettingsStore>().sortBy;
-    if (sortID != null) PaymentsHelper.sort(p, sortID);
+    var orderID = sl<SettingsStore>().orderBy;
+    if (sortID != null) PaymentsHelper.sort(p, sortID, orderID);
 
     return p.asObservable();
   }

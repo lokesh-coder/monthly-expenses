@@ -5,6 +5,8 @@ import 'package:monex/ui/common/header.dart';
 
 import 'elements/month_range/display.dart';
 import 'elements/month_range/edit.dart';
+import 'elements/order/display.dart';
+import 'elements/order/edit.dart';
 import 'elements/sort/display.dart';
 import 'elements/sort/edit.dart';
 
@@ -28,6 +30,10 @@ class Settings extends StatelessWidget {
           Expander(
             headBuilder: (_, dataCtx) => SortDisplay(dataCtx),
             bodyBuilder: (_, __) => SortEdit(),
+          ),
+          Expander(
+            headBuilder: (_, dataCtx) => OrderDisplay(dataCtx),
+            bodyBuilder: (_, __) => OrderEdit(),
           ),
         ],
       ),

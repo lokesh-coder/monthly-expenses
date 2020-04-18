@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/models/enums.dart';
 import 'package:monex/models/sort_strategy.dart';
 
 class SortStrategies {
@@ -9,6 +10,8 @@ class SortStrategies {
       desc: 'Display based on label name',
       icon: Icons.sort_by_alpha,
       keyFn: (x) => x.label,
+      ascLabel: 'Label names are ordered by A to Z',
+      descLabel: 'Label names are ordered by Z-A',
     ),
     SortStrategy(
       id: 2,
@@ -16,6 +19,8 @@ class SortStrategies {
       desc: 'Order by Payment amount',
       icon: Icons.account_balance_wallet,
       keyFn: (x) => x.amount,
+      ascLabel: 'Lowest to Highest amount',
+      descLabel: 'Highest to Lowest amount',
     ),
     SortStrategy(
       id: 3,
@@ -23,6 +28,8 @@ class SortStrategies {
       desc: 'Based on the date of the payment',
       icon: Icons.event_note,
       keyFn: (x) => x.date,
+      ascLabel: 'Form month starting to end',
+      descLabel: 'From month end to starting',
     ),
     SortStrategy(
       id: 4,
@@ -30,6 +37,8 @@ class SortStrategies {
       desc: 'last modified payment time',
       icon: Icons.schedule,
       keyFn: (x) => x.lastModifiedTime,
+      ascLabel: 'Recently edited first',
+      descLabel: 'Rarely edited first',
     ),
     SortStrategy(
       id: 5,
@@ -37,6 +46,8 @@ class SortStrategies {
       desc: 'Sort them by categories',
       icon: Icons.category,
       keyFn: (x) => x.categoryID,
+      ascLabel: 'Most used category first ',
+      descLabel: 'Rarely used category first',
     ),
   ];
 
@@ -53,5 +64,13 @@ class SortStrategies {
       (s) => s.id == strategyID,
       orElse: () => null,
     );
+  }
+
+  String getOrderLabel(int strategyID, int orderID) {
+    var ss = findSortStrategyById(strategyID);
+    if (orderID == OrderBy.ASC.index) {
+      return ss.ascLabel;
+    }
+    return ss.descLabel;
   }
 }

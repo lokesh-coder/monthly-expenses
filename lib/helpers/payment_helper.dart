@@ -7,9 +7,9 @@ import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
 
 class PaymentsHelper {
-  static sort(List<Payment> payments, int sortID, [Sort order = Sort.DESC]) {
+  static sort(List<Payment> payments, int sortID, int orderID) {
     Function keyFn = _getSortKeyFn(sortID);
-    Function sortCb = _sortFromFnKey(keyFn, order);
+    Function sortCb = _sortFromFnKey(keyFn, orderID);
     payments.sort(sortCb);
   }
 
@@ -62,8 +62,8 @@ class PaymentsHelper {
         .reduce((v, e) => v + e);
   }
 
-  static int Function(T, T) _sortFromFnKey<T>(Function o, Sort order) {
-    if (order == Sort.ASC) {
+  static int Function(T, T) _sortFromFnKey<T>(Function o, int orderID) {
+    if (orderID == OrderBy.ASC.index) {
       return (a, b) => o(a).compareTo(o(b));
     }
     return (a, b) => o(b).compareTo(o(a));

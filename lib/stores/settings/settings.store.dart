@@ -17,6 +17,9 @@ abstract class SettingsBase with Store {
   @observable
   int sortBy;
 
+  @observable
+  int orderBy = 1;
+
   @action
   void changeMonthsViewRange(int range) {
     monthsViewRange = range;
@@ -29,9 +32,18 @@ abstract class SettingsBase with Store {
     repo.memory.changeSortBy(id);
   }
 
+  @action
+  void changeOrderBy(int id) {
+    orderBy = id;
+    repo.memory.changeOrderBy(id);
+  }
+
   init() async {
     var range = await repo.memory.monthsViewRange;
     if (range != null) monthsViewRange = range;
+
+    var orderByValue = await repo.memory.orderBy;
+    if (orderByValue != null) orderBy = orderByValue;
 
     var sortByValue = await repo.memory.sortBy;
     if (sortByValue != null)

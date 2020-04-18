@@ -27,4 +27,14 @@ class LocalMemory {
   Future<int> get sortBy {
     return memory.then((x) => x.getInt(LocalMemoryConfig.sort_by));
   }
+
+// order payments ------------------------------------------------------------
+
+  Future<void> changeOrderBy(int orderID) {
+    return memory.then((x) => x.setInt(LocalMemoryConfig.order_by, orderID));
+  }
+
+  Future<int> get orderBy {
+    return memory.then((x) => x.getInt(LocalMemoryConfig.order_by));
+  }
 }

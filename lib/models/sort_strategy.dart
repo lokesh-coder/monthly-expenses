@@ -5,12 +5,14 @@ class SortStrategy {
   String name;
   String desc;
   IconData icon;
+  Function keyFn;
 
   SortStrategy({
     this.id,
     this.name,
     this.desc,
     this.icon,
+    this.keyFn,
   });
 
   factory SortStrategy.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class SortStrategy {
       name: json["name"],
       desc: json["desc"],
       icon: json["icon"],
+      keyFn: json["keyFn"],
     );
   }
 
@@ -27,5 +30,6 @@ class SortStrategy {
         'name': name,
         'desc': desc,
         'icon': icon,
+        'keyFn': keyFn,
       };
 }

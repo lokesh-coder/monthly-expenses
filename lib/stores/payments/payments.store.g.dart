@@ -15,13 +15,12 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   num get totalAmountOfActiveMonth => (_$totalAmountOfActiveMonthComputed ??=
           Computed<num>(() => super.totalAmountOfActiveMonth))
       .value;
-  Computed<Map<dynamic, dynamic>> _$allPaymentsOfActiveMonthComputed;
+  Computed<Map<dynamic, dynamic>> _$inOutStatementComputed;
 
   @override
-  Map<dynamic, dynamic> get allPaymentsOfActiveMonth =>
-      (_$allPaymentsOfActiveMonthComputed ??= Computed<Map<dynamic, dynamic>>(
-              () => super.allPaymentsOfActiveMonth))
-          .value;
+  Map<dynamic, dynamic> get inOutStatement => (_$inOutStatementComputed ??=
+          Computed<Map<dynamic, dynamic>>(() => super.inOutStatement))
+      .value;
   Computed<Map<String, List<Payment>>> _$paymentsByMonthComputed;
 
   @override
@@ -200,7 +199,7 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   @override
   String toString() {
     final string =
-        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},filterBy: ${filterBy.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},allPaymentsOfActiveMonth: ${allPaymentsOfActiveMonth.toString()},paymentsByMonth: ${paymentsByMonth.toString()},paymentsByMonthWithoutFilter: ${paymentsByMonthWithoutFilter.toString()}';
+        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},filterBy: ${filterBy.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},inOutStatement: ${inOutStatement.toString()},paymentsByMonth: ${paymentsByMonth.toString()},paymentsByMonthWithoutFilter: ${paymentsByMonthWithoutFilter.toString()}';
     return '{$string}';
   }
 }

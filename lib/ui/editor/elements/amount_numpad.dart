@@ -98,7 +98,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
 
     return GestureDetector(
       onTap: () {
-        if (label != '.') label = '.';
+        if (label == CurrencyHelper.separator) label = '.';
         if (label == 'REMOVE') {
           if (value.length == 0) return;
           value = value.substring(0, value.length - 1);

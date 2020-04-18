@@ -16,7 +16,7 @@ class Percentage extends StatelessWidget {
     PaymentsStore paymentsStore = sl<PaymentsStore>();
 
     return Observer(builder: (context) {
-      List data = _data(paymentsStore.allPaymentsOfActiveMonth);
+      List data = _data(paymentsStore.inOutStatement);
       return CircularPercentIndicator(
         radius: 50.0,
         lineWidth: 4.0,

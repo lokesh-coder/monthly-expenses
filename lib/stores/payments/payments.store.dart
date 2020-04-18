@@ -1,10 +1,12 @@
 import 'package:mobx/mobx.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/db/seed.dart';
-import "package:collection/collection.dart";
 import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/helpers/payment_helper.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 
 part 'payments.store.g.dart';
 
@@ -31,24 +33,14 @@ abstract class PaymentsBase with Store {
 
   @computed
   num get totalAmountOfActiveMonth {
-    List<Payment> monthlyPayments = getPaymentsForMonth(activeMonth);
-    if (monthlyPayments.length == 0) return 0;
-    return monthlyPayments
-        .map((x) => x.isCredit ? x.amount : -(x.amount))
-        .reduce((v, e) => v + e);
+    var monthlyPayments = getPaymentsForMonth(activeMonth);
+    return PaymentsHelper.calcTotalAmount(monthlyPayments);
   }
 
   @computed
-  Map get allPaymentsOfActiveMonth {
-    List<Payment> monthlyPayments = getPaymentsForMonth(activeMonth, false);
-    Map allPayments = {'credit': 0, 'debit': 0, 'activeType': filterBy};
-    if (monthlyPayments.length == 0) return allPayments;
-
-    monthlyPayments.forEach((p) {
-      var type = p.isCredit ? 'credit' : 'debit';
-      allPayments[type] = allPayments[type] + p.amount;
-    });
-    return allPayments;
+  Map get inOutStatement {
+    var monthlyPayments = getPaymentsForMonth(activeMonth, false);
+    return PaymentsHelper.getInOutStatement(monthlyPayments, filterBy);
   }
 
   @action
@@ -123,39 +115,23 @@ abstract class PaymentsBase with Store {
     return monthlyPayments[monthKey];
   }
 
-  getPayment(String paymentID) {
-    return payments.firstWhere((p) {
-      return p.id == paymentID;
-    }, orElse: () => null);
+  Payment getPayment(String paymentID) {
+    return PaymentsHelper.getPaymentFromID(payments, paymentID);
   }
 
   Map groupPaymentsByMonth([bool withFilter = true]) {
     var allPayments = withFilter ? filterPaymentByType(payments) : payments;
-    return groupBy(allPayments, (Payment p) {
-      DateTime dt = DateTime.fromMillisecondsSinceEpoch(p.date);
-      return DateHelper.getMonthYear(dt);
-    });
+    return PaymentsHelper.groupByMonth(allPayments);
   }
 
   ObservableList<Payment> filterPaymentByType(
-      ObservableList<Payment> payments) {
-    return payments
-        .where(
-          (p) {
-            if (filterBy == PaymentType.ALL) {
-              return true;
-            }
-            if (filterBy == PaymentType.CREDIT) {
-              return p.isCredit == true;
-            }
-            if (filterBy == PaymentType.DEBIT) {
-              return p.isCredit == false;
-            }
+    ObservableList<Payment> payments,
+  ) {
+    var p = PaymentsHelper.filter(payments, filterBy);
 
-            return false;
-          },
-        )
-        .toList()
-        .asObservable();
+    var sortID = sl<SettingsStore>().sortBy;
+    if (sortID != null) PaymentsHelper.sort(p, sortID);
+
+    return p.asObservable();
   }
 }

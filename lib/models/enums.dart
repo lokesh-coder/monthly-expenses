@@ -4,3 +4,5 @@ enum InputType { CURRENCY, TEXT, NONE }
 
 enum AmountDisplaySize { XS, SM, MD, LG, XL }
 enum AmountDisplayType { CREDIT, DEBIT, PLACEHOLDER, INPUT }
+
+enum Sort { ASC, DESC }

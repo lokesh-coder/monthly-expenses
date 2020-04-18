@@ -37,8 +37,8 @@ class SortStrategies {
       desc: 'last modified payment time',
       icon: Icons.schedule,
       keyFn: (x) => x.lastModifiedTime,
-      ascLabel: 'Recently edited first',
-      descLabel: 'Rarely edited first',
+      ascLabel: 'Rarely edited first',
+      descLabel: 'Recently edited first',
     ),
     SortStrategy(
       id: 5,

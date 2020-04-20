@@ -5,9 +5,11 @@ import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class SlideTransform extends StatefulWidget {
   final double contentHeight;
+  final double marginTop;
   final Widget child;
 
-  const SlideTransform({Key key, this.contentHeight, this.child})
+  const SlideTransform(
+      {Key key, this.contentHeight, this.marginTop, this.child})
       : super(key: key);
 
   @override
@@ -27,16 +29,17 @@ class _SlideTransformState extends State<SlideTransform>
       duration: const Duration(milliseconds: 400),
       vsync: this,
     );
-    animation = Tween(begin: 0.0, end: widget.contentHeight).animate(
+    animation =
+        Tween(begin: widget.marginTop, end: widget.contentHeight).animate(
       CurvedAnimation(
         parent: controller,
         curve: Curves.easeInOutQuint,
       ),
     )..addListener(() {
-        double offset = (animation.value / widget.contentHeight).abs();
-        sl<SandwichStore>().changeOffset(offset);
-        setState(() {});
-      });
+            double offset = (animation.value / widget.contentHeight).abs();
+            sl<SandwichStore>().changeOffset(offset);
+            setState(() {});
+          });
   }
 
   @override

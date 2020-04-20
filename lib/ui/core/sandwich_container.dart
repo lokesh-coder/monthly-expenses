@@ -42,10 +42,11 @@ class SandwichContainer extends StatelessWidget {
       builder: (context) {
         double topToBannerH = bannerBarH + statusBarH + appbarH;
         double slidableH = screenH - topToBannerH;
-        double contentHeight = -(slidableH - monthsBarH);
+        double contentHeight = -(slidableH - monthsBarH - statusBarH);
 
         return SlideTransform(
           contentHeight: contentHeight,
+          marginTop: statusBarH,
           child: SingleChildScrollView(
             child: ConstrainedBox(
               constraints:
@@ -53,7 +54,8 @@ class SandwichContainer extends StatelessWidget {
               child: Container(
                 color: Colors.white,
                 child: middleChild,
-                margin: EdgeInsets.only(top: bannerBarH + filtersBarH),
+                margin:
+                    EdgeInsets.only(top: bannerBarH + filtersBarH - statusBarH),
               ),
             ),
           ),
@@ -63,9 +65,14 @@ class SandwichContainer extends StatelessWidget {
   }
 
   Widget _topChild() {
-    return SizedBox(
-      height: bannerBarH + filtersBarH,
-      child: Container(child: topChild),
+    return Container(
+      margin: EdgeInsets.only(
+        top: statusBarH,
+      ),
+      child: SizedBox(
+        height: bannerBarH + filtersBarH,
+        child: Container(child: topChild),
+      ),
     );
   }
 }

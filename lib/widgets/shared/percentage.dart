@@ -18,7 +18,7 @@ class Percentage extends StatelessWidget {
     return Observer(builder: (context) {
       List data = _data(paymentsStore.inOutStatement);
       return CircularPercentIndicator(
-        radius: 60.0,
+        radius: 40.0,
         lineWidth: 3.0,
         percent: _getValue(data[0], data[1]),
         animation: true,

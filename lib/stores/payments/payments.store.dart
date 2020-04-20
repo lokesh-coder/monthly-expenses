@@ -98,6 +98,7 @@ abstract class PaymentsBase with Store {
   @action
   dropDb() async {
     await repo.db.dropDb();
+    fetchPayments();
   }
 
   @action

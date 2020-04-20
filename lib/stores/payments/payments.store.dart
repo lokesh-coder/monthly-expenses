@@ -49,13 +49,13 @@ abstract class PaymentsBase with Store {
   }
 
   @computed
-  Map<String, List<Payment>> get paymentsByMonth {
-    return Map.from(groupPaymentsByMonth());
+  ObservableMap<String, List<Payment>> get paymentsByMonth {
+    return groupPaymentsByMonth().asObservable();
   }
 
   @computed
-  Map<String, List<Payment>> get paymentsByMonthWithoutFilter {
-    return Map.from(groupPaymentsByMonth(false));
+  ObservableMap<String, List<Payment>> get paymentsByMonthWithoutFilter {
+    return groupPaymentsByMonth(false).asObservable();
   }
 
   @action
@@ -119,7 +119,7 @@ abstract class PaymentsBase with Store {
     return PaymentsHelper.getPaymentFromID(payments, paymentID);
   }
 
-  Map groupPaymentsByMonth([bool withFilter = true]) {
+  Map<String, List<Payment>> groupPaymentsByMonth([bool withFilter = true]) {
     var allPayments = withFilter ? filterPaymentByType(payments) : payments;
     return PaymentsHelper.groupByMonth(allPayments);
   }

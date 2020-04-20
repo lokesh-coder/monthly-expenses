@@ -19,12 +19,12 @@ class Payments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var paymentsStore = sl<PaymentsStore>();
+    String monthKeyName = DateHelper.getMonthYear(data['dateTime']);
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       child: Observer(
         builder: (context) {
-          String monthKeyName = DateHelper.getMonthYear(data['dateTime']);
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
           return ListView.separated(
             physics: BouncingScrollPhysics(),
@@ -44,35 +44,39 @@ class Payments extends StatelessWidget {
         .findCategoryById(data.categoryID);
 
     var style = TextStyle(
-      color: Color(0xff7E93B2),
-      fontSize: 16,
-      fontWeight: FontWeight.w500,
+      color: Clrs.dark.withOpacity(0.8),
+      fontSize: 17,
+      fontWeight: FontWeight.w600,
+      letterSpacing: -0.6,
     );
 
-    return ListTile(
-      dense: true,
-      contentPadding: EdgeInsets.symmetric(horizontal: 0),
-      leading: Image.asset(
-        category.path,
-        width: 30,
-      ),
-      onTap: () {
-        paymentsStore.setActivePayment(data.id);
-        sl<SandwichStore>().changeVisibility(true);
-      },
-      title: Text(data.label, style: style),
-      subtitle: Text(
-        category.name.toUpperCase(),
-        style: TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
-          color: Clrs.label,
+    return Container(
+      child: ListTile(
+        dense: true,
+        contentPadding: EdgeInsets.symmetric(horizontal: 0),
+        leading: Image.asset(
+          category.path,
+          width: 30,
         ),
-      ),
-      trailing: Amount(
-        data.amount,
-        type:
-            data.isCredit ? AmountDisplayType.CREDIT : AmountDisplayType.DEBIT,
+        onTap: () {
+          paymentsStore.setActivePayment(data.id);
+          sl<SandwichStore>().changeVisibility(true);
+        },
+        title: Text(data.label, style: style),
+        subtitle: Text(
+          category.name.toUpperCase(),
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.w600,
+            color: Clrs.label,
+          ),
+        ),
+        trailing: Amount(
+          data.amount,
+          type: data.isCredit
+              ? AmountDisplayType.CREDIT
+              : AmountDisplayType.DEBIT,
+        ),
       ),
     );
   }

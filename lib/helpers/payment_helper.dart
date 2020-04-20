@@ -31,7 +31,7 @@ class PaymentsHelper {
     ).toList();
   }
 
-  static groupByMonth(List<Payment> payments) {
+  static Map<String, List<Payment>> groupByMonth(List<Payment> payments) {
     return groupBy(payments, (Payment p) {
       DateTime dt = DateTime.fromMillisecondsSinceEpoch(p.date);
       return DateHelper.getMonthYear(dt);

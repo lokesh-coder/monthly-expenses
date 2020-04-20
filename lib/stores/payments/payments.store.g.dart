@@ -21,19 +21,21 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   Map<dynamic, dynamic> get inOutStatement => (_$inOutStatementComputed ??=
           Computed<Map<dynamic, dynamic>>(() => super.inOutStatement))
       .value;
-  Computed<Map<String, List<Payment>>> _$paymentsByMonthComputed;
+  Computed<ObservableMap<String, List<Payment>>> _$paymentsByMonthComputed;
 
   @override
-  Map<String, List<Payment>> get paymentsByMonth =>
+  ObservableMap<String, List<Payment>> get paymentsByMonth =>
       (_$paymentsByMonthComputed ??=
-              Computed<Map<String, List<Payment>>>(() => super.paymentsByMonth))
+              Computed<ObservableMap<String, List<Payment>>>(
+                  () => super.paymentsByMonth))
           .value;
-  Computed<Map<String, List<Payment>>> _$paymentsByMonthWithoutFilterComputed;
+  Computed<ObservableMap<String, List<Payment>>>
+      _$paymentsByMonthWithoutFilterComputed;
 
   @override
-  Map<String, List<Payment>> get paymentsByMonthWithoutFilter =>
+  ObservableMap<String, List<Payment>> get paymentsByMonthWithoutFilter =>
       (_$paymentsByMonthWithoutFilterComputed ??=
-              Computed<Map<String, List<Payment>>>(
+              Computed<ObservableMap<String, List<Payment>>>(
                   () => super.paymentsByMonthWithoutFilter))
           .value;
 

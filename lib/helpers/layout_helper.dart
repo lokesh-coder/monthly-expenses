@@ -26,6 +26,7 @@ class LayoutHelper {
   }
 
   static double get appBarHeight {
-    return kToolbarHeight;
+    // return kToolbarHeight;
+    return 0;
   }
 }

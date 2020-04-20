@@ -17,53 +17,54 @@ class Months extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var settingsStore = sl<SettingsStore>();
-    var totalMonths =
-        () => DateHelper.getMonthRange(settingsStore.monthsViewRange);
-    if (settingsStore.monthsViewRange == 0) {
-      return SizedBox.shrink();
-    }
-    return Column(
-      children: <Widget>[
-        Expanded(
-          flex: 1,
-          child: Pager(
-            builder: (int index, dynamic data, PageController ctrl) {
-              return PaymentsCarousal(
-                index: index,
-                data: data,
-                ctrl: ctrl,
-              );
-            },
-            data: totalMonths(),
-            initialPage: settingsStore.monthsViewRange,
-            visibleItems: 1,
-            onPageChange: (curr) {},
-          ),
-        ),
-        Transform.translate(
-          offset: Offset(0, 0),
-          child: GestureDetector(
-            onPanUpdate: (d) {
-              sl<SandwichStore>().changeVisibility(true);
-            },
-            child: Container(
-              height: 7,
-              width: 40,
-              color: Clrs.label,
+
+    return Observer(builder: (context) {
+      var totalMonths =
+          () => DateHelper.getMonthRange(settingsStore.monthsViewRange);
+      if (settingsStore.monthsViewRange == 0) {
+        return SizedBox.shrink();
+      }
+      return Column(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Pager(
+              builder: (int index, dynamic data, PageController ctrl) {
+                return PaymentsCarousal(
+                  index: index,
+                  data: data,
+                  ctrl: ctrl,
+                );
+              },
+              data: totalMonths(),
+              initialPage: settingsStore.monthsViewRange,
+              visibleItems: 1,
+              onPageChange: (curr) {},
             ),
           ),
-        ),
-        Container(
-          height: Dimensions.monthsBarHeight,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              bottom: BorderSide(color: Clrs.inputBorder),
-              top: BorderSide(color: Clrs.inputBorder),
+          Transform.translate(
+            offset: Offset(0, 0),
+            child: GestureDetector(
+              onPanUpdate: (d) {
+                sl<SandwichStore>().changeVisibility(true);
+              },
+              child: Container(
+                height: 7,
+                width: 40,
+                color: Clrs.label,
+              ),
             ),
           ),
-          child: Observer(builder: (context) {
-            return Pager.master(
+          Container(
+            height: Dimensions.monthsBarHeight,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                bottom: BorderSide(color: Clrs.inputBorder),
+                top: BorderSide(color: Clrs.inputBorder),
+              ),
+            ),
+            child: Pager.master(
               builder: (int index, dynamic data, PageController ctrl) {
                 return MonthsCarousal(index, data, ctrl);
               },
@@ -73,10 +74,10 @@ class Months extends StatelessWidget {
               onPageChange: (curr) {
                 sl<PaymentsStore>().setActiveMonth(curr['dateTime']);
               },
-            );
-          }),
-        )
-      ],
-    );
+            ),
+          )
+        ],
+      );
+    });
   }
 }

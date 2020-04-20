@@ -17,6 +17,12 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppShell(
       header: Header(
+        leading: IconButton(
+          icon: Icon(Icons.chevron_left),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: 'Settings',
         action: IconButton(icon: Icon(Icons.close), onPressed: () {}),
       ),

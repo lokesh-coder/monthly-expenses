@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
+import 'package:monex/helpers/layout_helper.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -12,6 +14,7 @@ class FilterBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var paymentsStore = sl<PaymentsStore>();
     return Container(
+      height: Dimensions.filtersBarHeight,
       color: Clrs.primary,
       child: Observer(builder: (context) {
         return Row(

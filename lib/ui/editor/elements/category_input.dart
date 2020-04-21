@@ -42,7 +42,7 @@ class CategoryInput extends StatelessWidget {
       },
       selected: _catMeta(formStore.categoryID).id,
     );
-    control.open('Categoriess', picker);
+    control.open('Categories', picker);
   }
 
   Category _catMeta(String catID) {

@@ -7,6 +7,7 @@ import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/common/ribbon.dart';
 
 import 'elements/action_buttons.dart';
 import 'elements/type_input.dart';
@@ -115,6 +116,11 @@ class _EditorState extends State<Editor> {
 
     Payment payment = formStore.data;
 
+    if (payment.amount == null || payment.label == null) {
+      _showSnackbar();
+      return;
+    }
+
     if (payment.amount == null || payment.label == null) return;
 
     if (payment.id == null) {
@@ -125,6 +131,14 @@ class _EditorState extends State<Editor> {
 
     paymentsStore.setActivePayment(null);
     sandwichStore.changeVisibility(false);
+  }
+
+  _showSnackbar() {
+    final snackBar = SnackBar(
+      backgroundColor: Clrs.secondary,
+      content: Ribbon('Please fill amount and name'),
+    );
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 
   @override

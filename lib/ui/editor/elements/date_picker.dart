@@ -13,7 +13,6 @@ class DatePicker extends StatelessWidget {
     List weeks = DateHelper.getAllDaysInMonth(selected);
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -50,15 +49,19 @@ class DatePicker extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onSelect(dateObj['dateTime']),
         child: Container(
-          color: Colors.transparent,
-          padding: EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: isSelecteDate ? Clrs.primary : Colors.transparent,
+          ),
+          padding: EdgeInsets.symmetric(vertical: 9),
+          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
           child: Center(
             child: Text(
               dateObj["date"].toString(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: isSelecteDate ? FontWeight.w800 : FontWeight.w400,
-                color: isSelecteDate ? Clrs.green : Clrs.inputValue,
+                color: isSelecteDate ? Colors.white : Clrs.inputValue,
               ),
             ),
           ),

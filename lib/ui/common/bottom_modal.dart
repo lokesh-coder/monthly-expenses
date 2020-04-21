@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
 import 'package:monex/helpers/layout_helper.dart';
+import "package:monex/config/extension.dart";
 
 class BottomModalControl {
   Function(String title, Widget child) open;
@@ -52,15 +54,24 @@ class BottomModal extends StatelessWidget {
     );
   }
 
-  _content(ctx, title, child, data) {
+  _content(ctx, String title, child, data) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Visibility(
           visible: data.showHeader,
           child: Row(
             children: <Widget>[
-              Expanded(child: Text(title)),
+              Expanded(
+                child: Text(
+                  title.capitalize(),
+                  style: TextStyle(
+                    color: Clrs.dark,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
               IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () => Navigator.of(ctx).pop(),
@@ -68,6 +79,7 @@ class BottomModal extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(height: 10),
         child
       ],
     );

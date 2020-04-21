@@ -28,6 +28,7 @@ class DateInput extends StatelessWidget {
   }
 
   void _picker(BottomModalControl control, FormStore formStore) {
+    var selectedDate = DateHelper.msToDt(formStore.date);
     Widget picker = DatePicker(
       onSelect: (dt) {
         var ms = DateHelper.dtToMs(dt);
@@ -35,9 +36,10 @@ class DateInput extends StatelessWidget {
 
         control.close();
       },
-      selected: DateHelper.msToDt(formStore.date),
+      selected: selectedDate,
     );
-    control.open('dateicer', picker);
+    control.open(
+        'Choose date  ·  ${DateHelper.getMonthName(selectedDate)}', picker);
   }
 
   _icon(FormStore formStore) {

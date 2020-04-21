@@ -38,14 +38,68 @@ class LabelInput extends StatelessWidget {
   }
 
   _textField(BottomModalControl control, FormStore formStore) {
-    var tf = TextFormField(
-      initialValue: formStore.label,
-      autofocus: true,
-      onFieldSubmitted: (x) {
-        formStore.changeLabel(x);
-        control.close();
-      },
+    var content = '';
+    var tf = Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      height: 50,
+      decoration: BoxDecoration(
+        color: Clrs.label.withOpacity(0.1),
+        border: Border.all(color: Clrs.primary.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Expanded(
+            child: TextFormField(
+              initialValue: formStore.label,
+              autofocus: true,
+              maxLength: 30,
+              enableInteractiveSelection: true,
+              textCapitalization: TextCapitalization.sentences,
+              maxLines: 1,
+              buildCounter: (BuildContext context,
+                      {int currentLength, int maxLength, bool isFocused}) =>
+                  null,
+              decoration: InputDecoration.collapsed(hintText: null),
+              style: TextStyle(
+                color: Clrs.labelActive,
+                fontSize: 17,
+              ),
+              onChanged: (x) {
+                content = x;
+              },
+              onFieldSubmitted: (x) {
+                content = x;
+                formStore.changeLabel(x);
+                control.close();
+              },
+            ),
+          ),
+          Container(
+            width: 35,
+            height: 35,
+            decoration: BoxDecoration(
+              color: Clrs.primary,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: IconButton(
+              onPressed: () {
+                formStore.changeLabel(content);
+                control.close();
+              },
+              padding: EdgeInsets.all(0),
+              icon: Icon(
+                Icons.check,
+              ),
+              color: Clrs.light,
+            ),
+          )
+        ],
+      ),
     );
-    control.open('label', tf);
+    control.open('Add a short name', tf);
   }
 }

@@ -26,7 +26,7 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
     return Column(
       children: <Widget>[
         Text(
-          '${(_value.round()).toString()} Months',
+          '${(_value.round()).toString()} Month(s)',
           style: TextStyle(
             color: Clrs.inputValue,
             fontSize: 22,

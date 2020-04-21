@@ -34,7 +34,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
           _numpad(),
           SizedBox(height: 20),
           FloatingActionButton(
-            backgroundColor: Clrs.green,
+            backgroundColor: Clrs.primary,
             child: Icon(Icons.check),
             onPressed: () {
               if (value == null) value = '';

@@ -19,12 +19,8 @@ class MonthRangeDisplay extends StatelessWidget {
         dataCtx: dataCtx,
         icon: Icons.date_range,
         title: 'Month range',
-        displayText: _getDisplayText(store.monthsViewRange.toInt()),
+        displayText: '${store.monthsViewRange.toInt()} month(s)',
       );
     });
-  }
-
-  String _getDisplayText(int range) {
-    return DateHelper.getMonthRangeDisplayText(range);
   }
 }

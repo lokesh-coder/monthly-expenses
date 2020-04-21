@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Clrs {
-  static const Color primary = Color(0xff6156A4);
+  static const Color primary = Color(0xff474787);
+  static const Color secondary = Color(0xffC694A9);
   static const Color light = Color(0xffF5F8FC);
   static const Color green = Color(0xff33B284);
   static const Color yellow = Color(0xffE5BA4C);
@@ -15,5 +16,5 @@ class Clrs {
   static const Color inputLabel = Color(0xff9EB0C7);
   static const Color inputPlaceholder = Color(0xffE1E9F3);
   static const Color inputBorder = Color(0xffD8E3F1);
-  static const Color dark = Color(0xff29263D);
+  static const Color dark = Color(0xff2c2c54);
 }

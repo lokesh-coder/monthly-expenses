@@ -11,6 +11,7 @@ import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/amount.dart';
+import "package:monex/config/extension.dart";
 
 class Payments extends StatelessWidget {
   final Map data;
@@ -50,6 +51,9 @@ class Payments extends StatelessWidget {
       letterSpacing: -0.6,
     );
 
+    var dt = DateHelper.msToDt(data.date);
+    var date = DateHelper.format(dt, DateHelper.dateWeekday);
+
     return Container(
       child: ListTile(
         dense: true,
@@ -62,9 +66,9 @@ class Payments extends StatelessWidget {
           paymentsStore.setActivePayment(data.id);
           sl<SandwichStore>().changeVisibility(true);
         },
-        title: Text(data.label, style: style),
+        title: Text(data.label.capitalize(), style: style),
         subtitle: Text(
-          category.name.toUpperCase(),
+          '${category.name}  ·  $date'.toUpperCase(),
           style: TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w600,

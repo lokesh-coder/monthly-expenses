@@ -60,9 +60,7 @@ class BannerBoard extends StatelessWidget {
                         children: <Widget>[
                           Amount(
                             paymentsStore.totalAmountOfActiveMonth.abs(),
-                            type: paymentsStore.totalAmountOfActiveMonth >= 0
-                                ? AmountDisplayType.CREDIT
-                                : AmountDisplayType.DEBIT,
+                            type: _getType(paymentsStore),
                             size: AmountDisplaySize.LG,
                           ),
                           Row(
@@ -120,5 +118,14 @@ class BannerBoard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  _getType(PaymentsStore paymentsStore) {
+    if (paymentsStore.totalAmountOfActiveMonth == 0) {
+      return AmountDisplayType.SILENT;
+    }
+    return paymentsStore.totalAmountOfActiveMonth > 0
+        ? AmountDisplayType.CREDIT
+        : AmountDisplayType.DEBIT;
   }
 }

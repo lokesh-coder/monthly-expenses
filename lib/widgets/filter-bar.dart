@@ -21,7 +21,7 @@ class FilterBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _item(paymentsStore, 'BOTH', PaymentType.ALL, Clrs.yellow),
+            _item(paymentsStore, 'ALL', PaymentType.ALL, Clrs.yellow),
             _item(paymentsStore, 'CREDIT', PaymentType.CREDIT, Clrs.green),
             _item(paymentsStore, 'DEBIT', PaymentType.DEBIT, Clrs.red),
           ],

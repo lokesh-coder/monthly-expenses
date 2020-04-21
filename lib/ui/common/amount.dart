@@ -55,6 +55,9 @@ class Amount extends StatelessWidget {
       case AmountDisplayType.PLACEHOLDER:
         color = Clrs.label;
         break;
+      case AmountDisplayType.SILENT:
+        color = Colors.white.withOpacity(0.5);
+        break;
       default:
         color = Clrs.primary;
     }

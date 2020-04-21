@@ -63,7 +63,7 @@ class ConfirmModal extends StatelessWidget {
         width: LayoutHelper.screenWidth / 1.5,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Clrs.dark,
+          color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
           boxShadow: [
             BoxShadow(
@@ -97,7 +97,7 @@ class ConfirmModal extends StatelessWidget {
         style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.normal,
-          color: Clrs.inputValue,
+          color: Clrs.dark,
         ),
       ),
     );
@@ -107,7 +107,7 @@ class ConfirmModal extends StatelessWidget {
     var btnStyle = TextStyle(
       color: Clrs.label,
       letterSpacing: -0.5,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
     );
 
     return Row(
@@ -121,7 +121,7 @@ class ConfirmModal extends StatelessWidget {
           },
           child: Text(
             control.yesLabel.toUpperCase(),
-            style: btnStyle.copyWith(color: Clrs.primary),
+            style: btnStyle.copyWith(color: Color(0xffC694A9)),
           ),
         ),
         FlatButton(

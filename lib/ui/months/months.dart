@@ -49,9 +49,18 @@ class Months extends StatelessWidget {
                 sl<SandwichStore>().changeVisibility(true);
               },
               child: Container(
-                height: 7,
+                height: 20,
                 width: 40,
-                color: Clrs.label,
+                color: Colors.transparent,
+                child: Center(
+                  child: Container(
+                    height: 5,
+                    decoration: BoxDecoration(
+                      color: Clrs.label.withOpacity(0.5),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),

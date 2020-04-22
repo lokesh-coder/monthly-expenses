@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/models/enums.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 
 class Amount extends StatelessWidget {
   final num value;
@@ -16,6 +19,7 @@ class Amount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var store = sl<SettingsStore>();
     Color color = _getColor();
 
     double fontSize = _getFontSizeMap()[size];
@@ -25,16 +29,18 @@ class Amount extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Text(
-            CurrencyHelper.getFormattedCurrency(value),
-            style: TextStyle(
-              fontSize: fontSize,
-              fontFamily: 'Manrope',
-              fontWeight: FontWeight.w600,
-              letterSpacing: -.5,
-              color: color,
-            ),
-          ),
+          Observer(builder: (context) {
+            return Text(
+              CurrencyHelper.getFormattedCurrency(value, store.currency),
+              style: TextStyle(
+                fontSize: fontSize,
+                fontFamily: 'Manrope',
+                fontWeight: FontWeight.w600,
+                letterSpacing: -.5,
+                color: color,
+              ),
+            );
+          }),
         ],
       ),
     );

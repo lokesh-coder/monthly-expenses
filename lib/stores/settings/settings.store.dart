@@ -20,6 +20,9 @@ abstract class SettingsBase with Store {
   @observable
   int orderBy = 1;
 
+  @observable
+  String currency = '0=0';
+
   @action
   void changeMonthsViewRange(int range) {
     monthsViewRange = range;
@@ -38,12 +41,21 @@ abstract class SettingsBase with Store {
     repo.memory.changeOrderBy(id);
   }
 
+  @action
+  void changeCurrency(String locale, String currencyCode) {
+    currency = '$locale=$currencyCode';
+    repo.memory.changeCurrency(currency);
+  }
+
   init() async {
     var range = await repo.memory.monthsViewRange;
     if (range != null) monthsViewRange = range;
 
     var orderByValue = await repo.memory.orderBy;
     if (orderByValue != null) orderBy = orderByValue;
+
+    var currencyValue = await repo.memory.currency;
+    if (currencyValue != null) currency = currencyValue;
 
     var sortByValue = await repo.memory.sortBy;
     if (sortByValue != null)

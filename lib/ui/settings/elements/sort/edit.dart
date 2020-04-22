@@ -5,6 +5,7 @@ import 'package:monex/data/local/object/files/sort_strategies.dart';
 import 'package:monex/models/sort_strategy.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
+import 'package:monex/ui/common/check.dart';
 
 class SortEdit extends StatefulWidget {
   const SortEdit({Key key}) : super(key: key);
@@ -48,7 +49,7 @@ class _SortEditState extends State<SortEdit> {
         strategy.icon,
         color: Clrs.inputValue.withOpacity(0.5),
       ),
-      trailing: strategy.id == _value ? Icon(Icons.check) : SizedBox.shrink(),
+      trailing: strategy.id == _value ? Check() : SizedBox.shrink(),
       onTap: () {
         settingsStore.changeSortBy(strategy.id);
         setState(() {

@@ -5,6 +5,7 @@ import 'package:monex/data/local/object/files/sort_strategies.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
+import 'package:monex/ui/common/check.dart';
 
 class OrderEdit extends StatefulWidget {
   const OrderEdit({Key key}) : super(key: key);
@@ -48,7 +49,7 @@ class _OrderEditState extends State<OrderEdit> {
         data['icon'],
         color: Clrs.inputValue.withOpacity(0.5),
       ),
-      trailing: data['id'] == _value ? Icon(Icons.check) : SizedBox.shrink(),
+      trailing: data['id'] == _value ? Check() : SizedBox.shrink(),
       onTap: () {
         settingsStore.changeOrderBy(data['id']);
         setState(() {

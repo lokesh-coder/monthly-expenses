@@ -1,7 +1,6 @@
 import 'package:monex/models/category.dart';
 
 class Catagories {
-  List<Category> finalCategories = [];
   List<Category> _categories = [
     Category(
       id: 'GROCERIES',

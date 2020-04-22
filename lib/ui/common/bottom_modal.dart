@@ -33,16 +33,14 @@ class BottomModal extends StatelessWidget {
             useRootNavigator: true,
             backgroundColor: Colors.transparent,
             builder: (ctx) {
-              return SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.only(
-                    bottom:
-                        MediaQuery.of(LayoutHelper.mainPageKey.currentContext)
-                            .viewInsets
-                            .bottom,
-                  ),
-                  child: _layout(ctx, title, child, data),
+              return Container(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(LayoutHelper.mainPageKey.currentContext)
+                      .viewInsets
+                      .bottom,
                 ),
+                child: SingleChildScrollView(
+                    child: _layout(ctx, title, child, data)),
               );
             },
           );

@@ -77,6 +77,7 @@ class Payments extends StatelessWidget {
         ),
         trailing: Amount(
           data.amount,
+          size: AmountDisplaySize.XS,
           type: data.isCredit
               ? AmountDisplayType.CREDIT
               : AmountDisplayType.DEBIT,

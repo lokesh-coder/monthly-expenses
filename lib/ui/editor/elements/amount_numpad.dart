@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/models/enums.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/common/amount.dart';
 
 class AmountNumpad extends StatefulWidget {
@@ -16,12 +18,15 @@ class AmountNumpad extends StatefulWidget {
 }
 
 class _AmountNumpadState extends State<AmountNumpad> {
+  var store = sl<SettingsStore>();
+  var locale;
   String value = '';
 
   @override
   void initState() {
     super.initState();
     value = widget.selected == "null" ? '' : widget.selected;
+    locale = store.currency.split('=')[0];
   }
 
   @override
@@ -50,7 +55,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
     List rowOne = ['1', '2', '3'];
     List rowTwo = ['4', '5', '6'];
     List rowThree = ['7', '8', '9'];
-    List rowFour = [CurrencyHelper.separator, '0', 'REMOVE'];
+    List rowFour = [CurrencyHelper.separator(locale), '0', 'REMOVE'];
 
     List<Widget> items =
         (rowOne + rowTwo + rowThree + rowFour).map((c) => _btn(c)).toList();
@@ -98,7 +103,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
 
     return GestureDetector(
       onTap: () {
-        if (label == CurrencyHelper.separator) label = '.';
+        if (label == CurrencyHelper.separator(locale)) label = '.';
         if (label == 'REMOVE') {
           if (value.length == 0) return;
           value = value.substring(0, value.length - 1);

@@ -60,6 +60,23 @@ mixin _$SettingsStore on SettingsBase, Store {
     }, _$orderByAtom, name: '${_$orderByAtom.name}_set');
   }
 
+  final _$currencyAtom = Atom(name: 'SettingsBase.currency');
+
+  @override
+  String get currency {
+    _$currencyAtom.context.enforceReadPolicy(_$currencyAtom);
+    _$currencyAtom.reportObserved();
+    return super.currency;
+  }
+
+  @override
+  set currency(String value) {
+    _$currencyAtom.context.conditionallyRunInAction(() {
+      super.currency = value;
+      _$currencyAtom.reportChanged();
+    }, _$currencyAtom, name: '${_$currencyAtom.name}_set');
+  }
+
   final _$SettingsBaseActionController = ActionController(name: 'SettingsBase');
 
   @override
@@ -93,9 +110,19 @@ mixin _$SettingsStore on SettingsBase, Store {
   }
 
   @override
+  void changeCurrency(String locale, String currencyCode) {
+    final _$actionInfo = _$SettingsBaseActionController.startAction();
+    try {
+      return super.changeCurrency(locale, currencyCode);
+    } finally {
+      _$SettingsBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string =
-        'monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()},orderBy: ${orderBy.toString()}';
+        'monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()},orderBy: ${orderBy.toString()},currency: ${currency.toString()}';
     return '{$string}';
   }
 }

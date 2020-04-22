@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monex/helpers/layout_helper.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
   final IconButton action;
-  final IconButton leading;
+  final Widget leading;
   final String title;
 
   Header({Key key, this.title, this.leading, this.action}) : super(key: key);
@@ -20,5 +19,5 @@ class Header extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(LayoutHelper.appBarHeight);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

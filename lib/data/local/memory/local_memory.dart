@@ -37,4 +37,15 @@ class LocalMemory {
   Future<int> get orderBy {
     return memory.then((x) => x.getInt(LocalMemoryConfig.order_by));
   }
+
+// currency ------------------------------------------------------------
+
+  Future<void> changeCurrency(String currency) {
+    return memory
+        .then((x) => x.setString(LocalMemoryConfig.currency, currency));
+  }
+
+  Future<String> get currency {
+    return memory.then((x) => x.getString(LocalMemoryConfig.currency));
+  }
 }

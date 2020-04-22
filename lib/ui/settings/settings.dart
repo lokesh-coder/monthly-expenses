@@ -4,6 +4,8 @@ import 'package:monex/ui/common/expander.dart';
 import 'package:monex/ui/common/header.dart';
 import 'package:monex/ui/settings/elements/delete_all/edit.dart';
 
+import 'elements/currency/display.dart';
+import 'elements/currency/edit.dart';
 import 'elements/delete_all/display.dart';
 import 'elements/month_range/display.dart';
 import 'elements/month_range/edit.dart';
@@ -42,6 +44,10 @@ class Settings extends StatelessWidget {
           Expander(
             headBuilder: (_, dataCtx) => OrderDisplay(dataCtx),
             bodyBuilder: (_, __) => OrderEdit(),
+          ),
+          Expander(
+            headBuilder: (_, dataCtx) => CurrencyDisplay(dataCtx),
+            bodyBuilder: (_, __) => CurrencyEdit(),
           ),
           Expander(
             headBuilder: (_, dataCtx) => DeleteAllDisplay(dataCtx),

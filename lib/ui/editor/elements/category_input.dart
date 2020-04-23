@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/models/category.dart';
@@ -42,7 +43,7 @@ class CategoryInput extends StatelessWidget {
       },
       selected: _catMeta(formStore.categoryID).id,
     );
-    control.open('Categories', picker);
+    control.open(Labels.categories, picker);
   }
 
   Category _catMeta(String catID) {

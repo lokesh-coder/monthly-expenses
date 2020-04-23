@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:intl/number_symbols_data.dart' show numberFormatSymbols;
+import 'package:monex/config/labels.dart';
 import 'package:monex/data/local/object/files/currencies.dart';
 import 'package:monex/models/currency.dart';
 
@@ -46,7 +47,7 @@ class CurrencyHelper {
       currencyCode: '0',
       currencySymbol: '',
       decimalSep: '.',
-      currencyName: 'Others',
+      currencyName: Labels.otherCurrency,
     ));
     cachedCurrencies = currencies;
     return currencies;

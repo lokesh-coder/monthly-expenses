@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -20,9 +21,24 @@ class FilterBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _item(paymentsStore, 'ALL', PaymentType.ALL, Clrs.yellow),
-            _item(paymentsStore, 'CREDIT', PaymentType.CREDIT, Clrs.green),
-            _item(paymentsStore, 'DEBIT', PaymentType.DEBIT, Clrs.red),
+            _item(
+              paymentsStore,
+              Labels.all.toUpperCase(),
+              PaymentType.ALL,
+              Clrs.yellow,
+            ),
+            _item(
+              paymentsStore,
+              Labels.credit.toUpperCase(),
+              PaymentType.CREDIT,
+              Clrs.green,
+            ),
+            _item(
+              paymentsStore,
+              Labels.debit.toUpperCase(),
+              PaymentType.DEBIT,
+              Clrs.red,
+            ),
           ],
         );
       }),

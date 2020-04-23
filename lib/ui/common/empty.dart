@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
@@ -15,12 +16,12 @@ class Empty extends StatelessWidget {
         Icon(Icons.widgets, color: Clrs.label, size: 35),
         SizedBox(height: 20),
         Text(
-          'No payments to display!',
+          Labels.noPaymentsFound,
           style: TextStyle(fontSize: 15, color: Clrs.label),
         ),
         FlatButton(
           child: Text(
-            'ADD NEW PAYMENT',
+            Labels.addNewPayment.toUpperCase(),
             style: TextStyle(
                 color: Clrs.secondary, fontSize: 13, letterSpacing: -.5),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/ui/common/fade_transition.dart';
 import 'package:monex/ui/settings/elements/currency/page.dart';
 
@@ -18,7 +19,7 @@ class CurrencyEdit extends StatelessWidget {
           );
         },
         child: Text(
-          'Change currency',
+          Labels.changeCurrency,
           style: TextStyle(
             fontSize: 16,
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/ui/settings/elements/item_tile.dart';
@@ -16,8 +17,8 @@ class DeleteAllDisplay extends StatelessWidget {
       return SettingsItemTile(
         dataCtx: dataCtx,
         icon: Icons.delete_sweep,
-        title: 'Delete all records',
-        displayText: 'There are ${store.payments.length} records',
+        title: Labels.deleteAll,
+        displayText: '${Labels.totalRecords} ${store.payments.length}',
       );
     });
   }

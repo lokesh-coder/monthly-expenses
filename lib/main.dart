@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/ui/main_page.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     ));
 
     return MaterialApp(
-      title: 'Monex',
+      title: Labels.appName,
       theme: ThemeData(
         primaryColor: Clrs.primary,
         fontFamily: 'Circular',

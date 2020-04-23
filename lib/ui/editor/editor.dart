@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
@@ -77,10 +78,7 @@ class _EditorState extends State<Editor> {
   }
 
   _actionArea(context) {
-    return ActionButton(
-      label: 'save',
-      onSubmit: _save,
-    );
+    return ActionButton(onSubmit: _save);
   }
 
   Widget _form() {
@@ -134,7 +132,7 @@ class _EditorState extends State<Editor> {
   _showSnackbar() {
     final snackBar = SnackBar(
       backgroundColor: Clrs.secondary,
-      content: Ribbon('Please fill amount and name'),
+      content: Ribbon(Labels.formError),
     );
     Scaffold.of(context).showSnackBar(snackBar);
   }

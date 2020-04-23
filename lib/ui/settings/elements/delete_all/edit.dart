@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 
@@ -21,7 +22,7 @@ class DeleteAllEdit extends StatelessWidget {
           sl<PaymentsStore>().dropDb();
         },
         child: Text(
-          'Delete forever',
+          Labels.deleteForever,
           style: TextStyle(
             // color: Clrs.red,
             fontSize: 16,

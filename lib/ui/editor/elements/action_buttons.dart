@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -7,14 +8,12 @@ import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/confirm_modal.dart';
 
 class ActionButton extends StatelessWidget {
-  final String label;
   final Function onSubmit;
   final Function onClose;
   final Function onDelete;
   final double btnHeight = 60;
 
-  const ActionButton(
-      {Key key, this.label, this.onSubmit, this.onDelete, this.onClose})
+  const ActionButton({Key key, this.onSubmit, this.onDelete, this.onClose})
       : super(key: key);
 
   @override
@@ -50,9 +49,9 @@ class ActionButton extends StatelessWidget {
       return IconButton(
         color: Colors.black26,
         onPressed: () {
-          control.title = 'Are you sure?';
-          control.yesLabel = 'Delete';
-          control.noLabel = 'cancel';
+          control.title = Labels.deleteConfirm;
+          control.yesLabel = Labels.delete;
+          control.noLabel = Labels.cancel;
           control.icon = Icons.delete;
           control.onYes = () {
             var sandwichStore = sl<SandwichStore>();

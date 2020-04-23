@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
@@ -17,7 +18,7 @@ class CurrencyDisplay extends StatelessWidget {
       return SettingsItemTile(
         dataCtx: dataCtx,
         icon: Icons.attach_money,
-        title: 'Choose currency',
+        title: Labels.chooseCurrency,
         displayText: CurrencyHelper.getCurrency(store.currency).currencyName,
       );
     });

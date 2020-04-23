@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/expander.dart';
 import 'package:monex/ui/common/header.dart';
@@ -22,7 +23,7 @@ class Settings extends StatelessWidget {
     return AppShell(
       header: Header(
         leading: Container(),
-        title: 'Settings',
+        title: Labels.settings,
         action: IconButton(
           icon: Icon(Icons.close),
           onPressed: () {

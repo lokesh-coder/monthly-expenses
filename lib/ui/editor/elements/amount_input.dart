@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
@@ -58,6 +59,6 @@ class AmountInput extends StatelessWidget {
       selected: formStore.amount.toString(),
     );
     control.showHeader = false;
-    control.open('Categoriess', numpad);
+    control.open(Labels.categories, numpad);
   }
 }

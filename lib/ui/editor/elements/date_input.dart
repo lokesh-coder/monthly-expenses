@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
@@ -39,7 +40,8 @@ class DateInput extends StatelessWidget {
       selected: selectedDate,
     );
     control.open(
-        'Choose date  ·  ${DateHelper.getMonthName(selectedDate)}', picker);
+        '${Labels.chooseDate}  ·  ${DateHelper.getMonthName(selectedDate)}',
+        picker);
   }
 
   _icon(FormStore formStore) {

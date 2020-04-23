@@ -25,7 +25,7 @@ class SettingsItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: dataCtx['toggle'],
-      contentPadding: EdgeInsets.all(20),
+      contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       leading: IconButton(
         onPressed: null,
         icon: Icon(

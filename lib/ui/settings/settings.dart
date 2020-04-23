@@ -36,9 +36,7 @@ class Settings extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         children: [
           // FlatButton(
-          //     onPressed: () {
-          //       sl<PaymentsStore>().seed();
-          //     },
+          //     onPressed: () => sl<PaymentsStore>().seed(),
           //     child: Text('load data')),
           Expander(
             headBuilder: (_, dataCtx) => MonthRangeDisplay(dataCtx),

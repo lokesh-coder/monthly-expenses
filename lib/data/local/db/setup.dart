@@ -27,7 +27,7 @@ class LocalDBProvider {
     final appDocumentDir = await getApplicationDocumentsDirectory();
     final dbPath = join(appDocumentDir.path, LocalDBConfig.db_name);
 
-    final database = await databaseFactoryIo.openDatabase(dbPath);
+    final database = await databaseFactoryIo.openDatabase(dbPath, version: 1);
 
     _dbOpenCompleter.complete(database);
   }

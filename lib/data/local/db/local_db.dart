@@ -8,7 +8,7 @@ class LocalDB {
 
   LocalDB(this.db);
 
-  final _table = intMapStoreFactory.store(LocalDBConfig.payents_table_name);
+  final _table = intMapStoreFactory.store(LocalDBConfig.payments_table_name);
 
   dumpData(List data) async {
     for (var d = 0; d < data.length; d++) {

@@ -1,7 +1,7 @@
 import 'package:jiffy/jiffy.dart';
 
 class DateHelper {
-  static String dateWeekday = 'do E';
+  static String dateWeekday = 'd E';
 
   static int getTotalDaysInMonth(DateTime dateTime) {
     Jiffy date = Jiffy(dateTime);

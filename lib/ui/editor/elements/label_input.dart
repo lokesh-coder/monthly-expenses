@@ -38,7 +38,7 @@ class LabelInput extends StatelessWidget {
   }
 
   _textField(BottomModalControl control, FormStore formStore) {
-    var content = '';
+    var content = formStore.label;
     var tf = Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       height: 50,

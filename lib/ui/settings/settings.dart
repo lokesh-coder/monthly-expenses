@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/expander.dart';
 import 'package:monex/ui/common/header.dart';
@@ -21,18 +23,23 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppShell(
       header: Header(
-        leading: IconButton(
-          icon: Icon(Icons.chevron_left),
+        leading: Container(),
+        title: 'Settings',
+        action: IconButton(
+          icon: Icon(Icons.close),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        title: 'Settings',
-        action: IconButton(icon: Icon(Icons.close), onPressed: () {}),
       ),
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
+          // FlatButton(
+          //     onPressed: () {
+          //       sl<PaymentsStore>().seed();
+          //     },
+          //     child: Text('load data')),
           Expander(
             headBuilder: (_, dataCtx) => MonthRangeDisplay(dataCtx),
             bodyBuilder: (_, __) => MonthRangeEdit(),

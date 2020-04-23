@@ -129,7 +129,6 @@ class _EditorState extends State<Editor> {
 
     paymentsStore.setActivePayment(null);
     sandwichStore.changeVisibility(false);
-    formStore.reset();
   }
 
   _showSnackbar() {

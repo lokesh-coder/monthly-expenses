@@ -78,6 +78,7 @@ abstract class FormBase with Store {
     isCredit = !isDebit;
     date = dateInMs;
     isNew = true;
+    id = null;
   }
 
   @action

@@ -12,6 +12,7 @@ import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/amount.dart';
 import "package:monex/config/extension.dart";
+import 'package:monex/ui/common/empty.dart';
 
 class Payments extends StatelessWidget {
   final Map data;
@@ -23,10 +24,12 @@ class Payments extends StatelessWidget {
     String monthKeyName = DateHelper.getMonthYear(data['dateTime']);
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       child: Observer(
         builder: (context) {
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
+          if (payments == null || payments.length == 0)
+            return Center(child: Empty());
           return ListView.separated(
             physics: BouncingScrollPhysics(),
             itemCount: payments == null ? 0 : payments.length,

@@ -21,9 +21,6 @@ class Months extends StatelessWidget {
     return Observer(builder: (context) {
       var totalMonths =
           () => DateHelper.getMonthRange(settingsStore.monthsViewRange);
-      if (settingsStore.monthsViewRange == 0) {
-        return SizedBox.shrink();
-      }
       return Column(
         children: <Widget>[
           Expanded(

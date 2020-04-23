@@ -12,7 +12,7 @@ abstract class SettingsBase with Store {
   }
 
   @observable
-  int monthsViewRange = 0;
+  int monthsViewRange = 1;
 
   @observable
   int sortBy;

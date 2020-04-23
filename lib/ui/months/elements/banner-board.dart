@@ -10,9 +10,9 @@ import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/amount.dart';
 import 'package:monex/ui/common/fade_transition.dart';
+import 'package:monex/ui/months/elements/filter-bar.dart';
+import 'package:monex/ui/months/elements/percentage.dart';
 import 'package:monex/ui/settings/settings.dart';
-import 'package:monex/widgets/filter-bar.dart';
-import 'package:monex/widgets/shared/percentage.dart';
 
 class BannerBoard extends StatelessWidget {
   const BannerBoard({Key key}) : super(key: key);

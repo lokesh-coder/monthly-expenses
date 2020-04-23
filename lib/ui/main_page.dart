@@ -6,8 +6,8 @@ import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/core/sandwich_container.dart';
 import 'package:monex/ui/editor/editor.dart';
+import 'package:monex/ui/months/elements/banner-board.dart';
 import 'package:monex/ui/months/months.dart';
-import 'package:monex/widgets/banner-board.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key key}) : super(key: key);

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:monex/service_locator/service_locator.dart';
-import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/expander.dart';
 import 'package:monex/ui/common/header.dart';

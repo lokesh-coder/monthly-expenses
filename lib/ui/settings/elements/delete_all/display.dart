@@ -13,7 +13,6 @@ class DeleteAllDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     var store = sl<PaymentsStore>();
     return Observer(builder: (context) {
-      print('==, ${store.payments.length}');
       return SettingsItemTile(
         dataCtx: dataCtx,
         icon: Icons.delete_sweep,

@@ -121,8 +121,6 @@ class _EditorState extends State<Editor> {
       return;
     }
 
-    if (payment.amount == null || payment.label == null) return;
-
     if (payment.id == null) {
       paymentsStore.insertPayment(payment);
     } else {
@@ -131,6 +129,7 @@ class _EditorState extends State<Editor> {
 
     paymentsStore.setActivePayment(null);
     sandwichStore.changeVisibility(false);
+    formStore.reset();
   }
 
   _showSnackbar() {

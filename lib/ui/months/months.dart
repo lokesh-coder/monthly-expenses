@@ -46,6 +46,7 @@ class Months extends StatelessWidget {
             offset: Offset(0, 0),
             child: GestureDetector(
               onPanUpdate: (d) {
+                sl<PaymentsStore>().setActivePayment(null);
                 sl<SandwichStore>().changeVisibility(true);
               },
               child: Container(

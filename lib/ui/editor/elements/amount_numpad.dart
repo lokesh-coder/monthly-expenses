@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/config/app.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/models/enums.dart';
@@ -128,8 +129,9 @@ class _AmountNumpadState extends State<AmountNumpad> {
       type: AmountDisplayType.PLACEHOLDER,
       size: AmountDisplaySize.XL,
     );
+    var amount = num.parse(value == '' ? '0' : value);
     var actual = Amount(
-      num.parse(value == '' ? '0' : value),
+      amount,
       type: AmountDisplayType.INPUT,
       size: AmountDisplaySize.XL,
     );
@@ -140,6 +142,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
   }
 
   _isValidEntry(String value, String label) {
+    if ((value + label).length > AppConfig.amountMaxLength) return false;
     final decimalMatch = RegExp(r'\.[0-9]{3,}$');
     return !decimalMatch.hasMatch(value + label);
   }

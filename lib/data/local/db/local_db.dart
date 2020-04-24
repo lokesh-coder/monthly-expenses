@@ -59,4 +59,8 @@ class LocalDB {
       return Payment.fromJson(snapshot.value);
     }).toList();
   }
+
+  Future<num> getAppVersion() async {
+    return (await this.db).version;
+  }
 }

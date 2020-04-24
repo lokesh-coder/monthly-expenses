@@ -27,12 +27,12 @@ class CurrencyPage extends StatelessWidget {
         leading: Container(),
       ),
       child: Container(
-        child: _getItem(store),
+        child: _getItem(store, context),
       ),
     );
   }
 
-  Widget _getItem(SettingsStore store) {
+  Widget _getItem(SettingsStore store, BuildContext context) {
     var currcncies = CurrencyHelper.all();
     return ListView.separated(
       physics: BouncingScrollPhysics(),
@@ -52,6 +52,7 @@ class CurrencyPage extends StatelessWidget {
           trailing: checked,
           onTap: () {
             store.changeCurrency(x.locale, x.currencyCode);
+            Navigator.of(context).pop();
           },
         );
       },

@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/main_page.dart';
+import 'package:monex/ui/welcome/welcome.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SettingsStore store = sl<SettingsStore>();
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Clrs.primary,
       statusBarBrightness: Brightness.dark,
@@ -26,7 +32,18 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // debugShowMaterialGrid: true,
-      home: MainPage(),
+      home: Observer(builder: (context) {
+        Widget displayPage;
+
+        if (store.isNewSetup == null) {
+          displayPage = Container(color: Clrs.primary);
+        } else if (store.isNewSetup) {
+          displayPage = Welcome();
+        } else {
+          displayPage = MainPage();
+        }
+        return displayPage;
+      }),
     );
   }
 }

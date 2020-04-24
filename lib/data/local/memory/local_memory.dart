@@ -48,4 +48,14 @@ class LocalMemory {
   Future<String> get currency {
     return memory.then((x) => x.getString(LocalMemoryConfig.currency));
   }
+
+// is fresh app ------------------------------------------------------------
+
+  Future<void> setupDone() {
+    return memory.then((x) => x.setBool(LocalMemoryConfig.is_new_setup, false));
+  }
+
+  Future<bool> get isNewSetup {
+    return memory.then((x) => x.getBool(LocalMemoryConfig.is_new_setup));
+  }
 }

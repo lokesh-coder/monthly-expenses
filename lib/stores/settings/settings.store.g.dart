@@ -9,6 +9,23 @@ part of 'settings.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SettingsStore on SettingsBase, Store {
+  final _$isNewSetupAtom = Atom(name: 'SettingsBase.isNewSetup');
+
+  @override
+  bool get isNewSetup {
+    _$isNewSetupAtom.context.enforceReadPolicy(_$isNewSetupAtom);
+    _$isNewSetupAtom.reportObserved();
+    return super.isNewSetup;
+  }
+
+  @override
+  set isNewSetup(bool value) {
+    _$isNewSetupAtom.context.conditionallyRunInAction(() {
+      super.isNewSetup = value;
+      _$isNewSetupAtom.reportChanged();
+    }, _$isNewSetupAtom, name: '${_$isNewSetupAtom.name}_set');
+  }
+
   final _$monthsViewRangeAtom = Atom(name: 'SettingsBase.monthsViewRange');
 
   @override
@@ -80,6 +97,16 @@ mixin _$SettingsStore on SettingsBase, Store {
   final _$SettingsBaseActionController = ActionController(name: 'SettingsBase');
 
   @override
+  void setupDone() {
+    final _$actionInfo = _$SettingsBaseActionController.startAction();
+    try {
+      return super.setupDone();
+    } finally {
+      _$SettingsBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeMonthsViewRange(int range) {
     final _$actionInfo = _$SettingsBaseActionController.startAction();
     try {
@@ -122,7 +149,7 @@ mixin _$SettingsStore on SettingsBase, Store {
   @override
   String toString() {
     final string =
-        'monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()},orderBy: ${orderBy.toString()},currency: ${currency.toString()}';
+        'isNewSetup: ${isNewSetup.toString()},monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()},orderBy: ${orderBy.toString()},currency: ${currency.toString()}';
     return '{$string}';
   }
 }

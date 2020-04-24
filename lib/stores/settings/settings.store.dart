@@ -12,6 +12,9 @@ abstract class SettingsBase with Store {
   }
 
   @observable
+  bool isNewSetup;
+
+  @observable
   int monthsViewRange = 1;
 
   @observable
@@ -22,6 +25,12 @@ abstract class SettingsBase with Store {
 
   @observable
   String currency = '0=0';
+
+  @action
+  void setupDone() {
+    isNewSetup = false;
+    repo.memory.setupDone();
+  }
 
   @action
   void changeMonthsViewRange(int range) {
@@ -48,6 +57,9 @@ abstract class SettingsBase with Store {
   }
 
   init() async {
+    var isNewSetupValue = await repo.memory.isNewSetup;
+    isNewSetup = isNewSetupValue ?? true;
+
     var range = await repo.memory.monthsViewRange;
     if (range != null) monthsViewRange = range;
 

@@ -69,7 +69,7 @@ class FilterBar extends StatelessWidget {
               Text(
                 name,
                 style: TextStyle(
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w500,
                   color: Colors.white.withOpacity(0.8),
                 ),
               ),

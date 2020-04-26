@@ -67,8 +67,11 @@ class _AppInfoScreenState extends State<AppInfoScreen> {
         border: Border(bottom: BorderSide(color: Clrs.dark.withOpacity(0.1))),
       ),
       child: ListTile(
-        title: Text(title),
-        subtitle: Text(value),
+        title: Text(
+          title,
+          style: TextStyle(color: Clrs.dark),
+        ),
+        trailing: Text(value, style: TextStyle(color: Clrs.labelActive)),
       ),
     );
   }

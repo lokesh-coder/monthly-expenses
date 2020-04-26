@@ -72,7 +72,7 @@ class BannerBoard extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white30,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               SizedBox(width: 5),

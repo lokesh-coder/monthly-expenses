@@ -6,7 +6,8 @@ import 'package:monex/config/labels.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/main_page.dart';
-import 'package:monex/ui/welcome/welcome.dart';
+import 'package:monex/ui/screens/loading.dart';
+import 'package:monex/ui/screens/welcome.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,9 +37,9 @@ class MyApp extends StatelessWidget {
         Widget displayPage;
 
         if (store.isNewSetup == null) {
-          displayPage = Container(color: Clrs.primary);
+          displayPage = LoadingScreen();
         } else if (store.isNewSetup) {
-          displayPage = Welcome();
+          displayPage = WelcomeScreen();
         } else {
           displayPage = MainPage();
         }

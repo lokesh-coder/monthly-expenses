@@ -84,6 +84,7 @@ flutter_icons:
 flutter_native_splash:
   image: assets/images/app-icon2.png
   color: "474787"
+  ios: false
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -7,14 +7,14 @@ import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/fade_transition.dart';
 import 'package:monex/ui/settings/elements/currency/page.dart';
 
-class Welcome extends StatefulWidget {
-  const Welcome({Key key}) : super(key: key);
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({Key key}) : super(key: key);
 
   @override
-  _WelcomeState createState() => _WelcomeState();
+  _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeState extends State<Welcome> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   var store = sl<SettingsStore>();
   @override
   void initState() {

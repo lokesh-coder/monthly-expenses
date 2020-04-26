@@ -34,4 +34,9 @@ class Labels {
   static String ascending = 'Ascending';
   static String descending = 'Descending';
   static String changeCurrency = 'Change currency';
+
+  /// about
+  static String aboutApp = 'About Monex';
+  static String appInfo = 'App info';
+  static String help = 'Help';
 }

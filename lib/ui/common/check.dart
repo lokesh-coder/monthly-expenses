@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/m_icons.dart';
 
 class Check extends StatelessWidget {
   final Function onTap;
@@ -14,7 +15,7 @@ class Check extends StatelessWidget {
         child: FloatingActionButton(
           heroTag: null,
           backgroundColor: Clrs.primary,
-          child: Icon(Icons.check, size: 33),
+          child: Icon(MIcons.check_line, size: 33),
           elevation: 0,
           onPressed: null,
         ),

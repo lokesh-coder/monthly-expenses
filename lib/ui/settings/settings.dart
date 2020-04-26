@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/expander.dart';
-import 'package:monex/ui/common/fade_transition.dart';
 import 'package:monex/ui/common/header.dart';
-import 'package:monex/ui/screens/app_info.dart';
-import 'package:monex/ui/screens/help.dart';
 import 'package:monex/ui/settings/elements/delete_all/edit.dart';
 
 import 'elements/currency/display.dart';
@@ -30,7 +27,7 @@ class Settings extends StatelessWidget {
         leading: Container(),
         title: Labels.settings,
         action: IconButton(
-          icon: Icon(Icons.close),
+          icon: Icon(MIcons.close_line),
           onPressed: () {
             Navigator.of(context).pop();
           },

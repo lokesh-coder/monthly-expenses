@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/sort_strategies.dart';
 import 'package:monex/service_locator/service_locator.dart';
@@ -21,7 +22,7 @@ class OrderDisplay extends StatelessWidget {
       var ss = sorting.findSortStrategyById(store.sortBy);
       return SettingsItemTile(
         dataCtx: dataCtx,
-        icon: Icons.swap_vert,
+        icon: MIcons.line_height,
         title: Labels.displayOrder,
         displayText: sorting.getOrderLabel(ss.id, store.orderBy),
       );

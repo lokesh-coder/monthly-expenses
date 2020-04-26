@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
@@ -49,7 +50,7 @@ class DateInput extends StatelessWidget {
       alignment: Alignment.center,
       children: <Widget>[
         Icon(
-          Icons.calendar_today,
+          MIcons.calendar_line_1,
           size: 30,
           color: Color(0xff7384C1),
         ),

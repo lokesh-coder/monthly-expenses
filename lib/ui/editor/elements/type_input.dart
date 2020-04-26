@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/editor/elements/icon_card.dart';
@@ -26,8 +27,8 @@ class TypeInput extends StatelessWidget {
   Widget _icon(FormStore formStore) {
     return Icon(
       formStore.isCredit
-          ? Icons.sentiment_satisfied
-          : Icons.sentiment_dissatisfied,
+          ? MIcons.sentiment_satisfied_24px
+          : MIcons.sentiment_dissatisfied_24px,
       size: 30,
       color: formStore.isCredit ? Clrs.green : Clrs.red,
     );

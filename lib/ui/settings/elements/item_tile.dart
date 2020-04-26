@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/m_icons.dart';
 
 class SettingsItemTile extends StatelessWidget {
   final Function onTap;
@@ -30,7 +31,7 @@ class SettingsItemTile extends StatelessWidget {
         onPressed: null,
         icon: Icon(
           icon,
-          size: 30,
+          size: 26,
           color: Color(0xffC694A9),
         ),
       ),
@@ -50,7 +51,7 @@ class SettingsItemTile extends StatelessWidget {
         ),
       ),
       trailing: Icon(
-        dataCtx['isOpen'] ? Icons.expand_less : Icons.expand_more,
+        dataCtx['isOpen'] ? MIcons.arrow_down_s_line : MIcons.arrow_up_s_line,
         color: Clrs.label,
       ),
     );

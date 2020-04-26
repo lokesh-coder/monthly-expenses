@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -61,7 +62,7 @@ class FilterBar extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Icon(
-                Icons.lens,
+                MIcons.lens_24px,
                 size: 13,
                 color: color,
               ),

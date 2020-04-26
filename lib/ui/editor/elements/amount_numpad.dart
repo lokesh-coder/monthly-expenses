@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/app.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
@@ -41,7 +42,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
           SizedBox(height: 20),
           FloatingActionButton(
             backgroundColor: Clrs.primary,
-            child: Icon(Icons.check),
+            child: Icon(MIcons.check_line),
             onPressed: () {
               if (value == null) value = '';
               widget.onSelect(num.parse(value));
@@ -88,17 +89,15 @@ class _AmountNumpadState extends State<AmountNumpad> {
   }
 
   Widget _btn(String label) {
-    var style = TextStyle(
-      color: Clrs.labelActive,
-      fontSize: 25,
-    );
+    var style =
+        TextStyle(color: Clrs.labelActive, fontSize: 25, fontFamily: 'Manrope');
 
     var icon = (x, [col = Clrs.labelActive]) => Icon(x, color: col);
 
     var child;
 
     if (label == 'REMOVE')
-      child = icon(Icons.backspace);
+      child = icon(MIcons.delete_back_2_line);
     else
       child = Text(label, style: style);
 

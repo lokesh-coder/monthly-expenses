@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
@@ -93,7 +94,7 @@ class LabelInput extends StatelessWidget {
               },
               padding: EdgeInsets.all(0),
               icon: Icon(
-                Icons.check,
+                MIcons.check_line,
               ),
               color: Clrs.light,
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:package_info/package_info.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/ui/common/app-shell.dart';
@@ -31,7 +32,7 @@ class _AppInfoScreenState extends State<AppInfoScreen> {
       header: Header(
         title: Labels.appInfo,
         action: IconButton(
-          icon: Icon(Icons.close),
+          icon: Icon(MIcons.close_line),
           onPressed: () {
             Navigator.of(context).pop();
           },

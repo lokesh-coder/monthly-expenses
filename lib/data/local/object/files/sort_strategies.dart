@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/models/sort_strategy.dart';
 
@@ -8,7 +9,7 @@ class SortStrategies {
       id: 1,
       name: 'Alphabetical',
       desc: 'Display based on label name',
-      icon: Icons.sort_by_alpha,
+      icon: MIcons.character_recognition_line,
       keyFn: (x) => x.label,
       ascLabel: 'Label names are ordered by A to Z',
       descLabel: 'Label names are ordered by Z-A',
@@ -17,7 +18,7 @@ class SortStrategies {
       id: 2,
       name: 'Amount',
       desc: 'Order by Payment amount',
-      icon: Icons.account_balance_wallet,
+      icon: MIcons.wallet_3_line,
       keyFn: (x) => x.amount,
       ascLabel: 'Lowest to Highest amount',
       descLabel: 'Highest to Lowest amount',
@@ -26,7 +27,7 @@ class SortStrategies {
       id: 3,
       name: 'Payment date',
       desc: 'Based on the date of the payment',
-      icon: Icons.event_note,
+      icon: MIcons.calendar_line,
       keyFn: (x) => x.date,
       ascLabel: 'Form month starting to end',
       descLabel: 'From month end to starting',
@@ -35,7 +36,7 @@ class SortStrategies {
       id: 4,
       name: 'Recent changes',
       desc: 'last modified payment time',
-      icon: Icons.schedule,
+      icon: MIcons.time_line,
       keyFn: (x) => x.lastModifiedTime,
       ascLabel: 'Rarely edited first',
       descLabel: 'Recently edited first',
@@ -44,7 +45,7 @@ class SortStrategies {
       id: 5,
       name: 'Category',
       desc: 'Sort them by categories',
-      icon: Icons.category,
+      icon: MIcons.apps_line,
       keyFn: (x) => x.categoryID,
       ascLabel: 'Most used category first ',
       descLabel: 'Rarely used category first',

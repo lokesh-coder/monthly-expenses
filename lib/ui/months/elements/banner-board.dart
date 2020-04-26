@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/layout_helper.dart';
 import 'package:monex/models/enums.dart';
@@ -98,7 +99,7 @@ class BannerBoard extends StatelessWidget {
                             );
                           },
                           color: Colors.white.withOpacity(0.3),
-                          icon: Icon(Icons.settings),
+                          icon: Icon(MIcons.settings_3_line),
                         ),
                         IconButton(
                           onPressed: () {
@@ -106,7 +107,7 @@ class BannerBoard extends StatelessWidget {
                             sandwichStore.changeVisibility(true);
                           },
                           color: Colors.white.withOpacity(0.3),
-                          icon: Icon(Icons.add),
+                          icon: Icon(MIcons.add_line),
                         )
                       ],
                     )

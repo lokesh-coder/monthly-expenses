@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/sort_strategies.dart';
 import 'package:monex/models/enums.dart';
@@ -70,13 +71,13 @@ class _OrderEditState extends State<OrderEdit> {
         'id': OrderBy.ASC.index,
         'name': Labels.ascending,
         'desc': strategy.ascLabel,
-        'icon': Icons.arrow_upward
+        'icon': MIcons.sort_asc
       },
       {
         'id': OrderBy.DESC.index,
         'name': Labels.descending,
         'desc': strategy.descLabel,
-        'icon': Icons.arrow_downward
+        'icon': MIcons.sort_desc
       },
     ];
     return data.map((o) => _getItem(o)).toList();

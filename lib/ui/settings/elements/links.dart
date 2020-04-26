@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/ui/common/fade_transition.dart';
 import 'package:monex/ui/screens/app_info.dart';
 import 'package:monex/ui/screens/help.dart';
@@ -36,7 +37,7 @@ class AppLinks extends StatelessWidget {
         name,
         style: TextStyle(color: Clrs.dark.withOpacity(0.5)),
       ),
-      trailing: Icon(Icons.arrow_right),
+      trailing: Icon(MIcons.arrow_drop_right_fill),
       onTap: () {
         Navigator.push(
           context,

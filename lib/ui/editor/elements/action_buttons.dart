@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -34,7 +35,7 @@ class ActionButton extends StatelessWidget {
         height: btnHeight,
         child: FloatingActionButton(
           backgroundColor: Clrs.primary,
-          child: Icon(Icons.check),
+          child: Icon(MIcons.check_line),
           onPressed: onSubmit,
         ),
       ),
@@ -43,7 +44,7 @@ class ActionButton extends StatelessWidget {
 
   Widget _secondary() {
     if (sl<FormStore>().isNew) return SizedBox(width: 35);
-    var icon = Icon(Icons.delete_outline, size: 35);
+    var icon = Icon(MIcons.delete_bin_line, size: 26, color: Clrs.label);
 
     return ConfirmModal(builder: (context, control) {
       return IconButton(
@@ -52,7 +53,7 @@ class ActionButton extends StatelessWidget {
           control.title = Labels.deleteConfirm;
           control.yesLabel = Labels.delete;
           control.noLabel = Labels.cancel;
-          control.icon = Icons.delete;
+          control.icon = MIcons.delete_bin_2_line;
           control.onYes = () {
             var sandwichStore = sl<SandwichStore>();
             var paymentsStore = sl<PaymentsStore>();
@@ -70,7 +71,7 @@ class ActionButton extends StatelessWidget {
 
   Widget _tertiary() {
     return IconButton(
-        icon: Icon(Icons.keyboard_arrow_down, size: 30),
+        icon: Icon(MIcons.arrow_down_s_line, size: 30),
         onPressed: () {
           sl<SandwichStore>().changeVisibility(false);
         });

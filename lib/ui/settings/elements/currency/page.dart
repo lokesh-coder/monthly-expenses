@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/models/currency.dart';
 import 'package:monex/service_locator/service_locator.dart';
@@ -19,7 +20,7 @@ class CurrencyPage extends StatelessWidget {
       header: Header(
         title: Labels.chooseCurrency,
         action: IconButton(
-          icon: Icon(Icons.close),
+          icon: Icon(MIcons.close_circle_line),
           onPressed: () {
             Navigator.of(context).pop();
           },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
@@ -13,7 +14,7 @@ class Empty extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(Icons.widgets, color: Clrs.label, size: 35),
+        Icon(MIcons.bubble_chart_line, color: Clrs.label, size: 35),
         SizedBox(height: 20),
         Text(
           Labels.noPaymentsFound,

@@ -18,7 +18,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
         Tooltip(
           message: Labels.closeScreen,
           child: IconButton(
-            icon: Icon(MIcons.close_line),
+            icon: Icon(MIcons.close_line, color: Colors.white54, size: 27),
             onPressed: () {
               Navigator.of(context).pop();
             },

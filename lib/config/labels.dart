@@ -39,4 +39,13 @@ class Labels {
   static String aboutApp = 'About Monex';
   static String appInfo = 'App info';
   static String help = 'Help';
+
+  /// tooltips
+  static String closeScreen = 'Close';
+  static String closeModal = 'Close';
+  static String deletePayment = 'Delete this payment';
+  static String closeEditor = 'Close editor';
+  static String addLabel = 'Add label';
+  static String goToSettings = 'Open Settings';
+  static String goToEditor = 'Add new payement';
 }

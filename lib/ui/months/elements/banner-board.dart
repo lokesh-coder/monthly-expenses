@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/layout_helper.dart';
@@ -91,23 +92,29 @@ class BannerBoard extends StatelessWidget {
                     ),
                     Row(
                       children: <Widget>[
-                        IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              FadeRoute(page: Settings()),
-                            );
-                          },
-                          color: Colors.white.withOpacity(0.3),
-                          icon: Icon(MIcons.settings_3_line),
+                        Tooltip(
+                          message: Labels.goToSettings,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                FadeRoute(page: Settings()),
+                              );
+                            },
+                            color: Colors.white.withOpacity(0.3),
+                            icon: Icon(MIcons.settings_3_line),
+                          ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            paymentsStore.setActivePayment(null);
-                            sandwichStore.changeVisibility(true);
-                          },
-                          color: Colors.white.withOpacity(0.3),
-                          icon: Icon(MIcons.add_line),
+                        Tooltip(
+                          message: Labels.goToEditor,
+                          child: IconButton(
+                            onPressed: () {
+                              paymentsStore.setActivePayment(null);
+                              sandwichStore.changeVisibility(true);
+                            },
+                            color: Colors.white.withOpacity(0.3),
+                            icon: Icon(MIcons.add_line),
+                          ),
                         )
                       ],
                     )

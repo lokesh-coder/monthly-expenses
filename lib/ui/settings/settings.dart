@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/labels.dart';
-import 'package:monex/config/m_icons.dart';
 import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/expander.dart';
 import 'package:monex/ui/common/header.dart';
@@ -26,12 +25,6 @@ class Settings extends StatelessWidget {
       header: Header(
         leading: Container(),
         title: Labels.settings,
-        action: IconButton(
-          icon: Icon(MIcons.close_line),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
       ),
       child: ListView(
         physics: BouncingScrollPhysics(),

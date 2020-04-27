@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/layout_helper.dart';
 import "package:monex/config/extension.dart";
@@ -71,9 +72,12 @@ class BottomModal extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                icon: Icon(MIcons.close_circle_line),
-                onPressed: () => Navigator.of(ctx).pop(),
+              Tooltip(
+                message: Labels.closeModal,
+                child: IconButton(
+                  icon: Icon(MIcons.close_line),
+                  onPressed: () => Navigator.of(ctx).pop(),
+                ),
               )
             ],
           ),

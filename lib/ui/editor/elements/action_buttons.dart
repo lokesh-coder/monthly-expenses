@@ -46,34 +46,43 @@ class ActionButton extends StatelessWidget {
     if (sl<FormStore>().isNew) return SizedBox(width: 35);
     var icon = Icon(MIcons.delete_bin_line, size: 26, color: Clrs.label);
 
-    return ConfirmModal(builder: (context, control) {
-      return IconButton(
-        color: Colors.black26,
-        onPressed: () {
-          control.title = Labels.deleteConfirm;
-          control.yesLabel = Labels.delete;
-          control.noLabel = Labels.cancel;
-          control.icon = MIcons.delete_bin_2_line;
-          control.onYes = () {
-            var sandwichStore = sl<SandwichStore>();
-            var paymentsStore = sl<PaymentsStore>();
+    return ConfirmModal(
+      builder: (context, control) {
+        return Tooltip(
+          message: Labels.deletePayment,
+          child: IconButton(
+            color: Colors.black26,
+            onPressed: () {
+              control.title = Labels.deleteConfirm;
+              control.yesLabel = Labels.delete;
+              control.noLabel = Labels.cancel;
+              control.icon = MIcons.delete_bin_2_line;
+              control.onYes = () {
+                var sandwichStore = sl<SandwichStore>();
+                var paymentsStore = sl<PaymentsStore>();
 
-            sandwichStore.changeVisibility(false);
-            paymentsStore.deletePayment(paymentsStore.active);
-            paymentsStore.setActivePayment(null);
-          };
-          control.open();
-        },
-        icon: icon,
-      );
-    });
+                sandwichStore.changeVisibility(false);
+                paymentsStore.deletePayment(paymentsStore.active);
+                paymentsStore.setActivePayment(null);
+              };
+              control.open();
+            },
+            icon: icon,
+          ),
+        );
+      },
+    );
   }
 
   Widget _tertiary() {
-    return IconButton(
+    return Tooltip(
+      message: Labels.closeEditor,
+      child: IconButton(
         icon: Icon(MIcons.arrow_down_s_line, size: 30),
         onPressed: () {
           sl<SandwichStore>().changeVisibility(false);
-        });
+        },
+      ),
+    );
   }
 }

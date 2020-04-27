@@ -87,16 +87,19 @@ class LabelInput extends StatelessWidget {
               color: Clrs.primary,
               borderRadius: BorderRadius.circular(50),
             ),
-            child: IconButton(
-              onPressed: () {
-                formStore.changeLabel(content);
-                control.close();
-              },
-              padding: EdgeInsets.all(0),
-              icon: Icon(
-                MIcons.check_line,
+            child: Tooltip(
+              message: Labels.addLabel,
+              child: IconButton(
+                onPressed: () {
+                  formStore.changeLabel(content);
+                  control.close();
+                },
+                padding: EdgeInsets.all(0),
+                icon: Icon(
+                  MIcons.check_line,
+                ),
+                color: Clrs.light,
               ),
-              color: Clrs.light,
             ),
           )
         ],

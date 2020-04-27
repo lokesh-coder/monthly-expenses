@@ -3,7 +3,7 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/ui/common/app-shell.dart';
 
 class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({Key key}) : super(key: key);
+  const LoadingScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,10 @@ class LoadingScreen extends StatelessWidget {
       child: Container(
         color: Clrs.primary,
         child: Center(
-            child: Text('Loading...', style: TextStyle(color: Colors.white))),
+          child: CircularProgressIndicator(
+            valueColor: const AlwaysStoppedAnimation<Color>(Clrs.secondary),
+          ),
+        ),
       ),
     );
   }

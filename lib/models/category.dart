@@ -3,7 +3,7 @@ class Category {
   String name;
   String path;
   String group;
-  List type;
+  String type;
 
   Category({
     this.id,

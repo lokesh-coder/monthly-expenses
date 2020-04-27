@@ -56,6 +56,10 @@ class LabelInput extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: TextFormField(
+              keyboardType: TextInputType.text,
+              enableSuggestions: false,
+              autocorrect: false,
+              // inputFormatters:[] ,
               initialValue: formStore.label,
               autofocus: true,
               maxLength: 30,
@@ -71,10 +75,10 @@ class LabelInput extends StatelessWidget {
                 fontSize: 17,
               ),
               onChanged: (x) {
-                content = x;
+                content = x.trim();
               },
               onFieldSubmitted: (x) {
-                content = x;
+                content = x.trim();
                 formStore.changeLabel(x);
                 control.close();
               },

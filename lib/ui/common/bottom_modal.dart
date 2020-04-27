@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:kumi_popup_window/kumi_popup_window.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
@@ -23,38 +25,53 @@ class BottomModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Builder(
-      builder: (context) {
+      builder: (ctx) {
         var data = BottomModalControl();
+        var trigger;
         data.open = (title, child) {
-          FocusScope.of(context).requestFocus(new FocusNode());
-
-          showModalBottomSheet(
-            isDismissible: true,
-            context: context,
-            isScrollControlled: true,
-            useRootNavigator: true,
-            backgroundColor: Colors.transparent,
-            builder: (ctx) {
+          return showPopupWindow(
+            context,
+            gravity: KumiPopupGravity.centerBottom,
+            bgColor: Colors.grey.withOpacity(0.5),
+            clickOutDismiss: false,
+            clickBackDismiss: true,
+            customAnimation: false,
+            customPop: false,
+            customPage: false,
+            underStatusBar: false,
+            underAppBar: true,
+            offsetX: 0,
+            offsetY: 0,
+            duration: Duration(milliseconds: 200),
+            onShowStart: (pop) {
+              trigger = pop;
+            },
+            onDismissStart: (pop) {
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
+            },
+            onClickOut: (pop) {
+              pop.dismiss(context);
+            },
+            childFun: (pop) {
               return Container(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(LayoutHelper.mainPageKey.currentContext)
-                      .viewInsets
-                      .bottom,
-                ),
+                key: GlobalKey(),
+                width: LayoutHelper.screenWidth,
+                color: Colors.transparent,
                 child: SingleChildScrollView(
-                    child: _layout(ctx, title, child, data)),
+                  child: _layout(pop, title, child, data),
+                ),
               );
             },
           );
         };
 
-        data.close = () => Navigator.of(context).pop();
+        data.close = () => trigger.dismiss(context);
         return builder(context, data);
       },
     );
   }
 
-  _content(ctx, String title, child, data) {
+  _content(KumiPopupWindow pop, String title, child, data) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +93,8 @@ class BottomModal extends StatelessWidget {
                 message: Labels.closeModal,
                 child: IconButton(
                   icon: Icon(MIcons.close_line),
-                  onPressed: () => Navigator.of(ctx).pop(),
+                  onPressed: () =>
+                      pop.dismiss(LayoutHelper.mainPageKey.currentContext),
                 ),
               )
             ],
@@ -88,7 +106,7 @@ class BottomModal extends StatelessWidget {
     );
   }
 
-  _layout(ctx, title, child, data) {
+  _layout(KumiPopupWindow pop, title, child, data) {
     return Container(
       padding: EdgeInsets.all(10),
       child: Container(
@@ -97,7 +115,7 @@ class BottomModal extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        child: _content(ctx, title, child, data),
+        child: _content(pop, title, child, data),
       ),
     );
   }

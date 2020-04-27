@@ -289,6 +289,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  kumi_popup_window:
+    dependency: "direct main"
+    description:
+      name: kumi_popup_window
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.8"
   logging:
     dependency: transitive
     description:

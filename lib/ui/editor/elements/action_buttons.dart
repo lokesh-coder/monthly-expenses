@@ -78,7 +78,7 @@ class ActionButton extends StatelessWidget {
     return Tooltip(
       message: Labels.closeEditor,
       child: IconButton(
-        icon: Icon(MIcons.arrow_down_s_line, size: 30),
+        icon: Icon(MIcons.arrow_down_s_line, size: 30, color: Clrs.label),
         onPressed: () {
           sl<SandwichStore>().changeVisibility(false);
         },

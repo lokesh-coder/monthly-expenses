@@ -19,7 +19,7 @@ class CategoryPicker extends StatelessWidget {
     return SingleChildScrollView(
       child: Wrap(
         runSpacing: 10,
-        spacing: 5,
+        spacing: 4,
         children: _categories(),
       ),
     );

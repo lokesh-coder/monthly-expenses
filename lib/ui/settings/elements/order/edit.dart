@@ -47,9 +47,12 @@ class _OrderEditState extends State<OrderEdit> {
           color: Clrs.labelActive,
         ),
       ),
-      leading: Icon(
-        data['icon'],
-        color: Clrs.inputValue.withOpacity(0.5),
+      leading: Container(
+        height: double.infinity,
+        child: Icon(
+          data['icon'],
+          color: Clrs.inputValue.withOpacity(0.5),
+        ),
       ),
       trailing: data['id'] == _value ? Check() : SizedBox.shrink(),
       onTap: () {

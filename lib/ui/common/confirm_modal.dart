@@ -121,7 +121,7 @@ class ConfirmModal extends StatelessWidget {
           },
           child: Text(
             control.yesLabel.toUpperCase(),
-            style: btnStyle.copyWith(color: Color(0xffC694A9)),
+            style: btnStyle.copyWith(color: Clrs.secondary),
           ),
         ),
         FlatButton(

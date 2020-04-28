@@ -38,14 +38,14 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
         ),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
-            activeTrackColor: Color(0xffC694A9),
+            activeTrackColor: Clrs.secondary,
             inactiveTrackColor: Clrs.label,
             trackHeight: 3.0,
-            thumbColor: Color(0xffC694A9),
+            thumbColor: Clrs.secondary,
             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.0),
-            overlayColor: Color(0xffC694A9).withAlpha(32),
+            overlayColor: Clrs.secondary.withAlpha(32),
             overlayShape: RoundSliderOverlayShape(overlayRadius: 14.0),
-            activeTickMarkColor: Color(0xffC694A9),
+            activeTickMarkColor: Clrs.secondary,
             inactiveTickMarkColor: Clrs.label,
           ),
           child: Slider(

@@ -32,7 +32,7 @@ class SettingsItemTile extends StatelessWidget {
         icon: Icon(
           icon,
           size: 26,
-          color: Color(0xffC694A9),
+          color: Clrs.secondary,
         ),
       ),
       title: Text(

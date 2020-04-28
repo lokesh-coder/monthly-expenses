@@ -45,9 +45,12 @@ class _SortEditState extends State<SortEdit> {
           color: Clrs.labelActive,
         ),
       ),
-      leading: Icon(
-        strategy.icon,
-        color: Clrs.inputValue.withOpacity(0.5),
+      leading: Container(
+        height: double.infinity,
+        child: Icon(
+          strategy.icon,
+          color: Clrs.inputValue.withOpacity(0.5),
+        ),
       ),
       trailing: strategy.id == _value ? Check() : SizedBox.shrink(),
       onTap: () {

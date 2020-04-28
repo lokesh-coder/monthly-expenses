@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/layout_helper.dart';
@@ -33,7 +34,7 @@ class BottomModal extends StatelessWidget {
           return showPopupWindow(
             context,
             gravity: KumiPopupGravity.centerBottom,
-            bgColor: Colors.grey.withOpacity(0.5),
+            bgColor: Clrs.primary.withOpacity(0.3),
             clickOutDismiss: false,
             clickBackDismiss: true,
             customAnimation: false,
@@ -58,9 +59,7 @@ class BottomModal extends StatelessWidget {
                 key: GlobalKey(),
                 width: LayoutHelper.screenWidth,
                 color: Colors.transparent,
-                child: SingleChildScrollView(
-                  child: _layout(pop, title, child, data),
-                ),
+                child: _layout(pop, title, child, data),
               );
             },
           );
@@ -84,7 +83,7 @@ class BottomModal extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               fit: StackFit.expand,
-              children: <Widget>[
+              children: [
                 Center(
                   child: Text(
                     title.capitalize(),
@@ -121,15 +120,22 @@ class BottomModal extends StatelessWidget {
   }
 
   _layout(KumiPopupWindow pop, title, child, data) {
-    return Container(
-      padding: EdgeInsets.all(10),
+    var screenH = LayoutHelper.screenHeight;
+    return ConstrainedBox(
+      constraints: new BoxConstraints(
+        minHeight: screenH * Dimensions.bottomSheetMinHeight,
+        maxHeight: screenH * Dimensions.bottomSheetMaxHeight,
+      ),
       child: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        padding: EdgeInsets.all(10),
+        child: Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: _content(pop, title, child, data),
         ),
-        child: _content(pop, title, child, data),
       ),
     );
   }

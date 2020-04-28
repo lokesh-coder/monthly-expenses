@@ -51,7 +51,7 @@ class SettingsItemTile extends StatelessWidget {
         ),
       ),
       trailing: Icon(
-        dataCtx['isOpen'] ? MIcons.arrow_down_s_line : MIcons.arrow_up_s_line,
+        dataCtx['isOpen'] ? MIcons.arrow_up_s_line : MIcons.arrow_down_s_line,
         color: Clrs.label,
       ),
     );

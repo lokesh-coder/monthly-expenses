@@ -106,17 +106,35 @@ class BannerBoard extends StatelessWidget {
                             icon: Icon(MIcons.settings_3_line),
                           ),
                         ),
-                        Hint(
-                          Labels.goToEditor,
-                          child: IconButton(
-                            onPressed: () {
-                              paymentsStore.setActivePayment(null);
-                              sandwichStore.changeVisibility(true);
-                            },
-                            color: Colors.white.withOpacity(0.3),
-                            icon: Icon(MIcons.add_line),
-                          ),
-                        )
+                        Observer(
+                          builder: (context) {
+                            var clr = Colors.white.withOpacity(0.3);
+                            Widget openIcon = Hint(
+                              Labels.goToEditor,
+                              child: IconButton(
+                                onPressed: () {
+                                  paymentsStore.setActivePayment(null);
+                                  sandwichStore.changeVisibility(true);
+                                },
+                                color: clr,
+                                icon: Icon(MIcons.add_line),
+                              ),
+                            );
+
+                            Widget closeIcon = Hint(
+                              Labels.closeEditor,
+                              child: IconButton(
+                                onPressed: () {
+                                  paymentsStore.setActivePayment(null);
+                                  sandwichStore.changeVisibility(false);
+                                },
+                                color: clr,
+                                icon: Icon(MIcons.close_line),
+                              ),
+                            );
+                            return sandwichStore.isOpen ? closeIcon : openIcon;
+                          },
+                        ),
                       ],
                     )
                   ],

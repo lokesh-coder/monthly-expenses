@@ -2,6 +2,7 @@ import 'package:monex/models/category.dart';
 
 class Catagories {
   List<Category> _debits = [
+    _getItem('General', 'general'),
     _getItem('Account', 'account'),
     _getItem('Flight', 'airplane-take-off'),
     _getItem('Baby', 'baby-bottle'),
@@ -44,6 +45,7 @@ class Catagories {
   ];
 
   List<Category> _credits = [
+    _getItem('General', 'general', null, 'credit'),
     _getItem('Returns', 'coin-in-hand', null, 'credit'),
     _getItem('Interest', 'discount', null, 'credit'),
     _getItem('Salary', 'money-transfer', null, 'credit'),

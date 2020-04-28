@@ -34,12 +34,12 @@ class _AmountNumpadState extends State<AmountNumpad> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: <Widget>[
           _display(),
           _numpad(),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           FloatingActionButton(
             backgroundColor: Clrs.primary,
             child: Icon(MIcons.tick),
@@ -62,26 +62,16 @@ class _AmountNumpadState extends State<AmountNumpad> {
     List<Widget> items =
         (rowOne + rowTwo + rowThree + rowFour).map((c) => _btn(c)).toList();
 
-    return Container(
-      padding: EdgeInsets.all(0),
-      decoration: BoxDecoration(
-        gradient: RadialGradient(
-          colors: [Clrs.labelActive.withOpacity(0.3), Colors.transparent],
-          radius: 0.6,
-          focal: Alignment.center,
-        ),
+    return GridView(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisSpacing: 1,
+        mainAxisSpacing: 1,
+        crossAxisCount: 3,
+        childAspectRatio: 2,
       ),
-      child: GridView(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisSpacing: 1,
-          mainAxisSpacing: 1,
-          crossAxisCount: 3,
-          childAspectRatio: 1.5,
-        ),
-        children: items,
-      ),
+      children: items,
     );
   }
 
@@ -139,10 +129,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
       );
     }
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: displayValue,
-    );
+    return Container(child: displayValue);
   }
 
   _normalizeAmount(String value) {

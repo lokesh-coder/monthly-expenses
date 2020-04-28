@@ -29,7 +29,7 @@ class Payments extends StatelessWidget {
         builder: (context) {
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
           if (payments == null || payments.length == 0)
-            return Center(child: Empty());
+            return Center(child: Empty(paymentsStore.filterBy));
           return ListView.separated(
             physics: BouncingScrollPhysics(),
             itemCount: payments == null ? 0 : payments.length,

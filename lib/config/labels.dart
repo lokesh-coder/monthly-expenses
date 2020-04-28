@@ -3,8 +3,10 @@ class Labels {
   static String otherCurrency = 'Others';
 
   /// month
-  static String noPaymentsFound = 'No payments to display!';
-  static String addNewPayment = 'Add new payment';
+  static String noPaymentsToShow = 'No payments to display!';
+  static String noCreditsToShow = 'No Credits to display!';
+  static String noDebitsToShow = 'No Debits to display!';
+  static String addNewPayment = 'Add new';
 
   /// editor
   static String formError = 'Please fill amount and name';

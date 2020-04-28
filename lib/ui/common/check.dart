@@ -4,13 +4,15 @@ import 'package:monex/config/m_icons.dart';
 
 class Check extends StatelessWidget {
   final Function onTap;
+  final num size = 26;
+
   const Check({Key key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 26,
-      width: 26,
+      height: size,
+      width: size,
       child: FittedBox(
         child: FloatingActionButton(
           heroTag: null,

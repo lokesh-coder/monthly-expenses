@@ -16,7 +16,7 @@ class CurrencyEdit extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            FadeRoute(page: CurrencyPage()),
+            FadeRoute(CurrencyPage()),
           );
         },
         child: Text(

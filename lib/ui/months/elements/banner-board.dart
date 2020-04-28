@@ -93,7 +93,7 @@ class BannerBoard extends StatelessWidget {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                FadeRoute(page: Settings()),
+                                FadeRoute(Settings()),
                               );
                             },
                             color: Colors.white.withOpacity(0.3),

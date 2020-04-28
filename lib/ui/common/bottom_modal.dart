@@ -20,10 +20,7 @@ class BottomModalControl {
 class BottomModal extends StatelessWidget {
   final Function(BuildContext, BottomModalControl) builder;
 
-  const BottomModal({
-    Key key,
-    this.builder,
-  }) : super(key: key);
+  const BottomModal({this.builder});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +32,7 @@ class BottomModal extends StatelessWidget {
           return showPopupWindow(
             context,
             gravity: KumiPopupGravity.centerBottom,
-            bgColor: Clrs.primary.withOpacity(0.3),
+            bgColor: Clrs.dark.withOpacity(0.5),
             clickOutDismiss: false,
             clickBackDismiss: true,
             customAnimation: false,
@@ -52,15 +49,18 @@ class BottomModal extends StatelessWidget {
             onDismissStart: (pop) {
               SystemChannels.textInput.invokeMethod('TextInput.hide');
             },
-            onClickOut: (pop) {
-              pop.dismiss(context);
-            },
+            onClickOut: (pop) => pop.dismiss(context),
             childFun: (pop) {
               return Container(
                 key: GlobalKey(),
                 width: LayoutHelper.screenWidth,
                 color: Colors.transparent,
-                child: _layout(pop, title, child, data),
+                child: _ModalLayout(
+                  pop: pop,
+                  child: child,
+                  dataCtx: data,
+                  title: title,
+                ),
               );
             },
           );
@@ -71,14 +71,60 @@ class BottomModal extends StatelessWidget {
       },
     );
   }
+}
 
-  _content(KumiPopupWindow pop, String title, child, data) {
+class _ModalLayout extends StatelessWidget {
+  final KumiPopupWindow pop;
+  final String title;
+  final Widget child;
+  final BottomModalControl dataCtx;
+
+  const _ModalLayout({this.pop, this.title, this.child, this.dataCtx});
+
+  @override
+  Widget build(BuildContext context) {
+    var screenH = LayoutHelper.screenHeight;
+    return ConstrainedBox(
+      constraints: new BoxConstraints(
+        minHeight: screenH * Dimensions.bottomSheetMinHeight,
+        maxHeight: screenH * Dimensions.bottomSheetMaxHeight,
+      ),
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: _ModalContent(
+            pop: pop,
+            child: child,
+            dataCtx: dataCtx,
+            title: title,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ModalContent extends StatelessWidget {
+  final KumiPopupWindow pop;
+  final String title;
+  final Widget child;
+  final BottomModalControl dataCtx;
+
+  const _ModalContent({this.pop, this.title, this.child, this.dataCtx});
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
+      children: [
         Visibility(
-          visible: data.showHeader,
+          visible: dataCtx.showHeader,
           child: Container(
             height: 50,
             child: Stack(
@@ -98,11 +144,10 @@ class BottomModal extends StatelessWidget {
                     Labels.closeModal,
                     child: IconButton(
                       icon: Icon(
-                        MIcons.close_line,
+                        MIcons.close_rd,
                         color: Clrs.dark.withOpacity(0.3),
                       ),
-                      onPressed: () =>
-                          pop.dismiss(LayoutHelper.mainPageKey.currentContext),
+                      onPressed: () => pop.dismiss(context),
                     ),
                   ),
                 )
@@ -113,27 +158,6 @@ class BottomModal extends StatelessWidget {
         SizedBox(height: 10),
         child
       ],
-    );
-  }
-
-  _layout(KumiPopupWindow pop, title, child, data) {
-    var screenH = LayoutHelper.screenHeight;
-    return ConstrainedBox(
-      constraints: new BoxConstraints(
-        minHeight: screenH * Dimensions.bottomSheetMinHeight,
-        maxHeight: screenH * Dimensions.bottomSheetMaxHeight,
-      ),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Container(
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          child: _content(pop, title, child, data),
-        ),
-      ),
     );
   }
 }

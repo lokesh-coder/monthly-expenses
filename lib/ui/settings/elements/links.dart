@@ -37,7 +37,7 @@ class AppLinks extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          FadeRoute(page: page()),
+          FadeRoute(page()),
         );
       },
     );

@@ -4,7 +4,7 @@ import 'package:monex/config/typography.dart';
 class Ribbon extends StatelessWidget {
   final String text;
 
-  const Ribbon(this.text, {Key key}) : super(key: key);
+  const Ribbon(this.text);
 
   @override
   Widget build(BuildContext context) {

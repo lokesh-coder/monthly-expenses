@@ -24,60 +24,41 @@ class Amount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var store = sl<SettingsStore>();
-    Color color = _getColor();
 
-    double fontSize = _getFontSizeMap()[size];
+    Color color = _colorMap()[type];
+    double fontSize = _fontSizeMap()[size];
 
-    return Container(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Observer(builder: (context) {
-            var currency = store.currency;
-            return Text(
-              format
-                  ? CurrencyHelper.getFormattedCurrency(value, currency)
-                  : value.toString(),
-              style: Style.numeric.clr(color).fs(fontSize),
-            );
-          }),
-        ],
-      ),
+    String Function(String) displayText = (currency) => format
+        ? CurrencyHelper.getFormattedCurrency(value, currency)
+        : value.toString();
+
+    return Observer(
+      builder: (context) {
+        return Text(
+          displayText(store.currency),
+          style: Style.numeric.clr(color).fs(fontSize),
+        );
+      },
     );
   }
 
-  Color _getColor() {
-    Color color;
-    switch (type) {
-      case AmountDisplayType.CREDIT:
-        color = Clrs.green;
-        break;
-      case AmountDisplayType.DEBIT:
-        color = Clrs.red;
-        break;
-      case AmountDisplayType.INPUT:
-        color = Clrs.dark;
-        break;
-      case AmountDisplayType.PLACEHOLDER:
-        color = Clrs.label;
-        break;
-      case AmountDisplayType.SILENT:
-        color = Colors.white.withOpacity(0.5);
-        break;
-      default:
-        color = Clrs.primary;
-    }
-    return color;
-  }
-
-  Map<dynamic, double> _getFontSizeMap() {
+  Map<dynamic, double> _fontSizeMap() {
     return {
       DisplaySize.XS: FontSize.xs,
       DisplaySize.SM: FontSize.sm,
       DisplaySize.BASE: FontSize.base,
       DisplaySize.MD: FontSize.md,
       DisplaySize.LG: FontSize.lg,
+    };
+  }
+
+  Map<dynamic, Color> _colorMap() {
+    return {
+      AmountDisplayType.CREDIT: Clrs.green,
+      AmountDisplayType.DEBIT: Clrs.red,
+      AmountDisplayType.INPUT: Clrs.dark,
+      AmountDisplayType.PLACEHOLDER: Clrs.label,
+      AmountDisplayType.SILENT: Colors.white.withOpacity(0.5),
     };
   }
 }

@@ -6,8 +6,7 @@ class Expander extends StatefulWidget {
   final Widget Function(BuildContext, Map) bodyBuilder;
   final Widget Function(BuildContext, Map) headBuilder;
 
-  const Expander({Key key, this.headBuilder, this.bodyBuilder})
-      : super(key: key);
+  const Expander({this.headBuilder, this.bodyBuilder});
 
   @override
   _ExpanderState createState() => _ExpanderState();
@@ -36,9 +35,7 @@ class _ExpanderState extends State<Expander> {
               : Colors.transparent,
           child: widget.headBuilder(context, dataContext),
         ),
-        Divider(
-          height: 0,
-        ),
+        Divider(height: 0),
         Visibility(
           visible: isContentVisible,
           child: Container(

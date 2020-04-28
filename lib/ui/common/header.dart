@@ -8,7 +8,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
   final Widget leading;
   final String title;
 
-  Header({Key key, this.title, this.leading}) : super(key: key);
+  Header({this.title, this.leading});
 
   @override
   PreferredSizeWidget build(BuildContext context) {
@@ -16,18 +16,16 @@ class Header extends StatelessWidget with PreferredSizeWidget {
       leading: leading,
       title: Text(title, style: Style.heading.md.bodyAltClr),
       centerTitle: true,
+      elevation: 0,
       actions: [
         Hint(
           Labels.closeScreen,
           child: IconButton(
             icon: Icon(MIcons.close_line, color: Colors.white54, size: 27),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            onPressed: () => Navigator.of(context).pop(),
           ),
         )
       ],
-      elevation: 0,
     );
   }
 

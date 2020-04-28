@@ -53,7 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      FadeRoute(page: CurrencyPage()),
+                      FadeRoute(CurrencyPage()),
                     );
                   },
                   color: Color(0xffcf6a87),

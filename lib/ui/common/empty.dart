@@ -26,15 +26,13 @@ class Empty extends StatelessWidget {
       default:
         message = Labels.noPaymentsToShow;
     }
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(MIcons.bubble_chart_line, color: Clrs.label, size: 35),
         SizedBox(height: 20),
-        Text(
-          message,
-          style: Style.body.sm.clr(Clrs.label),
-        ),
+        Text(message, style: Style.body.sm.clr(Clrs.label)),
         FlatButton(
           child: Text(
             Labels.addNewPayment.toUpperCase(),

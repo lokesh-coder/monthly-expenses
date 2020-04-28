@@ -18,10 +18,7 @@ class ConfirmModalControl {
 class ConfirmModal extends StatelessWidget {
   final Function(BuildContext, ConfirmModalControl) builder;
 
-  const ConfirmModal({
-    Key key,
-    this.builder,
-  }) : super(key: key);
+  const ConfirmModal({this.builder});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +26,6 @@ class ConfirmModal extends StatelessWidget {
       builder: (context) {
         var control = ConfirmModalControl();
         control.open = () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-
           showGeneralDialog(
             context: context,
             barrierDismissible: true,
@@ -38,14 +33,8 @@ class ConfirmModal extends StatelessWidget {
                 MaterialLocalizations.of(context).modalBarrierDismissLabel,
             barrierColor: Colors.black26.withOpacity(0.2),
             transitionDuration: const Duration(milliseconds: 200),
-            pageBuilder: (
-              BuildContext buildContext,
-              Animation animation,
-              Animation secondaryAnimation,
-            ) {
-              return Center(
-                child: _modal(context, control),
-              );
+            pageBuilder: (BuildContext x, Animation y, Animation z) {
+              return Center(child: _ModalLayout(control));
             },
           );
         };
@@ -54,10 +43,16 @@ class ConfirmModal extends StatelessWidget {
       },
     );
   }
+}
 
-  Widget _modal(BuildContext context, ConfirmModalControl control) {
-    double borderRadius = 6.0;
+class _ModalLayout extends StatelessWidget {
+  final ConfirmModalControl control;
+  final double borderRadius = 6.0;
 
+  const _ModalLayout(this.control);
+
+  @override
+  Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: Container(
@@ -76,50 +71,51 @@ class ConfirmModal extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(borderRadius),
-          child: _content(context, control),
+          child: _ModalContent(control),
         ),
       ),
     );
   }
+}
 
-  Widget _content(BuildContext context, ConfirmModalControl control) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[_message(control), _actionBtns(context, control)],
-    );
-  }
+class _ModalContent extends StatelessWidget {
+  final ConfirmModalControl control;
+  const _ModalContent(this.control);
 
-  _message(ConfirmModalControl control) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Text(
-        control.title,
-        textAlign: TextAlign.center,
-        style: Style.body.bodyClr,
-      ),
-    );
-  }
-
-  _actionBtns(BuildContext context, ConfirmModalControl control) {
+  @override
+  Widget build(BuildContext context) {
     var btnStyle = Style.body.sm.clr(Clrs.text.withOpacity(0.5));
 
-    return Row(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        FlatButton(
-          color: Colors.transparent,
-          onPressed: () {
-            control.onYes();
-            Navigator.of(context).pop();
-          },
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            control.yesLabel.toUpperCase(),
-            style: btnStyle.copyWith(color: Clrs.secondary),
+            control.title,
+            textAlign: TextAlign.center,
+            style: Style.body.bodyClr,
           ),
         ),
-        FlatButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(control.noLabel.toUpperCase(), style: btnStyle),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FlatButton(
+              color: Colors.transparent,
+              onPressed: () {
+                control.onYes();
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                control.yesLabel.toUpperCase(),
+                style: btnStyle.copyWith(color: Clrs.secondary),
+              ),
+            ),
+            FlatButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(control.noLabel.toUpperCase(), style: btnStyle),
+            )
+          ],
         )
       ],
     );

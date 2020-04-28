@@ -78,26 +78,39 @@ class BottomModal extends StatelessWidget {
       children: <Widget>[
         Visibility(
           visible: data.showHeader,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Text(
-                  title.capitalize(),
-                  style: TextStyle(
-                    color: Clrs.dark,
-                    fontSize: 18,
+          child: Container(
+            height: 50,
+            child: Stack(
+              alignment: Alignment.center,
+              fit: StackFit.expand,
+              children: <Widget>[
+                Center(
+                  child: Text(
+                    title.capitalize(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Clrs.dark.withOpacity(0.8),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
-              ),
-              Tooltip(
-                message: Labels.closeModal,
-                child: IconButton(
-                  icon: Icon(MIcons.close_line),
-                  onPressed: () =>
-                      pop.dismiss(LayoutHelper.mainPageKey.currentContext),
-                ),
-              )
-            ],
+                Positioned(
+                  right: 0,
+                  child: Tooltip(
+                    message: Labels.closeModal,
+                    child: IconButton(
+                      icon: Icon(
+                        MIcons.close_line,
+                        color: Clrs.dark.withOpacity(0.3),
+                      ),
+                      onPressed: () =>
+                          pop.dismiss(LayoutHelper.mainPageKey.currentContext),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
         SizedBox(height: 10),

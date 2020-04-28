@@ -59,8 +59,8 @@ class DatePicker extends StatelessWidget {
             child: Text(
               dateObj["date"].toString(),
               style: TextStyle(
+                height: 1.2,
                 fontSize: 18,
-                fontWeight: isSelecteDate ? FontWeight.w800 : FontWeight.w400,
                 color: isSelecteDate ? Colors.white : Clrs.inputValue,
               ),
             ),

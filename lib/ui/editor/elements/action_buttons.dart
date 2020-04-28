@@ -7,6 +7,7 @@ import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/confirm_modal.dart';
+import 'package:monex/ui/common/hint.dart';
 
 class ActionButton extends StatelessWidget {
   final Function onSubmit;
@@ -48,8 +49,8 @@ class ActionButton extends StatelessWidget {
 
     return ConfirmModal(
       builder: (context, control) {
-        return Tooltip(
-          message: Labels.deletePayment,
+        return Hint(
+          Labels.deletePayment,
           child: IconButton(
             color: Colors.black26,
             onPressed: () {
@@ -75,8 +76,8 @@ class ActionButton extends StatelessWidget {
   }
 
   Widget _tertiary() {
-    return Tooltip(
-      message: Labels.closeEditor,
+    return Hint(
+      Labels.closeEditor,
       child: IconButton(
         icon: Icon(MIcons.arrow_down_s_line, size: 30, color: Clrs.label),
         onPressed: () {

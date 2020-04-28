@@ -6,6 +6,7 @@ import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/layout_helper.dart';
 import "package:monex/config/extension.dart";
+import 'package:monex/ui/common/hint.dart';
 
 class BottomModalControl {
   Function(String title, Widget child) open;
@@ -97,8 +98,8 @@ class BottomModal extends StatelessWidget {
                 ),
                 Positioned(
                   right: 0,
-                  child: Tooltip(
-                    message: Labels.closeModal,
+                  child: Hint(
+                    Labels.closeModal,
                     child: IconButton(
                       icon: Icon(
                         MIcons.close_line,

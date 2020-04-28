@@ -6,6 +6,7 @@ import 'package:monex/config/m_icons.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
+import 'package:monex/ui/common/hint.dart';
 
 class LabelInput extends StatelessWidget {
   const LabelInput({Key key}) : super(key: key);
@@ -91,8 +92,8 @@ class LabelInput extends StatelessWidget {
               color: Clrs.primary,
               borderRadius: BorderRadius.circular(50),
             ),
-            child: Tooltip(
-              message: Labels.addLabel,
+            child: Hint(
+              Labels.addLabel,
               child: IconButton(
                 onPressed: () {
                   formStore.changeLabel(content);

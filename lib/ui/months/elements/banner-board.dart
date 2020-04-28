@@ -12,6 +12,7 @@ import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/amount.dart';
 import 'package:monex/ui/common/fade_transition.dart';
+import 'package:monex/ui/common/hint.dart';
 import 'package:monex/ui/months/elements/filter-bar.dart';
 import 'package:monex/ui/months/elements/percentage.dart';
 import 'package:monex/ui/settings/settings.dart';
@@ -92,8 +93,8 @@ class BannerBoard extends StatelessWidget {
                     ),
                     Row(
                       children: <Widget>[
-                        Tooltip(
-                          message: Labels.goToSettings,
+                        Hint(
+                          Labels.goToSettings,
                           child: IconButton(
                             onPressed: () {
                               Navigator.push(
@@ -105,8 +106,8 @@ class BannerBoard extends StatelessWidget {
                             icon: Icon(MIcons.settings_3_line),
                           ),
                         ),
-                        Tooltip(
-                          message: Labels.goToEditor,
+                        Hint(
+                          Labels.goToEditor,
                           child: IconButton(
                             onPressed: () {
                               paymentsStore.setActivePayment(null);

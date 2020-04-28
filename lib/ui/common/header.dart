@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/ui/common/hint.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
   final Widget leading;
@@ -15,8 +16,8 @@ class Header extends StatelessWidget with PreferredSizeWidget {
       title: Text(title, style: TextStyle(color: Colors.white70)),
       centerTitle: true,
       actions: [
-        Tooltip(
-          message: Labels.closeScreen,
+        Hint(
+          Labels.closeScreen,
           child: IconButton(
             icon: Icon(MIcons.close_line, color: Colors.white54, size: 27),
             onPressed: () {

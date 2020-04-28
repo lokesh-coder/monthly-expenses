@@ -21,7 +21,7 @@ Bit effort:
     ✔ set typography @done
     ✔ change smaller components to stateless widget than functions @done
     ✔ show loader on paymnts @done
-    ☐ on changing credit type on editor, chnage filter also
+    ✔ on changing credit type on editor, chnage filter also @done
 
 Need thought:
     ☐ fix zoomin effect

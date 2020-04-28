@@ -3,6 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
@@ -123,6 +124,9 @@ class _EditorState extends State<Editor> {
     } else {
       paymentsStore.updatePayment(payment);
     }
+
+    var type = payment.isCredit ? PaymentType.CREDIT : PaymentType.DEBIT;
+    if (paymentsStore.filterBy != type) paymentsStore.changeFilter(type);
 
     paymentsStore.setActivePayment(null);
     sandwichStore.changeVisibility(false);

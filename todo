@@ -1,31 +1,30 @@
 Quick fix:
-    ☐ add loader icon in loading page
-    ☐ add opaccity to close icon in pages
-    ☐ change close payemnt icon color
-    ☐ date icon in editor not aligned properly
-    ☐ show filter name on emoty state
-    ☐ fix alignemnt of icons in settings page
-    ☐ date picker round fix
-    ☐ change fade effect in selcted category icon
-    ☐ bottom sheet modal header style
-    ☐ settings page arrow change direction
-    ☐ category selected icon color change
-    ☐ change tooltip icon color
-    ☐ change plus to close in banner
-    ☐ add input formatters to label input
+    ✔ add loader icon in loading page @done
+    ✔ add opaccity to close icon in pages @done
+    ✔ change close payemnt icon color @done
+    ✔ date icon in editor not aligned properly @done
+    ✔ show filter name on emoty state @done
+    ✔ fix alignemnt of icons in settings page @done
+    ✔ date picker round fix @done
+    ✔ change fade effect in selcted category icon @done
+    ✔ bottom sheet modal header style @done
+    ✔ settings page arrow change direction @done
+    ✔ change tooltip icon color @done
+    ✔ change plus to close in banner @done
+    ✔ no emoty label update @done
 
 Bit effort:
-    ☐ default icon to be decided
-    ☐ change tick icon in add button in editor
-    ☐ set typography
+    ✔ default icon to be decided @done
+    ✔ change tick icon in add button in editor s@done
     ☐ dont show formatted value in dialpad
     ☐ make category moda 0.75 height
+    ☐ set typography
     ☐ change smaller components to stateless widget than functions
 
 Need thought:
     ☐ fix zoomin effect
     ☐ currency selction on first click not working
-    ☐ change dial pad design
+    ☐ change dial pad design   
     ☐ fix category icon blur
     ☐ category align 4 in a row test
     ☐ category icon recently  used

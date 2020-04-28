@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/helpers/date_helper.dart';
@@ -52,7 +53,7 @@ class DateInput extends StatelessWidget {
         Icon(
           MIcons.calendar_line_1,
           size: 30,
-          color: Color(0xff7384C1),
+          color: Clrs.blue,
         ),
         Positioned(
           top: 10,
@@ -61,7 +62,7 @@ class DateInput extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: Color(0xff7384C1),
+              color: Clrs.blue,
             ),
           ),
         )

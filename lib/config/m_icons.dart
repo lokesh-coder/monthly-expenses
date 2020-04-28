@@ -12,6 +12,10 @@
 ///       - asset: fonts/MIcons.ttf
 ///
 /// 
+/// * Material Design Icons, Copyright (C) Google, Inc
+///         Author:    Google
+///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+///         Homepage:  https://design.google.com/icons/
 ///
 import 'package:flutter/widgets.dart';
 
@@ -22,6 +26,7 @@ class MIcons {
   static const _kFontPkg = null;
 
   static const IconData calendar_line_1 = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sort_by_alpha = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData add_circle_line = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData add_line = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData emotion_unhappy_line = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -67,6 +72,7 @@ class MIcons {
   static const IconData heart_line = IconData(0xe82c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData apps_2_line = IconData(0xe82d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData exchange_dollar_fill = IconData(0xe82e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sort = IconData(0xe82f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData bubble_chart_line = IconData(0xe830, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData home_3_line = IconData(0xe831, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData settings_3_line = IconData(0xe832, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -76,4 +82,10 @@ class MIcons {
   static const IconData widgets_24px = IconData(0xe836, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData close_line = IconData(0xe837, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData delete_bin_5_line = IconData(0xe838, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bars = IconData(0xe91a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData tick = IconData(0xe92b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sad = IconData(0xe947, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData smile = IconData(0xe948, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData close_st = IconData(0xea02, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData close_rd = IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

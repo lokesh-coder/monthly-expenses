@@ -7,6 +7,7 @@ class Clrs {
   static const Color green = Color(0xff33B284);
   static const Color yellow = Color(0xffE5BA4C);
   static const Color red = Color(0xffE37986);
+  static const Color blue = Color(0xff7384C1);
   static const Color card = Color(0xffEDF0F4);
   static const Color title = Color(0xff3A587E);
   static const Color label = Color(0xffB9C2CE);

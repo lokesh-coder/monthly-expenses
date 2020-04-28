@@ -26,9 +26,7 @@ class TypeInput extends StatelessWidget {
 
   Widget _icon(FormStore formStore) {
     return Icon(
-      formStore.isCredit
-          ? MIcons.sentiment_satisfied_24px
-          : MIcons.sentiment_dissatisfied_24px,
+      formStore.isCredit ? MIcons.smile : MIcons.sad,
       size: 30,
       color: formStore.isCredit ? Clrs.green : Clrs.red,
     );

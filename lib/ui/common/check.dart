@@ -15,7 +15,7 @@ class Check extends StatelessWidget {
         child: FloatingActionButton(
           heroTag: null,
           backgroundColor: Clrs.primary,
-          child: Icon(MIcons.check_line, size: 33),
+          child: Icon(MIcons.tick, size: 33),
           elevation: 0,
           onPressed: null,
         ),

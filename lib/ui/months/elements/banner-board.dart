@@ -103,7 +103,7 @@ class BannerBoard extends StatelessWidget {
                               );
                             },
                             color: Colors.white.withOpacity(0.3),
-                            icon: Icon(MIcons.settings_3_line),
+                            icon: Icon(MIcons.settings_3_line, size: 27),
                           ),
                         ),
                         Observer(
@@ -117,7 +117,7 @@ class BannerBoard extends StatelessWidget {
                                   sandwichStore.changeVisibility(true);
                                 },
                                 color: clr,
-                                icon: Icon(MIcons.add_line),
+                                icon: Icon(MIcons.add_line, size: 29),
                               ),
                             );
 
@@ -129,7 +129,7 @@ class BannerBoard extends StatelessWidget {
                                   sandwichStore.changeVisibility(false);
                                 },
                                 color: clr,
-                                icon: Icon(MIcons.close_line),
+                                icon: Icon(MIcons.close_line, size: 29),
                               ),
                             );
                             return sandwichStore.isOpen ? closeIcon : openIcon;

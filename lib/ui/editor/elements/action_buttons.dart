@@ -36,7 +36,7 @@ class ActionButton extends StatelessWidget {
         height: btnHeight,
         child: FloatingActionButton(
           backgroundColor: Clrs.primary,
-          child: Icon(MIcons.check_line),
+          child: Icon(MIcons.tick),
           onPressed: onSubmit,
         ),
       ),

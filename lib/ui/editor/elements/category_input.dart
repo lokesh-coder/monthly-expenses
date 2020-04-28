@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
@@ -53,16 +52,9 @@ class CategoryInput extends StatelessWidget {
   }
 
   _imageIcon(FormStore formStore) {
-    return Transform.translate(
-      offset: Offset(0, -4),
-      child: Image.asset(
-        _catMeta(formStore.categoryID).path,
-        alignment: Alignment.center,
-        fit: BoxFit.fitWidth,
-        width: 30,
-        color: Clrs.label.withOpacity(0.5),
-        colorBlendMode: BlendMode.srcATop,
-      ),
+    return Image.asset(
+      _catMeta(formStore.categoryID).path,
+      alignment: Alignment.center,
     );
   }
 }

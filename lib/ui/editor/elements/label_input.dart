@@ -99,9 +99,7 @@ class LabelInput extends StatelessWidget {
                   control.close();
                 },
                 padding: EdgeInsets.all(0),
-                icon: Icon(
-                  MIcons.check_line,
-                ),
+                icon: Icon(MIcons.tick),
                 color: Clrs.light,
               ),
             ),

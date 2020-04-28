@@ -7,15 +7,18 @@ import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 
 class Amount extends StatelessWidget {
-  final num value;
+  final dynamic value;
   final AmountDisplaySize size;
   final AmountDisplayType type;
+  final bool format;
 
-  const Amount(this.value,
-      {Key key,
-      this.size = AmountDisplaySize.SM,
-      this.type = AmountDisplayType.CREDIT})
-      : super(key: key);
+  const Amount(
+    this.value, {
+    Key key,
+    this.format = true,
+    this.size = AmountDisplaySize.SM,
+    this.type = AmountDisplayType.CREDIT,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +33,11 @@ class Amount extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Observer(builder: (context) {
+            var currency = store.currency;
             return Text(
-              CurrencyHelper.getFormattedCurrency(value, store.currency),
+              format
+                  ? CurrencyHelper.getFormattedCurrency(value, currency)
+                  : value.toString(),
               style: TextStyle(
                 fontSize: fontSize,
                 fontFamily: 'Manrope',

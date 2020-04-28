@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:intl/number_symbols_data.dart' show numberFormatSymbols;
+import 'package:monex/config/app.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/data/local/object/files/currencies.dart';
 import 'package:monex/models/currency.dart';
@@ -9,7 +10,8 @@ class CurrencyHelper {
   static String getFormattedCurrency(num value, String currencyTag) {
     if (currencyTag == '0=0') return value.toString();
     var currency = getCurrency(currencyTag);
-    int decimals = value.toString().contains('.') ? 2 : 0;
+    int decimals =
+        value.toString().contains('.') ? AppConfig.maxDecimalsInAmount : 0;
 
     return NumberFormat.currency(
       locale: currency.locale,
@@ -59,5 +61,30 @@ class CurrencyHelper {
         (c) => c.locale == tags[0] && c.currencyCode == tags[1],
         orElse: () => CurrencyHelper.all().last);
     return currency;
+  }
+
+  static String getAmount(String value, String locale) {
+    return ((NumberFormat(null, locale)..turnOffGrouping())
+          ..maximumFractionDigits = AppConfig.maxDecimalsInAmount)
+        .format(num.tryParse(value))
+        .toString();
+  }
+
+  static bool isValidAmountPattern(String val) {
+    if (val.contains('.')) {
+      if (val.allMatches('.').length > 1) {
+        return false;
+      }
+      if (val.split('.').last.length > AppConfig.maxDecimalsInAmount) {
+        return false;
+      }
+    }
+    if (num.tryParse(val) == null) {
+      return false;
+    }
+    if (num.parse(val) > AppConfig.maxAmoutLimit) {
+      return false;
+    }
+    return true;
   }
 }

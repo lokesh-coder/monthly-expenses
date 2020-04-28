@@ -1,3 +1,4 @@
 class AppConfig {
-  static int amountMaxLength = 8;
+  static int maxAmoutLimit = 99999999;
+  static int maxDecimalsInAmount = 2;
 }

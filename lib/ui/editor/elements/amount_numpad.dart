@@ -42,7 +42,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
           SizedBox(height: 20),
           FloatingActionButton(
             backgroundColor: Clrs.primary,
-            child: Icon(MIcons.check_line),
+            child: Icon(MIcons.tick),
             onPressed: () {
               if (value == null) value = '';
               widget.onSelect(num.parse(value));
@@ -57,7 +57,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
     List rowOne = ['1', '2', '3'];
     List rowTwo = ['4', '5', '6'];
     List rowThree = ['7', '8', '9'];
-    List rowFour = [CurrencyHelper.separator(locale), '0', 'REMOVE'];
+    List rowFour = [_separator, '0', 'REMOVE'];
 
     List<Widget> items =
         (rowOne + rowTwo + rowThree + rowFour).map((c) => _btn(c)).toList();
@@ -66,10 +66,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
       padding: EdgeInsets.all(0),
       decoration: BoxDecoration(
         gradient: RadialGradient(
-          colors: [
-            Clrs.labelActive.withOpacity(0.3),
-            Colors.transparent,
-          ],
+          colors: [Clrs.labelActive.withOpacity(0.3), Colors.transparent],
           radius: 0.6,
           focal: Alignment.center,
         ),
@@ -89,60 +86,70 @@ class _AmountNumpadState extends State<AmountNumpad> {
   }
 
   Widget _btn(String label) {
-    var style =
-        TextStyle(color: Clrs.labelActive, fontSize: 25, fontFamily: 'Manrope');
-
-    var icon = (x, [col = Clrs.labelActive]) => Icon(x, color: col);
-
     var child;
 
-    if (label == 'REMOVE')
+    if (label == 'REMOVE') {
+      var icon = (x, [col = Clrs.labelActive]) => Icon(x, color: col);
       child = icon(MIcons.delete_back_2_line);
-    else
+    } else {
+      var style = TextStyle(
+          color: Clrs.labelActive, fontSize: 25, fontFamily: 'Manrope');
       child = Text(label, style: style);
+    }
 
     return GestureDetector(
       onTap: () {
-        if (label == CurrencyHelper.separator(locale)) label = '.';
+        if (label == _separator) label = '.';
         if (label == 'REMOVE') {
           if (value.length == 0) return;
           value = value.substring(0, value.length - 1);
         } else {
-          if (_isValidEntry(value, label)) value += label;
+          var finalAmount = value + label;
+          if (CurrencyHelper.isValidAmountPattern(
+              _normalizeAmount(finalAmount))) value += label;
         }
 
         setState(() {});
       },
       child: Container(
-        decoration: BoxDecoration(
-          color: label == 'SELECT' ? Clrs.green : Colors.white,
-        ),
+        decoration:
+            BoxDecoration(color: label == 'SELECT' ? Clrs.green : Colors.white),
         child: Center(child: child),
       ),
     );
   }
 
   _display() {
-    var placeholder = Amount(
-      0.00,
-      type: AmountDisplayType.PLACEHOLDER,
-      size: AmountDisplaySize.XL,
-    );
-    var amount = num.parse(value == '' ? '0' : value);
-    var actual = Amount(
-      amount,
-      type: AmountDisplayType.INPUT,
-      size: AmountDisplaySize.XL,
-    );
+    Widget displayValue;
+    if (value == '') {
+      var placeholderText = 0.toStringAsFixed(AppConfig.maxDecimalsInAmount);
+      var formattedText = CurrencyHelper.getAmount(placeholderText, locale);
+      displayValue = Amount(
+        double.parse(formattedText),
+        type: AmountDisplayType.PLACEHOLDER,
+        size: AmountDisplaySize.XL,
+      );
+    } else {
+      displayValue = Amount(
+        value.replaceAll('.', _separator),
+        format: false,
+        type: AmountDisplayType.INPUT,
+        size: AmountDisplaySize.XL,
+      );
+    }
+
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20),
-      child: value == '' ? placeholder : actual,
+      child: displayValue,
     );
   }
 
-  _isValidEntry(String value, String label) {
-    if ((value + label).length > AppConfig.amountMaxLength) return false;
-    final decimalMatch = RegExp(r'\.[0-9]{3,}$');
-    return !decimalMatch.hasMatch(value + label);
+  _normalizeAmount(String value) {
+    if (value == '.') return '0';
+    return value;
+  }
+
+  get _separator {
+    return CurrencyHelper.separator(locale);
   }
 }

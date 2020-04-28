@@ -60,7 +60,6 @@ class LabelInput extends StatelessWidget {
               keyboardType: TextInputType.text,
               enableSuggestions: false,
               autocorrect: false,
-              // inputFormatters:[] ,
               initialValue: formStore.label,
               autofocus: true,
               maxLength: 30,
@@ -80,7 +79,7 @@ class LabelInput extends StatelessWidget {
               },
               onFieldSubmitted: (x) {
                 content = x.trim();
-                formStore.changeLabel(x);
+                if (content.isNotEmpty) formStore.changeLabel(x);
                 control.close();
               },
             ),
@@ -96,7 +95,7 @@ class LabelInput extends StatelessWidget {
               Labels.addLabel,
               child: IconButton(
                 onPressed: () {
-                  formStore.changeLabel(content);
+                  if (content.isNotEmpty) formStore.changeLabel(content);
                   control.close();
                 },
                 padding: EdgeInsets.all(0),

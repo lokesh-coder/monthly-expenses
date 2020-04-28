@@ -59,7 +59,7 @@ class DateInput extends StatelessWidget {
           child: Text(
             _displayDate(formStore.date),
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: FontWeight.w600,
               color: Color(0xff7384C1),
             ),

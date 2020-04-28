@@ -125,7 +125,8 @@ class _AmountNumpadState extends State<AmountNumpad> {
       var placeholderText = 0.toStringAsFixed(AppConfig.maxDecimalsInAmount);
       var formattedText = CurrencyHelper.getAmount(placeholderText, locale);
       displayValue = Amount(
-        double.parse(formattedText),
+        formattedText,
+        format: false,
         type: AmountDisplayType.PLACEHOLDER,
         size: AmountDisplaySize.XL,
       );

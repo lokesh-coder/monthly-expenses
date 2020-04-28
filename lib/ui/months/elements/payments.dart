@@ -13,6 +13,7 @@ import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/amount.dart';
 import "package:monex/config/extension.dart";
 import 'package:monex/ui/common/empty.dart';
+import 'package:monex/ui/common/loader.dart';
 
 class Payments extends StatelessWidget {
   final Map data;
@@ -27,6 +28,9 @@ class Payments extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       child: Observer(
         builder: (context) {
+          if (paymentsStore.isLoading) {
+            return Center(child: Loader());
+          }
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
           if (payments == null || payments.length == 0)
             return Center(child: Empty(paymentsStore.filterBy));
@@ -57,6 +61,7 @@ class Payments extends StatelessWidget {
         leading: Image.asset(
           category.path,
           width: 30,
+          cacheWidth: 30,
         ),
         onTap: () {
           paymentsStore.setActivePayment(data.id);

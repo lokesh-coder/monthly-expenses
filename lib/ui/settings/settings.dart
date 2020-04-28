@@ -27,8 +27,9 @@ class Settings extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         children: [
           // FlatButton(
-          //     onPressed: () => sl<PaymentsStore>().seed(),
-          //     child: Text('load data')),
+          //   onPressed: () => sl<PaymentsStore>().seed(),
+          //   child: Text('load data'),
+          // ),
           Expander(
             headBuilder: (_, dataCtx) => MonthRangeDisplay(dataCtx),
             bodyBuilder: (_, __) => MonthRangeEdit(),

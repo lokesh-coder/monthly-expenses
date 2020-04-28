@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/ui/common/app-shell.dart';
+import 'package:monex/ui/common/loader.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen();
@@ -10,11 +11,7 @@ class LoadingScreen extends StatelessWidget {
     return AppShell(
       child: Container(
         color: Clrs.primary,
-        child: Center(
-          child: CircularProgressIndicator(
-            valueColor: const AlwaysStoppedAnimation<Color>(Clrs.secondary),
-          ),
-        ),
+        child: Center(child: Loader()),
       ),
     );
   }

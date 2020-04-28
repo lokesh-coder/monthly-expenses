@@ -7,7 +7,7 @@ import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/editor/elements/icon_card.dart';
 
 class TypeInput extends StatelessWidget {
-  const TypeInput({Key key}) : super(key: key);
+  const TypeInput();
 
   @override
   Widget build(BuildContext context) {

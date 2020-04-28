@@ -10,8 +10,7 @@ class IconCard extends StatefulWidget {
   final Function onTap;
   final storeKey;
 
-  const IconCard({Key key, this.child, this.name, this.onTap, this.storeKey})
-      : super(key: key);
+  const IconCard({this.child, this.name, this.onTap, this.storeKey});
 
   @override
   _IconCardState createState() => _IconCardState();

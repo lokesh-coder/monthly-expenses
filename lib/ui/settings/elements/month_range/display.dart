@@ -9,18 +9,19 @@ import 'package:monex/ui/settings/elements/item_tile.dart';
 class MonthRangeDisplay extends StatelessWidget {
   final Map dataCtx;
 
-  const MonthRangeDisplay(this.dataCtx, {Key key}) : super(key: key);
+  const MonthRangeDisplay(this.dataCtx);
 
   @override
   Widget build(BuildContext context) {
     var store = sl<SettingsStore>();
 
     return Observer(builder: (context) {
+      var totalMonths = store.monthsViewRange.toInt();
       return SettingsItemTile(
         dataCtx: dataCtx,
         icon: MIcons.calendar_line,
         title: Labels.monthRange,
-        displayText: '${store.monthsViewRange.toInt()} month(s)',
+        displayText: '$totalMonths month${totalMonths > 1 ? 's' : ''}',
       );
     });
   }

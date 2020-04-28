@@ -9,7 +9,7 @@ import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/common/check.dart';
 
 class SortEdit extends StatefulWidget {
-  const SortEdit({Key key}) : super(key: key);
+  const SortEdit();
 
   @override
   _SortEditState createState() => _SortEditState();
@@ -34,14 +34,8 @@ class _SortEditState extends State<SortEdit> {
 
   Widget _getItem(SortStrategy strategy) {
     return ListTile(
-      title: Text(
-        strategy.name,
-        style: Style.label.base.clr(Clrs.labelAlt),
-      ),
-      subtitle: Text(
-        strategy.desc,
-        style: Style.label.sm,
-      ),
+      title: Text(strategy.name, style: Style.label.base.clr(Clrs.labelAlt)),
+      subtitle: Text(strategy.desc, style: Style.label.sm),
       leading: Container(
         height: double.infinity,
         child: Icon(
@@ -59,7 +53,7 @@ class _SortEditState extends State<SortEdit> {
     );
   }
 
-  _getSortStrategies() {
+  List<Widget> _getSortStrategies() {
     var strategies = sl<DataRepo>().obj.get<SortStrategies>('sorting').all;
     return strategies.map((s) => _getItem(s)).toList();
   }

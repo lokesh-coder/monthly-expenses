@@ -5,4 +5,8 @@ class Dimensions {
 
   static double bottomSheetMinHeight = 0.25;
   static double bottomSheetMaxHeight = 0.75;
+
+  static double actionBtnHeight = 60;
+  static double percentageDisplayRad = 40;
+  static double percentageDisplayStroke = 3;
 }

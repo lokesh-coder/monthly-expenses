@@ -7,7 +7,7 @@ class DatePicker extends StatelessWidget {
   final Function(DateTime) onSelect;
   final DateTime selected;
 
-  const DatePicker({Key key, this.selected, this.onSelect}) : super(key: key);
+  const DatePicker({this.selected, this.onSelect});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ import 'package:monex/ui/screens/app_info.dart';
 import 'package:monex/ui/screens/help.dart';
 
 class AppLinks extends StatelessWidget {
-  const AppLinks({Key key}) : super(key: key);
+  const AppLinks();
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +29,17 @@ class AppLinks extends StatelessWidget {
     );
   }
 
-  _getItemTile(context, name, page) {
+  Widget _getItemTile(
+    BuildContext context,
+    String name,
+    Widget Function() page,
+  ) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 35),
+      contentPadding: EdgeInsets.symmetric(horizontal: 35),
       title: Text(name, style: Style.label.normal.base),
       trailing: Icon(MIcons.arrow_drop_right_fill),
       onTap: () {
-        Navigator.push(
-          context,
-          FadeRoute(page()),
-        );
+        Navigator.push(context, FadeRoute(page()));
       },
     );
   }

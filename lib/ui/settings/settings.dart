@@ -3,8 +3,8 @@ import 'package:monex/config/labels.dart';
 import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/expander.dart';
 import 'package:monex/ui/common/header.dart';
-import 'package:monex/ui/settings/elements/delete_all/edit.dart';
 
+import 'elements/delete_all/edit.dart';
 import 'elements/currency/display.dart';
 import 'elements/currency/edit.dart';
 import 'elements/delete_all/display.dart';
@@ -17,15 +17,12 @@ import 'elements/sort/display.dart';
 import 'elements/sort/edit.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({Key key}) : super(key: key);
+  const Settings();
 
   @override
   Widget build(BuildContext context) {
     return AppShell(
-      header: Header(
-        leading: Container(),
-        title: Labels.settings,
-      ),
+      header: Header(leading: Container(), title: Labels.settings),
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [

@@ -14,24 +14,20 @@ class Pager extends StatefulWidget {
   final int initialPage;
   final Function onPageChange;
   Pager(
-      {Key key,
-      this.builder,
+      {this.builder,
       this.data,
       this.visibleItems,
       this.initialPage,
       this.onPageChange})
-      : isMaster = false,
-        super(key: key);
+      : isMaster = false;
 
   Pager.master(
-      {Key key,
-      this.builder,
+      {this.builder,
       this.data,
       this.visibleItems,
       this.initialPage,
       this.onPageChange})
-      : isMaster = true,
-        super(key: key);
+      : isMaster = true;
 
   @override
   _PagerState createState() => _PagerState();

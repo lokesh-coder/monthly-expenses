@@ -7,7 +7,7 @@ import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/header.dart';
 
 class AppInfoScreen extends StatefulWidget {
-  const AppInfoScreen({Key key}) : super(key: key);
+  const AppInfoScreen();
 
   @override
   _AppInfoScreenState createState() => _AppInfoScreenState();
@@ -35,13 +35,13 @@ class _AppInfoScreenState extends State<AppInfoScreen> {
       ),
       child: Container(
         child: ListView(
-          children: _getItems(info),
+          children: _getData(info),
         ),
       ),
     );
   }
 
-  List<Widget> _getItems(PackageInfo info) {
+  List<Widget> _getData(PackageInfo info) {
     if (info == null) return [];
     List<Map> items = [
       {'Name': info.appName},
@@ -56,16 +56,13 @@ class _AppInfoScreenState extends State<AppInfoScreen> {
     return tiles;
   }
 
-  _getItem(String title, String value) {
+  Widget _getItem(String title, String value) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Clrs.dark.withOpacity(0.1))),
+        border: Border(bottom: BorderSide(color: Clrs.border.withOpacity(0.7))),
       ),
       child: ListTile(
-        title: Text(
-          title,
-          style: Style.heading,
-        ),
+        title: Text(title, style: Style.heading),
         trailing: Text(value, style: Style.label.sm.normal),
       ),
     );

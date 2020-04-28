@@ -8,9 +8,7 @@ class SlideTransform extends StatefulWidget {
   final double marginTop;
   final Widget child;
 
-  const SlideTransform(
-      {Key key, this.contentHeight, this.marginTop, this.child})
-      : super(key: key);
+  const SlideTransform({this.contentHeight, this.marginTop, this.child});
 
   @override
   _SlideTransformState createState() => _SlideTransformState();

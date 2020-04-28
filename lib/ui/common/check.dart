@@ -3,10 +3,9 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/config/m_icons.dart';
 
 class Check extends StatelessWidget {
-  final Function onTap;
-  final num size = 26;
+  final double size = 26;
 
-  const Check({Key key, this.onTap}) : super(key: key);
+  const Check();
 
   @override
   Widget build(BuildContext context) {

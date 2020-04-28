@@ -12,8 +12,7 @@ class CategoryPicker extends StatelessWidget {
   final Function onSelect;
   final String selected;
   final bool isCredit;
-  const CategoryPicker({Key key, this.selected, this.onSelect, this.isCredit})
-      : super(key: key);
+  const CategoryPicker({this.selected, this.onSelect, this.isCredit});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class CategoryPicker extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         width: 80,
         child: Column(
-          children: <Widget>[
+          children: [
             Image.asset(cat.path, width: 30),
             SizedBox(height: 10),
             Text(cat.name, style: Style.label.sm.normal),

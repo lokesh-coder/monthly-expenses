@@ -16,7 +16,7 @@ import 'package:monex/ui/common/empty.dart';
 
 class Payments extends StatelessWidget {
   final Map data;
-  const Payments(this.data, {Key key}) : super(key: key);
+  const Payments(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class Payments extends StatelessWidget {
         .findCategoryById(data.categoryID);
 
     var dt = DateHelper.msToDt(data.date);
-    var date = DateHelper.format(dt, DateHelper.dateWeekday);
+    var date = DateHelper.format(dt, DateHelper.dateWeekdayP);
 
     return Container(
       child: ListTile(

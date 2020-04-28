@@ -7,8 +7,7 @@ class MonthsCarousal extends StatefulWidget {
   final PageController ctrl;
   final double scaleDistance = 2;
 
-  const MonthsCarousal(this.index, this.data, this.ctrl, {Key key})
-      : super(key: key);
+  const MonthsCarousal(this.index, this.data, this.ctrl);
 
   @override
   _MonthsCarousalState createState() => _MonthsCarousalState();

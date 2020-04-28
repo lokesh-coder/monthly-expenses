@@ -13,11 +13,10 @@ class SandwichContainer extends StatelessWidget {
   final double filtersBarH = Dimensions.filtersBarHeight;
 
   SandwichContainer({
-    Key key,
     this.bottomChild,
     this.middleChild,
     this.topChild,
-  }) : super(key: key);
+  });
 
   get statusBarH => LayoutHelper.statusBarHeight;
   get screenH => LayoutHelper.screenHeight;
@@ -66,9 +65,7 @@ class SandwichContainer extends StatelessWidget {
 
   Widget _topChild() {
     return Container(
-      margin: EdgeInsets.only(
-        top: statusBarH,
-      ),
+      margin: EdgeInsets.only(top: statusBarH),
       child: SizedBox(
         height: bannerBarH + filtersBarH,
         child: Container(child: topChild),

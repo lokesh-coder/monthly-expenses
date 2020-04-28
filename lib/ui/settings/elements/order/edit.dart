@@ -11,7 +11,7 @@ import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/common/check.dart';
 
 class OrderEdit extends StatefulWidget {
-  const OrderEdit({Key key}) : super(key: key);
+  const OrderEdit();
 
   @override
   _OrderEditState createState() => _OrderEditState();
@@ -36,14 +36,8 @@ class _OrderEditState extends State<OrderEdit> {
 
   Widget _getItem(Map data) {
     return ListTile(
-      title: Text(
-        data['name'],
-        style: Style.label.base.clr(Clrs.labelAlt),
-      ),
-      subtitle: Text(
-        data['desc'],
-        style: Style.label.sm,
-      ),
+      title: Text(data['name'], style: Style.label.base.clr(Clrs.labelAlt)),
+      subtitle: Text(data['desc'], style: Style.label.sm),
       leading: Container(
         height: double.infinity,
         child: Icon(
@@ -66,6 +60,7 @@ class _OrderEditState extends State<OrderEdit> {
         .obj
         .get<SortStrategies>('sorting')
         .findSortStrategyById(settingsStore.sortBy);
+
     List<Map> data = [
       {
         'id': OrderBy.ASC.index,

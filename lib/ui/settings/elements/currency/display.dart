@@ -10,7 +10,7 @@ import 'package:monex/ui/settings/elements/item_tile.dart';
 class CurrencyDisplay extends StatelessWidget {
   final Map dataCtx;
 
-  const CurrencyDisplay(this.dataCtx, {Key key}) : super(key: key);
+  const CurrencyDisplay(this.dataCtx);
 
   @override
   Widget build(BuildContext context) {

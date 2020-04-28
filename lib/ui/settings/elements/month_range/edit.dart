@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/config/app.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
@@ -6,7 +7,7 @@ import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 
 class MonthRangeEdit extends StatefulWidget {
-  const MonthRangeEdit({Key key}) : super(key: key);
+  const MonthRangeEdit();
 
   @override
   _MonthRangeEditState createState() => _MonthRangeEditState();
@@ -24,15 +25,14 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
 
   @override
   Widget build(BuildContext context) {
+    var totalMonths = _value.round();
     return Column(
       children: <Widget>[
         Text(
-          '${(_value.round()).toString()} Month(s)',
+          '$totalMonths Month${totalMonths > 1 ? 's' : ''}',
           style: Style.label.md,
         ),
-        SizedBox(
-          height: 20,
-        ),
+        SizedBox(height: 20),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: Clrs.secondary,
@@ -46,8 +46,8 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
             inactiveTickMarkColor: Clrs.label,
           ),
           child: Slider(
-            min: 1,
-            max: 12,
+            min: AppConfig.minMonths.toDouble(),
+            max: AppConfig.maxMonths.toDouble(),
             divisions: 11,
             value: _value,
             onChangeEnd: (value) {
@@ -60,9 +60,7 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
             },
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10),
         Text(
           DateHelper.getMonthRangeDisplayText(_value.toInt()),
           style: Style.label.normal.sm,

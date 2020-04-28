@@ -11,7 +11,7 @@ import 'package:monex/ui/settings/elements/item_tile.dart';
 class OrderDisplay extends StatelessWidget {
   final Map dataCtx;
 
-  const OrderDisplay(this.dataCtx, {Key key}) : super(key: key);
+  const OrderDisplay(this.dataCtx);
 
   @override
   Widget build(BuildContext context) {

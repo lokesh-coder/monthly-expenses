@@ -13,7 +13,6 @@ class SettingsItemTile extends StatelessWidget {
   final Map dataCtx;
 
   const SettingsItemTile({
-    Key key,
     this.onTap,
     this.icon,
     this.arrowIcon,
@@ -21,33 +20,23 @@ class SettingsItemTile extends StatelessWidget {
     this.displayText,
     this.isOpen,
     this.dataCtx,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
+    var arrowIcon =
+        dataCtx['isOpen'] ? MIcons.arrow_up_s_line : MIcons.arrow_down_s_line;
+
     return ListTile(
       onTap: dataCtx['toggle'],
       contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       leading: IconButton(
         onPressed: null,
-        icon: Icon(
-          icon,
-          size: 26,
-          color: Clrs.secondary,
-        ),
+        icon: Icon(icon, size: 26, color: Clrs.secondary),
       ),
-      title: Text(
-        title,
-        style: Style.heading,
-      ),
-      subtitle: Text(
-        displayText,
-        style: Style.label.sm,
-      ),
-      trailing: Icon(
-        dataCtx['isOpen'] ? MIcons.arrow_up_s_line : MIcons.arrow_down_s_line,
-        color: Clrs.label,
-      ),
+      title: Text(title, style: Style.heading),
+      subtitle: Text(displayText, style: Style.label.sm),
+      trailing: Icon(arrowIcon, color: Clrs.label),
     );
   }
 }

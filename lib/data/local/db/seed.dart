@@ -9,7 +9,7 @@ class SeedData {
   get data {
     var seeds = [];
     var monthRange = sl<SettingsStore>().monthsViewRange;
-    var monthDates = DateHelper.getMonthRange(monthRange);
+    var monthDates = DateHelper.getAllMonthsInRange(monthRange);
     for (var i = 0; i < monthDates.length; i++) {
       var dt = monthDates[i]['dateTime'];
       for (var j = 0; j < Random().nextInt(30); j++) {

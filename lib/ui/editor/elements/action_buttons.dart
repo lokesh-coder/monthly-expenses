@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/service_locator/service_locator.dart';
@@ -13,10 +14,8 @@ class ActionButton extends StatelessWidget {
   final Function onSubmit;
   final Function onClose;
   final Function onDelete;
-  final double btnHeight = 60;
 
-  const ActionButton({Key key, this.onSubmit, this.onDelete, this.onClose})
-      : super(key: key);
+  const ActionButton({this.onSubmit, this.onDelete, this.onClose});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class ActionButton extends StatelessWidget {
   Widget _primary() {
     return Expanded(
       child: Container(
-        height: btnHeight,
+        height: Dimensions.actionBtnHeight,
         child: FloatingActionButton(
           backgroundColor: Clrs.primary,
           child: Icon(MIcons.tick),

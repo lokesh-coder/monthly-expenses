@@ -12,51 +12,45 @@ import 'package:monex/ui/months/elements/months_carousal.dart';
 import 'package:monex/ui/months/elements/payments_carousal.dart';
 
 class Months extends StatelessWidget {
-  const Months({Key key}) : super(key: key);
+  const Months();
 
   @override
   Widget build(BuildContext context) {
     var settingsStore = sl<SettingsStore>();
 
     return Observer(builder: (context) {
-      var totalMonths =
-          () => DateHelper.getMonthRange(settingsStore.monthsViewRange);
+      var range = settingsStore.monthsViewRange;
+      var totalMonths = () => DateHelper.getAllMonthsInRange(range);
+
       return Column(
         children: <Widget>[
           Expanded(
             flex: 1,
             child: Pager(
               builder: (int index, dynamic data, PageController ctrl) {
-                return PaymentsCarousal(
-                  index: index,
-                  data: data,
-                  ctrl: ctrl,
-                );
+                return PaymentsCarousal(index: index, data: data, ctrl: ctrl);
               },
               data: totalMonths(),
-              initialPage: settingsStore.monthsViewRange,
+              initialPage: range,
               visibleItems: 1,
               onPageChange: (curr) {},
             ),
           ),
-          Transform.translate(
-            offset: Offset(0, 0),
-            child: GestureDetector(
-              onPanUpdate: (d) {
-                sl<PaymentsStore>().setActivePayment(null);
-                sl<SandwichStore>().changeVisibility(true);
-              },
-              child: Container(
-                height: 20,
-                width: 40,
-                color: Colors.transparent,
-                child: Center(
-                  child: Container(
-                    height: 5,
-                    decoration: BoxDecoration(
-                      color: Clrs.label.withOpacity(0.5),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
+          GestureDetector(
+            onPanUpdate: (d) {
+              sl<PaymentsStore>().setActivePayment(null);
+              sl<SandwichStore>().changeVisibility(true);
+            },
+            child: Container(
+              height: 20,
+              width: 40,
+              color: Colors.transparent,
+              child: Center(
+                child: Container(
+                  height: 5,
+                  decoration: BoxDecoration(
+                    color: Clrs.label.withOpacity(0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                 ),
               ),

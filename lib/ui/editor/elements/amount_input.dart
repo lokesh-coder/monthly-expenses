@@ -9,9 +9,7 @@ import 'package:monex/ui/common/bottom_modal.dart';
 import 'package:monex/ui/editor/elements/amount_numpad.dart';
 
 class AmountInput extends StatelessWidget {
-  const AmountInput({
-    Key key,
-  }) : super(key: key);
+  const AmountInput();
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class Clrs {
   static const Color primary = Color(0xff474787);
   static const Color secondary = Color(0xffC694A9);
+  static const Color compliment = Color(0xffcf6a87);
   static const Color bodyAlt = Color(0xffB5B5CF);
   static const Color light = Color(0xffF5F8FC);
   static const Color green = Color(0xff33B284);

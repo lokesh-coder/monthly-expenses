@@ -19,7 +19,7 @@ import 'package:monex/ui/months/elements/percentage.dart';
 import 'package:monex/ui/settings/settings.dart';
 
 class BannerBoard extends StatelessWidget {
-  const BannerBoard({Key key}) : super(key: key);
+  const BannerBoard();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class BannerBoard extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Percentage(value: 33),
+                    Percentage(33),
                     SizedBox(width: 20),
                     Expanded(
                       child: Column(

@@ -11,7 +11,7 @@ import 'package:monex/ui/editor/elements/category_picker.dart';
 import 'package:monex/ui/editor/elements/icon_card.dart';
 
 class CategoryInput extends StatelessWidget {
-  const CategoryInput({Key key}) : super(key: key);
+  const CategoryInput();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class CategoryInput extends StatelessWidget {
     return category;
   }
 
-  _imageIcon(FormStore formStore) {
+  Image _imageIcon(FormStore formStore) {
     return Image.asset(
       _catMeta(formStore.categoryID).path,
       alignment: Alignment.center,

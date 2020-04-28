@@ -3,10 +3,10 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/ui/common/fade_transition.dart';
-import 'package:monex/ui/settings/elements/currency/page.dart';
+import 'package:monex/ui/screens/currency.dart';
 
 class CurrencyEdit extends StatelessWidget {
-  const CurrencyEdit({Key key}) : super(key: key);
+  const CurrencyEdit();
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +14,7 @@ class CurrencyEdit extends StatelessWidget {
       widthFactor: 0.5,
       child: MaterialButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            FadeRoute(CurrencyPage()),
-          );
+          Navigator.push(context, FadeRoute(CurrencyScreen()));
         },
         child: Text(
           Labels.changeCurrency,
@@ -28,10 +25,7 @@ class CurrencyEdit extends StatelessWidget {
         color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(10),
-          side: BorderSide(
-            color: Clrs.secondary,
-            width: 2,
-          ),
+          side: BorderSide(color: Clrs.secondary, width: 2),
         ),
       ),
     );

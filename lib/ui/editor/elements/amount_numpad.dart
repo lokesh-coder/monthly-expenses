@@ -13,8 +13,7 @@ class AmountNumpad extends StatefulWidget {
   final Function onSelect;
   final Function close;
   final String selected;
-  const AmountNumpad({Key key, this.selected, this.close, this.onSelect})
-      : super(key: key);
+  const AmountNumpad({this.selected, this.close, this.onSelect});
 
   @override
   _AmountNumpadState createState() => _AmountNumpadState();

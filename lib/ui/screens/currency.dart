@@ -9,8 +9,8 @@ import 'package:monex/ui/common/app-shell.dart';
 import 'package:monex/ui/common/check.dart';
 import 'package:monex/ui/common/header.dart';
 
-class CurrencyPage extends StatelessWidget {
-  const CurrencyPage({Key key}) : super(key: key);
+class CurrencyScreen extends StatelessWidget {
+  const CurrencyScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -20,26 +20,22 @@ class CurrencyPage extends StatelessWidget {
         title: Labels.chooseCurrency,
         leading: Container(),
       ),
-      child: Container(
-        child: _getItem(store, context),
-      ),
+      child: Container(child: _getItem(store, context)),
     );
   }
 
   Widget _getItem(SettingsStore store, BuildContext context) {
-    var currcncies = CurrencyHelper.all();
+    var currencies = CurrencyHelper.all();
+
     return ListView.separated(
       physics: BouncingScrollPhysics(),
-      itemCount: currcncies.length,
+      itemCount: currencies.length,
       itemBuilder: (ctx, index) {
-        var x = currcncies[index];
+        var x = currencies[index];
         var checked = store.currency == _getCurrencyTag(x) ? Check() : null;
         return ListTile(
           title: Text(x.currencyName, style: Style.body),
-          leading: Text(
-            x.currencySymbol,
-            style: Style.body.secClr,
-          ),
+          leading: Text(x.currencySymbol, style: Style.body.secClr),
           trailing: checked,
           onTap: () {
             store.changeCurrency(x.locale, x.currencyCode);
@@ -47,9 +43,7 @@ class CurrencyPage extends StatelessWidget {
           },
         );
       },
-      separatorBuilder: (ctx, index) => Divider(
-        height: 0,
-      ),
+      separatorBuilder: (ctx, index) => Divider(height: 0),
     );
   }
 

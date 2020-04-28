@@ -12,7 +12,7 @@ import 'package:monex/ui/editor/elements/date_picker.dart';
 import 'package:monex/ui/editor/elements/icon_card.dart';
 
 class DateInput extends StatelessWidget {
-  const DateInput({Key key}) : super(key: key);
+  const DateInput();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class DateInput extends StatelessWidget {
         return Observer(builder: (context) {
           return IconCard(
             child: _icon(formStore),
-            name: _displayDateMonth(formStore.date).toUpperCase(),
+            name: _displayDateMonth(formStore.date),
             onTap: () => _picker(control, formStore),
             storeKey: () => formStore.date,
           );
@@ -33,24 +33,23 @@ class DateInput extends StatelessWidget {
 
   void _picker(BottomModalControl control, FormStore formStore) {
     var selectedDate = DateHelper.msToDt(formStore.date);
+    var selectedMonth = DateHelper.getMonthName(selectedDate);
+    var title = '${Labels.chooseDate}  ·  $selectedMonth';
     Widget picker = DatePicker(
+      selected: selectedDate,
       onSelect: (dt) {
         var ms = DateHelper.dtToMs(dt);
         formStore.changeDate(ms);
-
         control.close();
       },
-      selected: selectedDate,
     );
-    control.open(
-        '${Labels.chooseDate}  ·  ${DateHelper.getMonthName(selectedDate)}',
-        picker);
+    control.open(title, picker);
   }
 
-  _icon(FormStore formStore) {
+  Widget _icon(FormStore formStore) {
     return Stack(
       alignment: Alignment.center,
-      children: <Widget>[
+      children: [
         Icon(
           MIcons.calendar_line_1,
           size: 30,
@@ -69,11 +68,11 @@ class DateInput extends StatelessWidget {
 
   String _displayDateMonth(int ms) {
     DateTime dt = DateHelper.msToDt(ms);
-    return DateHelper.getFormattedDayOfMonth(dt);
+    return DateHelper.format(dt, DateHelper.monthDayP).toUpperCase();
   }
 
   String _displayDate(int ms) {
     DateTime dt = DateHelper.msToDt(ms);
-    return DateHelper.getDateOfMonth(dt);
+    return DateHelper.format(dt, DateHelper.dateP);
   }
 }

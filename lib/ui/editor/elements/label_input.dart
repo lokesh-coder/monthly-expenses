@@ -10,7 +10,7 @@ import 'package:monex/ui/common/bottom_modal.dart';
 import 'package:monex/ui/common/hint.dart';
 
 class LabelInput extends StatelessWidget {
-  const LabelInput({Key key}) : super(key: key);
+  const LabelInput();
 
   @override
   Widget build(BuildContext context) {

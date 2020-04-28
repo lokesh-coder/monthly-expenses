@@ -1,7 +1,9 @@
 import 'package:jiffy/jiffy.dart';
 
 class DateHelper {
-  static String dateWeekday = 'd E';
+  static String dateWeekdayP = 'd E';
+  static String monthDayP = 'LLL · E';
+  static String dateP = 'd';
 
   static int getTotalDaysInMonth(DateTime dateTime) {
     Jiffy date = Jiffy(dateTime);
@@ -53,7 +55,7 @@ class DateHelper {
     return Jiffy(dt).format('d');
   }
 
-  static List getMonthRange(int rangeCount) {
+  static List getAllMonthsInRange(int rangeCount) {
     DateTime currMonth = DateTime.now();
     List ranges = List((rangeCount * 2) + 1);
 
@@ -98,7 +100,7 @@ class DateHelper {
   }
 
   static getMonthRangeDisplayText(int count) {
-    List ranges = DateHelper.getMonthRange(count);
+    List ranges = DateHelper.getAllMonthsInRange(count);
     String start = '${ranges.first['monthName']} ${ranges.first['year']}';
     String end = '${ranges.last['monthName']} ${ranges.last['year']}';
     return '$start to $end';

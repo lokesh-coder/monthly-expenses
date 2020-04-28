@@ -15,11 +15,10 @@ class Amount extends StatelessWidget {
 
   const Amount(
     this.value, {
-    Key key,
     this.format = true,
     this.size = DisplaySize.SM,
     this.type = AmountDisplayType.CREDIT,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

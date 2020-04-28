@@ -10,7 +10,7 @@ import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 
 class FilterBar extends StatelessWidget {
-  const FilterBar({Key key}) : super(key: key);
+  const FilterBar();
 
   @override
   Widget build(BuildContext context) {

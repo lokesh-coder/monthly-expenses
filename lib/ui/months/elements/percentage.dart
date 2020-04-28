@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
@@ -10,7 +11,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 class Percentage extends StatelessWidget {
   final double value;
 
-  const Percentage({Key key, this.value}) : super(key: key);
+  const Percentage(this.value);
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +19,15 @@ class Percentage extends StatelessWidget {
 
     return Observer(builder: (context) {
       List data = _data(paymentsStore.inOutStatement);
+      String displayValue = "${(_getValue(data[0], data[1]) * 100).round()}%";
+
       return CircularPercentIndicator(
-        radius: 40.0,
-        lineWidth: 3.0,
+        radius: Dimensions.percentageDisplayRad,
+        lineWidth: Dimensions.percentageDisplayStroke,
         percent: _getValue(data[0], data[1]),
         animation: true,
         animationDuration: 200,
-        center: new Text(
-          "${(_getValue(data[0], data[1]) * 100).round()}%",
-          style: Style.body.bodyAltClr.xs,
-        ),
+        center: new Text(displayValue, style: Style.body.bodyAltClr.xs),
         progressColor: data[2] == PaymentType.CREDIT ? Clrs.green : Clrs.red,
         circularStrokeCap: CircularStrokeCap.round,
         backgroundColor: Colors.white12,
@@ -35,7 +35,7 @@ class Percentage extends StatelessWidget {
     });
   }
 
-  _data(Map data) {
+  List _data(Map data) {
     num total = data['credit'] + data['debit'];
     num scale;
     PaymentType type;

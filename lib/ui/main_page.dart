@@ -10,7 +10,7 @@ import 'package:monex/ui/months/elements/banner-board.dart';
 import 'package:monex/ui/months/months.dart';
 
 class MainPage extends StatelessWidget {
-  const MainPage({Key key}) : super(key: key);
+  const MainPage();
 
   @override
   Widget build(BuildContext context) {

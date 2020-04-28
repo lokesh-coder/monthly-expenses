@@ -6,15 +6,10 @@ class PaymentsCarousal extends StatelessWidget {
   final int index;
   final PageController ctrl;
 
-  const PaymentsCarousal({Key key, this.index, this.data, this.ctrl})
-      : super(key: key);
+  const PaymentsCarousal({this.index, this.data, this.ctrl});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Expanded(child: Payments(data)),
-      ],
-    );
+    return Column(children: [Expanded(child: Payments(data))]);
   }
 }

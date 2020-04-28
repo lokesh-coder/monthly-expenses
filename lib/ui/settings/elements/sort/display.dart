@@ -11,7 +11,7 @@ import 'package:monex/ui/settings/elements/item_tile.dart';
 class SortDisplay extends StatelessWidget {
   final Map dataCtx;
 
-  const SortDisplay(this.dataCtx, {Key key}) : super(key: key);
+  const SortDisplay(this.dataCtx);
 
   @override
   Widget build(BuildContext context) {

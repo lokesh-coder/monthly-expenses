@@ -20,7 +20,7 @@ import 'elements/category_input.dart';
 final formKey = GlobalKey<FormState>();
 
 class Editor extends StatefulWidget {
-  const Editor({Key key}) : super(key: key);
+  const Editor();
 
   @override
   _EditorState createState() => _EditorState();
@@ -41,11 +41,10 @@ class _EditorState extends State<Editor> {
   void initState() {
     super.initState();
     disposeOne = reaction((_) => sandwichStore.isOpen, (x) {
-      if (x) {
-        shouldLoad = x;
-        formStore.initForm();
-        setState(() {});
-      }
+      if (!x) return;
+      shouldLoad = x;
+      formStore.initForm();
+      setState(() {});
     });
 
     disposeTwo = reaction((_) => paymentsStore.activeMonth, (x) {

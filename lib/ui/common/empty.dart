@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -32,13 +33,12 @@ class Empty extends StatelessWidget {
         SizedBox(height: 20),
         Text(
           message,
-          style: TextStyle(fontSize: 15, color: Clrs.label),
+          style: Style.body.sm.clr(Clrs.label),
         ),
         FlatButton(
           child: Text(
             Labels.addNewPayment.toUpperCase(),
-            style: TextStyle(
-                color: Clrs.secondary, fontSize: 13, letterSpacing: -.5),
+            style: Style.body.secClr.ls.sm,
           ),
           onPressed: () {
             sl<PaymentsStore>().setActivePayment(null);

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/models/category.dart';
@@ -46,7 +47,7 @@ class CategoryPicker extends StatelessWidget {
           children: <Widget>[
             Image.asset(cat.path, width: 30),
             SizedBox(height: 10),
-            Text(cat.name, style: TextStyle(color: Clrs.inputLabel)),
+            Text(cat.name, style: Style.label.sm.normal),
           ],
         ),
       ),

@@ -52,7 +52,6 @@ class Settings extends StatelessWidget {
             headBuilder: (_, dataCtx) => DeleteAllDisplay(dataCtx),
             bodyBuilder: (_, __) => DeleteAllEdit(),
           ),
-
           AppLinks()
         ],
       ),

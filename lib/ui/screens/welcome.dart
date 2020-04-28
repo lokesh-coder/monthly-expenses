@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/common/app-shell.dart';
@@ -38,21 +39,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               children: <Widget>[
                 Text(
                   'Hey, Welcome!',
-                  style: TextStyle(
-                    color: Clrs.light,
-                    fontSize: 26,
-                    fontWeight: FontWeight.w800,
-                  ),
+                  style: Style.body.light.lg.clr(Clrs.light),
                 ),
                 SizedBox(height: 5),
                 Text(
                   'Please choose your preffered currency.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Clrs.label,
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                  ),
+                  style: Style.body.bodyAltClr,
                 ),
                 SizedBox(height: 60),
                 FlatButton(
@@ -66,10 +59,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   color: Color(0xffcf6a87),
                   child: Text(
                     'Choose currency'.toUpperCase(),
-                    style: TextStyle(
-                      color: Color(0xfff7f1e3).withOpacity(0.6),
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Style.body.sm.clr(Colors.white70),
                   ),
                 ),
               ],

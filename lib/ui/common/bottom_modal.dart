@@ -5,6 +5,7 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/layout_helper.dart';
 import "package:monex/config/extension.dart";
 import 'package:monex/ui/common/hint.dart';
@@ -88,11 +89,7 @@ class BottomModal extends StatelessWidget {
                   child: Text(
                     title.capitalize(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Clrs.dark.withOpacity(0.8),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                    ),
+                    style: Style.heading.md,
                   ),
                 ),
                 Positioned(

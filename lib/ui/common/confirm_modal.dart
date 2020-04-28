@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/layout_helper.dart';
 
 class ConfirmModalControl {
@@ -94,21 +95,13 @@ class ConfirmModal extends StatelessWidget {
       child: Text(
         control.title,
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.normal,
-          color: Clrs.dark,
-        ),
+        style: Style.body.bodyClr,
       ),
     );
   }
 
   _actionBtns(BuildContext context, ConfirmModalControl control) {
-    var btnStyle = TextStyle(
-      color: Clrs.label,
-      letterSpacing: -0.5,
-      fontWeight: FontWeight.w500,
-    );
+    var btnStyle = Style.body.sm.clr(Clrs.text.withOpacity(0.5));
 
     return Row(
       mainAxisSize: MainAxisSize.min,

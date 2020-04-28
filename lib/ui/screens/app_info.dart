@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:package_info/package_info.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/ui/common/app-shell.dart';
@@ -63,9 +64,9 @@ class _AppInfoScreenState extends State<AppInfoScreen> {
       child: ListTile(
         title: Text(
           title,
-          style: TextStyle(color: Clrs.dark),
+          style: Style.heading,
         ),
-        trailing: Text(value, style: TextStyle(color: Clrs.labelActive)),
+        trailing: Text(value, style: Style.label.sm.normal),
       ),
     );
   }

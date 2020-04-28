@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 
@@ -23,10 +24,7 @@ class DeleteAllEdit extends StatelessWidget {
         },
         child: Text(
           Labels.deleteForever,
-          style: TextStyle(
-            // color: Clrs.red,
-            fontSize: 16,
-          ),
+          style: Style.body.clr(Clrs.red),
         ),
         elevation: 0,
         textColor: Clrs.red,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/sort_strategies.dart';
 import 'package:monex/models/sort_strategy.dart';
@@ -35,15 +36,11 @@ class _SortEditState extends State<SortEdit> {
     return ListTile(
       title: Text(
         strategy.name,
-        style: TextStyle(
-          color: Clrs.inputValue,
-        ),
+        style: Style.label.base.clr(Clrs.labelAlt),
       ),
       subtitle: Text(
         strategy.desc,
-        style: TextStyle(
-          color: Clrs.labelActive,
-        ),
+        style: Style.label.sm,
       ),
       leading: Container(
         height: double.infinity,

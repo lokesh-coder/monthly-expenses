@@ -15,16 +15,18 @@ Quick fix:
 
 Bit effort:
     ✔ default icon to be decided @done
-    ✔ change tick icon in add button in editor s@done
-    ☐ dont show formatted value in dialpad
-    ☐ make category moda 0.75 height
-    ☐ set typography
+    ✔ change tick icon in add button in editor @done
+    ✔ dont show formatted value in dialpad @done
+    ✔ make category modal 0.75 height @done
+    ✔ set typography @done
     ☐ change smaller components to stateless widget than functions
+    ☐ show loader on paymnts
+    ☐ on changing credit type on editor, chnage filter also
 
 Need thought:
     ☐ fix zoomin effect
     ☐ currency selction on first click not working
-    ☐ change dial pad design   
+    ☐ change dial pad design
     ☐ fix category icon blur
     ☐ category align 4 in a row test
     ☐ category icon recently  used

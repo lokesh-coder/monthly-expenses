@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
@@ -29,10 +30,11 @@ class LabelInput extends StatelessWidget {
             ),
             child: Observer(builder: (context) {
               return Text(
-                  formStore.label == null
-                      ? 'add short name'
-                      : formStore.label.toString(),
-                  style: TextStyle(color: Clrs.labelActive));
+                formStore.label == null
+                    ? 'add short name'
+                    : formStore.label.toString(),
+                style: Style.label.normal.sm,
+              );
             }),
           ),
         );
@@ -70,10 +72,7 @@ class LabelInput extends StatelessWidget {
                       {int currentLength, int maxLength, bool isFocused}) =>
                   null,
               decoration: InputDecoration.collapsed(hintText: null),
-              style: TextStyle(
-                color: Clrs.labelActive,
-                fontSize: 17,
-              ),
+              style: Style.body.md,
               onChanged: (x) {
                 content = x.trim();
               },

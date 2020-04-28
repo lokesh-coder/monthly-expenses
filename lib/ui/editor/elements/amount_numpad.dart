@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/app.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
@@ -82,8 +83,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
       var icon = (x, [col = Clrs.labelActive]) => Icon(x, color: col);
       child = icon(MIcons.delete_back_2_line);
     } else {
-      var style = TextStyle(
-          color: Clrs.labelActive, fontSize: 25, fontFamily: 'Manrope');
+      var style = Style.numeric.lg.bodyClr;
       child = Text(label, style: style);
     }
 
@@ -118,14 +118,14 @@ class _AmountNumpadState extends State<AmountNumpad> {
         formattedText,
         format: false,
         type: AmountDisplayType.PLACEHOLDER,
-        size: AmountDisplaySize.XL,
+        size: DisplaySize.LG,
       );
     } else {
       displayValue = Amount(
         value.replaceAll('.', _separator),
         format: false,
         type: AmountDisplayType.INPUT,
-        size: AmountDisplaySize.XL,
+        size: DisplaySize.LG,
       );
     }
 

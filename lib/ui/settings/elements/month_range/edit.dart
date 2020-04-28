@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
@@ -27,11 +28,7 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
       children: <Widget>[
         Text(
           '${(_value.round()).toString()} Month(s)',
-          style: TextStyle(
-            color: Clrs.inputValue,
-            fontSize: 22,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Style.label.md,
         ),
         SizedBox(
           height: 20,
@@ -68,9 +65,7 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
         ),
         Text(
           DateHelper.getMonthRangeDisplayText(_value.toInt()),
-          style: TextStyle(
-            color: Clrs.labelActive,
-          ),
+          style: Style.label.normal.sm,
         ),
       ],
     );

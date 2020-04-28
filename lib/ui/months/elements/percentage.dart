@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -25,7 +26,7 @@ class Percentage extends StatelessWidget {
         animationDuration: 200,
         center: new Text(
           "${(_getValue(data[0], data[1]) * 100).round()}%",
-          style: TextStyle(fontSize: 12, color: Colors.white38),
+          style: Style.body.bodyAltClr.xs,
         ),
         progressColor: data[2] == PaymentType.CREDIT ? Clrs.green : Clrs.red,
         circularStrokeCap: CircularStrokeCap.round,

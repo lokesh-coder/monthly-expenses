@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
 
 class DatePicker extends StatelessWidget {
@@ -45,24 +46,23 @@ class DatePicker extends StatelessWidget {
       dateObj = {"date": "", "dateTime": null};
     }
     var isSelecteDate = selected.day.toString() == dateObj["date"].toString();
+    var textClr = isSelecteDate ? Colors.white : Clrs.inputValue;
+    var bgClr = isSelecteDate ? Clrs.primary : Colors.transparent;
+
     return Expanded(
       child: GestureDetector(
         onTap: () => onSelect(dateObj['dateTime']),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            color: isSelecteDate ? Clrs.primary : Colors.transparent,
+            color: bgClr,
           ),
           padding: EdgeInsets.symmetric(vertical: 9),
           margin: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
           child: Center(
             child: Text(
               dateObj["date"].toString(),
-              style: TextStyle(
-                height: 1.2,
-                fontSize: 18,
-                color: isSelecteDate ? Colors.white : Clrs.inputValue,
-              ),
+              style: Style.body.clr(textClr).md,
             ),
           ),
         ),
@@ -81,11 +81,7 @@ class DatePicker extends StatelessWidget {
   Widget _weekName(name) {
     var text = Text(
       name,
-      style: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        color: Clrs.inputLabel,
-      ),
+      style: Style.label,
     );
 
     var content = Center(

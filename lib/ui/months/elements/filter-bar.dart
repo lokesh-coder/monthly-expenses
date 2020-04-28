@@ -4,6 +4,7 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
@@ -69,10 +70,7 @@ class FilterBar extends StatelessWidget {
               SizedBox(width: 8),
               Text(
                 name,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white.withOpacity(0.8),
-                ),
+                style: Style.body.light.sm.bodyAltClr,
               ),
             ],
           ),

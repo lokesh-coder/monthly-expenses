@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/ui/common/fade_transition.dart';
 import 'package:monex/ui/screens/app_info.dart';
 import 'package:monex/ui/screens/help.dart';
@@ -19,9 +20,7 @@ class AppLinks extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
           child: Text(
             Labels.aboutApp.toUpperCase(),
-            style: TextStyle(
-              color: Clrs.labelActive,
-            ),
+            style: Style.label.sm,
           ),
         ),
         _getItemTile(context, Labels.appInfo, () => AppInfoScreen()),
@@ -33,10 +32,7 @@ class AppLinks extends StatelessWidget {
   _getItemTile(context, name, page) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 35),
-      title: Text(
-        name,
-        style: TextStyle(color: Clrs.dark.withOpacity(0.5)),
-      ),
+      title: Text(name, style: Style.label.normal.base),
       trailing: Icon(MIcons.arrow_drop_right_fill),
       onTap: () {
         Navigator.push(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/helpers/date_helper.dart';
@@ -47,13 +47,6 @@ class Payments extends StatelessWidget {
         .get<Catagories>('categories')
         .findCategoryById(data.categoryID);
 
-    var style = TextStyle(
-      color: Clrs.dark.withOpacity(0.8),
-      fontSize: 17,
-      fontWeight: FontWeight.w600,
-      letterSpacing: -0.6,
-    );
-
     var dt = DateHelper.msToDt(data.date);
     var date = DateHelper.format(dt, DateHelper.dateWeekday);
 
@@ -69,18 +62,14 @@ class Payments extends StatelessWidget {
           paymentsStore.setActivePayment(data.id);
           sl<SandwichStore>().changeVisibility(true);
         },
-        title: Text(data.label.capitalize(), style: style),
+        title: Text(data.label.capitalize(), style: Style.heading),
         subtitle: Text(
           '${category.name}  ·  $date'.toUpperCase(),
-          style: TextStyle(
-            fontSize: 11,
-            fontWeight: FontWeight.w600,
-            color: Clrs.label,
-          ),
+          style: Style.label,
         ),
         trailing: Amount(
           data.amount,
-          size: AmountDisplaySize.XS,
+          size: DisplaySize.BASE,
           type: data.isCredit
               ? AmountDisplayType.CREDIT
               : AmountDisplayType.DEBIT,

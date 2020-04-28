@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/config/typography.dart';
 
 class MonthsCarousal extends StatefulWidget {
   final int index;
@@ -45,11 +46,8 @@ class _MonthsCarousalState extends State<MonthsCarousal> {
               duration: Duration(milliseconds: 200),
               child: Text(widget.data['monthName']),
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontFamily: 'Circular',
-                color: Color(0xff757193),
-                fontWeight: fs == 1 ? FontWeight.w500 : FontWeight.normal,
-              ),
+              style: Style.body.sm.copyWith(
+                  fontWeight: fs == 1 ? FontWeight.w500 : FontWeight.normal),
             ),
           ),
         ),

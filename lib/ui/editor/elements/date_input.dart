@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
@@ -59,11 +60,7 @@ class DateInput extends StatelessWidget {
           top: 10,
           child: Text(
             _displayDate(formStore.date),
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: Clrs.blue,
-            ),
+            style: Style.body.sm.clr(Clrs.blue).light,
           ),
         )
       ],

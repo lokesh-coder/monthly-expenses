@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 
@@ -79,11 +79,7 @@ class _IconCardState extends State<IconCard> with TickerProviderStateMixin {
             SizedBox(height: 10),
             Text(
               widget.name,
-              style: TextStyle(
-                color: Clrs.inputLabel,
-                fontWeight: FontWeight.w600,
-                fontSize: 11,
-              ),
+              style: Style.label,
             ),
           ],
         ),

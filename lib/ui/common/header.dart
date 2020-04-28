@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/ui/common/hint.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
@@ -13,7 +14,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
   PreferredSizeWidget build(BuildContext context) {
     return AppBar(
       leading: leading,
-      title: Text(title, style: TextStyle(color: Colors.white70)),
+      title: Text(title, style: Style.heading.md.bodyAltClr),
       centerTitle: true,
       actions: [
         Hint(

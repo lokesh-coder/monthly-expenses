@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 
 class Hint extends StatelessWidget {
   final String message;
@@ -14,7 +15,7 @@ class Hint extends StatelessWidget {
         color: Clrs.dark,
         borderRadius: BorderRadius.circular(4),
       ),
-      textStyle: TextStyle(color: Colors.white54),
+      textStyle: Style.body.bodyAltClr.sm,
       message: message,
       child: child,
     );

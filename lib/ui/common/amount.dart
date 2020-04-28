@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/currency_helper.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
@@ -8,7 +9,7 @@ import 'package:monex/stores/settings/settings.store.dart';
 
 class Amount extends StatelessWidget {
   final dynamic value;
-  final AmountDisplaySize size;
+  final DisplaySize size;
   final AmountDisplayType type;
   final bool format;
 
@@ -16,7 +17,7 @@ class Amount extends StatelessWidget {
     this.value, {
     Key key,
     this.format = true,
-    this.size = AmountDisplaySize.SM,
+    this.size = DisplaySize.SM,
     this.type = AmountDisplayType.CREDIT,
   }) : super(key: key);
 
@@ -38,13 +39,7 @@ class Amount extends StatelessWidget {
               format
                   ? CurrencyHelper.getFormattedCurrency(value, currency)
                   : value.toString(),
-              style: TextStyle(
-                fontSize: fontSize,
-                fontFamily: 'Manrope',
-                fontWeight: FontWeight.w600,
-                letterSpacing: -.5,
-                color: color,
-              ),
+              style: Style.numeric.clr(color).fs(fontSize),
             );
           }),
         ],
@@ -78,11 +73,11 @@ class Amount extends StatelessWidget {
 
   Map<dynamic, double> _getFontSizeMap() {
     return {
-      AmountDisplaySize.XS: 18.0,
-      AmountDisplaySize.SM: 20.0,
-      AmountDisplaySize.MD: 22.0,
-      AmountDisplaySize.LG: 25.0,
-      AmountDisplaySize.XL: 30.0,
+      DisplaySize.XS: FontSize.xs,
+      DisplaySize.SM: FontSize.sm,
+      DisplaySize.BASE: FontSize.base,
+      DisplaySize.MD: FontSize.md,
+      DisplaySize.LG: FontSize.lg,
     };
   }
 }

@@ -38,14 +38,14 @@ class AmountInput extends StatelessWidget {
       return Amount(
         0.00,
         type: AmountDisplayType.PLACEHOLDER,
-        size: AmountDisplaySize.XL,
+        size: DisplaySize.LG,
       );
     }
 
     return Amount(
       formStore.amount,
       type: AmountDisplayType.INPUT,
-      size: AmountDisplaySize.XL,
+      size: DisplaySize.LG,
     );
   }
 

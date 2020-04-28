@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monex/config/typography.dart';
 
 class Ribbon extends StatelessWidget {
   final String text;
@@ -12,10 +13,7 @@ class Ribbon extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 16,
-          fontFamily: 'Circular',
-        ),
+        style: Style.body.clr(Colors.white),
       ),
     );
   }

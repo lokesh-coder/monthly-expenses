@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 
 class SettingsItemTile extends StatelessWidget {
   final Function onTap;
@@ -37,18 +38,11 @@ class SettingsItemTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(
-          color: Clrs.dark,
-          fontWeight: FontWeight.w600,
-          fontSize: 16,
-        ),
+        style: Style.heading,
       ),
       subtitle: Text(
         displayText,
-        style: TextStyle(
-          fontSize: 14,
-          color: Clrs.labelActive,
-        ),
+        style: Style.label.sm,
       ),
       trailing: Icon(
         dataCtx['isOpen'] ? MIcons.arrow_up_s_line : MIcons.arrow_down_s_line,

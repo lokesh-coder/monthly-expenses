@@ -4,6 +4,7 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/layout_helper.dart';
 import 'package:monex/models/enums.dart';
@@ -64,7 +65,7 @@ class BannerBoard extends StatelessWidget {
                           Amount(
                             paymentsStore.totalAmountOfActiveMonth.abs(),
                             type: _getType(paymentsStore),
-                            size: AmountDisplaySize.LG,
+                            size: DisplaySize.LG,
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,19 +73,12 @@ class BannerBoard extends StatelessWidget {
                               Text(
                                 DateHelper.getMonthName(
                                     paymentsStore.activeMonth),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white30,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: Style.body.bodyAltClr.bold,
                               ),
                               SizedBox(width: 5),
                               Text(
                                 DateHelper.getYear(paymentsStore.activeMonth),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white30,
-                                ),
+                                style: Style.body.bodyAltClr,
                               ),
                             ],
                           ),

@@ -67,8 +67,8 @@ class Months extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border(
-                bottom: BorderSide(color: Clrs.inputBorder),
-                top: BorderSide(color: Clrs.inputBorder),
+                bottom: BorderSide(color: Clrs.border),
+                top: BorderSide(color: Clrs.border),
               ),
             ),
             child: Pager.master(

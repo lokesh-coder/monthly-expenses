@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/sort_strategies.dart';
 import 'package:monex/models/enums.dart';
@@ -37,15 +38,11 @@ class _OrderEditState extends State<OrderEdit> {
     return ListTile(
       title: Text(
         data['name'],
-        style: TextStyle(
-          color: Clrs.inputValue,
-        ),
+        style: Style.label.base.clr(Clrs.labelAlt),
       ),
       subtitle: Text(
         data['desc'],
-        style: TextStyle(
-          color: Clrs.labelActive,
-        ),
+        style: Style.label.sm,
       ),
       leading: Container(
         height: double.infinity,

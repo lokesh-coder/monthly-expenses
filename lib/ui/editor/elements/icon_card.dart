@@ -3,6 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class IconCard extends StatefulWidget {
   final Widget child;
@@ -53,8 +54,10 @@ class _IconCardState extends State<IconCard> with TickerProviderStateMixin {
       });
     });
 
-    disposer = reaction((_) => widget.storeKey(), (x) {
-      motionController.forward();
+    disposer = reaction((_) => widget.storeKey(), (_) {
+      if (sl<SandwichStore>().topOffset == 1.0) {
+        motionController.forward();
+      }
     });
   }
 
@@ -70,16 +73,10 @@ class _IconCardState extends State<IconCard> with TickerProviderStateMixin {
           children: [
             Transform.scale(
               scale: size,
-              child: SizedBox(
-                child: widget.child,
-                height: 35,
-              ),
+              child: SizedBox(child: widget.child, height: 35),
             ),
             SizedBox(height: 10),
-            Text(
-              widget.name,
-              style: Style.label,
-            ),
+            Text(widget.name, style: Style.label),
           ],
         ),
       ),
@@ -89,7 +86,7 @@ class _IconCardState extends State<IconCard> with TickerProviderStateMixin {
   @override
   void dispose() {
     super.dispose();
-    disposer();
     motionController.dispose();
+    disposer();
   }
 }

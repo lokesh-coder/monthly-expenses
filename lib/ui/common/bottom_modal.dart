@@ -19,8 +19,9 @@ class BottomModalControl {
 
 class BottomModal extends StatelessWidget {
   final Function(BuildContext, BottomModalControl) builder;
+  final bool hasPadding;
 
-  const BottomModal({this.builder});
+  const BottomModal({this.builder, this.hasPadding = true});
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +61,7 @@ class BottomModal extends StatelessWidget {
                   child: child,
                   dataCtx: data,
                   title: title,
+                  hasPadding: hasPadding,
                 ),
               );
             },
@@ -78,33 +80,30 @@ class _ModalLayout extends StatelessWidget {
   final String title;
   final Widget child;
   final BottomModalControl dataCtx;
+  final bool hasPadding;
 
-  const _ModalLayout({this.pop, this.title, this.child, this.dataCtx});
+  const _ModalLayout(
+      {this.pop, this.title, this.child, this.dataCtx, this.hasPadding});
 
   @override
   Widget build(BuildContext context) {
     var screenH = LayoutHelper.screenHeight;
+    var container = Container(
+      padding: EdgeInsets.all(hasPadding ? 20 : 0),
+      color: Colors.white,
+      child: _ModalContent(
+        pop: pop,
+        child: child,
+        dataCtx: dataCtx,
+        title: title,
+      ),
+    );
     return ConstrainedBox(
       constraints: new BoxConstraints(
         minHeight: screenH * Dimensions.bottomSheetMinHeight,
         maxHeight: screenH * Dimensions.bottomSheetMaxHeight,
       ),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Container(
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          child: _ModalContent(
-            pop: pop,
-            child: child,
-            dataCtx: dataCtx,
-            title: title,
-          ),
-        ),
-      ),
+      child: container,
     );
   }
 }

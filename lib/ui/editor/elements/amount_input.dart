@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/labels.dart';
@@ -16,6 +18,7 @@ class AmountInput extends StatelessWidget {
     var formStore = sl<FormStore>();
 
     return BottomModal(
+      hasPadding: false,
       builder: (context, control) {
         return GestureDetector(
           onTap: () {
@@ -32,19 +35,15 @@ class AmountInput extends StatelessWidget {
   }
 
   _display(FormStore formStore) {
-    if (formStore.amount == null) {
-      return Amount(
-        0.00,
-        type: AmountDisplayType.PLACEHOLDER,
-        size: DisplaySize.LG,
-      );
+    num amount = 0.00;
+    AmountDisplayType type = AmountDisplayType.PLACEHOLDER;
+
+    if (formStore.amount != null) {
+      amount = formStore.amount;
+      type = AmountDisplayType.INPUT;
     }
 
-    return Amount(
-      formStore.amount,
-      type: AmountDisplayType.INPUT,
-      size: DisplaySize.LG,
-    );
+    return Amount(amount, type: type, size: DisplaySize.LG);
   }
 
   _numpad(BottomModalControl control, FormStore formStore) {

@@ -13,6 +13,7 @@ class AmountNumpad extends StatefulWidget {
   final Function onSelect;
   final Function close;
   final String selected;
+
   const AmountNumpad({this.selected, this.close, this.onSelect});
 
   @override
@@ -21,94 +22,121 @@ class AmountNumpad extends StatefulWidget {
 
 class _AmountNumpadState extends State<AmountNumpad> {
   var store = sl<SettingsStore>();
-  var locale;
-  String value = '';
+  String value, locale, separator, currencySymbol;
 
   @override
   void initState() {
     super.initState();
     value = widget.selected == "null" ? '' : widget.selected;
     locale = store.currency.split('=')[0];
+    separator = CurrencyHelper.separator(locale);
+    currencySymbol = CurrencyHelper.getCurrency(store.currency).currencySymbol;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _display(),
-          _numpad(),
-          SizedBox(height: 10),
-          FloatingActionButton(
-            backgroundColor: Clrs.primary,
-            child: Icon(MIcons.tick),
-            onPressed: () {
-              if (value == null) value = '';
-              widget.onSelect(num.parse(value));
-            },
+          _KeypadDisplay(
+            value,
+            locale: locale,
+            separator: separator,
+            currencySymbol: currencySymbol,
+            onClear: _onClear,
           ),
+          _KeypadLayout(
+            value,
+            locale: locale,
+            separator: separator,
+            onValueChange: _onValueChange,
+            onDone: _onDone,
+          )
         ],
       ),
     );
   }
 
-  Widget _numpad() {
-    List rowOne = ['1', '2', '3'];
-    List rowTwo = ['4', '5', '6'];
-    List rowThree = ['7', '8', '9'];
-    List rowFour = [_separator, '0', 'REMOVE'];
+  _onClear() {
+    if (value.length == 0) return;
+    value = value.substring(0, value.length - 1);
+    setState(() {});
+  }
 
-    List<Widget> items =
-        (rowOne + rowTwo + rowThree + rowFour).map((c) => _btn(c)).toList();
+  _onDone(newValue) {
+    widget.onSelect(num.parse(newValue));
+  }
 
-    return GridView(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisSpacing: 1,
-        mainAxisSpacing: 1,
+  _onValueChange(newValue) {
+    setState(() {
+      value = newValue;
+    });
+  }
+}
+
+class _KeypadLayout extends StatelessWidget {
+  final String value;
+  final String locale;
+  final String separator;
+  final Function onValueChange;
+  final Function onDone;
+  const _KeypadLayout(this.value,
+      {this.locale, this.separator, this.onValueChange, this.onDone});
+
+  @override
+  Widget build(BuildContext context) {
+    var oneToNineKeys = List.generate(9, (i) => '${i + 1}');
+    var keys = [...oneToNineKeys, separator, '0', 'ENTER'];
+    var renderButtonFn =
+        (key) => _KeypadButton(key, onTap: () => _onKeySelect(key));
+    var buttons = keys.map(renderButtonFn).toList();
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 50),
+      child: GridView.count(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 3,
-        childAspectRatio: 2,
+        childAspectRatio: 1.8,
+        children: buttons,
       ),
-      children: items,
     );
   }
 
-  Widget _btn(String label) {
-    var child;
+  _onKeySelect(String key) {
+    var finalValue = value;
+    if (key == separator) key = '.';
 
-    if (label == 'REMOVE') {
-      var icon = (x, [col = Clrs.labelActive]) => Icon(x, color: col);
-      child = icon(MIcons.delete_back_2_line);
-    } else {
-      var style = Style.numeric.lg.bodyClr;
-      child = Text(label, style: style);
+    if (key == 'ENTER') {
+      if (value == null) finalValue = '';
+      onDone(finalValue);
+      return;
     }
 
-    return GestureDetector(
-      onTap: () {
-        if (label == _separator) label = '.';
-        if (label == 'REMOVE') {
-          if (value.length == 0) return;
-          value = value.substring(0, value.length - 1);
-        } else {
-          var finalAmount = value + label;
-          if (CurrencyHelper.isValidAmountPattern(
-              _normalizeAmount(finalAmount))) value += label;
-        }
+    var _tempValue = _normalizeAmount(value + key);
+    if (CurrencyHelper.isValidAmountPattern(_tempValue)) finalValue += key;
 
-        setState(() {});
-      },
-      child: Container(
-        decoration:
-            BoxDecoration(color: label == 'SELECT' ? Clrs.green : Colors.white),
-        child: Center(child: child),
-      ),
-    );
+    onValueChange(finalValue);
   }
 
-  _display() {
+  String _normalizeAmount(String value) {
+    if (value == '.') return '0';
+    return value;
+  }
+}
+
+class _KeypadDisplay extends StatelessWidget {
+  final String value;
+  final String locale;
+  final String separator;
+  final String currencySymbol;
+  final Function onClear;
+  const _KeypadDisplay(this.value,
+      {this.locale, this.separator, this.currencySymbol, this.onClear});
+
+  @override
+  Widget build(BuildContext context) {
     Widget displayValue;
     if (value == '') {
       var placeholderText = 0.toStringAsFixed(AppConfig.maxDecimalsInAmount);
@@ -121,22 +149,67 @@ class _AmountNumpadState extends State<AmountNumpad> {
       );
     } else {
       displayValue = Amount(
-        value.replaceAll('.', _separator),
+        value.replaceAll('.', separator),
         format: false,
         type: AmountDisplayType.INPUT,
         size: DisplaySize.LG,
       );
     }
 
-    return Container(child: displayValue);
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Row(
+        children: [
+          SizedBox(
+              width: 50,
+              child: Text(
+                currencySymbol,
+                style: Style.label.lg.normal.secClr,
+                textAlign: TextAlign.center,
+              )),
+          Expanded(child: Center(child: displayValue)),
+          IconButton(
+            icon: Icon(MIcons.delete_back_2_line),
+            color: Clrs.label,
+            onPressed: onClear,
+          )
+        ],
+      ),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: Clrs.labelActive.withOpacity(0.2)),
+        ),
+      ),
+    );
   }
+}
 
-  _normalizeAmount(String value) {
-    if (value == '.') return '0';
-    return value;
-  }
+class _KeypadButton extends StatelessWidget {
+  final String keyname;
+  final Function onTap;
+  const _KeypadButton(this.keyname, {this.onTap});
 
-  get _separator {
-    return CurrencyHelper.separator(locale);
+  @override
+  Widget build(BuildContext context) {
+    var child;
+
+    if (keyname == 'ENTER')
+      child = Icon(MIcons.tick, color: Clrs.secondary, size: 30);
+    else
+      child = Text(keyname, style: Style.numeric.lg.bodyAltClr);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        highlightColor: Clrs.primary,
+        splashColor: Clrs.label,
+        child: Container(
+          color: Colors.transparent,
+          child: Center(child: child),
+        ),
+      ),
+    );
   }
 }

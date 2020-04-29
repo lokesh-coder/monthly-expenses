@@ -24,12 +24,13 @@ Bit effort:
     ✔ on changing credit type on editor, chnage filter also @done
 
 Need thought:
-    ☐ fix zoomin effect
-    ☐ currency selction on first click not working
-    ☐ change dial pad design
+    ✔ fix zoomin effect @done
+    ✘ currency selction on first click not working @cancelled
+    ☐ change dial pad design-add tap feedack
     ☐ fix category icon blur
     ☐ category align 4 in a row test
     ☐ category icon recently  used
+    ☐ try ovel shappe action btn
 
 Least priotiry:
     ☐ add credits section in about

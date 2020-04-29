@@ -44,7 +44,7 @@ class CategoryPicker extends StatelessWidget {
         width: 80,
         child: Column(
           children: [
-            Image.asset(cat.path, width: 30),
+            Image.asset(cat.path, width: 35),
             SizedBox(height: 10),
             Text(cat.name, style: Style.label.sm.normal),
           ],

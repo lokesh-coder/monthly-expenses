@@ -9,7 +9,6 @@ import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/common/amount.dart';
 import 'package:monex/ui/common/button.dart';
-import 'package:superellipse_shape/superellipse_shape.dart';
 
 class AmountNumpad extends StatefulWidget {
   final Function onSelect;
@@ -37,26 +36,25 @@ class _AmountNumpadState extends State<AmountNumpad> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          _KeypadDisplay(
-            value,
-            locale: locale,
-            separator: separator,
-            currencySymbol: currencySymbol,
-            onClear: _onClear,
-          ),
-          _KeypadLayout(
-            value,
-            locale: locale,
-            separator: separator,
-            onValueChange: _onValueChange,
-            onDone: _onDone,
-          )
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _KeypadDisplay(
+          value,
+          locale: locale,
+          separator: separator,
+          currencySymbol: currencySymbol,
+          onClear: _onClear,
+          onReset: _onReset,
+        ),
+        _KeypadLayout(
+          value,
+          locale: locale,
+          separator: separator,
+          onValueChange: _onValueChange,
+          onDone: _onDone,
+        )
+      ],
     );
   }
 
@@ -66,14 +64,18 @@ class _AmountNumpadState extends State<AmountNumpad> {
     setState(() {});
   }
 
+  _onReset() {
+    value = '';
+    setState(() {});
+  }
+
   _onDone(newValue) {
     widget.onSelect(num.parse(newValue));
   }
 
   _onValueChange(newValue) {
-    setState(() {
-      value = newValue;
-    });
+    value = newValue;
+    setState(() {});
   }
 }
 
@@ -95,9 +97,10 @@ class _KeypadLayout extends StatelessWidget {
     var buttons = keys.map(renderButtonFn).toList();
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 50),
+      padding: EdgeInsets.symmetric(horizontal: 30),
       child: GridView.count(
         shrinkWrap: true,
+        padding: EdgeInsets.all(0),
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 3,
         childAspectRatio: 1.8,
@@ -134,8 +137,13 @@ class _KeypadDisplay extends StatelessWidget {
   final String separator;
   final String currencySymbol;
   final Function onClear;
+  final Function onReset;
   const _KeypadDisplay(this.value,
-      {this.locale, this.separator, this.currencySymbol, this.onClear});
+      {this.locale,
+      this.separator,
+      this.currencySymbol,
+      this.onClear,
+      this.onReset});
 
   @override
   Widget build(BuildContext context) {
@@ -163,17 +171,24 @@ class _KeypadDisplay extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-              width: 50,
-              child: Text(
-                currencySymbol,
-                style: Style.label.lg.normal.secClr,
-                textAlign: TextAlign.center,
-              )),
+            width: 50,
+            child: Text(
+              currencySymbol,
+              style: Style.label.lg.normal.secClr,
+              textAlign: TextAlign.center,
+            ),
+          ),
           Expanded(child: Center(child: displayValue)),
-          IconButton(
-            icon: Icon(MIcons.delete_back_2_line),
-            color: Clrs.label,
-            onPressed: onClear,
+          SizedBox(
+            width: 50,
+            child: FlatButton(
+              padding: EdgeInsets.all(0),
+              onLongPress: onReset,
+              child: Icon(MIcons.delete_back_2_line, color: Clrs.label),
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onPressed: onClear,
+            ),
           )
         ],
       ),

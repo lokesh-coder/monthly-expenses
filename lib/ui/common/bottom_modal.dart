@@ -154,7 +154,7 @@ class _ModalContent extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 10),
+        Visibility(visible: dataCtx.showHeader, child: SizedBox(height: 10)),
         child
       ],
     );

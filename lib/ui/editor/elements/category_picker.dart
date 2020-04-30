@@ -7,6 +7,7 @@ import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/models/category.dart';
 import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/ui/common/button.dart';
 
 class CategoryPicker extends StatelessWidget {
   final Function onSelect;
@@ -16,10 +17,12 @@ class CategoryPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Wrap(
-        runSpacing: 10,
-        spacing: 4,
+    return Flexible(
+      child: GridView.count(
+        padding: EdgeInsets.all(0),
+        physics: BouncingScrollPhysics(),
+        crossAxisCount: 4,
+        shrinkWrap: true,
         children: _categories(),
       ),
     );
@@ -33,23 +36,20 @@ class CategoryPicker extends StatelessWidget {
   }
 
   Widget _category(Category cat) {
-    Color color =
-        selected == cat.id ? Clrs.primary.withOpacity(.1) : Colors.transparent;
+    Color bgColor = selected == cat.id ? Clrs.light : Colors.transparent;
 
-    return GestureDetector(
-      onTap: () => onSelect(cat.id),
-      child: Container(
-        color: color,
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-        width: 80,
-        child: Column(
-          children: [
-            Image.asset(cat.path, height: 35),
-            SizedBox(height: 10),
-            Text(cat.name, style: Style.label.sm.normal),
-          ],
-        ),
+    return Button(
+      color: bgColor,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(cat.path, height: 35),
+          SizedBox(height: 10),
+          Text(cat.name, style: Style.label.sm.normal),
+        ],
       ),
+      onPressed: () => onSelect(cat.id),
     );
   }
 }

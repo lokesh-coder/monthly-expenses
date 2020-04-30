@@ -42,7 +42,7 @@ class Labels {
   /// about
   static String aboutApp = 'About Monex';
   static String appInfo = 'App info';
-  static String help = 'Help';
+  static String help = 'Help & Guide';
 
   /// tooltips
   static String closeScreen = 'Close';
@@ -52,4 +52,9 @@ class Labels {
   static String addLabel = 'Add label';
   static String goToSettings = 'Open Settings';
   static String goToEditor = 'Add new payement';
+
+  /// share
+  static String share = 'Share with your friends';
+  static String shareMessage =
+      'Monex - Friendly android app to manage monthly expenses without a hassle';
 }

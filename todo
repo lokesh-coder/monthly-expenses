@@ -29,12 +29,12 @@ Need thought:
     ✔ change dial pad design-add tap feedack @done
     ✔ fix category icon blur @done
     ✔ category align 4 in a row test @done
-    ☐ category icon recently  used
+    ✘ category icon recently  used @cancelled // sorted on usage
     ✔ try ovel shappe action btn @done
 
 Least priotiry:
     ☐ add credits section in about
-    ☐ add share 
+    ✔ add share @done
     ✔ reduce category img size @done
     ☐ add error reporting/handler
-    ☐ date picker round selecction
+    ✔ date picker round selecction @done

@@ -6,6 +6,7 @@ import 'package:monex/config/typography.dart';
 import 'package:monex/ui/common/fade_transition.dart';
 import 'package:monex/ui/screens/app_info.dart';
 import 'package:monex/ui/screens/help.dart';
+import 'package:share/share.dart';
 
 class AppLinks extends StatelessWidget {
   const AppLinks();
@@ -23,24 +24,26 @@ class AppLinks extends StatelessWidget {
             style: Style.label.sm,
           ),
         ),
-        _getItemTile(context, Labels.appInfo, () => AppInfoScreen()),
-        _getItemTile(context, Labels.help, () => HelpScreen())
+        _getItemTile(Labels.appInfo, onTap: () {
+          Navigator.push(context, FadeRoute(AppInfoScreen()));
+        }),
+        _getItemTile(Labels.help, onTap: () {
+          Navigator.push(context, FadeRoute(HelpScreen()));
+        }),
+        _getItemTile(
+          Labels.share,
+          onTap: () => Share.share(Labels.shareMessage),
+        )
       ],
     );
   }
 
-  Widget _getItemTile(
-    BuildContext context,
-    String name,
-    Widget Function() page,
-  ) {
+  Widget _getItemTile(String name, {dynamic onTap}) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 35),
       title: Text(name, style: Style.label.normal.base),
       trailing: Icon(MIcons.arrow_drop_right_fill),
-      onTap: () {
-        Navigator.push(context, FadeRoute(page()));
-      },
+      onTap: onTap,
     );
   }
 }

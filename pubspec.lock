@@ -553,6 +553,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  superellipse_shape:
+    dependency: "direct main"
+    description:
+      name: superellipse_shape
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   synchronized:
     dependency: transitive
     description:

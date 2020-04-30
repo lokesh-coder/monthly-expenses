@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/ui/common/button.dart';
+import 'package:superellipse_shape/superellipse_shape.dart';
 
 class DatePicker extends StatelessWidget {
   final Function(DateTime) onSelect;
@@ -50,22 +52,18 @@ class DatePicker extends StatelessWidget {
     var bgClr = isSelecteDate ? Clrs.primary : Colors.transparent;
 
     return Expanded(
-      child: GestureDetector(
-        onTap: () => onSelect(dateObj['dateTime']),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: bgClr,
-          ),
-          padding: EdgeInsets.symmetric(vertical: 9),
-          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-          child: Center(
+      child: LayoutBuilder(
+        builder: (context, c) {
+          return Button(
             child: Text(
               dateObj["date"].toString(),
               style: Style.body.clr(textClr).md,
             ),
-          ),
-        ),
+            color: bgClr,
+            size: c.constrainWidth(),
+            onPressed: () => onSelect(dateObj['dateTime']),
+          );
+        },
       ),
     );
   }

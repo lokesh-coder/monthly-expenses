@@ -7,6 +7,7 @@ import 'package:monex/config/typography.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
+import 'package:monex/ui/common/button.dart';
 import 'package:monex/ui/common/hint.dart';
 
 class LabelInput extends StatelessWidget {
@@ -48,9 +49,8 @@ class LabelInput extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10),
       height: 50,
       decoration: BoxDecoration(
-        color: Clrs.label.withOpacity(0.1),
-        border: Border.all(color: Clrs.primary.withOpacity(0.3)),
-        borderRadius: BorderRadius.circular(4),
+        color: Clrs.label.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -83,25 +83,27 @@ class LabelInput extends StatelessWidget {
               },
             ),
           ),
-          Container(
-            width: 35,
-            height: 35,
-            decoration: BoxDecoration(
+          Hint(
+            Labels.addLabel,
+            child: Button(
+              onPressed: () {
+                if (content.isNotEmpty) formStore.changeLabel(content);
+                control.close();
+              },
+              child: Icon(MIcons.tick),
               color: Clrs.primary,
-              borderRadius: BorderRadius.circular(50),
+              radius: 20.0,
+              size: 35.0,
             ),
-            child: Hint(
-              Labels.addLabel,
-              child: IconButton(
-                onPressed: () {
-                  if (content.isNotEmpty) formStore.changeLabel(content);
-                  control.close();
-                },
-                padding: EdgeInsets.all(0),
-                icon: Icon(MIcons.tick),
-                color: Clrs.light,
-              ),
-            ),
+            // child: IconButton(
+            //   onPressed: () {
+            //     if (content.isNotEmpty) formStore.changeLabel(content);
+            //     control.close();
+            //   },
+            //   padding: EdgeInsets.all(0),
+            //   icon: Icon(MIcons.tick),
+            //   color: Clrs.light,
+            // ),
           )
         ],
       ),

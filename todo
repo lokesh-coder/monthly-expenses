@@ -27,13 +27,14 @@ Need thought:
     ✔ fix zoomin effect @done
     ✘ currency selction on first click not working @cancelled
     ✔ change dial pad design-add tap feedack @done
-    ☐ fix category icon blur
-    ☐ category align 4 in a row test
+    ✔ fix category icon blur @done
+    ✔ category align 4 in a row test @done
     ☐ category icon recently  used
     ☐ try ovel shappe action btn
 
 Least priotiry:
     ☐ add credits section in about
     ☐ add share 
-    ☐ reduce category img size
+    ✔ reduce category img size @done
     ☐ add error reporting/handler
+    ☐ date picker round selecction

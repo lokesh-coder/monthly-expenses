@@ -8,6 +8,8 @@ import 'package:monex/models/enums.dart';
 import 'package:monex/service_locator/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/common/amount.dart';
+import 'package:monex/ui/common/button.dart';
+import 'package:superellipse_shape/superellipse_shape.dart';
 
 class AmountNumpad extends StatefulWidget {
   final Function onSelect;
@@ -196,20 +198,9 @@ class _KeypadButton extends StatelessWidget {
     if (keyname == 'ENTER')
       child = Icon(MIcons.tick, color: Clrs.secondary, size: 30);
     else
-      child = Text(keyname, style: Style.numeric.lg.bodyAltClr);
+      child = Text(keyname,
+          style: Style.numeric.lg.clr(Clrs.primary.withOpacity(0.7)));
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        highlightColor: Clrs.primary,
-        splashColor: Clrs.label,
-        child: Container(
-          color: Colors.transparent,
-          child: Center(child: child),
-        ),
-      ),
-    );
+    return Button(child: child, onPressed: onTap);
   }
 }

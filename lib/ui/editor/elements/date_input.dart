@@ -34,7 +34,7 @@ class DateInput extends StatelessWidget {
   void _picker(BottomModalControl control, FormStore formStore) {
     var selectedDate = DateHelper.msToDt(formStore.date);
     var selectedMonth = DateHelper.getMonthName(selectedDate);
-    var title = '${Labels.chooseDate}  ·  $selectedMonth';
+    var title = [Labels.chooseDate, selectedMonth].join('  ·  ');
     Widget picker = DatePicker(
       selected: selectedDate,
       onSelect: (dt) {
@@ -52,7 +52,7 @@ class DateInput extends StatelessWidget {
       children: [
         Icon(
           MIcons.calendar_line_1,
-          size: 30,
+          size: 35,
           color: Clrs.blue,
         ),
         Positioned(

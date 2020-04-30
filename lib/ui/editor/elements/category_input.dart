@@ -42,7 +42,8 @@ class CategoryInput extends StatelessWidget {
       },
       selected: _catMeta(formStore.categoryID).id,
     );
-    control.open(Labels.categories, picker);
+    String type = formStore.isCredit ? 'Credit' : 'Debit';
+    control.open([Labels.categories, type].join('  ·  '), picker);
   }
 
   Category _catMeta(String catID) {

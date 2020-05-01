@@ -8,6 +8,7 @@ import "package:monex/config/typography.dart";
 import "package:monex/services/error_reporter.dart";
 import "package:monex/services/service_locator.dart";
 import "package:monex/stores/settings/settings.store.dart";
+import "package:monex/ui/common/error.dart";
 import "package:monex/ui/main_page.dart";
 import "package:monex/ui/screens/loading.dart";
 import "package:monex/ui/screens/welcome.dart";
@@ -34,6 +35,10 @@ class MonexApp extends StatelessWidget {
       theme: ThemeData(primaryColor: Clrs.primary, fontFamily: Font.base),
       debugShowCheckedModeBanner: false,
       // debugShowMaterialGrid: true,
+      builder: (BuildContext context, Widget widget) {
+        ErrorWidget.builder = (FlutterErrorDetails details) => Err();
+        return widget;
+      },
       home: Observer(builder: (context) {
         Widget screen;
 

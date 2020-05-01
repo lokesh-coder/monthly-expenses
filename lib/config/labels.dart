@@ -2,6 +2,7 @@ class Labels {
   static String appName = "Monex";
   static String otherCurrency = "Others";
   static String welcome = "Hey, Welcome!";
+  static String error = "Error!";
   static String chooseCurrencyLong = "Please choose your preffered currency.";
 
   /// month

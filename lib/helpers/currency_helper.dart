@@ -7,9 +7,10 @@ import "package:monex/models/currency.dart";
 
 class CurrencyHelper {
   static List<Currency> cachedCurrencies = [];
+
   static String getFormattedCurrency(num value, String currencyTag) {
-    if (currencyTag == "0=0") return value.toString();
     var currency = getCurrency(currencyTag);
+    if (currency.locale == "0") return value.toString();
     int decimals =
         value.toString().contains(".") ? AppConfig.maxDecimalsInAmount : 0;
 
@@ -63,7 +64,7 @@ class CurrencyHelper {
     return currency;
   }
 
-  static String getAmount(String value, String locale) {
+  static String formatAmount(String value, String locale) {
     return ((NumberFormat(null, locale)..turnOffGrouping())
           ..maximumFractionDigits = AppConfig.maxDecimalsInAmount)
         .format(num.tryParse(value))

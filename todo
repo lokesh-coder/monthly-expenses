@@ -36,5 +36,10 @@ Least priotiry:
     ☐ add credits section in about
     ✔ add share @done
     ✔ reduce category img size @done
-    ☐ add error reporting/handler
+    ✔ add error reporting/handler @done
     ✔ date picker round selecction @done
+
+Next steps:
+    ☐ write automation
+    ☐ create email id
+    ☐ add note to month settings

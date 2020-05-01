@@ -150,7 +150,7 @@ class _KeypadDisplay extends StatelessWidget {
     Widget displayValue;
     if (value == "") {
       var placeholderText = 0.toStringAsFixed(AppConfig.maxDecimalsInAmount);
-      var formattedText = CurrencyHelper.getAmount(placeholderText, locale);
+      var formattedText = CurrencyHelper.formatAmount(placeholderText, locale);
       displayValue = Amount(
         formattedText,
         format: false,

@@ -60,7 +60,7 @@ class LocalDB {
     }).toList();
   }
 
-  Future<num> getAppVersion() async {
+  Future<num> getDbVersion() async {
     return (await this.db).version;
   }
 }

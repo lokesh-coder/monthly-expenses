@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LayoutHelper {
-  static GlobalKey<ScaffoldState> mainPageKey = new GlobalKey<ScaffoldState>();
+  static GlobalKey<ScaffoldState> mainPageKey = GlobalKey<ScaffoldState>();
 
   static bool get isKeyboardOpen {
     return MediaQuery.of(LayoutHelper.mainPageKey.currentContext)

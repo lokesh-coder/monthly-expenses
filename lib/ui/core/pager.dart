@@ -40,13 +40,14 @@ class _PagerState extends State<Pager> {
   @override
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.data.length != oldWidget.data.length)
+    if (widget.data.length != oldWidget.data.length) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         var currMonth = sl<SettingsStore>().monthsViewRange;
         if (currMonth.toDouble() != ctrl.page && widget.isMaster) {
           ctrl.jumpToPage(currMonth);
         }
       });
+    }
   }
 
   @override

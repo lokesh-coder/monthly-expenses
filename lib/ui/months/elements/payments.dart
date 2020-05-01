@@ -32,8 +32,9 @@ class Payments extends StatelessWidget {
             return Center(child: Loader());
           }
           List payments = paymentsStore.paymentsByMonth[monthKeyName];
-          if (payments == null || payments.length == 0)
+          if (payments == null || payments.isEmpty) {
             return Center(child: Empty(paymentsStore.filterBy));
+          }
           return ListView.separated(
             physics: BouncingScrollPhysics(),
             itemCount: payments == null ? 0 : payments.length,

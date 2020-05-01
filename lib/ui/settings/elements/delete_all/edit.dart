@@ -18,7 +18,7 @@ class DeleteAllEdit extends StatelessWidget {
         padding: EdgeInsets.all(10),
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10),
           side: BorderSide(color: Clrs.red, width: 2),
         ),
         onPressed: () => sl<PaymentsStore>().dropDb(),

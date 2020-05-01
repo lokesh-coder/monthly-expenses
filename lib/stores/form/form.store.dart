@@ -105,7 +105,7 @@ abstract class FormBase with Store {
 
   @computed
   get data {
-    Payment payment = new Payment();
+    Payment payment = Payment();
     payment.lastModifiedTime = DateHelper.toMs;
     if (isNew) payment.createdTime = payment.lastModifiedTime;
 

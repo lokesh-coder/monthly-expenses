@@ -59,7 +59,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
   }
 
   _onClear() {
-    if (value.length == 0) return;
+    if (value.isEmpty) return;
     value = value.substring(0, value.length - 1);
     setState(() {});
   }
@@ -210,11 +210,12 @@ class _KeypadButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var child;
 
-    if (keyname == 'ENTER')
+    if (keyname == 'ENTER') {
       child = Icon(MIcons.tick, color: Clrs.secondary, size: 30);
-    else
+    } else {
       child = Text(keyname,
           style: Style.numeric.lg.clr(Clrs.primary.withOpacity(0.7)));
+    }
 
     return Button(child: child, onPressed: onTap);
   }

@@ -46,7 +46,7 @@ class PaymentsHelper {
 
   static getInOutStatement(List<Payment> payments, PaymentType filterBy) {
     Map meta = {'credit': 0, 'debit': 0, 'activeType': filterBy};
-    if (payments.length == 0) return meta;
+    if (payments.isEmpty) return meta;
 
     payments.forEach((p) {
       var type = p.isCredit ? 'credit' : 'debit';
@@ -56,7 +56,7 @@ class PaymentsHelper {
   }
 
   static calcTotalAmount(List<Payment> payments) {
-    if (payments.length == 0) return 0;
+    if (payments.isEmpty) return 0;
     return payments
         .map((x) => x.isCredit ? x.amount : -(x.amount))
         .reduce((v, e) => v + e);

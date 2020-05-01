@@ -106,7 +106,7 @@ class _EditorState extends State<Editor> {
   }
 
   _closeKeyboard(context) {
-    FocusScope.of(context).requestFocus(new FocusNode());
+    FocusScope.of(context).requestFocus(FocusNode());
   }
 
   _save() {

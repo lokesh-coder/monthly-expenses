@@ -18,7 +18,7 @@ class LocalDBProvider {
   Future<Database> get database async {
     if (_dbOpenCompleter == null) {
       _dbOpenCompleter = Completer();
-      _openDatabase();
+      await _openDatabase();
     }
     return _dbOpenCompleter.future;
   }

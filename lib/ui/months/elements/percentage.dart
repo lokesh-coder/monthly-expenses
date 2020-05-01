@@ -27,7 +27,7 @@ class Percentage extends StatelessWidget {
         percent: _getValue(data[0], data[1]),
         animation: true,
         animationDuration: 200,
-        center: new Text(displayValue, style: Style.body.bodyAltClr.xs),
+        center: Text(displayValue, style: Style.body.bodyAltClr.xs),
         progressColor: data[2] == PaymentType.CREDIT ? Clrs.green : Clrs.red,
         circularStrokeCap: CircularStrokeCap.round,
         backgroundColor: Colors.white12,

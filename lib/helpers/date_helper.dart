@@ -24,7 +24,7 @@ class DateHelper {
     for (var i = 0; i < daysInMonth; i++) {
       var d = Jiffy(monthStartDate)..add(days: i);
 
-      if (d.day == 1 || weeks.length == 0) {
+      if (d.day == 1 || weeks.isEmpty) {
         weeks.add(
           Map.from({
             1: '',

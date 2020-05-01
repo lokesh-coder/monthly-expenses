@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
-import 'package:monex/services/error-reporter.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/services/error_reporter.dart';
 import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/main_page.dart';
@@ -30,23 +31,21 @@ class MonexApp extends StatelessWidget {
     return MaterialApp(
       title: Labels.appName,
       navigatorKey: Catcher.navigatorKey,
-      theme: ThemeData(
-        primaryColor: Clrs.primary,
-        fontFamily: 'Circular',
-      ),
+      theme: ThemeData(primaryColor: Clrs.primary, fontFamily: Font.base),
       debugShowCheckedModeBanner: false,
       // debugShowMaterialGrid: true,
       home: Observer(builder: (context) {
-        Widget displayPage;
+        Widget screen;
 
         if (store.isNewSetup == null) {
-          displayPage = LoadingScreen();
+          screen = LoadingScreen();
         } else if (store.isNewSetup) {
-          displayPage = WelcomeScreen();
+          screen = WelcomeScreen();
         } else {
-          displayPage = MainPage();
+          screen = MainPage();
         }
-        return displayPage;
+
+        return screen;
       }),
     );
   }

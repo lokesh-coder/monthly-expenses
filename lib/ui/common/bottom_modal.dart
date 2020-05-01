@@ -99,7 +99,7 @@ class _ModalLayout extends StatelessWidget {
       ),
     );
     return ConstrainedBox(
-      constraints: new BoxConstraints(
+      constraints: BoxConstraints(
         minHeight: screenH * Dimensions.bottomSheetMinHeight,
         maxHeight: screenH * Dimensions.bottomSheetMaxHeight,
       ),

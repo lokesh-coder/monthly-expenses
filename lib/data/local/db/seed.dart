@@ -31,13 +31,13 @@ class SeedData {
   }
 
   _getRandomAmount() {
-    Random random = new Random();
-    return num.parse((random.nextDouble() * (new Random().nextInt(99999)))
-        .toStringAsFixed(new Random().nextInt(3)));
+    Random random = Random();
+    return num.parse((random.nextDouble() * (Random().nextInt(99999)))
+        .toStringAsFixed(Random().nextInt(3)));
   }
 
   _getRandomLabel() {
-    var rand = new Random();
+    var rand = Random();
     const chars = "abcdefghijklmnopqrstuvwxyz0123456789 -./";
     String result = "";
     for (var i = 0; i < Random().nextInt(30) + 1; i++) {
@@ -52,7 +52,7 @@ class SeedData {
 
   _getRandomCategory() {
     var allcat = Catagories().all;
-    var randomIndex = new Random().nextInt(allcat.length);
+    var randomIndex = Random().nextInt(allcat.length);
     return allcat[randomIndex].id;
   }
 

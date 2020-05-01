@@ -25,7 +25,7 @@ class CurrencyHelper {
   }
 
   static List<Currency> all() {
-    if (cachedCurrencies.length > 0) {
+    if (cachedCurrencies.isNotEmpty) {
       return cachedCurrencies;
     }
     Map<String, Currency> data = {};

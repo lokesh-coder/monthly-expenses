@@ -70,9 +70,10 @@ abstract class SettingsBase with Store {
     if (currencyValue != null) currency = currencyValue;
 
     var sortByValue = await repo.memory.sortBy;
-    if (sortByValue != null)
+    if (sortByValue != null) {
       sortBy = sortByValue;
-    else
+    } else {
       sortBy = this.repo.obj.get('sorting').defaultStrategy.id;
+    }
   }
 }

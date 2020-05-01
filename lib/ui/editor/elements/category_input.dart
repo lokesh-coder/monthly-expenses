@@ -4,7 +4,7 @@ import 'package:monex/config/labels.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/models/category.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
 import 'package:monex/ui/editor/elements/category_picker.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class SlideTransform extends StatefulWidget {

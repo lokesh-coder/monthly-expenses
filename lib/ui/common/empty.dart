@@ -4,7 +4,7 @@ import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/models/enums.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 

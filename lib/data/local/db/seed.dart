@@ -1,7 +1,7 @@
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/models/payment.model.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'dart:math';
 

@@ -6,7 +6,7 @@ import 'package:monex/config/typography.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/sort_strategies.dart';
 import 'package:monex/models/enums.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 import 'package:monex/ui/common/check.dart';
 

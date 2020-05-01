@@ -6,7 +6,7 @@ import 'package:monex/config/typography.dart';
 import 'package:monex/data/data_repository.dart';
 import 'package:monex/data/local/object/files/categories.dart';
 import 'package:monex/models/category.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/ui/common/button.dart';
 
 class CategoryPicker extends StatelessWidget {

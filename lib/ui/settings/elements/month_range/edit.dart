@@ -3,7 +3,7 @@ import 'package:monex/config/app.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 
 class MonthRangeEdit extends StatefulWidget {

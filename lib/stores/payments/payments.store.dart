@@ -5,7 +5,7 @@ import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/payment_helper.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/settings/settings.store.dart';
 
 part 'payments.store.g.dart';

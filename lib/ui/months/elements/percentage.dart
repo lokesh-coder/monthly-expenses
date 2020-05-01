@@ -4,7 +4,7 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/models/enums.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 

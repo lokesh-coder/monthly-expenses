@@ -4,7 +4,7 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/config/typography.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
 import 'package:monex/ui/common/button.dart';

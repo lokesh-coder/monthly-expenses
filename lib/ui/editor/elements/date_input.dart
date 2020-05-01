@@ -5,7 +5,7 @@ import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
 import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/ui/common/bottom_modal.dart';
 import 'package:monex/ui/editor/elements/date_picker.dart';

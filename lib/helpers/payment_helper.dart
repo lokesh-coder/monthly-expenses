@@ -4,7 +4,7 @@ import 'package:monex/data/local/object/files/sort_strategies.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/models/enums.dart';
 import 'package:monex/models/payment.model.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 
 class PaymentsHelper {
   static sort(List<Payment> payments, int sortID, int orderID) {

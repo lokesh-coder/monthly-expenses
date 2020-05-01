@@ -8,7 +8,7 @@ import 'package:monex/config/typography.dart';
 import 'package:monex/helpers/date_helper.dart';
 import 'package:monex/helpers/layout_helper.dart';
 import 'package:monex/models/enums.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/amount.dart';

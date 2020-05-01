@@ -3,14 +3,13 @@ import 'package:monex/config/colors.dart';
 import 'package:monex/config/dimensions.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/m_icons.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/form/form.store.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 import 'package:monex/stores/sandwiich/sandwich.store.dart';
 import 'package:monex/ui/common/button.dart';
 import 'package:monex/ui/common/confirm_modal.dart';
 import 'package:monex/ui/common/hint.dart';
-import 'package:superellipse_shape/superellipse_shape.dart';
 
 class ActionButton extends StatelessWidget {
   final Function onSubmit;
@@ -40,27 +39,6 @@ class ActionButton extends StatelessWidget {
           highlightColor: Clrs.dark,
           onPressed: onSubmit,
           child: Icon(MIcons.tick, color: Colors.white70, size: 30),
-        ),
-      ),
-    );
-
-    return Expanded(
-      child: Center(
-        child: Container(
-          height: Dimensions.actionBtnSize,
-          width: Dimensions.actionBtnSize,
-          child: MaterialButton(
-            color: Clrs.primary,
-            shape: SuperellipseShape(
-              borderRadius: BorderRadius.circular(45),
-            ),
-            onPressed: onSubmit,
-            child: Icon(
-              MIcons.tick,
-              color: Colors.white70,
-              size: 30,
-            ),
-          ),
         ),
       ),
     );

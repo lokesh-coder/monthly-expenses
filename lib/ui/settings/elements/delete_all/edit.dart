@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
 import 'package:monex/config/labels.dart';
 import 'package:monex/config/typography.dart';
-import 'package:monex/service_locator/service_locator.dart';
+import 'package:monex/services/service_locator.dart';
 import 'package:monex/stores/payments/payments.store.dart';
 
 class DeleteAllEdit extends StatelessWidget {

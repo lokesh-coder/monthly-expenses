@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/dimensions.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:monex/stores/sandwiich/sandwich.store.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/core/pager.dart';
-import 'package:monex/ui/months/elements/months_carousal.dart';
-import 'package:monex/ui/months/elements/payments_carousal.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/dimensions.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/payments/payments.store.dart";
+import "package:monex/stores/sandwiich/sandwich.store.dart";
+import "package:monex/stores/settings/settings.store.dart";
+import "package:monex/ui/core/pager.dart";
+import "package:monex/ui/months/elements/months_carousal.dart";
+import "package:monex/ui/months/elements/payments_carousal.dart";
 
 class Months extends StatelessWidget {
   const Months();
@@ -73,7 +73,7 @@ class Months extends StatelessWidget {
               initialPage: settingsStore.monthsViewRange,
               visibleItems: 4,
               onPageChange: (curr) {
-                sl<PaymentsStore>().setActiveMonth(curr['dateTime']);
+                sl<PaymentsStore>().setActiveMonth(curr["dateTime"]);
               },
             ),
           )

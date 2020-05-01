@@ -4,6 +4,6 @@ class AppConfig {
   static int minMonths = 1;
   static int maxMonths = 12;
 
-  static String contactEmail = 'monex-app@gmail.com';
-  static String errReportEmail = 'monex-android-app@gmail.com';
+  static String contactEmail = "monex-app@gmail.com";
+  static String errReportEmail = "monex-android-app@gmail.com";
 }

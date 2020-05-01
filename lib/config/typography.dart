@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
 
 class Font {
   static String get numeric => "Manrope";

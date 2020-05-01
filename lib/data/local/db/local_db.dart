@@ -1,7 +1,7 @@
-import 'package:monex/data/local/db/config.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:sembast/sembast.dart';
-import 'package:uuid/uuid.dart';
+import "package:monex/data/local/db/config.dart";
+import "package:monex/models/payment.model.dart";
+import "package:sembast/sembast.dart";
+import "package:uuid/uuid.dart";
 
 class LocalDB {
   final Future<Database> db;
@@ -27,19 +27,19 @@ class LocalDB {
 
   Future insertPayment(Payment payment) async {
     Map paymentJson = payment.toJson();
-    paymentJson['id'] = Uuid().v1();
-    paymentJson['createdTime'] = DateTime.now().millisecondsSinceEpoch;
+    paymentJson["id"] = Uuid().v1();
+    paymentJson["createdTime"] = DateTime.now().millisecondsSinceEpoch;
     await _table.add(await db, paymentJson);
-    return paymentJson['id'];
+    return paymentJson["id"];
   }
 
   Future updatePayment(Payment payment) async {
-    final finder = Finder(filter: Filter.equals('id', payment.id));
+    final finder = Finder(filter: Filter.equals("id", payment.id));
     await _table.update(await db, payment.toJson(), finder: finder);
   }
 
   Future delete(Payment payment) async {
-    final finder = Finder(filter: Filter.equals('id', payment.id));
+    final finder = Finder(filter: Filter.equals("id", payment.id));
     await _table.delete(await db, finder: finder);
   }
 
@@ -49,7 +49,7 @@ class LocalDB {
 
   Future<RecordSnapshot<int, Map<String, dynamic>>> getAPayment(
       String id) async {
-    final finder = Finder(filter: Filter.equals('id', id));
+    final finder = Finder(filter: Filter.equals("id", id));
     return _table.findFirst(await db, finder: finder);
   }
 

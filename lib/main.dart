@@ -1,16 +1,16 @@
-import 'package:catcher/catcher_plugin.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/services/error_reporter.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/main_page.dart';
-import 'package:monex/ui/screens/loading.dart';
-import 'package:monex/ui/screens/welcome.dart';
+import "package:catcher/catcher_plugin.dart";
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/services/error_reporter.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/settings/settings.store.dart";
+import "package:monex/ui/main_page.dart";
+import "package:monex/ui/screens/loading.dart";
+import "package:monex/ui/screens/welcome.dart";
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

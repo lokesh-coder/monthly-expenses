@@ -1,10 +1,10 @@
 import "package:collection/collection.dart";
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/sort_strategies.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
+import "package:monex/data/data_repository.dart";
+import "package:monex/data/local/object/files/sort_strategies.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/models/enums.dart";
+import "package:monex/models/payment.model.dart";
+import "package:monex/services/service_locator.dart";
 
 class PaymentsHelper {
   static sort(List<Payment> payments, int sortID, int orderID) {
@@ -45,11 +45,11 @@ class PaymentsHelper {
   }
 
   static getInOutStatement(List<Payment> payments, PaymentType filterBy) {
-    Map meta = {'credit': 0, 'debit': 0, 'activeType': filterBy};
+    Map meta = {"credit": 0, "debit": 0, "activeType": filterBy};
     if (payments.isEmpty) return meta;
 
     payments.forEach((p) {
-      var type = p.isCredit ? 'credit' : 'debit';
+      var type = p.isCredit ? "credit" : "debit";
       meta[type] = meta[type] + p.amount;
     });
     return meta;
@@ -72,7 +72,7 @@ class PaymentsHelper {
   static _getSortKeyFn(id) {
     return sl<DataRepo>()
         .obj
-        .get<SortStrategies>('sorting')
+        .get<SortStrategies>("sorting")
         .findSortStrategyById(id)
         .keyFn;
   }

@@ -1,14 +1,14 @@
-import 'package:mobx/mobx.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/categories.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import "package:mobx/mobx.dart";
+import "package:monex/data/data_repository.dart";
+import "package:monex/data/local/object/files/categories.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/models/enums.dart";
+import "package:monex/models/payment.model.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/payments/payments.store.dart";
+import "package:monex/stores/sandwiich/sandwich.store.dart";
 
-part 'form.store.g.dart';
+part "form.store.g.dart";
 
 class FormStore = FormBase with _$FormStore;
 
@@ -74,7 +74,7 @@ abstract class FormBase with Store {
 
     amount = null;
     label = null;
-    categoryID = this.repo.obj.get<Catagories>('categories').defaultCategory.id;
+    categoryID = this.repo.obj.get<Catagories>("categories").defaultCategory.id;
     isCredit = !isDebit;
     date = dateInMs;
     isNew = true;

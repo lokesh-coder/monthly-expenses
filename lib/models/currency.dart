@@ -24,10 +24,10 @@ class Currency {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'locale': locale,
-        'currencyCode': currencyCode,
-        'currencySymbol': currencySymbol,
-        'currencyName': currencyName,
-        'decimalSep': decimalSep,
+        "locale": locale,
+        "currencyCode": currencyCode,
+        "currencySymbol": currencySymbol,
+        "currencyName": currencyName,
+        "decimalSep": decimalSep,
       };
 }

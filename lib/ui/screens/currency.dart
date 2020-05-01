@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/helpers/currency_helper.dart';
-import 'package:monex/models/currency.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/common/app-shell.dart';
-import 'package:monex/ui/common/check.dart';
-import 'package:monex/ui/common/header.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/helpers/currency_helper.dart";
+import "package:monex/models/currency.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/settings/settings.store.dart";
+import "package:monex/ui/common/app-shell.dart";
+import "package:monex/ui/common/check.dart";
+import "package:monex/ui/common/header.dart";
 
 class CurrencyScreen extends StatelessWidget {
   const CurrencyScreen();
@@ -48,6 +48,6 @@ class CurrencyScreen extends StatelessWidget {
   }
 
   String _getCurrencyTag(Currency currency) {
-    return '${currency.locale}=${currency.currencyCode}';
+    return "${currency.locale}=${currency.currencyCode}";
   }
 }

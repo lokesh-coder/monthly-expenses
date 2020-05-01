@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/app.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/app.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/settings/settings.store.dart";
 
 class MonthRangeEdit extends StatefulWidget {
   const MonthRangeEdit();
@@ -29,7 +29,7 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
     return Column(
       children: <Widget>[
         Text(
-          '$totalMonths Month${totalMonths > 1 ? 's' : ''}',
+          "$totalMonths Month${totalMonths > 1 ? "s" : ""}",
           style: Style.label.md,
         ),
         SizedBox(height: 20),

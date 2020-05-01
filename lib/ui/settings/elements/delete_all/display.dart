@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:monex/ui/settings/elements/item_tile.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/config/m_icons.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/payments/payments.store.dart";
+import "package:monex/ui/settings/elements/item_tile.dart";
 
 class DeleteAllDisplay extends StatelessWidget {
   final Map dataCtx;
@@ -19,7 +19,7 @@ class DeleteAllDisplay extends StatelessWidget {
         dataCtx: dataCtx,
         icon: MIcons.delete_bin_2_line,
         title: Labels.deleteAll,
-        displayText: '${Labels.totalRecords} ${store.payments.length}',
+        displayText: "${Labels.totalRecords} ${store.payments.length}",
       );
     });
   }

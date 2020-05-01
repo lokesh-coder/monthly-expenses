@@ -1,14 +1,14 @@
-import 'package:mobx/mobx.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/db/seed.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/helpers/payment_helper.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
+import "package:mobx/mobx.dart";
+import "package:monex/data/data_repository.dart";
+import "package:monex/data/local/db/seed.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/helpers/payment_helper.dart";
+import "package:monex/models/enums.dart";
+import "package:monex/models/payment.model.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/settings/settings.store.dart";
 
-part 'payments.store.g.dart';
+part "payments.store.g.dart";
 
 class PaymentsStore = PaymentsBase with _$PaymentsStore;
 

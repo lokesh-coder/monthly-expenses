@@ -1,7 +1,7 @@
-import 'package:mobx/mobx.dart';
-import 'package:monex/data/data_repository.dart';
+import "package:mobx/mobx.dart";
+import "package:monex/data/data_repository.dart";
 
-part 'settings.store.g.dart';
+part "settings.store.g.dart";
 
 class SettingsStore = SettingsBase with _$SettingsStore;
 
@@ -24,7 +24,7 @@ abstract class SettingsBase with Store {
   int orderBy = 1;
 
   @observable
-  String currency = '0=0';
+  String currency = "0=0";
 
   @action
   void setupDone() {
@@ -52,7 +52,7 @@ abstract class SettingsBase with Store {
 
   @action
   void changeCurrency(String locale, String currencyCode) {
-    currency = '$locale=$currencyCode';
+    currency = "$locale=$currencyCode";
     repo.memory.changeCurrency(currency);
   }
 
@@ -73,7 +73,7 @@ abstract class SettingsBase with Store {
     if (sortByValue != null) {
       sortBy = sortByValue;
     } else {
-      sortBy = this.repo.obj.get('sorting').defaultStrategy.id;
+      sortBy = this.repo.obj.get("sorting").defaultStrategy.id;
     }
   }
 }

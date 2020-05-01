@@ -1,9 +1,9 @@
-import 'package:jiffy/jiffy.dart';
+import "package:jiffy/jiffy.dart";
 
 class DateHelper {
-  static String dateWeekdayP = 'd E';
-  static String monthDayP = 'LLL · E';
-  static String dateP = 'd';
+  static String dateWeekdayP = "d E";
+  static String monthDayP = "LLL · E";
+  static String dateP = "d";
 
   static int getTotalDaysInMonth(DateTime dateTime) {
     Jiffy date = Jiffy(dateTime);
@@ -27,13 +27,13 @@ class DateHelper {
       if (d.day == 1 || weeks.isEmpty) {
         weeks.add(
           Map.from({
-            1: '',
-            2: '',
-            3: '',
-            4: '',
-            5: '',
-            6: '',
-            7: '',
+            1: "",
+            2: "",
+            3: "",
+            4: "",
+            5: "",
+            6: "",
+            7: "",
           }),
         );
       }
@@ -44,7 +44,7 @@ class DateHelper {
   }
 
   static String getFormattedDayOfMonth(DateTime dt) {
-    return Jiffy(dt).format('LLL · E');
+    return Jiffy(dt).format("LLL · E");
   }
 
   static String format(DateTime dt, String pattern) {
@@ -52,7 +52,7 @@ class DateHelper {
   }
 
   static String getDateOfMonth(DateTime dt) {
-    return Jiffy(dt).format('d');
+    return Jiffy(dt).format("d");
   }
 
   static List getAllMonthsInRange(int rangeCount) {
@@ -76,15 +76,15 @@ class DateHelper {
   }
 
   static String getMonthName(DateTime dt) {
-    return Jiffy(dt).format('MMMM');
+    return Jiffy(dt).format("MMMM");
   }
 
   static String getYear(DateTime dt) {
-    return Jiffy(dt).format('y');
+    return Jiffy(dt).format("y");
   }
 
   static String getMonthYear(DateTime dt) {
-    return Jiffy(dt).format('MMMy');
+    return Jiffy(dt).format("MMMy");
   }
 
   static int dtToMs(DateTime dt) {
@@ -101,8 +101,8 @@ class DateHelper {
 
   static getMonthRangeDisplayText(int count) {
     List ranges = DateHelper.getAllMonthsInRange(count);
-    String start = '${ranges.first['monthName']} ${ranges.first['year']}';
-    String end = '${ranges.last['monthName']} ${ranges.last['year']}';
-    return '$start to $end';
+    String start = "${ranges.first["monthName"]} ${ranges.first["year"]}";
+    String end = "${ranges.last["monthName"]} ${ranges.last["year"]}";
+    return "$start to $end";
   }
 }

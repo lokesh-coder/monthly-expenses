@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/ui/common/hint.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/config/m_icons.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/ui/common/hint.dart";
 
 class Header extends StatelessWidget with PreferredSizeWidget {
   final Widget leading;

@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/ui/common/fade_transition.dart';
-import 'package:monex/ui/screens/app_info.dart';
-import 'package:monex/ui/screens/help.dart';
-import 'package:share/share.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/config/m_icons.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/ui/common/fade_transition.dart";
+import "package:monex/ui/screens/app_info.dart";
+import "package:monex/ui/screens/help.dart";
+import "package:share/share.dart";
 
 class AppLinks extends StatelessWidget {
   const AppLinks();

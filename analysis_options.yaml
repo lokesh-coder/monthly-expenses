@@ -1,1 +1,9 @@
-include: package:pedantic/analysis_options.yaml
+include: package:pedantic/analysis_options.1.8.0.yaml
+analyzer:
+  exclude: [build/**]
+
+linter:
+  rules:
+    - prefer_double_quotes
+    - sort_pub_dependencies
+    - directives_ordering

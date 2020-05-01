@@ -1,13 +1,13 @@
-import 'dart:ui';
+import "dart:ui";
 
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/categories.dart';
-import 'package:monex/models/category.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/ui/common/button.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/data/data_repository.dart";
+import "package:monex/data/local/object/files/categories.dart";
+import "package:monex/models/category.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/ui/common/button.dart";
 
 class CategoryPicker extends StatelessWidget {
   final Function onSelect;
@@ -29,8 +29,8 @@ class CategoryPicker extends StatelessWidget {
   }
 
   List<Widget> _categories() {
-    var type = isCredit ? 'CREDIT' : 'DEBIT';
-    var categoriesObj = sl<DataRepo>().obj.get<Catagories>('categories');
+    var type = isCredit ? "CREDIT" : "DEBIT";
+    var categoriesObj = sl<DataRepo>().obj.get<Catagories>("categories");
     var categories = categoriesObj.filterBy(type).map((c) => _category(c));
     return categories.toList();
   }

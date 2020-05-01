@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/ui/common/fade_transition.dart';
-import 'package:monex/ui/screens/currency.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/ui/common/fade_transition.dart";
+import "package:monex/ui/screens/currency.dart";
 
 class CurrencyEdit extends StatelessWidget {
   const CurrencyEdit();

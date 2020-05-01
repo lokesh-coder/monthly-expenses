@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
-import 'package:package_info/package_info.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/ui/common/app-shell.dart';
-import 'package:monex/ui/common/header.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/typography.dart";
+import "package:package_info/package_info.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/ui/common/app-shell.dart";
+import "package:monex/ui/common/header.dart";
 
 class AppInfoScreen extends StatefulWidget {
   const AppInfoScreen();
@@ -44,10 +44,10 @@ class _AppInfoScreenState extends State<AppInfoScreen> {
   List<Widget> _getData(PackageInfo info) {
     if (info == null) return [];
     List<Map> items = [
-      {'Name': info.appName},
-      {'Version': info.version},
-      {'Build number': info.buildNumber},
-      {'Package name': info.packageName},
+      {"Name": info.appName},
+      {"Version": info.version},
+      {"Build number": info.buildNumber},
+      {"Package name": info.packageName},
     ];
     List<Widget> tiles = [];
     items.forEach((item) {

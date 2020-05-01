@@ -24,10 +24,10 @@ class Category {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'name': name,
-        'path': path,
-        'group': group,
-        'type': type,
+        "id": id,
+        "name": name,
+        "path": path,
+        "group": group,
+        "type": type,
       };
 }

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class SortStrategy {
   int id;
@@ -32,12 +32,12 @@ class SortStrategy {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'name': name,
-        'desc': desc,
-        'icon': icon,
-        'keyFn': keyFn,
-        'ascLabel': ascLabel,
-        'descLabel': ascLabel,
+        "id": id,
+        "name": name,
+        "desc": desc,
+        "icon": icon,
+        "keyFn": keyFn,
+        "ascLabel": ascLabel,
+        "descLabel": ascLabel,
       };
 }

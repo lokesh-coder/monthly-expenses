@@ -1,9 +1,10 @@
-import 'package:monex/data/local/object/files/categories.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'dart:math';
+import "dart:math";
+
+import "package:monex/data/local/object/files/categories.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/models/payment.model.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/settings/settings.store.dart";
 
 class SeedData {
   get data {
@@ -11,7 +12,7 @@ class SeedData {
     var monthRange = sl<SettingsStore>().monthsViewRange;
     var monthDates = DateHelper.getAllMonthsInRange(monthRange);
     for (var i = 0; i < monthDates.length; i++) {
-      var dt = monthDates[i]['dateTime'];
+      var dt = monthDates[i]["dateTime"];
       for (var j = 0; j < Random().nextInt(30); j++) {
         seeds.add(Payment(
           amount: _getRandomAmount(),
@@ -21,7 +22,7 @@ class SeedData {
           isCredit: _getRandomType(),
           label: _getRandomLabel(),
           lastModifiedTime: _getRandomDate(dt),
-          id: '$i$j',
+          id: "$i$j",
         ));
       }
     }

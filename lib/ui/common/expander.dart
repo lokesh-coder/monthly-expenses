@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/helpers/layout_helper.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/helpers/layout_helper.dart";
 
 class Expander extends StatefulWidget {
   final Widget Function(BuildContext, Map) bodyBuilder;

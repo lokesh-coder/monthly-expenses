@@ -1,6 +1,6 @@
-import 'dart:async';
-import 'package:monex/data/local/memory/config.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import "dart:async";
+import "package:monex/data/local/memory/config.dart";
+import "package:shared_preferences/shared_preferences.dart";
 
 class LocalMemory {
   final Future<SharedPreferences> memory;

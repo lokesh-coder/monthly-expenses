@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sandwich.store.dart';
+part of "sandwich.store.dart";
 
 // **************************************************************************
 // StoreGenerator
@@ -9,7 +9,7 @@ part of 'sandwich.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SandwichStore on SandwichBase, Store {
-  final _$isOpenAtom = Atom(name: 'SandwichBase.isOpen');
+  final _$isOpenAtom = Atom(name: "SandwichBase.isOpen");
 
   @override
   bool get isOpen {
@@ -23,10 +23,10 @@ mixin _$SandwichStore on SandwichBase, Store {
     _$isOpenAtom.context.conditionallyRunInAction(() {
       super.isOpen = value;
       _$isOpenAtom.reportChanged();
-    }, _$isOpenAtom, name: '${_$isOpenAtom.name}_set');
+    }, _$isOpenAtom, name: "${_$isOpenAtom.name}_set");
   }
 
-  final _$topOffsetAtom = Atom(name: 'SandwichBase.topOffset');
+  final _$topOffsetAtom = Atom(name: "SandwichBase.topOffset");
 
   @override
   double get topOffset {
@@ -40,10 +40,10 @@ mixin _$SandwichStore on SandwichBase, Store {
     _$topOffsetAtom.context.conditionallyRunInAction(() {
       super.topOffset = value;
       _$topOffsetAtom.reportChanged();
-    }, _$topOffsetAtom, name: '${_$topOffsetAtom.name}_set');
+    }, _$topOffsetAtom, name: "${_$topOffsetAtom.name}_set");
   }
 
-  final _$SandwichBaseActionController = ActionController(name: 'SandwichBase');
+  final _$SandwichBaseActionController = ActionController(name: "SandwichBase");
 
   @override
   void changeVisibility(bool value) {
@@ -68,7 +68,7 @@ mixin _$SandwichStore on SandwichBase, Store {
   @override
   String toString() {
     final string =
-        'isOpen: ${isOpen.toString()},topOffset: ${topOffset.toString()}';
-    return '{$string}';
+        "isOpen: ${isOpen.toString()},topOffset: ${topOffset.toString()}";
+    return "{$string}";
   }
 }

@@ -1,20 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/ui/common/app-shell.dart';
-import 'package:monex/ui/common/expander.dart';
-import 'package:monex/ui/common/header.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/ui/common/app-shell.dart";
+import "package:monex/ui/common/expander.dart";
+import "package:monex/ui/common/header.dart";
 
-import 'elements/delete_all/edit.dart';
-import 'elements/currency/display.dart';
-import 'elements/currency/edit.dart';
-import 'elements/delete_all/display.dart';
-import 'elements/links.dart';
-import 'elements/month_range/display.dart';
-import 'elements/month_range/edit.dart';
-import 'elements/order/display.dart';
-import 'elements/order/edit.dart';
-import 'elements/sort/display.dart';
-import 'elements/sort/edit.dart';
+import "elements/currency/display.dart";
+import "elements/currency/edit.dart";
+import "elements/delete_all/display.dart";
+import "elements/delete_all/edit.dart";
+import "elements/links.dart";
+import "elements/month_range/display.dart";
+import "elements/month_range/edit.dart";
+import "elements/order/display.dart";
+import "elements/order/edit.dart";
+import "elements/sort/display.dart";
+import "elements/sort/edit.dart";
 
 class Settings extends StatelessWidget {
   const Settings();
@@ -28,7 +28,7 @@ class Settings extends StatelessWidget {
         children: [
           // FlatButton(
           //   onPressed: () => sl<PaymentsStore>().seed(),
-          //   child: Text('load data'),
+          //   child: Text("load data"),
           // ),
           Expander(
             headBuilder: (_, dataCtx) => MonthRangeDisplay(dataCtx),

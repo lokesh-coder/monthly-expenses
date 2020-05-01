@@ -11,81 +11,144 @@
 ///      fonts:
 ///       - asset: fonts/MIcons.ttf
 ///
-/// 
+///
 /// * Material Design Icons, Copyright (C) Google, Inc
 ///         Author:    Google
 ///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
 ///         Homepage:  https://design.google.com/icons/
 ///
-import 'package:flutter/widgets.dart';
+import "package:flutter/widgets.dart";
 
 class MIcons {
   MIcons._();
 
-  static const _kFontFam = 'MIcons';
+  static const _kFontFam = "MIcons";
   static const _kFontPkg = null;
 
-  static const IconData calendar_line_1 = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sort_by_alpha = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData add_circle_line = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData add_line = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData emotion_unhappy_line = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData emotion_happy_line = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData file_copy_2_line = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData close_circle_line = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_left_line = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_up_s_line = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_down_s_line = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData currency_line = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData line_height = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData information_line = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData mail_open_line = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData character_recognition_line = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData share_box_line = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData loader_fill = IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData filter_3_line = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData filter_line = IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData time_line = IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData delete_bin_2_line = IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData delete_bin_line = IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData delete_back_2_fill = IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData delete_back_2_line = IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData star_line = IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData menu_4_line = IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData apps_line = IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData globe_line = IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData wallet_3_line = IconData(0xe81d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sort_desc = IconData(0xe81e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sort_asc = IconData(0xe81f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData translate_2 = IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData file_text_line = IconData(0xe821, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData chat_1_line = IconData(0xe822, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData calendar_line = IconData(0xe823, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData donut_chart_line = IconData(0xe824, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData money_dollar_circle_line = IconData(0xe825, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_drop_right_fill = IconData(0xe826, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData share_line = IconData(0xe827, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bug_line = IconData(0xe828, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData edit_box_line = IconData(0xe829, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData check_line = IconData(0xe82a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData question_line = IconData(0xe82b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData heart_line = IconData(0xe82c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData apps_2_line = IconData(0xe82d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData exchange_dollar_fill = IconData(0xe82e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sort = IconData(0xe82f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bubble_chart_line = IconData(0xe830, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData home_3_line = IconData(0xe831, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData settings_3_line = IconData(0xe832, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sentiment_dissatisfied_24px = IconData(0xe833, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sentiment_satisfied_24px = IconData(0xe834, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData lens_24px = IconData(0xe835, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData widgets_24px = IconData(0xe836, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData close_line = IconData(0xe837, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData delete_bin_5_line = IconData(0xe838, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bars = IconData(0xe91a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData tick = IconData(0xe92b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sad = IconData(0xe947, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData smile = IconData(0xe948, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData close_st = IconData(0xea02, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData close_rd = IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calendar_line_1 =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sort_by_alpha =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData add_circle_line =
+      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData add_line =
+      IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emotion_unhappy_line =
+      IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emotion_happy_line =
+      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData file_copy_2_line =
+      IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData close_circle_line =
+      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData arrow_left_line =
+      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData arrow_up_s_line =
+      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData arrow_down_s_line =
+      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData currency_line =
+      IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData line_height =
+      IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData information_line =
+      IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData mail_open_line =
+      IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData character_recognition_line =
+      IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData share_box_line =
+      IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData loader_fill =
+      IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData filter_3_line =
+      IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData filter_line =
+      IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData time_line =
+      IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData delete_bin_2_line =
+      IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData delete_bin_line =
+      IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData delete_back_2_fill =
+      IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData delete_back_2_line =
+      IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData star_line =
+      IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData menu_4_line =
+      IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData apps_line =
+      IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData globe_line =
+      IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData wallet_3_line =
+      IconData(0xe81d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sort_desc =
+      IconData(0xe81e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sort_asc =
+      IconData(0xe81f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData translate_2 =
+      IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData file_text_line =
+      IconData(0xe821, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData chat_1_line =
+      IconData(0xe822, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calendar_line =
+      IconData(0xe823, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData donut_chart_line =
+      IconData(0xe824, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData money_dollar_circle_line =
+      IconData(0xe825, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData arrow_drop_right_fill =
+      IconData(0xe826, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData share_line =
+      IconData(0xe827, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bug_line =
+      IconData(0xe828, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData edit_box_line =
+      IconData(0xe829, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData check_line =
+      IconData(0xe82a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData question_line =
+      IconData(0xe82b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData heart_line =
+      IconData(0xe82c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData apps_2_line =
+      IconData(0xe82d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData exchange_dollar_fill =
+      IconData(0xe82e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sort =
+      IconData(0xe82f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bubble_chart_line =
+      IconData(0xe830, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home_3_line =
+      IconData(0xe831, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData settings_3_line =
+      IconData(0xe832, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sentiment_dissatisfied_24px =
+      IconData(0xe833, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sentiment_satisfied_24px =
+      IconData(0xe834, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData lens_24px =
+      IconData(0xe835, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData widgets_24px =
+      IconData(0xe836, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData close_line =
+      IconData(0xe837, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData delete_bin_5_line =
+      IconData(0xe838, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bars =
+      IconData(0xe91a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData tick =
+      IconData(0xe92b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sad =
+      IconData(0xe947, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData smile =
+      IconData(0xe948, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData close_st =
+      IconData(0xea02, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData close_rd =
+      IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

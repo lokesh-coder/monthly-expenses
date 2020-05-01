@@ -1,19 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/categories.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/category.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:monex/stores/sandwiich/sandwich.store.dart';
-import 'package:monex/ui/common/amount.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/data/data_repository.dart";
+import "package:monex/data/local/object/files/categories.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/models/category.dart";
+import "package:monex/models/enums.dart";
+import "package:monex/models/payment.model.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/payments/payments.store.dart";
+import "package:monex/stores/sandwiich/sandwich.store.dart";
+import "package:monex/ui/common/amount.dart";
 import "package:monex/config/extension.dart";
-import 'package:monex/ui/common/empty.dart';
-import 'package:monex/ui/common/loader.dart';
+import "package:monex/ui/common/empty.dart";
+import "package:monex/ui/common/loader.dart";
 
 class Payments extends StatelessWidget {
   final Map data;
@@ -22,7 +22,7 @@ class Payments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var paymentsStore = sl<PaymentsStore>();
-    String monthKeyName = DateHelper.getMonthYear(data['dateTime']);
+    String monthKeyName = DateHelper.getMonthYear(data["dateTime"]);
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -49,7 +49,7 @@ class Payments extends StatelessWidget {
   _payment(Payment data, PaymentsStore paymentsStore) {
     Category category = sl<DataRepo>()
         .obj
-        .get<Catagories>('categories')
+        .get<Catagories>("categories")
         .findCategoryById(data.categoryID);
 
     var dt = DateHelper.msToDt(data.date);
@@ -70,7 +70,7 @@ class Payments extends StatelessWidget {
         },
         title: Text(data.label.capitalize(), style: Style.heading),
         subtitle: Text(
-          '${category.name}  ·  $date'.toUpperCase(),
+          "${category.name}  ·  $date".toUpperCase(),
           style: Style.label,
         ),
         trailing: Amount(

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/typography.dart";
 
 class Hint extends StatelessWidget {
   final String message;

@@ -1,6 +1,6 @@
-import 'package:catcher/catcher_plugin.dart';
-import 'package:flutter/material.dart';
-import 'package:monex/config/app.dart';
+import "package:catcher/catcher_plugin.dart";
+import "package:flutter/material.dart";
+import "package:monex/config/app.dart";
 
 var dialogMode = DialogReportMode();
 var consoleMode = ConsoleHandler();

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/m_icons.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/m_icons.dart";
 
 class Check extends StatelessWidget {
   final double size = 26;

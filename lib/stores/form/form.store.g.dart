@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'form.store.dart';
+part of "form.store.dart";
 
 // **************************************************************************
 // StoreGenerator
@@ -15,7 +15,7 @@ mixin _$FormStore on FormBase, Store {
   dynamic get data =>
       (_$dataComputed ??= Computed<dynamic>(() => super.data)).value;
 
-  final _$idAtom = Atom(name: 'FormBase.id');
+  final _$idAtom = Atom(name: "FormBase.id");
 
   @override
   String get id {
@@ -29,10 +29,10 @@ mixin _$FormStore on FormBase, Store {
     _$idAtom.context.conditionallyRunInAction(() {
       super.id = value;
       _$idAtom.reportChanged();
-    }, _$idAtom, name: '${_$idAtom.name}_set');
+    }, _$idAtom, name: "${_$idAtom.name}_set");
   }
 
-  final _$amountAtom = Atom(name: 'FormBase.amount');
+  final _$amountAtom = Atom(name: "FormBase.amount");
 
   @override
   num get amount {
@@ -46,10 +46,10 @@ mixin _$FormStore on FormBase, Store {
     _$amountAtom.context.conditionallyRunInAction(() {
       super.amount = value;
       _$amountAtom.reportChanged();
-    }, _$amountAtom, name: '${_$amountAtom.name}_set');
+    }, _$amountAtom, name: "${_$amountAtom.name}_set");
   }
 
-  final _$labelAtom = Atom(name: 'FormBase.label');
+  final _$labelAtom = Atom(name: "FormBase.label");
 
   @override
   String get label {
@@ -63,10 +63,10 @@ mixin _$FormStore on FormBase, Store {
     _$labelAtom.context.conditionallyRunInAction(() {
       super.label = value;
       _$labelAtom.reportChanged();
-    }, _$labelAtom, name: '${_$labelAtom.name}_set');
+    }, _$labelAtom, name: "${_$labelAtom.name}_set");
   }
 
-  final _$isCreditAtom = Atom(name: 'FormBase.isCredit');
+  final _$isCreditAtom = Atom(name: "FormBase.isCredit");
 
   @override
   bool get isCredit {
@@ -80,10 +80,10 @@ mixin _$FormStore on FormBase, Store {
     _$isCreditAtom.context.conditionallyRunInAction(() {
       super.isCredit = value;
       _$isCreditAtom.reportChanged();
-    }, _$isCreditAtom, name: '${_$isCreditAtom.name}_set');
+    }, _$isCreditAtom, name: "${_$isCreditAtom.name}_set");
   }
 
-  final _$categoryIDAtom = Atom(name: 'FormBase.categoryID');
+  final _$categoryIDAtom = Atom(name: "FormBase.categoryID");
 
   @override
   String get categoryID {
@@ -97,10 +97,10 @@ mixin _$FormStore on FormBase, Store {
     _$categoryIDAtom.context.conditionallyRunInAction(() {
       super.categoryID = value;
       _$categoryIDAtom.reportChanged();
-    }, _$categoryIDAtom, name: '${_$categoryIDAtom.name}_set');
+    }, _$categoryIDAtom, name: "${_$categoryIDAtom.name}_set");
   }
 
-  final _$dateAtom = Atom(name: 'FormBase.date');
+  final _$dateAtom = Atom(name: "FormBase.date");
 
   @override
   int get date {
@@ -114,10 +114,10 @@ mixin _$FormStore on FormBase, Store {
     _$dateAtom.context.conditionallyRunInAction(() {
       super.date = value;
       _$dateAtom.reportChanged();
-    }, _$dateAtom, name: '${_$dateAtom.name}_set');
+    }, _$dateAtom, name: "${_$dateAtom.name}_set");
   }
 
-  final _$isNewAtom = Atom(name: 'FormBase.isNew');
+  final _$isNewAtom = Atom(name: "FormBase.isNew");
 
   @override
   bool get isNew {
@@ -131,10 +131,10 @@ mixin _$FormStore on FormBase, Store {
     _$isNewAtom.context.conditionallyRunInAction(() {
       super.isNew = value;
       _$isNewAtom.reportChanged();
-    }, _$isNewAtom, name: '${_$isNewAtom.name}_set');
+    }, _$isNewAtom, name: "${_$isNewAtom.name}_set");
   }
 
-  final _$FormBaseActionController = ActionController(name: 'FormBase');
+  final _$FormBaseActionController = ActionController(name: "FormBase");
 
   @override
   void changeAmount(num value) {
@@ -219,7 +219,7 @@ mixin _$FormStore on FormBase, Store {
   @override
   String toString() {
     final string =
-        'id: ${id.toString()},amount: ${amount.toString()},label: ${label.toString()},isCredit: ${isCredit.toString()},categoryID: ${categoryID.toString()},date: ${date.toString()},isNew: ${isNew.toString()},data: ${data.toString()}';
-    return '{$string}';
+        "id: ${id.toString()},amount: ${amount.toString()},label: ${label.toString()},isCredit: ${isCredit.toString()},categoryID: ${categoryID.toString()},date: ${date.toString()},isNew: ${isNew.toString()},data: ${data.toString()}";
+    return "{$string}";
   }
 }

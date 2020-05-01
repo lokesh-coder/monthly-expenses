@@ -1,27 +1,27 @@
-import 'package:intl/intl.dart';
-import 'package:intl/number_symbols_data.dart' show numberFormatSymbols;
-import 'package:monex/config/app.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/data/local/object/files/currencies.dart';
-import 'package:monex/models/currency.dart';
+import "package:intl/intl.dart";
+import "package:intl/number_symbols_data.dart" show numberFormatSymbols;
+import "package:monex/config/app.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/data/local/object/files/currencies.dart";
+import "package:monex/models/currency.dart";
 
 class CurrencyHelper {
   static List<Currency> cachedCurrencies = [];
   static String getFormattedCurrency(num value, String currencyTag) {
-    if (currencyTag == '0=0') return value.toString();
+    if (currencyTag == "0=0") return value.toString();
     var currency = getCurrency(currencyTag);
     int decimals =
-        value.toString().contains('.') ? AppConfig.maxDecimalsInAmount : 0;
+        value.toString().contains(".") ? AppConfig.maxDecimalsInAmount : 0;
 
     return NumberFormat.currency(
       locale: currency.locale,
       decimalDigits: decimals,
-      name: ' ${currency.currencySymbol} ',
+      name: " ${currency.currencySymbol} ",
     ).format(value);
   }
 
   static separator(String locale) {
-    return numberFormatSymbols[locale]?.DECIMAL_SEP ?? '.';
+    return numberFormatSymbols[locale]?.DECIMAL_SEP ?? ".";
   }
 
   static List<Currency> all() {
@@ -45,10 +45,10 @@ class CurrencyHelper {
 
     currencies.sort((a, b) => a.currencyName.compareTo(b.currencyName));
     currencies.add(Currency(
-      locale: '0',
-      currencyCode: '0',
-      currencySymbol: '',
-      decimalSep: '.',
+      locale: "0",
+      currencyCode: "0",
+      currencySymbol: "",
+      decimalSep: ".",
       currencyName: Labels.otherCurrency,
     ));
     cachedCurrencies = currencies;
@@ -56,7 +56,7 @@ class CurrencyHelper {
   }
 
   static Currency getCurrency(String currencyTag) {
-    List<String> tags = currencyTag.split('=');
+    List<String> tags = currencyTag.split("=");
     var currency = CurrencyHelper.all().firstWhere(
         (c) => c.locale == tags[0] && c.currencyCode == tags[1],
         orElse: () => CurrencyHelper.all().last);
@@ -71,11 +71,11 @@ class CurrencyHelper {
   }
 
   static bool isValidAmountPattern(String val) {
-    if (val.contains('.')) {
-      if (val.allMatches('.').length > 1) {
+    if (val.contains(".")) {
+      if (val.allMatches(".").length > 1) {
         return false;
       }
-      if (val.split('.').last.length > AppConfig.maxDecimalsInAmount) {
+      if (val.split(".").last.length > AppConfig.maxDecimalsInAmount) {
         return false;
       }
     }

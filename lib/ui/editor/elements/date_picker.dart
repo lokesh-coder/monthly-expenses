@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/ui/common/button.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/ui/common/button.dart";
 
 class DatePicker extends StatelessWidget {
   final Function(DateTime) onSelect;
@@ -58,13 +58,13 @@ class DatePicker extends StatelessWidget {
         ),
         color: bgClr,
         size: 50.0,
-        onPressed: () => onSelect(dateObj['dateTime']),
+        onPressed: () => onSelect(dateObj["dateTime"]),
       ),
     );
   }
 
   Widget _weekHeader() {
-    List _days = ['SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT'];
+    List _days = ["SUN", "MON", "TUE", "WED", "THUR", "FRI", "SAT"];
 
     return Row(
       children: _days.map((d) => _weekName(d)).toList(),

@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:monex/config/app.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/helpers/currency_helper.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/common/amount.dart';
-import 'package:monex/ui/common/button.dart';
+import "package:flutter/material.dart";
+import "package:monex/config/app.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/m_icons.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/helpers/currency_helper.dart";
+import "package:monex/models/enums.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/settings/settings.store.dart";
+import "package:monex/ui/common/amount.dart";
+import "package:monex/ui/common/button.dart";
 
 class AmountNumpad extends StatefulWidget {
   final Function onSelect;
@@ -28,8 +28,8 @@ class _AmountNumpadState extends State<AmountNumpad> {
   @override
   void initState() {
     super.initState();
-    value = widget.selected == "null" ? '' : widget.selected;
-    locale = store.currency.split('=')[0];
+    value = widget.selected == "null" ? "" : widget.selected;
+    locale = store.currency.split("=")[0];
     separator = CurrencyHelper.separator(locale);
     currencySymbol = CurrencyHelper.getCurrency(store.currency).currencySymbol;
   }
@@ -65,7 +65,7 @@ class _AmountNumpadState extends State<AmountNumpad> {
   }
 
   _onReset() {
-    value = '';
+    value = "";
     setState(() {});
   }
 
@@ -90,8 +90,8 @@ class _KeypadLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var oneToNineKeys = List.generate(9, (i) => '${i + 1}');
-    var keys = [...oneToNineKeys, separator, '0', 'ENTER'];
+    var oneToNineKeys = List.generate(9, (i) => "${i + 1}");
+    var keys = [...oneToNineKeys, separator, "0", "ENTER"];
     var renderButtonFn =
         (key) => _KeypadButton(key, onTap: () => _onKeySelect(key));
     var buttons = keys.map(renderButtonFn).toList();
@@ -111,10 +111,10 @@ class _KeypadLayout extends StatelessWidget {
 
   _onKeySelect(String key) {
     var finalValue = value;
-    if (key == separator) key = '.';
+    if (key == separator) key = ".";
 
-    if (key == 'ENTER') {
-      if (value == null) finalValue = '';
+    if (key == "ENTER") {
+      if (value == null) finalValue = "";
       onDone(finalValue);
       return;
     }
@@ -126,7 +126,7 @@ class _KeypadLayout extends StatelessWidget {
   }
 
   String _normalizeAmount(String value) {
-    if (value == '.') return '0';
+    if (value == ".") return "0";
     return value;
   }
 }
@@ -148,7 +148,7 @@ class _KeypadDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget displayValue;
-    if (value == '') {
+    if (value == "") {
       var placeholderText = 0.toStringAsFixed(AppConfig.maxDecimalsInAmount);
       var formattedText = CurrencyHelper.getAmount(placeholderText, locale);
       displayValue = Amount(
@@ -159,7 +159,7 @@ class _KeypadDisplay extends StatelessWidget {
       );
     } else {
       displayValue = Amount(
-        value.replaceAll('.', separator),
+        value.replaceAll(".", separator),
         format: false,
         type: AmountDisplayType.INPUT,
         size: DisplaySize.LG,
@@ -210,7 +210,7 @@ class _KeypadButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var child;
 
-    if (keyname == 'ENTER') {
+    if (keyname == "ENTER") {
       child = Icon(MIcons.tick, color: Clrs.secondary, size: 30);
     } else {
       child = Text(keyname,

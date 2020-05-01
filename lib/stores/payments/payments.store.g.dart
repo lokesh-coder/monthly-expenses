@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'payments.store.dart';
+part of "payments.store.dart";
 
 // **************************************************************************
 // StoreGenerator
@@ -39,7 +39,7 @@ mixin _$PaymentsStore on PaymentsBase, Store {
                   () => super.paymentsByMonthWithoutFilter))
           .value;
 
-  final _$paymentsAtom = Atom(name: 'PaymentsBase.payments');
+  final _$paymentsAtom = Atom(name: "PaymentsBase.payments");
 
   @override
   ObservableList<Payment> get payments {
@@ -53,10 +53,10 @@ mixin _$PaymentsStore on PaymentsBase, Store {
     _$paymentsAtom.context.conditionallyRunInAction(() {
       super.payments = value;
       _$paymentsAtom.reportChanged();
-    }, _$paymentsAtom, name: '${_$paymentsAtom.name}_set');
+    }, _$paymentsAtom, name: "${_$paymentsAtom.name}_set");
   }
 
-  final _$isLoadingAtom = Atom(name: 'PaymentsBase.isLoading');
+  final _$isLoadingAtom = Atom(name: "PaymentsBase.isLoading");
 
   @override
   bool get isLoading {
@@ -70,10 +70,10 @@ mixin _$PaymentsStore on PaymentsBase, Store {
     _$isLoadingAtom.context.conditionallyRunInAction(() {
       super.isLoading = value;
       _$isLoadingAtom.reportChanged();
-    }, _$isLoadingAtom, name: '${_$isLoadingAtom.name}_set');
+    }, _$isLoadingAtom, name: "${_$isLoadingAtom.name}_set");
   }
 
-  final _$activeAtom = Atom(name: 'PaymentsBase.active');
+  final _$activeAtom = Atom(name: "PaymentsBase.active");
 
   @override
   String get active {
@@ -87,10 +87,10 @@ mixin _$PaymentsStore on PaymentsBase, Store {
     _$activeAtom.context.conditionallyRunInAction(() {
       super.active = value;
       _$activeAtom.reportChanged();
-    }, _$activeAtom, name: '${_$activeAtom.name}_set');
+    }, _$activeAtom, name: "${_$activeAtom.name}_set");
   }
 
-  final _$filterByAtom = Atom(name: 'PaymentsBase.filterBy');
+  final _$filterByAtom = Atom(name: "PaymentsBase.filterBy");
 
   @override
   PaymentType get filterBy {
@@ -104,10 +104,10 @@ mixin _$PaymentsStore on PaymentsBase, Store {
     _$filterByAtom.context.conditionallyRunInAction(() {
       super.filterBy = value;
       _$filterByAtom.reportChanged();
-    }, _$filterByAtom, name: '${_$filterByAtom.name}_set');
+    }, _$filterByAtom, name: "${_$filterByAtom.name}_set");
   }
 
-  final _$activeMonthAtom = Atom(name: 'PaymentsBase.activeMonth');
+  final _$activeMonthAtom = Atom(name: "PaymentsBase.activeMonth");
 
   @override
   DateTime get activeMonth {
@@ -121,52 +121,52 @@ mixin _$PaymentsStore on PaymentsBase, Store {
     _$activeMonthAtom.context.conditionallyRunInAction(() {
       super.activeMonth = value;
       _$activeMonthAtom.reportChanged();
-    }, _$activeMonthAtom, name: '${_$activeMonthAtom.name}_set');
+    }, _$activeMonthAtom, name: "${_$activeMonthAtom.name}_set");
   }
 
-  final _$fetchPaymentsAsyncAction = AsyncAction('fetchPayments');
+  final _$fetchPaymentsAsyncAction = AsyncAction("fetchPayments");
 
   @override
   Future fetchPayments() {
     return _$fetchPaymentsAsyncAction.run(() => super.fetchPayments());
   }
 
-  final _$insertPaymentAsyncAction = AsyncAction('insertPayment');
+  final _$insertPaymentAsyncAction = AsyncAction("insertPayment");
 
   @override
   Future insertPayment(Payment payment) {
     return _$insertPaymentAsyncAction.run(() => super.insertPayment(payment));
   }
 
-  final _$updatePaymentAsyncAction = AsyncAction('updatePayment');
+  final _$updatePaymentAsyncAction = AsyncAction("updatePayment");
 
   @override
   Future updatePayment(Payment payment) {
     return _$updatePaymentAsyncAction.run(() => super.updatePayment(payment));
   }
 
-  final _$deletePaymentAsyncAction = AsyncAction('deletePayment');
+  final _$deletePaymentAsyncAction = AsyncAction("deletePayment");
 
   @override
   Future deletePayment(String paymentID) {
     return _$deletePaymentAsyncAction.run(() => super.deletePayment(paymentID));
   }
 
-  final _$dropDbAsyncAction = AsyncAction('dropDb');
+  final _$dropDbAsyncAction = AsyncAction("dropDb");
 
   @override
   Future dropDb() {
     return _$dropDbAsyncAction.run(() => super.dropDb());
   }
 
-  final _$seedAsyncAction = AsyncAction('seed');
+  final _$seedAsyncAction = AsyncAction("seed");
 
   @override
   Future seed() {
     return _$seedAsyncAction.run(() => super.seed());
   }
 
-  final _$PaymentsBaseActionController = ActionController(name: 'PaymentsBase');
+  final _$PaymentsBaseActionController = ActionController(name: "PaymentsBase");
 
   @override
   void changeFilter(dynamic filterValue) {
@@ -201,7 +201,7 @@ mixin _$PaymentsStore on PaymentsBase, Store {
   @override
   String toString() {
     final string =
-        'payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},filterBy: ${filterBy.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},inOutStatement: ${inOutStatement.toString()},paymentsByMonth: ${paymentsByMonth.toString()},paymentsByMonthWithoutFilter: ${paymentsByMonthWithoutFilter.toString()}';
-    return '{$string}';
+        "payments: ${payments.toString()},isLoading: ${isLoading.toString()},active: ${active.toString()},filterBy: ${filterBy.toString()},activeMonth: ${activeMonth.toString()},totalAmountOfActiveMonth: ${totalAmountOfActiveMonth.toString()},inOutStatement: ${inOutStatement.toString()},paymentsByMonth: ${paymentsByMonth.toString()},paymentsByMonthWithoutFilter: ${paymentsByMonthWithoutFilter.toString()}";
+    return "{$string}";
   }
 }

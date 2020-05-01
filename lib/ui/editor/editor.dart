@@ -1,22 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/form/form.store.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:monex/stores/sandwiich/sandwich.store.dart';
-import 'package:monex/ui/common/ribbon.dart';
+import "package:flutter/material.dart";
+import "package:mobx/mobx.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/labels.dart";
+import "package:monex/helpers/date_helper.dart";
+import "package:monex/models/enums.dart";
+import "package:monex/models/payment.model.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/form/form.store.dart";
+import "package:monex/stores/payments/payments.store.dart";
+import "package:monex/stores/sandwiich/sandwich.store.dart";
+import "package:monex/ui/common/ribbon.dart";
 
-import 'elements/action_buttons.dart';
-import 'elements/type_input.dart';
-import 'elements/amount_input.dart';
-import 'elements/date_input.dart';
-import 'elements/label_input.dart';
-import 'elements/category_input.dart';
+import "elements/action_buttons.dart";
+import "elements/amount_input.dart";
+import "elements/category_input.dart";
+import "elements/date_input.dart";
+import "elements/label_input.dart";
+import "elements/type_input.dart";
 
 final formKey = GlobalKey<FormState>();
 
@@ -110,7 +110,7 @@ class _EditorState extends State<Editor> {
   }
 
   _save() {
-    print('data ${formStore.data.toJson()}');
+    print("data ${formStore.data.toJson()}");
 
     Payment payment = formStore.data;
 

@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/dimensions.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:monex/config/colors.dart";
+import "package:monex/config/dimensions.dart";
+import "package:monex/config/typography.dart";
+import "package:monex/models/enums.dart";
+import "package:monex/services/service_locator.dart";
+import "package:monex/stores/payments/payments.store.dart";
+import "package:percent_indicator/circular_percent_indicator.dart";
 
 class Percentage extends StatelessWidget {
   final double value;
@@ -36,20 +36,20 @@ class Percentage extends StatelessWidget {
   }
 
   List _data(Map data) {
-    num total = data['credit'] + data['debit'];
+    num total = data["credit"] + data["debit"];
     num scale;
     PaymentType type;
 
-    if (data['activeType'] == PaymentType.ALL) {
-      scale = data['credit'] - data['debit'];
+    if (data["activeType"] == PaymentType.ALL) {
+      scale = data["credit"] - data["debit"];
       type = scale >= 0 ? PaymentType.CREDIT : PaymentType.DEBIT;
     }
-    if (data['activeType'] == PaymentType.CREDIT) {
-      scale = data['credit'];
+    if (data["activeType"] == PaymentType.CREDIT) {
+      scale = data["credit"];
       type = PaymentType.CREDIT;
     }
-    if (data['activeType'] == PaymentType.DEBIT) {
-      scale = data['debit'];
+    if (data["activeType"] == PaymentType.DEBIT) {
+      scale = data["debit"];
       type = PaymentType.DEBIT;
     }
     return [scale.abs(), total, type];

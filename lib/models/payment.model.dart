@@ -33,13 +33,13 @@ class Payment {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'label': label,
-        'lastModifiedTime': lastModifiedTime,
-        'date': date,
-        'createdTime': createdTime,
-        'isCredit': isCredit,
-        'amount': amount,
-        'categoryID': categoryID,
+        "id": id,
+        "label": label,
+        "lastModifiedTime": lastModifiedTime,
+        "date": date,
+        "createdTime": createdTime,
+        "isCredit": isCredit,
+        "amount": amount,
+        "categoryID": categoryID,
       };
 }

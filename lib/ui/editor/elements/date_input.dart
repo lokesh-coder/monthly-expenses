@@ -1,22 +1,22 @@
-import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/form/form.store.dart";
-import "package:monex/ui/common/bottom_modal.dart";
-import "package:monex/ui/editor/elements/date_picker.dart";
-import "package:monex/ui/editor/elements/icon_card.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/ui/common/bottom_modal.dart';
+import 'package:monex/ui/editor/elements/date_picker.dart';
+import 'package:monex/ui/editor/elements/icon_card.dart';
 
 class DateInput extends StatelessWidget {
   const DateInput();
 
   @override
   Widget build(BuildContext context) {
-    var formStore = sl<FormStore>();
+    final formStore = sl<FormStore>();
     return BottomModal(
       builder: (context, control) {
         return Observer(builder: (context) {
@@ -32,13 +32,13 @@ class DateInput extends StatelessWidget {
   }
 
   void _picker(BottomModalControl control, FormStore formStore) {
-    var selectedDate = DateHelper.msToDt(formStore.date);
-    var selectedMonth = DateHelper.getMonthName(selectedDate);
-    var title = [Labels.chooseDate, selectedMonth].join("  ·  ");
-    Widget picker = DatePicker(
+    final selectedDate = DateHelper.msToDt(formStore.date);
+    final selectedMonth = DateHelper.getMonthName(selectedDate);
+    final title = [Labels.chooseDate, selectedMonth].join('  ·  ');
+    final Widget picker = DatePicker(
       selected: selectedDate,
       onSelect: (dt) {
-        var ms = DateHelper.dtToMs(dt);
+        final ms = DateHelper.dtToMs(dt);
         formStore.changeDate(ms);
         control.close();
       },
@@ -67,12 +67,12 @@ class DateInput extends StatelessWidget {
   }
 
   String _displayDateMonth(int ms) {
-    DateTime dt = DateHelper.msToDt(ms);
+    final DateTime dt = DateHelper.msToDt(ms);
     return DateHelper.format(dt, DateHelper.monthDayP).toUpperCase();
   }
 
   String _displayDate(int ms) {
-    DateTime dt = DateHelper.msToDt(ms);
+    final DateTime dt = DateHelper.msToDt(ms);
     return DateHelper.format(dt, DateHelper.dateP);
   }
 }

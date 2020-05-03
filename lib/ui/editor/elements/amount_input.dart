@@ -1,19 +1,19 @@
-import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/form/form.store.dart";
-import "package:monex/ui/common/amount.dart";
-import "package:monex/ui/common/bottom_modal.dart";
-import "package:monex/ui/editor/elements/amount_numpad.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/ui/common/amount.dart';
+import 'package:monex/ui/common/bottom_modal.dart';
+import 'package:monex/ui/editor/elements/amount_numpad.dart';
 
 class AmountInput extends StatelessWidget {
   const AmountInput();
 
   @override
   Widget build(BuildContext context) {
-    var formStore = sl<FormStore>();
+    final formStore = sl<FormStore>();
 
     return BottomModal(
       hasPadding: false,
@@ -41,7 +41,7 @@ class AmountInput extends StatelessWidget {
   }
 
   void _numpad(BottomModalControl control, FormStore formStore) {
-    Widget numpad = AmountNumpad(
+    final Widget numpad = AmountNumpad(
       close: control.close,
       onSelect: (x) {
         formStore.changeAmount(x);

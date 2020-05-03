@@ -1,5 +1,5 @@
-import "package:flutter/material.dart";
-import "package:monex/ui/months/elements/payments.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/ui/months/elements/payments.dart';
 
 class PaymentsCarousal extends StatelessWidget {
   final dynamic data;

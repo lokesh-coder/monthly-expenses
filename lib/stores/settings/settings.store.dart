@@ -1,7 +1,7 @@
-import "package:mobx/mobx.dart";
-import "package:monex/data/data_repository.dart";
+import 'package:mobx/mobx.dart';
+import 'package:monex/data/data_repository.dart';
 
-part "settings.store.g.dart";
+part 'settings.store.g.dart';
 
 class SettingsStore = SettingsBase with _$SettingsStore;
 
@@ -24,7 +24,7 @@ abstract class SettingsBase with Store {
   int orderBy = 1;
 
   @observable
-  String currency = "0=0";
+  String currency = '0=0';
 
   @action
   void setupDone() {
@@ -52,28 +52,34 @@ abstract class SettingsBase with Store {
 
   @action
   void changeCurrency(String locale, String currencyCode) {
-    currency = "$locale=$currencyCode";
+    currency = '$locale=$currencyCode';
     repo.memory.changeCurrency(currency);
   }
 
-  init() async {
-    var isNewSetupValue = await repo.memory.isNewSetup;
+  void init() async {
+    final isNewSetupValue = await repo.memory.isNewSetup;
     isNewSetup = isNewSetupValue ?? true;
 
-    var range = await repo.memory.monthsViewRange;
-    if (range != null) monthsViewRange = range;
+    final range = await repo.memory.monthsViewRange;
+    if (range != null) {
+      monthsViewRange = range;
+    }
 
-    var orderByValue = await repo.memory.orderBy;
-    if (orderByValue != null) orderBy = orderByValue;
+    final orderByValue = await repo.memory.orderBy;
+    if (orderByValue != null) {
+      orderBy = orderByValue;
+    }
 
-    var currencyValue = await repo.memory.currency;
-    if (currencyValue != null) currency = currencyValue;
+    final currencyValue = await repo.memory.currency;
+    if (currencyValue != null) {
+      currency = currencyValue;
+    }
 
-    var sortByValue = await repo.memory.sortBy;
+    final sortByValue = await repo.memory.sortBy;
     if (sortByValue != null) {
       sortBy = sortByValue;
     } else {
-      sortBy = this.repo.obj.get("sorting").defaultStrategy.id;
+      sortBy = repo.obj.get('sorting').defaultStrategy.id;
     }
   }
 }

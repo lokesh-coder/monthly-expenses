@@ -1,12 +1,12 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/payments/payments.store.dart";
-import "package:monex/stores/sandwiich/sandwich.store.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/payments/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class Empty extends StatelessWidget {
   final PaymentType filter;
@@ -14,7 +14,7 @@ class Empty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var message;
+    var message = '';
 
     switch (filter) {
       case PaymentType.DEBIT:

@@ -1,7 +1,7 @@
-import "package:flutter/material.dart";
-import "package:mobx/mobx.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/sandwiich/sandwich.store.dart";
+import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class SlideTransform extends StatefulWidget {
   final double contentHeight;
@@ -34,7 +34,8 @@ class _SlideTransformState extends State<SlideTransform>
         curve: Curves.easeInOutQuint,
       ),
     )..addListener(() {
-            double offset = (animation.value / widget.contentHeight).abs();
+            final double offset =
+                (animation.value / widget.contentHeight).abs();
             sl<SandwichStore>().changeOffset(offset);
             setState(() {});
           });

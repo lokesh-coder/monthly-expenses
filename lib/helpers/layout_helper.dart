@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 
 class LayoutHelper {
   static GlobalKey<ScaffoldState> mainPageKey = GlobalKey<ScaffoldState>();
@@ -12,17 +12,17 @@ class LayoutHelper {
   }
 
   static double get screenWidth {
-    BuildContext ctx = LayoutHelper.mainPageKey.currentContext;
+    final BuildContext ctx = LayoutHelper.mainPageKey.currentContext;
     return MediaQuery.of(ctx).size.width;
   }
 
   static double get screenHeight {
-    BuildContext ctx = LayoutHelper.mainPageKey.currentContext;
+    final ctx = LayoutHelper.mainPageKey.currentContext;
     return MediaQuery.of(ctx).size.height;
   }
 
   static double get statusBarHeight {
-    BuildContext ctx = LayoutHelper.mainPageKey.currentContext;
+    final BuildContext ctx = LayoutHelper.mainPageKey.currentContext;
     return MediaQuery.of(ctx).padding.top;
   }
 
@@ -31,7 +31,5 @@ class LayoutHelper {
     return 0;
   }
 
-  static bool get isReleaseMode {
-    return kReleaseMode;
-  }
+  static bool get isReleaseMode => kReleaseMode;
 }

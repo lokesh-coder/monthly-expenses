@@ -15,19 +15,19 @@ class Currency {
 
   factory Currency.fromJson(Map<String, dynamic> json) {
     return Currency(
-      locale: json["locale"],
-      currencyCode: json["currencyCode"],
-      currencySymbol: json["currencySymbol"],
-      currencyName: json["currencyName"],
-      decimalSep: json["decimalSep"],
+      locale: json['locale'],
+      currencyCode: json['currencyCode'],
+      currencySymbol: json['currencySymbol'],
+      currencyName: json['currencyName'],
+      decimalSep: json['decimalSep'],
     );
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        "locale": locale,
-        "currencyCode": currencyCode,
-        "currencySymbol": currencySymbol,
-        "currencyName": currencyName,
-        "decimalSep": decimalSep,
+        'locale': locale,
+        'currencyCode': currencyCode,
+        'currencySymbol': currencySymbol,
+        'currencyName': currencyName,
+        'decimalSep': decimalSep,
       };
 }

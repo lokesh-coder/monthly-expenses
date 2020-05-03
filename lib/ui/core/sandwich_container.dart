@@ -1,7 +1,7 @@
-import "package:flutter/material.dart";
-import "package:monex/config/dimensions.dart";
-import "package:monex/helpers/layout_helper.dart";
-import "package:monex/ui/core/slide_transform.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/dimensions.dart';
+import 'package:monex/helpers/layout_helper.dart';
+import 'package:monex/ui/core/slide_transform.dart';
 
 class SandwichContainer extends StatelessWidget {
   final Widget bottomChild;
@@ -18,9 +18,9 @@ class SandwichContainer extends StatelessWidget {
     this.topChild,
   });
 
-  get statusBarH => LayoutHelper.statusBarHeight;
-  get screenH => LayoutHelper.screenHeight;
-  get appbarH => LayoutHelper.appBarHeight;
+  double get statusBarH => LayoutHelper.statusBarHeight;
+  double get screenH => LayoutHelper.screenHeight;
+  double get appbarH => LayoutHelper.appBarHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +39,9 @@ class SandwichContainer extends StatelessWidget {
   Widget _middleChild() {
     return Builder(
       builder: (context) {
-        double topToBannerH = bannerBarH + statusBarH + appbarH;
-        double slidableH = screenH - topToBannerH;
-        double contentHeight = -(slidableH - monthsBarH - statusBarH);
+        final double topToBannerH = bannerBarH + statusBarH + appbarH;
+        final double slidableH = screenH - topToBannerH;
+        final double contentHeight = -(slidableH - monthsBarH - statusBarH);
 
         return SlideTransform(
           contentHeight: contentHeight,

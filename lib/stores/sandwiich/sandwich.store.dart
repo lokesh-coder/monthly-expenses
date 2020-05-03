@@ -1,6 +1,6 @@
-import "package:mobx/mobx.dart";
+import 'package:mobx/mobx.dart';
 
-part "sandwich.store.g.dart";
+part 'sandwich.store.g.dart';
 
 class SandwichStore = SandwichBase with _$SandwichStore;
 

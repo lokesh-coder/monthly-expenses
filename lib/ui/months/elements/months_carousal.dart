@@ -1,6 +1,6 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:monex/config/colors.dart';
-import "package:monex/config/typography.dart";
+import 'package:monex/config/typography.dart';
 
 class MonthsCarousal extends StatefulWidget {
   final int index;
@@ -17,8 +17,8 @@ class MonthsCarousal extends StatefulWidget {
 class _MonthsCarousalState extends State<MonthsCarousal> {
   double fs = -1;
 
-  _scrollListener() {
-    var px = (widget.index - widget.ctrl.page);
+  void _scrollListener() {
+    final px = widget.index - widget.ctrl.page;
     if (px >= -widget.scaleDistance && px <= widget.scaleDistance) {
       setState(() {
         fs = 1 - px.abs();
@@ -41,7 +41,7 @@ class _MonthsCarousalState extends State<MonthsCarousal> {
           scale: 1 + (0.4 * fs),
           child: AnimatedDefaultTextStyle(
             duration: Duration(milliseconds: 200),
-            child: Text(widget.data["monthName"]),
+            child: Text(widget.data['monthName']),
             overflow: TextOverflow.ellipsis,
             style: Style.body.sm.copyWith(
                 fontWeight: fs == 1 ? FontWeight.w500 : FontWeight.normal,

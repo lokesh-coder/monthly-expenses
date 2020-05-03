@@ -1,24 +1,24 @@
-import "package:flutter/material.dart";
-import "package:mobx/mobx.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/models/payment.model.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/form/form.store.dart";
-import "package:monex/stores/payments/payments.store.dart";
-import "package:monex/stores/sandwiich/sandwich.store.dart";
-import "package:monex/ui/common/ribbon.dart";
+import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/models/payment.model.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/stores/payments/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/common/ribbon.dart';
 
-import "elements/action_buttons.dart";
-import "elements/amount_input.dart";
-import "elements/category_input.dart";
-import "elements/date_input.dart";
-import "elements/label_input.dart";
-import "elements/type_input.dart";
+import 'elements/action_buttons.dart';
+import 'elements/amount_input.dart';
+import 'elements/category_input.dart';
+import 'elements/date_input.dart';
+import 'elements/label_input.dart';
+import 'elements/type_input.dart';
 
-final formKey = GlobalKey<FormState>();
+final GlobalKey formKey = GlobalKey<FormState>();
 
 class Editor extends StatefulWidget {
   const Editor();
@@ -28,9 +28,9 @@ class Editor extends StatefulWidget {
 }
 
 class _EditorState extends State<Editor> {
-  var sandwichStore = sl<SandwichStore>();
-  var paymentsStore = sl<PaymentsStore>();
-  var formStore = sl<FormStore>();
+  final SandwichStore sandwichStore = sl<SandwichStore>();
+  final PaymentsStore paymentsStore = sl<PaymentsStore>();
+  final FormStore formStore = sl<FormStore>();
   bool shouldLoad = false;
 
   ReactionDisposer disposeOne;
@@ -42,7 +42,9 @@ class _EditorState extends State<Editor> {
   void initState() {
     super.initState();
     disposeOne = reaction((_) => sandwichStore.isOpen, (x) {
-      if (!x) return;
+      if (!x) {
+        return;
+      }
       shouldLoad = x;
       formStore.initForm();
       setState(() {});
@@ -55,7 +57,9 @@ class _EditorState extends State<Editor> {
 
   @override
   Widget build(BuildContext context) {
-    if (!shouldLoad) return Container();
+    if (!shouldLoad) {
+      return Container();
+    }
     return GestureDetector(
       onTap: () => _closeKeyboard(context),
       child: Container(
@@ -77,7 +81,7 @@ class _EditorState extends State<Editor> {
     );
   }
 
-  _actionArea(context) {
+  Widget _actionArea(context) {
     return ActionButton(onSubmit: _save);
   }
 
@@ -105,14 +109,14 @@ class _EditorState extends State<Editor> {
     );
   }
 
-  _closeKeyboard(context) {
+  void _closeKeyboard(context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
-  _save() {
-    print("data ${formStore.data.toJson()}");
+  void _save() {
+    print('data ${formStore.data.toJson()}');
 
-    Payment payment = formStore.data;
+    final Payment payment = formStore.data;
 
     if (payment.amount == null || payment.label == null) {
       _showSnackbar();
@@ -125,14 +129,16 @@ class _EditorState extends State<Editor> {
       paymentsStore.updatePayment(payment);
     }
 
-    var type = payment.isCredit ? PaymentType.CREDIT : PaymentType.DEBIT;
-    if (paymentsStore.filterBy != type) paymentsStore.changeFilter(type);
+    final type = payment.isCredit ? PaymentType.CREDIT : PaymentType.DEBIT;
+    if (paymentsStore.filterBy != type) {
+      paymentsStore.changeFilter(type);
+    }
 
     paymentsStore.setActivePayment(null);
     sandwichStore.changeVisibility(false);
   }
 
-  _showSnackbar() {
+  void _showSnackbar() {
     final snackBar = SnackBar(
       backgroundColor: Clrs.secondary,
       content: Ribbon(Labels.formError),

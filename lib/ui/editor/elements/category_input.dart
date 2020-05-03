@@ -1,21 +1,21 @@
-import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/data/data_repository.dart";
-import "package:monex/data/local/object/files/categories.dart";
-import "package:monex/models/category.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/form/form.store.dart";
-import "package:monex/ui/common/bottom_modal.dart";
-import "package:monex/ui/editor/elements/category_picker.dart";
-import "package:monex/ui/editor/elements/icon_card.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/data/data_repository.dart';
+import 'package:monex/data/local/object/files/categories.dart';
+import 'package:monex/models/category.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/ui/common/bottom_modal.dart';
+import 'package:monex/ui/editor/elements/category_picker.dart';
+import 'package:monex/ui/editor/elements/icon_card.dart';
 
 class CategoryInput extends StatelessWidget {
   const CategoryInput();
 
   @override
   Widget build(BuildContext context) {
-    var formStore = sl<FormStore>();
+    final formStore = sl<FormStore>();
 
     return BottomModal(
       builder: (context, control) {
@@ -34,7 +34,7 @@ class CategoryInput extends StatelessWidget {
   }
 
   void _picker(BottomModalControl control, FormStore formStore) {
-    Widget picker = CategoryPicker(
+    final Widget picker = CategoryPicker(
       isCredit: formStore.isCredit,
       onSelect: (id) {
         formStore.changeCategoryID(id);
@@ -42,13 +42,13 @@ class CategoryInput extends StatelessWidget {
       },
       selected: _catMeta(formStore.categoryID).id,
     );
-    String type = formStore.isCredit ? "Credit" : "Debit";
-    control.open([Labels.categories, type].join("  ·  "), picker);
+    final String type = formStore.isCredit ? 'Credit' : 'Debit';
+    control.open([Labels.categories, type].join('  ·  '), picker);
   }
 
   Category _catMeta(String catID) {
-    var categoriesObj = sl<DataRepo>().obj.get<Catagories>("categories");
-    var category = categoriesObj.findCategoryById(catID);
+    final categoriesObj = sl<DataRepo>().obj.get<Catagories>('categories');
+    final category = categoriesObj.findCategoryById(catID);
     return category;
   }
 

@@ -1,14 +1,14 @@
-import "package:flutter/material.dart";
-import "package:monex/config/app.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/helpers/currency_helper.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/settings/settings.store.dart";
-import "package:monex/ui/common/amount.dart";
-import "package:monex/ui/common/button.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/app.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/helpers/currency_helper.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
+import 'package:monex/ui/common/amount.dart';
+import 'package:monex/ui/common/button.dart';
 
 class AmountNumpad extends StatefulWidget {
   final Function onSelect;
@@ -22,14 +22,14 @@ class AmountNumpad extends StatefulWidget {
 }
 
 class _AmountNumpadState extends State<AmountNumpad> {
-  var store = sl<SettingsStore>();
+  final SettingsStore store = sl<SettingsStore>();
   String value, locale, separator, currencySymbol;
 
   @override
   void initState() {
     super.initState();
-    value = widget.selected == "null" ? "" : widget.selected;
-    locale = store.currency.split("=")[0];
+    value = widget.selected == 'null' ? '' : widget.selected;
+    locale = store.currency.split('=')[0];
     separator = CurrencyHelper.separator(locale);
     currencySymbol = CurrencyHelper.getCurrency(store.currency).currencySymbol;
   }
@@ -58,22 +58,24 @@ class _AmountNumpadState extends State<AmountNumpad> {
     );
   }
 
-  _onClear() {
-    if (value.isEmpty) return;
+  void _onClear() {
+    if (value.isEmpty) {
+      return;
+    }
     value = value.substring(0, value.length - 1);
     setState(() {});
   }
 
-  _onReset() {
-    value = "";
+  void _onReset() {
+    value = '';
     setState(() {});
   }
 
-  _onDone(newValue) {
+  void _onDone(newValue) {
     widget.onSelect(num.parse(newValue));
   }
 
-  _onValueChange(newValue) {
+  void _onValueChange(newValue) {
     value = newValue;
     setState(() {});
   }
@@ -90,11 +92,11 @@ class _KeypadLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var oneToNineKeys = List.generate(9, (i) => "${i + 1}");
-    var keys = [...oneToNineKeys, separator, "0", "ENTER"];
-    var renderButtonFn =
-        (key) => _KeypadButton(key, onTap: () => _onKeySelect(key));
-    var buttons = keys.map(renderButtonFn).toList();
+    final oneToNineKeys = List.generate(9, (i) => '${i + 1}');
+    final keys = [...oneToNineKeys, separator, '0', 'ENTER'];
+    Widget renderButtonFn(key) =>
+        _KeypadButton(key, onTap: () => _onKeySelect(key));
+    final buttons = keys.map(renderButtonFn).toList();
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30),
@@ -109,24 +111,33 @@ class _KeypadLayout extends StatelessWidget {
     );
   }
 
-  _onKeySelect(String key) {
+  void _onKeySelect(String key) {
     var finalValue = value;
-    if (key == separator) key = ".";
+    if (key == separator) {
+      // ignore: parameter_assignments
+      key = '.';
+    }
 
-    if (key == "ENTER") {
-      if (value == null) finalValue = "";
+    if (key == 'ENTER') {
+      if (value == null) {
+        finalValue = '';
+      }
       onDone(finalValue);
       return;
     }
 
-    var _tempValue = _normalizeAmount(value + key);
-    if (CurrencyHelper.isValidAmountPattern(_tempValue)) finalValue += key;
+    final _tempValue = _normalizeAmount(value + key);
+    if (CurrencyHelper.isValidAmountPattern(_tempValue)) {
+      finalValue += key;
+    }
 
     onValueChange(finalValue);
   }
 
   String _normalizeAmount(String value) {
-    if (value == ".") return "0";
+    if (value == '.') {
+      return '0';
+    }
     return value;
   }
 }
@@ -148,9 +159,10 @@ class _KeypadDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget displayValue;
-    if (value == "") {
-      var placeholderText = 0.toStringAsFixed(AppConfig.maxDecimalsInAmount);
-      var formattedText = CurrencyHelper.formatAmount(placeholderText, locale);
+    if (value == '') {
+      final placeholderText = 0.toStringAsFixed(AppConfig.maxDecimalsInAmount);
+      final formattedText =
+          CurrencyHelper.formatAmount(placeholderText, locale);
       displayValue = Amount(
         formattedText,
         format: false,
@@ -159,7 +171,7 @@ class _KeypadDisplay extends StatelessWidget {
       );
     } else {
       displayValue = Amount(
-        value.replaceAll(".", separator),
+        value.replaceAll('.', separator),
         format: false,
         type: AmountDisplayType.INPUT,
         size: DisplaySize.LG,
@@ -208,9 +220,9 @@ class _KeypadButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var child;
+    Widget child;
 
-    if (keyname == "ENTER") {
+    if (keyname == 'ENTER') {
       child = Icon(MIcons.tick, color: Clrs.secondary, size: 30);
     } else {
       child = Text(keyname,

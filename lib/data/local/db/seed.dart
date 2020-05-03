@@ -1,18 +1,18 @@
-import "dart:math";
+import 'dart:math';
 
-import "package:monex/data/local/object/files/categories.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/models/payment.model.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/settings/settings.store.dart";
+import 'package:monex/data/local/object/files/categories.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/payment.model.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 
 class SeedData {
-  get data {
-    var seeds = [];
-    var monthRange = sl<SettingsStore>().monthsViewRange;
-    var monthDates = DateHelper.getAllMonthsInRange(monthRange);
+  List<Payment> get data {
+    final List seeds = [];
+    final int monthRange = sl<SettingsStore>().monthsViewRange;
+    final List monthDates = DateHelper.getAllMonthsInRange(monthRange);
     for (var i = 0; i < monthDates.length; i++) {
-      var dt = monthDates[i]["dateTime"];
+      final dt = monthDates[i]['dateTime'];
       for (var j = 0; j < Random().nextInt(30); j++) {
         seeds.add(Payment(
           amount: _getRandomAmount(),
@@ -22,44 +22,41 @@ class SeedData {
           isCredit: _getRandomType(),
           label: _getRandomLabel(),
           lastModifiedTime: _getRandomDate(dt),
-          id: "$i$j",
+          id: '$i$j',
         ));
       }
     }
 
-    // print(seeds);
     return seeds;
   }
 
-  _getRandomAmount() {
-    Random random = Random();
+  num _getRandomAmount() {
+    final Random random = Random();
     return num.parse((random.nextDouble() * (Random().nextInt(99999)))
         .toStringAsFixed(Random().nextInt(3)));
   }
 
-  _getRandomLabel() {
-    var rand = Random();
-    const chars = "abcdefghijklmnopqrstuvwxyz0123456789 -./";
-    String result = "";
+  String _getRandomLabel() {
+    final rand = Random();
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789 -./';
+    final buffer = StringBuffer();
     for (var i = 0; i < Random().nextInt(30) + 1; i++) {
-      result += chars[rand.nextInt(chars.length)];
+      buffer.write(chars[rand.nextInt(chars.length)]);
     }
-    return result;
+    return buffer.toString();
   }
 
-  _getRandomType() {
-    return Random().nextBool();
-  }
+  bool _getRandomType() => Random().nextBool();
 
-  _getRandomCategory() {
-    var allcat = Catagories().all;
-    var randomIndex = Random().nextInt(allcat.length);
+  String _getRandomCategory() {
+    final allcat = Catagories().all;
+    final randomIndex = Random().nextInt(allcat.length);
     return allcat[randomIndex].id;
   }
 
-  _getRandomDate(DateTime month) {
-    var start = month;
-    var end = DateTime(start.year, start.month + 1, 0);
+  int _getRandomDate(DateTime month) {
+    final start = month;
+    final end = DateTime(start.year, start.month + 1, 0);
 
     return start
         .add(Duration(days: Random().nextInt(end.day)))

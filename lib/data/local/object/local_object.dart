@@ -1,24 +1,22 @@
-import "package:monex/data/local/object/files/categories.dart";
+import 'package:monex/data/local/object/files/categories.dart';
 
-import "files/sort_strategies.dart";
+import 'files/sort_strategies.dart';
 
 class LocalObject {
-  Map _objects = {};
+  final Map _objects = {};
 
   LocalObject() {
     _init();
   }
 
-  register(key, value) {
+  void register(String key, Object value) {
     _objects[key] = value;
   }
 
-  T get<T>(key) {
-    return _objects[key];
-  }
+  T get<T>(String key) => _objects[key];
 
-  _init() {
-    register("categories", Catagories());
-    register("sorting", SortStrategies());
+  void _init() {
+    register('categories', Catagories());
+    register('sorting', SortStrategies());
   }
 }

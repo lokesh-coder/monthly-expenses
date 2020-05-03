@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of "settings.store.dart";
+part of 'settings.store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -9,7 +9,7 @@ part of "settings.store.dart";
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SettingsStore on SettingsBase, Store {
-  final _$isNewSetupAtom = Atom(name: "SettingsBase.isNewSetup");
+  final _$isNewSetupAtom = Atom(name: 'SettingsBase.isNewSetup');
 
   @override
   bool get isNewSetup {
@@ -23,10 +23,10 @@ mixin _$SettingsStore on SettingsBase, Store {
     _$isNewSetupAtom.context.conditionallyRunInAction(() {
       super.isNewSetup = value;
       _$isNewSetupAtom.reportChanged();
-    }, _$isNewSetupAtom, name: "${_$isNewSetupAtom.name}_set");
+    }, _$isNewSetupAtom, name: '${_$isNewSetupAtom.name}_set');
   }
 
-  final _$monthsViewRangeAtom = Atom(name: "SettingsBase.monthsViewRange");
+  final _$monthsViewRangeAtom = Atom(name: 'SettingsBase.monthsViewRange');
 
   @override
   int get monthsViewRange {
@@ -40,10 +40,10 @@ mixin _$SettingsStore on SettingsBase, Store {
     _$monthsViewRangeAtom.context.conditionallyRunInAction(() {
       super.monthsViewRange = value;
       _$monthsViewRangeAtom.reportChanged();
-    }, _$monthsViewRangeAtom, name: "${_$monthsViewRangeAtom.name}_set");
+    }, _$monthsViewRangeAtom, name: '${_$monthsViewRangeAtom.name}_set');
   }
 
-  final _$sortByAtom = Atom(name: "SettingsBase.sortBy");
+  final _$sortByAtom = Atom(name: 'SettingsBase.sortBy');
 
   @override
   int get sortBy {
@@ -57,10 +57,10 @@ mixin _$SettingsStore on SettingsBase, Store {
     _$sortByAtom.context.conditionallyRunInAction(() {
       super.sortBy = value;
       _$sortByAtom.reportChanged();
-    }, _$sortByAtom, name: "${_$sortByAtom.name}_set");
+    }, _$sortByAtom, name: '${_$sortByAtom.name}_set');
   }
 
-  final _$orderByAtom = Atom(name: "SettingsBase.orderBy");
+  final _$orderByAtom = Atom(name: 'SettingsBase.orderBy');
 
   @override
   int get orderBy {
@@ -74,10 +74,10 @@ mixin _$SettingsStore on SettingsBase, Store {
     _$orderByAtom.context.conditionallyRunInAction(() {
       super.orderBy = value;
       _$orderByAtom.reportChanged();
-    }, _$orderByAtom, name: "${_$orderByAtom.name}_set");
+    }, _$orderByAtom, name: '${_$orderByAtom.name}_set');
   }
 
-  final _$currencyAtom = Atom(name: "SettingsBase.currency");
+  final _$currencyAtom = Atom(name: 'SettingsBase.currency');
 
   @override
   String get currency {
@@ -91,10 +91,10 @@ mixin _$SettingsStore on SettingsBase, Store {
     _$currencyAtom.context.conditionallyRunInAction(() {
       super.currency = value;
       _$currencyAtom.reportChanged();
-    }, _$currencyAtom, name: "${_$currencyAtom.name}_set");
+    }, _$currencyAtom, name: '${_$currencyAtom.name}_set');
   }
 
-  final _$SettingsBaseActionController = ActionController(name: "SettingsBase");
+  final _$SettingsBaseActionController = ActionController(name: 'SettingsBase');
 
   @override
   void setupDone() {
@@ -149,7 +149,7 @@ mixin _$SettingsStore on SettingsBase, Store {
   @override
   String toString() {
     final string =
-        "isNewSetup: ${isNewSetup.toString()},monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()},orderBy: ${orderBy.toString()},currency: ${currency.toString()}";
-    return "{$string}";
+        'isNewSetup: ${isNewSetup.toString()},monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()},orderBy: ${orderBy.toString()},currency: ${currency.toString()}';
+    return '{$string}';
   }
 }

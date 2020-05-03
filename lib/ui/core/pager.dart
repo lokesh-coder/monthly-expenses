@@ -1,13 +1,13 @@
-import "package:flutter/material.dart";
-import "package:flutter/scheduler.dart";
-import "package:monex/helpers/pager_helper.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/settings/settings.store.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:monex/helpers/pager_helper.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 
-final pagerHelper = PagerHelper();
+final PagerHelper pagerHelper = PagerHelper();
 
 class Pager extends StatefulWidget {
-  final Widget Function(int index, dynamic data, PageController ctrl) builder;
+  final Widget Function(int index, Map data, PageController ctrl) builder;
   final List data;
   final bool isMaster;
   final int visibleItems;
@@ -38,11 +38,11 @@ class _PagerState extends State<Pager> {
   ScrollPhysics physics;
 
   @override
-  void didUpdateWidget(oldWidget) {
+  void didUpdateWidget(Pager oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.data.length != oldWidget.data.length) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        var currMonth = sl<SettingsStore>().monthsViewRange;
+        final currMonth = sl<SettingsStore>().monthsViewRange;
         if (currMonth.toDouble() != ctrl.page && widget.isMaster) {
           ctrl.jumpToPage(currMonth);
         }

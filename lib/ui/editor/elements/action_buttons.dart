@@ -1,15 +1,15 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/dimensions.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/form/form.store.dart";
-import "package:monex/stores/payments/payments.store.dart";
-import "package:monex/stores/sandwiich/sandwich.store.dart";
-import "package:monex/ui/common/button.dart";
-import "package:monex/ui/common/confirm_modal.dart";
-import "package:monex/ui/common/hint.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/stores/payments/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/common/button.dart';
+import 'package:monex/ui/common/confirm_modal.dart';
+import 'package:monex/ui/common/hint.dart';
 
 class ActionButton extends StatelessWidget {
   final Function onSubmit;
@@ -45,8 +45,10 @@ class ActionButton extends StatelessWidget {
   }
 
   Widget _secondary() {
-    if (sl<FormStore>().isNew) return SizedBox(width: 35);
-    var icon = Icon(MIcons.delete_bin_line, size: 26, color: Clrs.label);
+    if (sl<FormStore>().isNew) {
+      return SizedBox(width: 35);
+    }
+    final icon = Icon(MIcons.delete_bin_line, size: 26, color: Clrs.label);
 
     return ConfirmModal(
       builder: (context, control) {
@@ -55,18 +57,20 @@ class ActionButton extends StatelessWidget {
           child: IconButton(
             color: Colors.black26,
             onPressed: () {
-              control.title = Labels.deleteConfirm;
-              control.yesLabel = Labels.delete;
-              control.noLabel = Labels.cancel;
-              control.icon = MIcons.delete_bin_2_line;
-              control.onYes = () {
-                var sandwichStore = sl<SandwichStore>();
-                var paymentsStore = sl<PaymentsStore>();
+              control
+                ..title = Labels.deleteConfirm
+                ..yesLabel = Labels.delete
+                ..noLabel = Labels.cancel
+                ..icon = MIcons.delete_bin_2_line
+                ..onYes = () {
+                  final sandwichStore = sl<SandwichStore>();
+                  final paymentsStore = sl<PaymentsStore>();
 
-                sandwichStore.changeVisibility(false);
-                paymentsStore.deletePayment(paymentsStore.active);
-                paymentsStore.setActivePayment(null);
-              };
+                  sandwichStore.changeVisibility(false);
+                  paymentsStore
+                    ..deletePayment(paymentsStore.active)
+                    ..setActivePayment(null);
+                };
               control.open();
             },
             icon: icon,

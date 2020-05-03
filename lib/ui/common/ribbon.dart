@@ -1,5 +1,5 @@
-import "package:flutter/material.dart";
-import "package:monex/config/typography.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/typography.dart';
 
 class Ribbon extends StatelessWidget {
   final String text;

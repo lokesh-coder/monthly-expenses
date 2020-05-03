@@ -1,15 +1,15 @@
-import "package:flutter/material.dart";
-import "package:mobx/mobx.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/form/form.store.dart";
-import "package:monex/stores/sandwiich/sandwich.store.dart";
+import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
 class IconCard extends StatefulWidget {
   final Widget child;
   final String name;
   final Function onTap;
-  final storeKey;
+  final Function storeKey;
 
   const IconCard({this.child, this.name, this.onTap, this.storeKey});
 
@@ -38,21 +38,19 @@ class _IconCardState extends State<IconCard> with TickerProviderStateMixin {
     motionAnimation = CurvedAnimation(
       parent: motionController,
       curve: Curves.fastLinearToSlowEaseIn,
-    );
-
-    motionController.addStatusListener((status) {
-      setState(() {
-        if (status == AnimationStatus.completed) {
-          motionController.reverse();
-        }
+    )
+      ..addStatusListener((status) {
+        setState(() {
+          if (status == AnimationStatus.completed) {
+            motionController.reverse();
+          }
+        });
+      })
+      ..addListener(() {
+        setState(() {
+          size = motionController.value;
+        });
       });
-    });
-
-    motionController.addListener(() {
-      setState(() {
-        size = motionController.value;
-      });
-    });
 
     disposer = reaction((_) => widget.storeKey(), (_) {
       if (sl<SandwichStore>().topOffset == 1.0) {

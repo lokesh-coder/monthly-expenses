@@ -1,14 +1,14 @@
-import "package:mobx/mobx.dart";
-import "package:monex/data/data_repository.dart";
-import "package:monex/data/local/object/files/categories.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/models/payment.model.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/payments/payments.store.dart";
-import "package:monex/stores/sandwiich/sandwich.store.dart";
+import 'package:mobx/mobx.dart';
+import 'package:monex/data/data_repository.dart';
+import 'package:monex/data/local/object/files/categories.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/models/payment.model.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/payments/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
 
-part "form.store.g.dart";
+part 'form.store.g.dart';
 
 class FormStore = FormBase with _$FormStore;
 
@@ -67,14 +67,14 @@ abstract class FormBase with Store {
 
   @action
   void reset() {
-    var isDebit = paymentsStore.filterBy == PaymentType.DEBIT;
-    var dateInMs = paymentsStore.activeMonth == null
+    final isDebit = paymentsStore.filterBy == PaymentType.DEBIT;
+    final dateInMs = paymentsStore.activeMonth == null
         ? DateHelper.toMs
         : DateHelper.dtToMs(paymentsStore.activeMonth);
 
     amount = null;
     label = null;
-    categoryID = this.repo.obj.get<Catagories>("categories").defaultCategory.id;
+    categoryID = repo.obj.get<Catagories>('categories').defaultCategory.id;
     isCredit = !isDebit;
     date = dateInMs;
     isNew = true;
@@ -82,8 +82,8 @@ abstract class FormBase with Store {
   }
 
   @action
-  populate() {
-    Payment payment = paymentsStore.getPayment(paymentsStore.active);
+  void populate() {
+    final Payment payment = paymentsStore.getPayment(paymentsStore.active);
 
     id = payment.id;
     amount = payment.amount;
@@ -95,7 +95,7 @@ abstract class FormBase with Store {
   }
 
   @action
-  initForm() {
+  void initForm() {
     if (sandwichStore.isOpen && paymentsStore.active != null) {
       populate();
     } else {
@@ -104,17 +104,19 @@ abstract class FormBase with Store {
   }
 
   @computed
-  get data {
-    Payment payment = Payment();
-    payment.lastModifiedTime = DateHelper.toMs;
-    if (isNew) payment.createdTime = payment.lastModifiedTime;
+  Payment get data {
+    final Payment payment = Payment()..lastModifiedTime = DateHelper.toMs;
+    if (isNew) {
+      payment.createdTime = payment.lastModifiedTime;
+    }
 
-    payment.id = id;
-    payment.amount = amount;
-    payment.label = label;
-    payment.categoryID = categoryID;
-    payment.isCredit = isCredit;
-    payment.date = date;
+    payment
+      ..id = id
+      ..amount = amount
+      ..label = label
+      ..categoryID = categoryID
+      ..isCredit = isCredit
+      ..date = date;
 
     return payment;
   }

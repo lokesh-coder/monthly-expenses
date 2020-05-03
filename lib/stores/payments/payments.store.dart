@@ -1,14 +1,14 @@
-import "package:mobx/mobx.dart";
-import "package:monex/data/data_repository.dart";
-import "package:monex/data/local/db/seed.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/helpers/payment_helper.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/models/payment.model.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/settings/settings.store.dart";
+import 'package:mobx/mobx.dart';
+import 'package:monex/data/data_repository.dart';
+import 'package:monex/data/local/db/seed.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/helpers/payment_helper.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/models/payment.model.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 
-part "payments.store.g.dart";
+part 'payments.store.g.dart';
 
 class PaymentsStore = PaymentsBase with _$PaymentsStore;
 
@@ -33,18 +33,18 @@ abstract class PaymentsBase with Store {
 
   @computed
   num get totalAmountOfActiveMonth {
-    var monthlyPayments = getPaymentsForMonth(activeMonth);
+    final monthlyPayments = getPaymentsForMonth(activeMonth);
     return PaymentsHelper.calcTotalAmount(monthlyPayments);
   }
 
   @computed
   Map get inOutStatement {
-    var monthlyPayments = getPaymentsForMonth(activeMonth, false);
+    final monthlyPayments = getPaymentsForMonth(activeMonth, false);
     return PaymentsHelper.getInOutStatement(monthlyPayments, filterBy);
   }
 
   @action
-  void changeFilter(filterValue) {
+  void changeFilter(PaymentType filterValue) {
     filterBy = filterValue;
   }
 
@@ -59,60 +59,62 @@ abstract class PaymentsBase with Store {
   }
 
   @action
-  setActivePayment(String paymentID) {
+  void setActivePayment(String paymentID) {
     active = paymentID;
   }
 
   @action
-  setActiveMonth(DateTime dt) {
+  void setActiveMonth(DateTime dt) {
     activeMonth = dt;
   }
 
   @action
-  fetchPayments() async {
+  Future fetchPayments() async {
     isLoading = true;
-    var paymentsFromDB = await repo.db.getAllPayments();
+    final paymentsFromDB = await repo.db.getAllPayments();
     isLoading = false;
     payments = paymentsFromDB.asObservable();
   }
 
   @action
-  insertPayment(Payment payment) async {
-    String lastInsertedID = await repo.db.insertPayment(payment);
-    fetchPayments();
+  Future<String> insertPayment(Payment payment) async {
+    final String lastInsertedID = await repo.db.insertPayment(payment);
+    await fetchPayments();
     return lastInsertedID;
   }
 
   @action
-  updatePayment(Payment payment) async {
+  Future updatePayment(Payment payment) async {
     await repo.db.updatePayment(payment);
-    fetchPayments();
+    await fetchPayments();
   }
 
   @action
-  deletePayment(String paymentID) async {
+  Future deletePayment(String paymentID) async {
     await repo.db.delete(Payment(id: paymentID));
-    fetchPayments();
+    await fetchPayments();
   }
 
   @action
-  dropDb() async {
+  Future dropDb() async {
     await repo.db.dropDb();
-    fetchPayments();
+    await fetchPayments();
   }
 
   @action
-  seed() async {
+  Future seed() async {
     await repo.db.dropDb();
     await repo.db.dumpData(SeedData().data);
-    fetchPayments();
+    await fetchPayments();
   }
 
   List<Payment> getPaymentsForMonth(DateTime dt, [bool withFilter = true]) {
-    String monthKey = DateHelper.getMonthYear(dt);
-    var monthlyPayments =
+    final String monthKey = DateHelper.getMonthYear(dt);
+    final monthlyPayments =
         withFilter ? paymentsByMonth : paymentsByMonthWithoutFilter;
-    if (monthlyPayments[monthKey] == null) return [];
+    if (monthlyPayments[monthKey] == null) {
+      return [];
+    }
     return monthlyPayments[monthKey];
   }
 
@@ -121,18 +123,20 @@ abstract class PaymentsBase with Store {
   }
 
   Map<String, List<Payment>> groupPaymentsByMonth([bool withFilter = true]) {
-    var allPayments = withFilter ? filterPaymentByType(payments) : payments;
+    final allPayments = withFilter ? filterPaymentByType(payments) : payments;
     return PaymentsHelper.groupByMonth(allPayments);
   }
 
   ObservableList<Payment> filterPaymentByType(
     ObservableList<Payment> payments,
   ) {
-    var p = PaymentsHelper.filter(payments, filterBy);
+    final p = PaymentsHelper.filter(payments, filterBy);
 
-    var sortID = sl<SettingsStore>().sortBy;
-    var orderID = sl<SettingsStore>().orderBy;
-    if (sortID != null) PaymentsHelper.sort(p, sortID, orderID);
+    final sortID = sl<SettingsStore>().sortBy;
+    final orderID = sl<SettingsStore>().orderBy;
+    if (sortID != null) {
+      PaymentsHelper.sort(p, sortID, orderID);
+    }
 
     return p.asObservable();
   }

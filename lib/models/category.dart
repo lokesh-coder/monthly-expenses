@@ -15,19 +15,19 @@ class Category {
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
-      id: json["id"],
-      name: json["name"],
-      path: json["path"],
-      group: json["group"],
-      type: json["type"],
+      id: json['id'],
+      name: json['name'],
+      path: json['path'],
+      group: json['group'],
+      type: json['type'],
     );
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        "id": id,
-        "name": name,
-        "path": path,
-        "group": group,
-        "type": type,
+        'id': id,
+        'name': name,
+        'path': path,
+        'group': group,
+        'type': type,
       };
 }

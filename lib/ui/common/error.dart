@@ -1,8 +1,8 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/config/typography.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 
 class Err extends StatelessWidget {
   const Err({Key key}) : super(key: key);

@@ -1,10 +1,10 @@
-import "package:flutter/material.dart";
-import "package:monex/config/app.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/settings/settings.store.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/app.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
 
 class MonthRangeEdit extends StatefulWidget {
   const MonthRangeEdit();
@@ -15,7 +15,7 @@ class MonthRangeEdit extends StatefulWidget {
 
 class _MonthRangeEditState extends State<MonthRangeEdit> {
   double _value;
-  var settingsStore = sl<SettingsStore>();
+  final SettingsStore settingsStore = sl<SettingsStore>();
 
   @override
   void initState() {
@@ -25,11 +25,11 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
 
   @override
   Widget build(BuildContext context) {
-    var totalMonths = _value.round();
+    final int totalMonths = _value.round();
     return Column(
       children: <Widget>[
         Text(
-          "$totalMonths Month${totalMonths > 1 ? "s" : ""}",
+          '$totalMonths Month${totalMonths > 1 ? 's' : ''}',
           style: Style.label.md,
         ),
         SizedBox(height: 20),

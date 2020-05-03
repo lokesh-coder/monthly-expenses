@@ -17,12 +17,12 @@
 ///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
 ///         Homepage:  https://design.google.com/icons/
 ///
-import "package:flutter/widgets.dart";
+import 'package:flutter/widgets.dart';
 
 class MIcons {
   MIcons._();
 
-  static const _kFontFam = "MIcons";
+  static const _kFontFam = 'MIcons';
   static const _kFontPkg = null;
 
   static const IconData calendar_line_1 =

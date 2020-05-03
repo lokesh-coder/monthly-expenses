@@ -1,31 +1,31 @@
-import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
-import "package:monex/config/colors.dart";
-import "package:monex/config/dimensions.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/helpers/layout_helper.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/payments/payments.store.dart";
-import "package:monex/stores/sandwiich/sandwich.store.dart";
-import "package:monex/ui/common/amount.dart";
-import "package:monex/ui/common/fade_transition.dart";
-import "package:monex/ui/common/hint.dart";
-import "package:monex/ui/months/elements/filter-bar.dart";
-import "package:monex/ui/months/elements/percentage.dart";
-import "package:monex/ui/settings/settings.dart";
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/helpers/layout_helper.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/payments/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/ui/common/amount.dart';
+import 'package:monex/ui/common/fade_transition.dart';
+import 'package:monex/ui/common/hint.dart';
+import 'package:monex/ui/months/elements/filter-bar.dart';
+import 'package:monex/ui/months/elements/percentage.dart';
+import 'package:monex/ui/settings/settings.dart';
 
 class BannerBoard extends StatelessWidget {
   const BannerBoard();
 
   @override
   Widget build(BuildContext context) {
-    var paymentsStore = sl<PaymentsStore>();
-    var sandwichStore = sl<SandwichStore>();
+    final paymentsStore = sl<PaymentsStore>();
+    final sandwichStore = sl<SandwichStore>();
 
     return Container(
       child: Stack(
@@ -88,7 +88,7 @@ class BannerBoard extends StatelessWidget {
                         ),
                         Observer(
                           builder: (context) {
-                            var clr = Colors.white.withOpacity(0.3);
+                            final clr = Colors.white.withOpacity(0.3);
                             if (sandwichStore.isOpen) {
                               return Hint(
                                 Labels.closeEditor,
@@ -128,7 +128,7 @@ class BannerBoard extends StatelessWidget {
     );
   }
 
-  _getType(PaymentsStore paymentsStore) {
+  AmountDisplayType _getType(PaymentsStore paymentsStore) {
     if (paymentsStore.totalAmountOfActiveMonth == 0) {
       return AmountDisplayType.SILENT;
     }
@@ -145,7 +145,7 @@ class _FilterSection extends StatefulWidget {
 
 class _FilterSectionState extends State<_FilterSection>
     with SingleTickerProviderStateMixin {
-  var sandwichStore = sl<SandwichStore>();
+  final SandwichStore sandwichStore = sl<SandwichStore>();
   AnimationController controller;
   ReactionDisposer disposer;
 
@@ -171,7 +171,7 @@ class _FilterSectionState extends State<_FilterSection>
           child: FilterBar(),
         ),
         builder: (ctx, child) {
-          double bannerH = Dimensions.bannerBarHeight - 1;
+          final double bannerH = Dimensions.bannerBarHeight - 1;
           return Positioned(
             top: bannerH - (bannerH * controller.value),
             child: child,

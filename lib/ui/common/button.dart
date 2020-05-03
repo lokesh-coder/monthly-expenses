@@ -1,6 +1,6 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:superellipse_shape/superellipse_shape.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:superellipse_shape/superellipse_shape.dart';
 
 class Button extends StatelessWidget {
   final Widget child;

@@ -1,12 +1,12 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/data/data_repository.dart";
-import "package:monex/data/local/object/files/sort_strategies.dart";
-import "package:monex/models/sort_strategy.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/settings/settings.store.dart";
-import "package:monex/ui/common/check.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/data/data_repository.dart';
+import 'package:monex/data/local/object/files/sort_strategies.dart';
+import 'package:monex/models/sort_strategy.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/settings/settings.store.dart';
+import 'package:monex/ui/common/check.dart';
 
 class SortEdit extends StatefulWidget {
   const SortEdit();
@@ -17,7 +17,7 @@ class SortEdit extends StatefulWidget {
 
 class _SortEditState extends State<SortEdit> {
   int _value;
-  var settingsStore = sl<SettingsStore>();
+  final SettingsStore settingsStore = sl<SettingsStore>();
 
   @override
   void initState() {
@@ -54,7 +54,7 @@ class _SortEditState extends State<SortEdit> {
   }
 
   List<Widget> _getSortStrategies() {
-    var strategies = sl<DataRepo>().obj.get<SortStrategies>("sorting").all;
-    return strategies.map((s) => _getItem(s)).toList();
+    final strategies = sl<DataRepo>().obj.get<SortStrategies>('sorting').all;
+    return strategies.map(_getItem).toList();
   }
 }

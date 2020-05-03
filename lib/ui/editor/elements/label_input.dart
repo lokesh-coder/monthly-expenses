@@ -1,21 +1,21 @@
-import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/form/form.store.dart";
-import "package:monex/ui/common/bottom_modal.dart";
-import "package:monex/ui/common/button.dart";
-import "package:monex/ui/common/hint.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/form/form.store.dart';
+import 'package:monex/ui/common/bottom_modal.dart';
+import 'package:monex/ui/common/button.dart';
+import 'package:monex/ui/common/hint.dart';
 
 class LabelInput extends StatelessWidget {
   const LabelInput();
 
   @override
   Widget build(BuildContext context) {
-    FormStore formStore = sl<FormStore>();
+    final FormStore formStore = sl<FormStore>();
 
     return BottomModal(
       builder: (context, control) {
@@ -32,7 +32,7 @@ class LabelInput extends StatelessWidget {
             child: Observer(builder: (context) {
               return Text(
                 formStore.label == null
-                    ? "add short name"
+                    ? 'add short name'
                     : formStore.label.toString(),
                 style: Style.label.normal.sm,
               );
@@ -43,9 +43,9 @@ class LabelInput extends StatelessWidget {
     );
   }
 
-  _textField(BottomModalControl control, FormStore formStore) {
+  void _textField(BottomModalControl control, FormStore formStore) {
     var content = formStore.label;
-    var tf = Container(
+    final tf = Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       height: 50,
       decoration: BoxDecoration(
@@ -78,7 +78,9 @@ class LabelInput extends StatelessWidget {
               },
               onFieldSubmitted: (x) {
                 content = x.trim();
-                if (content.isNotEmpty) formStore.changeLabel(x);
+                if (content.isNotEmpty) {
+                  formStore.changeLabel(x);
+                }
                 control.close();
               },
             ),
@@ -87,7 +89,9 @@ class LabelInput extends StatelessWidget {
             Labels.addLabel,
             child: Button(
               onPressed: () {
-                if (content.isNotEmpty) formStore.changeLabel(content);
+                if (content.isNotEmpty) {
+                  formStore.changeLabel(content);
+                }
                 control.close();
               },
               child: Icon(MIcons.tick),

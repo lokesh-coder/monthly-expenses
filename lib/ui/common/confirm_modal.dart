@@ -1,7 +1,7 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/helpers/layout_helper.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/helpers/layout_helper.dart';
 
 class ConfirmModalControl {
   Function() open;
@@ -24,7 +24,7 @@ class ConfirmModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        var control = ConfirmModalControl();
+        final control = ConfirmModalControl();
         control.open = () {
           showGeneralDialog(
             context: context,
@@ -84,7 +84,7 @@ class _ModalContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var btnStyle = Style.body.sm.clr(Clrs.text.withOpacity(0.5));
+    final btnStyle = Style.body.sm.clr(Clrs.text.withOpacity(0.5));
 
     return Column(
       mainAxisSize: MainAxisSize.min,

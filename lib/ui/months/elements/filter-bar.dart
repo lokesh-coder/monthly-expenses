@@ -1,25 +1,25 @@
-import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/dimensions.dart";
-import "package:monex/config/labels.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/payments/payments.store.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
+import 'package:monex/config/labels.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/payments/payments.store.dart';
 
 class FilterBar extends StatelessWidget {
   const FilterBar();
 
   @override
   Widget build(BuildContext context) {
-    var paymentsStore = sl<PaymentsStore>();
+    final PaymentsStore paymentsStore = sl<PaymentsStore>();
     return Container(
       height: Dimensions.filtersBarHeight,
       color: Clrs.primary,
       child: Observer(builder: (context) {
-        var selectedFilter = paymentsStore.filterBy;
+        final selectedFilter = paymentsStore.filterBy;
         return Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +45,7 @@ class FilterBar extends StatelessWidget {
     );
   }
 
-  _onTap(type) {
+  void _onTap(type) {
     sl<PaymentsStore>().changeFilter(type);
   }
 }
@@ -59,7 +59,7 @@ class _FilterItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var item = _filterItemsMap()[type];
+    final item = _filterItemsMap()[type];
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -74,11 +74,11 @@ class _FilterItem extends StatelessWidget {
               Icon(
                 MIcons.lens_24px,
                 size: 13,
-                color: item["color"].withOpacity(isActive ? 1.0 : 0.4),
+                color: item['color'].withOpacity(isActive ? 1.0 : 0.4),
               ),
               SizedBox(width: 8),
               Text(
-                item["name"],
+                item['name'],
                 style: Style.body.light.sm
                     .clr(Clrs.bodyAlt.withOpacity(isActive ? 1.0 : 0.4)),
               ),
@@ -92,16 +92,16 @@ class _FilterItem extends StatelessWidget {
   Map _filterItemsMap() {
     return {
       PaymentType.ALL: {
-        "name": Labels.all.toUpperCase(),
-        "color": Clrs.yellow,
+        'name': Labels.all.toUpperCase(),
+        'color': Clrs.yellow,
       },
       PaymentType.DEBIT: {
-        "name": Labels.debits.toUpperCase(),
-        "color": Clrs.red,
+        'name': Labels.debits.toUpperCase(),
+        'color': Clrs.red,
       },
       PaymentType.CREDIT: {
-        "name": Labels.credits.toUpperCase(),
-        "color": Clrs.green,
+        'name': Labels.credits.toUpperCase(),
+        'color': Clrs.green,
       },
     };
   }

@@ -1,7 +1,7 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/m_icons.dart";
-import "package:monex/config/typography.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/m_icons.dart';
+import 'package:monex/config/typography.dart';
 
 class SettingsItemTile extends StatelessWidget {
   final Function onTap;
@@ -24,11 +24,11 @@ class SettingsItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var arrowIcon =
-        dataCtx["isOpen"] ? MIcons.arrow_up_s_line : MIcons.arrow_down_s_line;
+    final arrowIcon =
+        dataCtx['isOpen'] ? MIcons.arrow_up_s_line : MIcons.arrow_down_s_line;
 
     return ListTile(
-      onTap: dataCtx["toggle"],
+      onTap: dataCtx['toggle'],
       contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       leading: IconButton(
         onPressed: null,

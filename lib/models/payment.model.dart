@@ -21,25 +21,25 @@ class Payment {
 
   factory Payment.fromJson(Map<String, dynamic> json) {
     return Payment(
-      id: json["id"],
-      label: json["label"],
-      lastModifiedTime: json["lastModifiedTime"],
-      createdTime: json["createdTime"],
-      date: json["date"],
-      isCredit: json["isCredit"],
-      amount: json["amount"],
-      categoryID: json["categoryID"],
+      id: json['id'],
+      label: json['label'],
+      lastModifiedTime: json['lastModifiedTime'],
+      createdTime: json['createdTime'],
+      date: json['date'],
+      isCredit: json['isCredit'],
+      amount: json['amount'],
+      categoryID: json['categoryID'],
     );
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        "id": id,
-        "label": label,
-        "lastModifiedTime": lastModifiedTime,
-        "date": date,
-        "createdTime": createdTime,
-        "isCredit": isCredit,
-        "amount": amount,
-        "categoryID": categoryID,
+        'id': id,
+        'label': label,
+        'lastModifiedTime': lastModifiedTime,
+        'date': date,
+        'createdTime': createdTime,
+        'isCredit': isCredit,
+        'amount': amount,
+        'categoryID': categoryID,
       };
 }

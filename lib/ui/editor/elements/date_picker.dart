@@ -1,8 +1,8 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/typography.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/ui/common/button.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/typography.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/ui/common/button.dart';
 
 class DatePicker extends StatelessWidget {
   final Function(DateTime) onSelect;
@@ -12,7 +12,7 @@ class DatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List weeks = DateHelper.getAllDaysInMonth(selected);
+    final List weeks = DateHelper.getAllDaysInMonth(selected);
 
     return Container(
       child: Column(
@@ -25,9 +25,9 @@ class DatePicker extends StatelessWidget {
   }
 
   List<Widget> _weeks(List<List> weeks) {
-    var _rows = <Row>[];
+    final _rows = <Row>[];
     weeks.forEach((week) {
-      var _days = <Widget>[];
+      final _days = <Widget>[];
       week.forEach((day) => _days.add(_day(day)));
       _rows.add(_week(_days));
     });
@@ -43,40 +43,41 @@ class DatePicker extends StatelessWidget {
   }
 
   Widget _day(dateObj) {
-    if (dateObj == "") {
-      dateObj = {"date": "", "dateTime": null};
+    if (dateObj == '') {
+      // ignore: parameter_assignments
+      dateObj = {'date': '', 'dateTime': null};
     }
-    var isSelecteDate = selected.day.toString() == dateObj["date"].toString();
-    var textClr = isSelecteDate ? Colors.white : Clrs.inputValue;
-    var bgClr = isSelecteDate ? Clrs.primary : Colors.transparent;
-    var hasShape = isSelecteDate ? true : false;
+    final isSelecteDate = selected.day.toString() == dateObj['date'].toString();
+    final textClr = isSelecteDate ? Colors.white : Clrs.inputValue;
+    final bgClr = isSelecteDate ? Clrs.primary : Colors.transparent;
+    final hasShape = isSelecteDate ? true : false;
 
     return Expanded(
       child: Button(
         child: Text(
-          dateObj["date"].toString(),
+          dateObj['date'].toString(),
           style: Style.body.clr(textClr).md,
         ),
         hasShape: hasShape,
         color: bgClr,
         size: 50.0,
-        onPressed: () => onSelect(dateObj["dateTime"]),
+        onPressed: () => onSelect(dateObj['dateTime']),
       ),
     );
   }
 
   Widget _weekHeader() {
-    List _days = ["SUN", "MON", "TUE", "WED", "THUR", "FRI", "SAT"];
+    final List _days = ['SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT'];
 
     return Row(
-      children: _days.map((d) => _weekName(d)).toList(),
+      children: _days.map(_weekName).toList(),
     );
   }
 
   Widget _weekName(name) {
-    var text = Text(name, style: Style.label);
+    final text = Text(name, style: Style.label);
 
-    var content = Center(
+    final content = Center(
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10),
         child: text,

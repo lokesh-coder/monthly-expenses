@@ -1,15 +1,15 @@
-import "package:collection/collection.dart";
-import "package:monex/data/data_repository.dart";
-import "package:monex/data/local/object/files/sort_strategies.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/models/enums.dart";
-import "package:monex/models/payment.model.dart";
-import "package:monex/services/service_locator.dart";
+import 'package:collection/collection.dart';
+import 'package:monex/data/data_repository.dart';
+import 'package:monex/data/local/object/files/sort_strategies.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/models/enums.dart';
+import 'package:monex/models/payment.model.dart';
+import 'package:monex/services/service_locator.dart';
 
 class PaymentsHelper {
-  static sort(List<Payment> payments, int sortID, int orderID) {
-    Function keyFn = _getSortKeyFn(sortID);
-    Function sortCb = _sortFromFnKey(keyFn, orderID);
+  static void sort(List<Payment> payments, int sortID, int orderID) {
+    final Function keyFn = _getSortKeyFn(sortID);
+    final Function sortCb = _sortFromFnKey(keyFn, orderID);
     payments.sort(sortCb);
   }
 
@@ -33,32 +33,36 @@ class PaymentsHelper {
 
   static Map<String, List<Payment>> groupByMonth(List<Payment> payments) {
     return groupBy(payments, (Payment p) {
-      DateTime dt = DateTime.fromMillisecondsSinceEpoch(p.date);
+      final DateTime dt = DateTime.fromMillisecondsSinceEpoch(p.date);
       return DateHelper.getMonthYear(dt);
     });
   }
 
-  static getPaymentFromID(List<Payment> payments, String paymentID) {
+  static Payment getPaymentFromID(List<Payment> payments, String paymentID) {
     return payments.firstWhere((p) {
       return p.id == paymentID;
     }, orElse: () => null);
   }
 
-  static getInOutStatement(List<Payment> payments, PaymentType filterBy) {
-    Map meta = {"credit": 0, "debit": 0, "activeType": filterBy};
-    if (payments.isEmpty) return meta;
+  static Map getInOutStatement(List<Payment> payments, PaymentType filterBy) {
+    final Map meta = {'credit': 0, 'debit': 0, 'activeType': filterBy};
+    if (payments.isEmpty) {
+      return meta;
+    }
 
     payments.forEach((p) {
-      var type = p.isCredit ? "credit" : "debit";
+      final type = p.isCredit ? 'credit' : 'debit';
       meta[type] = meta[type] + p.amount;
     });
     return meta;
   }
 
-  static calcTotalAmount(List<Payment> payments) {
-    if (payments.isEmpty) return 0;
+  static num calcTotalAmount(List<Payment> payments) {
+    if (payments.isEmpty) {
+      return 0;
+    }
     return payments
-        .map((x) => x.isCredit ? x.amount : -(x.amount))
+        .map((x) => x.isCredit ? x.amount : -x.amount)
         .reduce((v, e) => v + e);
   }
 
@@ -69,10 +73,10 @@ class PaymentsHelper {
     return (a, b) => o(b).compareTo(o(a));
   }
 
-  static _getSortKeyFn(id) {
+  static Function _getSortKeyFn(id) {
     return sl<DataRepo>()
         .obj
-        .get<SortStrategies>("sorting")
+        .get<SortStrategies>('sorting')
         .findSortStrategyById(id)
         .keyFn;
   }

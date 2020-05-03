@@ -1,33 +1,33 @@
-import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/config/dimensions.dart";
-import "package:monex/helpers/date_helper.dart";
-import "package:monex/services/service_locator.dart";
-import "package:monex/stores/payments/payments.store.dart";
-import "package:monex/stores/sandwiich/sandwich.store.dart";
-import "package:monex/stores/settings/settings.store.dart";
-import "package:monex/ui/core/pager.dart";
-import "package:monex/ui/months/elements/months_carousal.dart";
-import "package:monex/ui/months/elements/payments_carousal.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/config/dimensions.dart';
+import 'package:monex/helpers/date_helper.dart';
+import 'package:monex/services/service_locator.dart';
+import 'package:monex/stores/payments/payments.store.dart';
+import 'package:monex/stores/sandwiich/sandwich.store.dart';
+import 'package:monex/stores/settings/settings.store.dart';
+import 'package:monex/ui/core/pager.dart';
+import 'package:monex/ui/months/elements/months_carousal.dart';
+import 'package:monex/ui/months/elements/payments_carousal.dart';
 
 class Months extends StatelessWidget {
   const Months();
 
   @override
   Widget build(BuildContext context) {
-    var settingsStore = sl<SettingsStore>();
+    final settingsStore = sl<SettingsStore>();
 
     return Observer(builder: (context) {
-      var range = settingsStore.monthsViewRange;
-      var totalMonths = () => DateHelper.getAllMonthsInRange(range);
+      final range = settingsStore.monthsViewRange;
+      List totalMonths() => DateHelper.getAllMonthsInRange(range);
 
       return Column(
         children: <Widget>[
           Expanded(
             flex: 1,
             child: Pager(
-              builder: (int index, dynamic data, PageController ctrl) {
+              builder: (int index, Map data, PageController ctrl) {
                 return PaymentsCarousal(index: index, data: data, ctrl: ctrl);
               },
               data: totalMonths(),
@@ -66,14 +66,14 @@ class Months extends StatelessWidget {
               ),
             ),
             child: Pager.master(
-              builder: (int index, dynamic data, PageController ctrl) {
+              builder: (int index, Map data, PageController ctrl) {
                 return MonthsCarousal(index, data, ctrl);
               },
               data: totalMonths(),
               initialPage: settingsStore.monthsViewRange,
               visibleItems: 4,
               onPageChange: (curr) {
-                sl<PaymentsStore>().setActiveMonth(curr["dateTime"]);
+                sl<PaymentsStore>().setActiveMonth(curr['dateTime']);
               },
             ),
           )

@@ -1,6 +1,6 @@
-import "package:flutter/material.dart";
-import "package:monex/config/colors.dart";
-import "package:monex/helpers/layout_helper.dart";
+import 'package:flutter/material.dart';
+import 'package:monex/config/colors.dart';
+import 'package:monex/helpers/layout_helper.dart';
 
 class Expander extends StatefulWidget {
   final Widget Function(BuildContext, Map) bodyBuilder;
@@ -15,14 +15,14 @@ class Expander extends StatefulWidget {
 class _ExpanderState extends State<Expander> {
   bool isContentVisible = false;
 
-  toggle() {
+  void toggle() {
     setState(() {
       isContentVisible = !isContentVisible;
     });
   }
 
-  get dataContext {
-    return {"toggle": toggle, "isOpen": isContentVisible};
+  Map get dataContext {
+    return {'toggle': toggle, 'isOpen': isContentVisible};
   }
 
   @override

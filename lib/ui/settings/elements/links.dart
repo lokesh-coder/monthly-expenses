@@ -27,9 +27,9 @@ class AppLinks extends StatelessWidget {
         _getItemTile(Labels.appInfo, onTap: () {
           Navigator.push(context, FadeRoute(AppInfoScreen()));
         }),
-        _getItemTile(Labels.help, onTap: () {
-          Navigator.push(context, FadeRoute(HelpScreen()));
-        }),
+        // _getItemTile(Labels.help, onTap: () {
+        //   Navigator.push(context, FadeRoute(HelpScreen()));
+        // }),
         _getItemTile(
           Labels.share,
           onTap: () => Share.share(Labels.shareMessage),

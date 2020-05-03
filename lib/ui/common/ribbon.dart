@@ -8,12 +8,17 @@ class Ribbon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: Style.body.clr(Colors.white),
+    return GestureDetector(
+      onTap: () {
+        Scaffold.of(context).hideCurrentSnackBar();
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: Style.body.clr(Colors.white),
+        ),
       ),
     );
   }

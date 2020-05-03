@@ -14,6 +14,7 @@ class FontSize {
   static double get base => 16 * scale;
   static double get md => 18 * scale;
   static double get lg => 25 * scale;
+  static double get xl => 30 * scale;
 }
 
 class Style {

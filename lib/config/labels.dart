@@ -26,8 +26,8 @@ class Labels {
 
   /// filter tab
   static String all = "All";
-  static String credit = "Credit";
-  static String debit = "Debit";
+  static String credits = "Credits";
+  static String debits = "Debits";
 
   /// settings
   static String settings = "Settings";

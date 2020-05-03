@@ -48,6 +48,7 @@ class Amount extends StatelessWidget {
       DisplaySize.BASE: FontSize.base,
       DisplaySize.MD: FontSize.md,
       DisplaySize.LG: FontSize.lg,
+      DisplaySize.XL: FontSize.xl,
     };
   }
 

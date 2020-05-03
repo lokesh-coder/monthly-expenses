@@ -19,32 +19,28 @@ class AmountInput extends StatelessWidget {
       hasPadding: false,
       builder: (context, control) {
         return GestureDetector(
-          onTap: () {
-            _numpad(control, formStore);
-          },
+          onTap: () => _numpad(control, formStore),
           child: Observer(builder: (context) {
-            return Container(
-              child: _display(formStore),
-            );
+            return _display(formStore.amount);
           }),
         );
       },
     );
   }
 
-  _display(FormStore formStore) {
-    num amount = 0.00;
+  Widget _display(num amount) {
+    num _amount = 0.00;
     AmountDisplayType type = AmountDisplayType.PLACEHOLDER;
 
-    if (formStore.amount != null) {
-      amount = formStore.amount;
+    if (amount != null) {
+      _amount = amount;
       type = AmountDisplayType.INPUT;
     }
 
-    return Amount(amount, type: type, size: DisplaySize.LG);
+    return Amount(_amount, type: type, size: DisplaySize.XL);
   }
 
-  _numpad(BottomModalControl control, FormStore formStore) {
+  void _numpad(BottomModalControl control, FormStore formStore) {
     Widget numpad = AmountNumpad(
       close: control.close,
       onSelect: (x) {

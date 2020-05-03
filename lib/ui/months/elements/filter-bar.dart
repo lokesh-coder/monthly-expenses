@@ -60,25 +60,30 @@ class _FilterItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var item = _filterItemsMap()[type];
-    return GestureDetector(
-      onTap: () => onTap(type),
-      child: Container(
-        color: Colors.transparent,
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
-          children: [
-            Icon(
-              MIcons.lens_24px,
-              size: 13,
-              color: item["color"].withOpacity(isActive ? 1.0 : 0.4),
-            ),
-            SizedBox(width: 8),
-            Text(
-              item["name"],
-              style: Style.body.light.sm
-                  .clr(Clrs.bodyAlt.withOpacity(isActive ? 1.0 : 0.4)),
-            ),
-          ],
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        highlightColor: Colors.white.withOpacity(0.1),
+        splashColor: Colors.white.withOpacity(0.1),
+        onTap: () => onTap(type),
+        child: Container(
+          color: Colors.transparent,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: [
+              Icon(
+                MIcons.lens_24px,
+                size: 13,
+                color: item["color"].withOpacity(isActive ? 1.0 : 0.4),
+              ),
+              SizedBox(width: 8),
+              Text(
+                item["name"],
+                style: Style.body.light.sm
+                    .clr(Clrs.bodyAlt.withOpacity(isActive ? 1.0 : 0.4)),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -91,11 +96,11 @@ class _FilterItem extends StatelessWidget {
         "color": Clrs.yellow,
       },
       PaymentType.DEBIT: {
-        "name": Labels.debit.toUpperCase(),
+        "name": Labels.debits.toUpperCase(),
         "color": Clrs.red,
       },
       PaymentType.CREDIT: {
-        "name": Labels.credit.toUpperCase(),
+        "name": Labels.credits.toUpperCase(),
         "color": Clrs.green,
       },
     };

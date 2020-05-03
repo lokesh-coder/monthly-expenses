@@ -32,7 +32,7 @@ class _IconCardState extends State<IconCard> with TickerProviderStateMixin {
       duration: Duration(milliseconds: 200),
       vsync: this,
       lowerBound: 1,
-      upperBound: 2,
+      upperBound: 1.5,
     );
 
     motionAnimation = CurvedAnimation(

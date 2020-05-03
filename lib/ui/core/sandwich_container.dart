@@ -25,7 +25,7 @@ class SandwichContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[_bottomChild(), _middleChild(), _topChild()],
+      children: [_bottomChild(), _middleChild(), _topChild()],
     );
   }
 
@@ -46,16 +46,14 @@ class SandwichContainer extends StatelessWidget {
         return SlideTransform(
           contentHeight: contentHeight,
           marginTop: statusBarH,
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints:
-                  BoxConstraints(maxHeight: screenH - appbarH - statusBarH),
-              child: Container(
-                color: Colors.white,
-                child: middleChild,
-                margin:
-                    EdgeInsets.only(top: bannerBarH + filtersBarH - statusBarH),
-              ),
+          child: ConstrainedBox(
+            constraints:
+                BoxConstraints(maxHeight: screenH - appbarH - statusBarH),
+            child: Container(
+              color: Colors.white,
+              child: middleChild,
+              margin:
+                  EdgeInsets.only(top: bannerBarH + filtersBarH - statusBarH),
             ),
           ),
         );

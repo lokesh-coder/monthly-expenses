@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
+import 'package:mobx/mobx.dart';
 import "package:monex/config/colors.dart";
 import "package:monex/config/dimensions.dart";
 import "package:monex/config/labels.dart";
@@ -30,22 +31,7 @@ class BannerBoard extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[
-          Observer(
-            builder: (context) {
-              double offset = sandwichStore.topOffset;
-              double bannerH = Dimensions.bannerBarHeight - 1;
-              return AnimatedPositioned(
-                top: bannerH - (bannerH * offset),
-                duration: Duration(milliseconds: 200),
-                curve: Curves.decelerate,
-                child: Container(
-                  height: Dimensions.filtersBarHeight,
-                  width: LayoutHelper.screenWidth,
-                  child: FilterBar(),
-                ),
-              );
-            },
-          ),
+          _FilterSection(),
           Observer(
             builder: (context) {
               return Container(
@@ -61,7 +47,7 @@ class BannerBoard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                        children: [
                           Amount(
                             paymentsStore.totalAmountOfActiveMonth.abs(),
                             type: _getType(paymentsStore),
@@ -103,7 +89,21 @@ class BannerBoard extends StatelessWidget {
                         Observer(
                           builder: (context) {
                             var clr = Colors.white.withOpacity(0.3);
-                            Widget openIcon = Hint(
+                            if (sandwichStore.isOpen) {
+                              return Hint(
+                                Labels.closeEditor,
+                                child: IconButton(
+                                  onPressed: () {
+                                    paymentsStore.setActivePayment(null);
+                                    sandwichStore.changeVisibility(false);
+                                  },
+                                  color: clr,
+                                  icon: Icon(MIcons.close_line, size: 29),
+                                ),
+                              );
+                            }
+
+                            return Hint(
                               Labels.goToEditor,
                               child: IconButton(
                                 onPressed: () {
@@ -114,19 +114,6 @@ class BannerBoard extends StatelessWidget {
                                 icon: Icon(MIcons.add_line, size: 29),
                               ),
                             );
-
-                            Widget closeIcon = Hint(
-                              Labels.closeEditor,
-                              child: IconButton(
-                                onPressed: () {
-                                  paymentsStore.setActivePayment(null);
-                                  sandwichStore.changeVisibility(false);
-                                },
-                                color: clr,
-                                icon: Icon(MIcons.close_line, size: 29),
-                              ),
-                            );
-                            return sandwichStore.isOpen ? closeIcon : openIcon;
                           },
                         ),
                       ],
@@ -148,5 +135,54 @@ class BannerBoard extends StatelessWidget {
     return paymentsStore.totalAmountOfActiveMonth > 0
         ? AmountDisplayType.CREDIT
         : AmountDisplayType.DEBIT;
+  }
+}
+
+class _FilterSection extends StatefulWidget {
+  @override
+  _FilterSectionState createState() => _FilterSectionState();
+}
+
+class _FilterSectionState extends State<_FilterSection>
+    with SingleTickerProviderStateMixin {
+  var sandwichStore = sl<SandwichStore>();
+  AnimationController controller;
+  ReactionDisposer disposer;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+    disposer = reaction((_) => sandwichStore.isOpen, (isOpen) {
+      isOpen ? controller.forward() : controller.reverse();
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+        animation: controller,
+        child: Container(
+          height: Dimensions.filtersBarHeight,
+          width: LayoutHelper.screenWidth,
+          child: FilterBar(),
+        ),
+        builder: (ctx, child) {
+          double bannerH = Dimensions.bannerBarHeight - 1;
+          return Positioned(
+            top: bannerH - (bannerH * controller.value),
+            child: child,
+          );
+        });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+    disposer();
   }
 }

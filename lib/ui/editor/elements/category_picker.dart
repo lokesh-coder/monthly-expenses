@@ -17,25 +17,34 @@ class CategoryPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var type = isCredit ? "CREDIT" : "DEBIT";
+    var categoriesObj = sl<DataRepo>().obj.get<Catagories>("categories");
+    var categories = categoriesObj.filterBy(type);
     return Flexible(
-      child: GridView.count(
+      child: GridView.builder(
         padding: EdgeInsets.all(0),
         physics: BouncingScrollPhysics(),
-        crossAxisCount: 4,
+        itemCount: categories.length,
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
         shrinkWrap: true,
-        children: _categories(),
+        itemBuilder: (ctx, index) {
+          var item = categories[index];
+          return _CategoryItem(item, onSelect: onSelect, selected: selected);
+        },
       ),
     );
   }
+}
 
-  List<Widget> _categories() {
-    var type = isCredit ? "CREDIT" : "DEBIT";
-    var categoriesObj = sl<DataRepo>().obj.get<Catagories>("categories");
-    var categories = categoriesObj.filterBy(type).map((c) => _category(c));
-    return categories.toList();
-  }
+class _CategoryItem extends StatelessWidget {
+  final Category cat;
+  final Function onSelect;
+  final String selected;
+  const _CategoryItem(this.cat, {this.selected, this.onSelect});
 
-  Widget _category(Category cat) {
+  @override
+  Widget build(BuildContext context) {
     Color bgColor = selected == cat.id ? Clrs.light : Colors.transparent;
 
     return Button(
@@ -44,7 +53,7 @@ class CategoryPicker extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(cat.path, height: 35),
+          Image.asset(cat.path, height: 35, cacheHeight: 35),
           SizedBox(height: 10),
           Text(cat.name, style: Style.label.sm.normal),
         ],

@@ -39,47 +39,50 @@ class Payments extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             itemCount: payments == null ? 0 : payments.length,
             separatorBuilder: (_, __) => Divider(height: 1),
-            itemBuilder: (_, index) => _payment(payments[index], paymentsStore),
+            itemBuilder: (_, index) => _Payment(payments[index], onTap: _onTap),
           );
         },
       ),
     );
   }
 
-  _payment(Payment data, PaymentsStore paymentsStore) {
+  void _onTap(String paymentID) {
+    sl<PaymentsStore>().setActivePayment(paymentID);
+    sl<SandwichStore>().changeVisibility(true);
+  }
+}
+
+class _Payment extends StatelessWidget {
+  final Payment data;
+  final Function onTap;
+  const _Payment(this.data, {this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    var dt = DateHelper.msToDt(data.date);
+    var date = DateHelper.format(dt, DateHelper.dateWeekdayP);
+
     Category category = sl<DataRepo>()
         .obj
         .get<Catagories>("categories")
         .findCategoryById(data.categoryID);
 
-    var dt = DateHelper.msToDt(data.date);
-    var date = DateHelper.format(dt, DateHelper.dateWeekdayP);
-
-    return Container(
-      child: ListTile(
-        dense: true,
-        contentPadding: EdgeInsets.symmetric(horizontal: 0),
-        leading: Image.asset(
-          category.path,
-          width: 30,
-          cacheWidth: 30,
-        ),
-        onTap: () {
-          paymentsStore.setActivePayment(data.id);
-          sl<SandwichStore>().changeVisibility(true);
-        },
-        title: Text(data.label.capitalize(), style: Style.heading),
-        subtitle: Text(
-          "${category.name}  ·  $date".toUpperCase(),
-          style: Style.label,
-        ),
-        trailing: Amount(
-          data.amount,
-          size: DisplaySize.BASE,
-          type: data.isCredit
-              ? AmountDisplayType.CREDIT
-              : AmountDisplayType.DEBIT,
-        ),
+    return ListTile(
+      key: ValueKey(data.label),
+      dense: true,
+      contentPadding: EdgeInsets.symmetric(horizontal: 0),
+      leading: Image.asset(category.path, width: 30),
+      onTap: () => onTap(data.id),
+      title: Text(data.label.capitalize(), style: Style.heading),
+      subtitle: Text(
+        [category.name, date].join("  ·  ").toUpperCase(),
+        style: Style.label,
+      ),
+      trailing: Amount(
+        data.amount,
+        size: DisplaySize.BASE,
+        type:
+            data.isCredit ? AmountDisplayType.CREDIT : AmountDisplayType.DEBIT,
       ),
     );
   }

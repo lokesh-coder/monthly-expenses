@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 
 class LayoutHelper {
@@ -28,5 +29,9 @@ class LayoutHelper {
   static double get appBarHeight {
     // return kToolbarHeight;
     return 0;
+  }
+
+  static bool get isReleaseMode {
+    return kReleaseMode;
   }
 }

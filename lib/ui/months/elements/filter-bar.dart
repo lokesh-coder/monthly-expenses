@@ -19,27 +19,25 @@ class FilterBar extends StatelessWidget {
       height: Dimensions.filtersBarHeight,
       color: Clrs.primary,
       child: Observer(builder: (context) {
+        var selectedFilter = paymentsStore.filterBy;
         return Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _item(
-              paymentsStore,
-              Labels.all.toUpperCase(),
+          children: [
+            _FilterItem(
               PaymentType.ALL,
-              Clrs.yellow,
+              isActive: selectedFilter == PaymentType.ALL,
+              onTap: _onTap,
             ),
-            _item(
-              paymentsStore,
-              Labels.credit.toUpperCase(),
+            _FilterItem(
               PaymentType.CREDIT,
-              Clrs.green,
+              isActive: selectedFilter == PaymentType.CREDIT,
+              onTap: _onTap,
             ),
-            _item(
-              paymentsStore,
-              Labels.debit.toUpperCase(),
+            _FilterItem(
               PaymentType.DEBIT,
-              Clrs.red,
+              isActive: selectedFilter == PaymentType.DEBIT,
+              onTap: _onTap,
             ),
           ],
         );
@@ -47,35 +45,59 @@ class FilterBar extends StatelessWidget {
     );
   }
 
-  _item(
-    PaymentsStore paymentsStore,
-    String name,
-    PaymentType type,
-    Color color,
-  ) {
-    return Opacity(
-      opacity: paymentsStore.filterBy == type ? 1 : 0.4,
-      child: GestureDetector(
-        onTap: () => paymentsStore.changeFilter(type),
-        child: Container(
-          color: Colors.transparent,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            children: <Widget>[
-              Icon(
-                MIcons.lens_24px,
-                size: 13,
-                color: color,
-              ),
-              SizedBox(width: 8),
-              Text(
-                name,
-                style: Style.body.light.sm.bodyAltClr,
-              ),
-            ],
-          ),
+  _onTap(type) {
+    sl<PaymentsStore>().changeFilter(type);
+  }
+}
+
+class _FilterItem extends StatelessWidget {
+  final PaymentType type;
+  final bool isActive;
+  final Function onTap;
+
+  const _FilterItem(this.type, {this.onTap, this.isActive = false});
+
+  @override
+  Widget build(BuildContext context) {
+    var item = _filterItemsMap()[type];
+    return GestureDetector(
+      onTap: () => onTap(type),
+      child: Container(
+        color: Colors.transparent,
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          children: [
+            Icon(
+              MIcons.lens_24px,
+              size: 13,
+              color: item["color"].withOpacity(isActive ? 1.0 : 0.4),
+            ),
+            SizedBox(width: 8),
+            Text(
+              item["name"],
+              style: Style.body.light.sm
+                  .clr(Clrs.bodyAlt.withOpacity(isActive ? 1.0 : 0.4)),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  Map _filterItemsMap() {
+    return {
+      PaymentType.ALL: {
+        "name": Labels.all.toUpperCase(),
+        "color": Clrs.yellow,
+      },
+      PaymentType.DEBIT: {
+        "name": Labels.debit.toUpperCase(),
+        "color": Clrs.red,
+      },
+      PaymentType.CREDIT: {
+        "name": Labels.credit.toUpperCase(),
+        "color": Clrs.green,
+      },
+    };
   }
 }

@@ -10,6 +10,7 @@ class Button extends StatelessWidget {
   final Color color;
   final Color splashColor;
   final Color highlightColor;
+  final bool hasShape;
 
   const Button({
     this.child,
@@ -19,6 +20,7 @@ class Button extends StatelessWidget {
     this.splashColor = Clrs.label,
     this.highlightColor = Clrs.light,
     this.radius = 35,
+    this.hasShape = true,
   });
 
   @override
@@ -35,7 +37,9 @@ class Button extends StatelessWidget {
         color: color,
         highlightColor: highlightColor,
         splashColor: splashColor,
-        shape: SuperellipseShape(borderRadius: BorderRadius.circular(radius)),
+        shape: hasShape
+            ? SuperellipseShape(borderRadius: BorderRadius.circular(radius))
+            : null,
         onPressed: onPressed,
         colorBrightness: Brightness.dark,
         child: Container(

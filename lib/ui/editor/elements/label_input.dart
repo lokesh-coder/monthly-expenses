@@ -95,15 +95,6 @@ class LabelInput extends StatelessWidget {
               radius: 20.0,
               size: 35.0,
             ),
-            // child: IconButton(
-            //   onPressed: () {
-            //     if (content.isNotEmpty) formStore.changeLabel(content);
-            //     control.close();
-            //   },
-            //   padding: EdgeInsets.all(0),
-            //   icon: Icon(MIcons.tick),
-            //   color: Clrs.light,
-            // ),
           )
         ],
       ),

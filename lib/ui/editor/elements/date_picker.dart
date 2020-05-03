@@ -49,6 +49,7 @@ class DatePicker extends StatelessWidget {
     var isSelecteDate = selected.day.toString() == dateObj["date"].toString();
     var textClr = isSelecteDate ? Colors.white : Clrs.inputValue;
     var bgClr = isSelecteDate ? Clrs.primary : Colors.transparent;
+    var hasShape = isSelecteDate ? true : false;
 
     return Expanded(
       child: Button(
@@ -56,6 +57,7 @@ class DatePicker extends StatelessWidget {
           dateObj["date"].toString(),
           style: Style.body.clr(textClr).md,
         ),
+        hasShape: hasShape,
         color: bgClr,
         size: 50.0,
         onPressed: () => onSelect(dateObj["dateTime"]),
@@ -72,10 +74,7 @@ class DatePicker extends StatelessWidget {
   }
 
   Widget _weekName(name) {
-    var text = Text(
-      name,
-      style: Style.label,
-    );
+    var text = Text(name, style: Style.label);
 
     var content = Center(
       child: Container(

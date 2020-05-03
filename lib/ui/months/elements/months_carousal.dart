@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:monex/config/colors.dart';
 import "package:monex/config/typography.dart";
 
 class MonthsCarousal extends StatefulWidget {
@@ -38,16 +39,14 @@ class _MonthsCarousalState extends State<MonthsCarousal> {
       child: Center(
         child: Transform.scale(
           scale: 1 + (0.4 * fs),
-          child: AnimatedOpacity(
-            opacity: (0.35 * (fs + 2)).clamp(0.0, 1.0),
-            duration: Duration(milliseconds: 400),
-            child: AnimatedDefaultTextStyle(
-              duration: Duration(milliseconds: 200),
-              child: Text(widget.data["monthName"]),
-              overflow: TextOverflow.ellipsis,
-              style: Style.body.sm.copyWith(
-                  fontWeight: fs == 1 ? FontWeight.w500 : FontWeight.normal),
-            ),
+          child: AnimatedDefaultTextStyle(
+            duration: Duration(milliseconds: 200),
+            child: Text(widget.data["monthName"]),
+            overflow: TextOverflow.ellipsis,
+            style: Style.body.sm.copyWith(
+                fontWeight: fs == 1 ? FontWeight.w500 : FontWeight.normal,
+                color:
+                    Clrs.text.withOpacity((0.35 * (fs + 2)).clamp(0.0, 1.0))),
           ),
         ),
       ),

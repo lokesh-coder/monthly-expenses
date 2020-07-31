@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
+import 'package:monthlyexp/config/colors.dart';
 
 class Font {
   static String get numeric => 'Manrope';
-  static String get base => 'Circular';
+  static String get base => 'Worksans';
 }
 
 class FontSize {
@@ -34,6 +34,7 @@ class Style {
         fontSize: FontSize.base,
         color: Clrs.text,
         fontFamily: Font.base,
+        letterSpacing: -0.5,
       );
   static TextStyle get label => TextStyle(
         fontSize: FontSize.xs,
@@ -53,7 +54,7 @@ extension styles on TextStyle {
   TextStyle get bodyAltClr => copyWith(color: Clrs.bodyAlt);
   TextStyle get bodyClr => copyWith(color: Clrs.text);
   TextStyle get light => copyWith(fontWeight: FontWeight.w500);
-  TextStyle get bold => copyWith(fontWeight: FontWeight.w700);
+  TextStyle get bold => copyWith(fontWeight: FontWeight.w600);
   TextStyle get normal => copyWith(fontWeight: FontWeight.w400);
   TextStyle get ls => copyWith(letterSpacing: -0.5);
   TextStyle get secClr => copyWith(color: Clrs.secondary);

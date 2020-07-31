@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/helpers/currency_helper.dart';
-import 'package:monex/models/currency.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/common/app-shell.dart';
-import 'package:monex/ui/common/check.dart';
-import 'package:monex/ui/common/header.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/helpers/currency_helper.dart';
+import 'package:monthlyexp/models/currency.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/settings/settings.store.dart';
+import 'package:monthlyexp/ui/common/app-shell.dart';
+import 'package:monthlyexp/ui/common/check.dart';
+import 'package:monthlyexp/ui/common/header.dart';
 
 class CurrencyScreen extends StatelessWidget {
   const CurrencyScreen();

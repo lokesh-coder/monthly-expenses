@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/config/typography.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/config/typography.dart';
 
 class SettingsItemTile extends StatelessWidget {
   final Function onTap;
@@ -34,8 +34,8 @@ class SettingsItemTile extends StatelessWidget {
         onPressed: null,
         icon: Icon(icon, size: 26, color: Clrs.secondary),
       ),
-      title: Text(title, style: Style.heading),
-      subtitle: Text(displayText, style: Style.label.sm),
+      title: Text(title, style: Style.heading.light),
+      subtitle: Text(displayText, style: Style.label.sm.light),
       trailing: Icon(arrowIcon, color: Clrs.label),
     );
   }

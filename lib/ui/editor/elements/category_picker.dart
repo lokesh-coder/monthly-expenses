@@ -1,13 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/categories.dart';
-import 'package:monex/models/category.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/ui/common/button.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/data/data_repository.dart';
+import 'package:monthlyexp/data/local/object/files/categories.dart';
+import 'package:monthlyexp/models/category.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/ui/common/button.dart';
 
 class CategoryPicker extends StatelessWidget {
   final Function onSelect;

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/form/form.store.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:monex/stores/sandwiich/sandwich.store.dart';
-import 'package:monex/ui/common/ribbon.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/helpers/date_helper.dart';
+import 'package:monthlyexp/models/enums.dart';
+import 'package:monthlyexp/models/payment.model.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/form/form.store.dart';
+import 'package:monthlyexp/stores/payments/payments.store.dart';
+import 'package:monthlyexp/stores/sandwiich/sandwich.store.dart';
+import 'package:monthlyexp/ui/common/ribbon.dart';
 
 import 'elements/action_buttons.dart';
 import 'elements/amount_input.dart';

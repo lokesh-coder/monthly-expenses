@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/dimensions.dart';
-import 'package:monex/helpers/layout_helper.dart';
-import 'package:monex/ui/core/slide_transform.dart';
+import 'package:monthlyexp/config/dimensions.dart';
+import 'package:monthlyexp/helpers/layout_helper.dart';
+import 'package:monthlyexp/ui/core/slide_transform.dart';
 
 class SandwichContainer extends StatelessWidget {
   final Widget bottomChild;

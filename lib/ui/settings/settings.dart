@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/ui/common/app-shell.dart';
-import 'package:monex/ui/common/expander.dart';
-import 'package:monex/ui/common/header.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/ui/common/app-shell.dart';
+import 'package:monthlyexp/ui/common/expander.dart';
+import 'package:monthlyexp/ui/common/header.dart';
 
 import 'elements/currency/display.dart';
 import 'elements/currency/edit.dart';

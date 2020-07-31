@@ -1,6 +1,6 @@
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/sort_strategy.dart';
+import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/models/enums.dart';
+import 'package:monthlyexp/models/sort_strategy.dart';
 
 class SortStrategies {
   final List<SortStrategy> _strategies = [

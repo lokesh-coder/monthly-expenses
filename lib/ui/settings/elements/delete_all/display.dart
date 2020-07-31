@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:monex/ui/settings/elements/item_tile.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/payments/payments.store.dart';
+import 'package:monthlyexp/ui/settings/elements/item_tile.dart';
 
 class DeleteAllDisplay extends StatelessWidget {
   final Map dataCtx;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/form/form.store.dart';
-import 'package:monex/ui/editor/elements/icon_card.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/form/form.store.dart';
+import 'package:monthlyexp/ui/editor/elements/icon_card.dart';
 
 class TypeInput extends StatelessWidget {
   const TypeInput();

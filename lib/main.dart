@@ -2,24 +2,24 @@ import 'package:catcher/catcher_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/services/error_reporter.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/common/error.dart';
-import 'package:monex/ui/main_page.dart';
-import 'package:monex/ui/screens/loading.dart';
-import 'package:monex/ui/screens/welcome.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/services/error_reporter.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/settings/settings.store.dart';
+import 'package:monthlyexp/ui/common/error.dart';
+import 'package:monthlyexp/ui/main_page.dart';
+import 'package:monthlyexp/ui/screens/loading.dart';
+import 'package:monthlyexp/ui/screens/welcome.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
-  handleErrors(MonexApp());
+  handleErrors(MonthlyexpApp());
 }
 
-class MonexApp extends StatelessWidget {
+class MonthlyexpApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SettingsStore store = sl<SettingsStore>();

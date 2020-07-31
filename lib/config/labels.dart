@@ -1,5 +1,5 @@
 class Labels {
-  static String appName = 'Monex';
+  static String appName = 'Monthlyexp';
   static String otherCurrency = 'Others';
   static String welcome = 'Hey, Welcome!';
   static String error = 'Error!';
@@ -41,7 +41,7 @@ class Labels {
   static String changeCurrency = 'Change currency';
 
   /// about
-  static String aboutApp = 'About Monex';
+  static String aboutApp = 'About Monthlyexp';
   static String appInfo = 'App info';
   static String help = 'Help & Guide';
 
@@ -57,5 +57,5 @@ class Labels {
   /// share
   static String share = 'Share with your friends';
   static String shareMessage =
-      '''Monex - Friendly android app to manage monthly expenses without a hassle''';
+      '''Monthlyexp - Friendly android app to manage monthly expenses without a hassle''';
 }

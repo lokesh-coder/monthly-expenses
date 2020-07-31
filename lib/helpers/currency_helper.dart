@@ -1,9 +1,9 @@
 import 'package:intl/intl.dart';
 import 'package:intl/number_symbols_data.dart' show numberFormatSymbols;
-import 'package:monex/config/app.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/data/local/object/files/currencies.dart';
-import 'package:monex/models/currency.dart';
+import 'package:monthlyexp/config/app.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/data/local/object/files/currencies.dart';
+import 'package:monthlyexp/models/currency.dart';
 
 class CurrencyHelper {
   static List<Currency> cachedCurrencies = [];

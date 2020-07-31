@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/app.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
+import 'package:monthlyexp/config/app.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/helpers/date_helper.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/settings/settings.store.dart';
 
 class MonthRangeEdit extends StatefulWidget {
   const MonthRangeEdit();

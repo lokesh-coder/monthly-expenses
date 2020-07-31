@@ -1,4 +1,4 @@
-import 'package:monex/models/category.dart';
+import 'package:monthlyexp/models/category.dart';
 
 class Catagories {
   final List<Category> _debits = [

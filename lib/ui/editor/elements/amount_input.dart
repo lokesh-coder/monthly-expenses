@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/form/form.store.dart';
-import 'package:monex/ui/common/amount.dart';
-import 'package:monex/ui/common/bottom_modal.dart';
-import 'package:monex/ui/editor/elements/amount_numpad.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/models/enums.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/form/form.store.dart';
+import 'package:monthlyexp/ui/common/amount.dart';
+import 'package:monthlyexp/ui/common/bottom_modal.dart';
+import 'package:monthlyexp/ui/editor/elements/amount_numpad.dart';
 
 class AmountInput extends StatelessWidget {
   const AmountInput();

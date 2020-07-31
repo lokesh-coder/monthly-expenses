@@ -1,4 +1,4 @@
-name: monex
+name: monthlyexp
 description: Monthly expences
 version: 1.0.0+1
 
@@ -35,24 +35,23 @@ dev_dependencies:
   flutter_native_splash: ^0.1.9
   pedantic: ^1.8.0
 
-# The following section is specific to Flutter.
 flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: false
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icons/credit/
     - assets/icons/debit/
 
   fonts:
-    - family: Circular
+    - family: Worksans
       fonts:
-        - asset: assets/fonts/circular-std/CircularStd-Book.otf
+        - asset: assets/fonts/work-sans/WorkSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/work-sans/WorkSans-Regular.ttf
           weight: 400
-        - asset: assets/fonts/circular-std/CircularStd-Medium.otf
+        - asset: assets/fonts/work-sans/WorkSans-Medium.ttf
           weight: 500
+        - asset: assets/fonts/work-sans/WorkSans-SemiBold.ttf
+          weight: 600
 
     - family: Manrope
       fonts:

@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import 'package:monex/data/data_repository.dart';
+import 'package:monthlyexp/data/data_repository.dart';
 
 part 'settings.store.g.dart';
 

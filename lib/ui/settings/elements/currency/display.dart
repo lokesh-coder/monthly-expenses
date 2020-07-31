@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/m_icons.dart';
-import 'package:monex/helpers/currency_helper.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/settings/elements/item_tile.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/helpers/currency_helper.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/settings/settings.store.dart';
+import 'package:monthlyexp/ui/settings/elements/item_tile.dart';
 
 class CurrencyDisplay extends StatelessWidget {
   final Map dataCtx;

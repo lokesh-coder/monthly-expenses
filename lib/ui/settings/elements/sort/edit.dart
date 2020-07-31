@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/sort_strategies.dart';
-import 'package:monex/models/sort_strategy.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/common/check.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/data/data_repository.dart';
+import 'package:monthlyexp/data/local/object/files/sort_strategies.dart';
+import 'package:monthlyexp/models/sort_strategy.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/settings/settings.store.dart';
+import 'package:monthlyexp/ui/common/check.dart';
 
 class SortEdit extends StatefulWidget {
   const SortEdit();

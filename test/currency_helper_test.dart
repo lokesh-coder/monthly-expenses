@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:monex/helpers/currency_helper.dart';
+import 'package:monthlyexp/helpers/currency_helper.dart';
 
 void main() {
   test('should get all currencies', () {

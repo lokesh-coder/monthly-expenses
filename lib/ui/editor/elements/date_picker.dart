@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/ui/common/button.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/helpers/date_helper.dart';
+import 'package:monthlyexp/ui/common/button.dart';
 
 class DatePicker extends StatelessWidget {
   final Function(DateTime) onSelect;

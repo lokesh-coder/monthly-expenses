@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
-import 'package:monex/ui/common/app-shell.dart';
-import 'package:monex/ui/common/fade_transition.dart';
-import 'package:monex/ui/screens/currency.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/settings/settings.store.dart';
+import 'package:monthlyexp/ui/common/app-shell.dart';
+import 'package:monthlyexp/ui/common/fade_transition.dart';
+import 'package:monthlyexp/ui/screens/currency.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen();

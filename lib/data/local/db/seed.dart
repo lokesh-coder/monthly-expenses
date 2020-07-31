@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:monex/data/local/object/files/categories.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/settings/settings.store.dart';
+import 'package:monthlyexp/data/local/object/files/categories.dart';
+import 'package:monthlyexp/helpers/date_helper.dart';
+import 'package:monthlyexp/models/payment.model.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/settings/settings.store.dart';
 
 class SeedData {
   List<Payment> get data {

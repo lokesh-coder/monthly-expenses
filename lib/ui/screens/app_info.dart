@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/typography.dart';
 import 'package:package_info/package_info.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/ui/common/app-shell.dart';
-import 'package:monex/ui/common/header.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/ui/common/app-shell.dart';
+import 'package:monthlyexp/ui/common/header.dart';
 
 class AppInfoScreen extends StatefulWidget {
   const AppInfoScreen();

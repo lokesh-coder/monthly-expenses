@@ -1,4 +1,4 @@
-import 'package:monex/data/local/object/files/categories.dart';
+import 'package:monthlyexp/data/local/object/files/categories.dart';
 
 import 'files/sort_strategies.dart';
 

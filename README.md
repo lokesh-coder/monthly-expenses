@@ -1,4 +1,4 @@
-# monex
+# monthlyexp
 
 Monthly expences
 

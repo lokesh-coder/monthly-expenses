@@ -1,8 +1,8 @@
-import 'package:monex/data/local/db/local_db.dart';
-import 'package:monex/data/local/db/setup.dart';
-import 'package:monex/data/local/memory/local_memory.dart';
-import 'package:monex/data/local/memory/setup.dart';
-import 'package:monex/data/local/object/local_object.dart';
+import 'package:monthlyexp/data/local/db/local_db.dart';
+import 'package:monthlyexp/data/local/db/setup.dart';
+import 'package:monthlyexp/data/local/memory/local_memory.dart';
+import 'package:monthlyexp/data/local/memory/setup.dart';
+import 'package:monthlyexp/data/local/object/local_object.dart';
 import 'package:sembast/sembast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

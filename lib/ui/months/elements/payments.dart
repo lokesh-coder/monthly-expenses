@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/typography.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/categories.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/category.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/payments/payments.store.dart';
-import 'package:monex/stores/sandwiich/sandwich.store.dart';
-import 'package:monex/ui/common/amount.dart';
-import 'package:monex/config/extension.dart';
-import 'package:monex/ui/common/empty.dart';
-import 'package:monex/ui/common/loader.dart';
+import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/data/data_repository.dart';
+import 'package:monthlyexp/data/local/object/files/categories.dart';
+import 'package:monthlyexp/helpers/date_helper.dart';
+import 'package:monthlyexp/models/category.dart';
+import 'package:monthlyexp/models/enums.dart';
+import 'package:monthlyexp/models/payment.model.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/payments/payments.store.dart';
+import 'package:monthlyexp/stores/sandwiich/sandwich.store.dart';
+import 'package:monthlyexp/ui/common/amount.dart';
+import 'package:monthlyexp/config/extension.dart';
+import 'package:monthlyexp/ui/common/empty.dart';
+import 'package:monthlyexp/ui/common/loader.dart';
 
 class Payments extends StatelessWidget {
   final Map data;

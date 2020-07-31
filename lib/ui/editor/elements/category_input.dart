@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monex/config/labels.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/categories.dart';
-import 'package:monex/models/category.dart';
-import 'package:monex/services/service_locator.dart';
-import 'package:monex/stores/form/form.store.dart';
-import 'package:monex/ui/common/bottom_modal.dart';
-import 'package:monex/ui/editor/elements/category_picker.dart';
-import 'package:monex/ui/editor/elements/icon_card.dart';
+import 'package:monthlyexp/config/labels.dart';
+import 'package:monthlyexp/data/data_repository.dart';
+import 'package:monthlyexp/data/local/object/files/categories.dart';
+import 'package:monthlyexp/models/category.dart';
+import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/stores/form/form.store.dart';
+import 'package:monthlyexp/ui/common/bottom_modal.dart';
+import 'package:monthlyexp/ui/editor/elements/category_picker.dart';
+import 'package:monthlyexp/ui/editor/elements/icon_card.dart';
 
 class CategoryInput extends StatelessWidget {
   const CategoryInput();

@@ -1,4 +1,4 @@
-package com.lokeshr.monex;
+package com.lokeshr.monthlyexp;
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity;

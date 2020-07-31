@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:monex/data/data_repository.dart';
-import 'package:monex/data/local/object/files/sort_strategies.dart';
-import 'package:monex/helpers/date_helper.dart';
-import 'package:monex/models/enums.dart';
-import 'package:monex/models/payment.model.dart';
-import 'package:monex/services/service_locator.dart';
+import 'package:monthlyexp/data/data_repository.dart';
+import 'package:monthlyexp/data/local/object/files/sort_strategies.dart';
+import 'package:monthlyexp/helpers/date_helper.dart';
+import 'package:monthlyexp/models/enums.dart';
+import 'package:monthlyexp/models/payment.model.dart';
+import 'package:monthlyexp/services/service_locator.dart';
 
 class PaymentsHelper {
   static void sort(List<Payment> payments, int sortID, int orderID) {

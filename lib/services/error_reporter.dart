@@ -1,6 +1,6 @@
 import 'package:catcher/catcher_plugin.dart';
 import 'package:flutter/material.dart';
-import 'package:monex/config/app.dart';
+import 'package:monthlyexp/config/app.dart';
 
 DialogReportMode dialogMode = DialogReportMode();
 ConsoleHandler consoleMode = ConsoleHandler();

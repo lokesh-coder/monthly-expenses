@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:monex/config/colors.dart';
-import 'package:monex/config/typography.dart';
+import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/typography.dart';
 
 class MonthsCarousal extends StatefulWidget {
   final int index;

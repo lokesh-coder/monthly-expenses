@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:monex/data/local/memory/config.dart';
+import 'package:monthlyexp/data/local/memory/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalMemory {

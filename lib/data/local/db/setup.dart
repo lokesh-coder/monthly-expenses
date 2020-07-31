@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:monex/data/local/db/config.dart';
+import 'package:monthlyexp/data/local/db/config.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';

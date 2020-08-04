@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 
 class Font {
   static String get numeric => 'Manrope';
@@ -25,21 +24,18 @@ class Style {
       );
 
   static TextStyle get heading => TextStyle(
-        color: Clrs.heading,
         fontSize: FontSize.base,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.5,
       );
   static TextStyle get body => TextStyle(
         fontSize: FontSize.base,
-        color: Clrs.text,
         fontFamily: Font.base,
         letterSpacing: -0.5,
       );
   static TextStyle get label => TextStyle(
         fontSize: FontSize.xs,
         fontWeight: FontWeight.w600,
-        color: Clrs.labelActive,
       );
 }
 
@@ -51,11 +47,8 @@ extension styles on TextStyle {
   TextStyle get sm => copyWith(fontSize: FontSize.sm);
   TextStyle get md => copyWith(fontSize: FontSize.md);
   TextStyle get base => copyWith(fontSize: FontSize.base);
-  TextStyle get bodyAltClr => copyWith(color: Clrs.bodyAlt);
-  TextStyle get bodyClr => copyWith(color: Clrs.text);
   TextStyle get light => copyWith(fontWeight: FontWeight.w500);
   TextStyle get bold => copyWith(fontWeight: FontWeight.w600);
   TextStyle get normal => copyWith(fontWeight: FontWeight.w400);
   TextStyle get ls => copyWith(letterSpacing: -0.5);
-  TextStyle get secClr => copyWith(color: Clrs.secondary);
 }

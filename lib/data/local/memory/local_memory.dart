@@ -46,4 +46,18 @@ class LocalMemory {
 
   Future<bool> get isNewSetup =>
       memory.then((x) => x.getBool(LocalMemoryConfig.is_new_setup));
+
+// theme ------------------------------------------------------------
+
+  Future<void> toggleTheme() => memory.then((x) {
+        final String key = LocalMemoryConfig.is_light_theme;
+        var current = x.getBool(key);
+        if (current == null) {
+          current = true;
+        }
+        return x.setBool(key, !current);
+      });
+
+  Future<bool> get isLightTheme =>
+      memory.then((x) => x.getBool(LocalMemoryConfig.is_light_theme));
 }

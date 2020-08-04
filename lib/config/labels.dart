@@ -39,6 +39,7 @@ class Labels {
   static String ascending = 'Ascending';
   static String descending = 'Descending';
   static String changeCurrency = 'Change currency';
+  static String changeTheme = 'Change theme';
 
   /// about
   static String aboutApp = 'About Monthlyexp';

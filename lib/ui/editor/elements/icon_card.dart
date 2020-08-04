@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/form/form.store.dart';
 import 'package:monthlyexp/stores/sandwiich/sandwich.store.dart';
+import 'package:provider/provider.dart';
 
 class IconCard extends StatefulWidget {
   final Widget child;
@@ -61,6 +63,7 @@ class _IconCardState extends State<IconCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
@@ -74,7 +77,7 @@ class _IconCardState extends State<IconCard> with TickerProviderStateMixin {
               child: SizedBox(child: widget.child, height: 35),
             ),
             SizedBox(height: 10),
-            Text(widget.name, style: Style.label),
+            Text(widget.name, style: Style.label.clr(theme.textSubHeading)),
           ],
         ),
       ),

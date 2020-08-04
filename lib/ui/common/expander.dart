@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/helpers/layout_helper.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
+import 'package:provider/provider.dart';
 
 class Expander extends StatefulWidget {
   final Widget Function(BuildContext, Map) bodyBuilder;
@@ -27,12 +28,11 @@ class _ExpanderState extends State<Expander> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Column(
       children: [
         Container(
-          color: isContentVisible
-              ? Clrs.label.withOpacity(0.2)
-              : Colors.transparent,
+          color: isContentVisible ? theme.bgPrimary : Colors.transparent,
           child: widget.headBuilder(context, dataContext),
         ),
         Divider(height: 0),
@@ -40,7 +40,7 @@ class _ExpanderState extends State<Expander> {
           visible: isContentVisible,
           child: Container(
             width: LayoutHelper.screenWidth,
-            color: Clrs.label.withOpacity(0.2),
+            color: theme.bgSecondary,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: widget.bodyBuilder(context, dataContext),
           ),

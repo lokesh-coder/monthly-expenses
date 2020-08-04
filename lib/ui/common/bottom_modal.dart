@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/dimensions.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/helpers/layout_helper.dart';
 import 'package:monthlyexp/config/extension.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/ui/common/hint.dart';
+import 'package:provider/provider.dart';
 
 class BottomModalControl {
   Function(String title, Widget child) open;
@@ -25,6 +26,7 @@ class BottomModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Builder(
       builder: (ctx) {
         final data = BottomModalControl();
@@ -34,7 +36,7 @@ class BottomModal extends StatelessWidget {
           return showPopupWindow(
             context,
             gravity: KumiPopupGravity.centerBottom,
-            bgColor: Clrs.dark.withOpacity(0.4),
+            bgColor: theme.textHeading.withOpacity(0.4),
             clickOutDismiss: false,
             clickBackDismiss: true,
             customAnimation: false,
@@ -120,6 +122,7 @@ class _ModalContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +139,7 @@ class _ModalContent extends StatelessWidget {
                   child: Text(
                     title.capitalize(),
                     textAlign: TextAlign.center,
-                    style: Style.heading.md,
+                    style: Style.heading.md.clr(theme.textHeading),
                   ),
                 ),
                 Positioned(
@@ -146,7 +149,7 @@ class _ModalContent extends StatelessWidget {
                     child: IconButton(
                       icon: Icon(
                         MIcons.close_rd,
-                        color: Clrs.dark.withOpacity(0.3),
+                        color: theme.textHeading.withOpacity(0.3),
                       ),
                       onPressed: () => pop.dismiss(context),
                     ),

@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/form/form.store.dart';
 import 'package:monthlyexp/ui/common/bottom_modal.dart';
 import 'package:monthlyexp/ui/common/button.dart';
 import 'package:monthlyexp/ui/common/hint.dart';
+import 'package:provider/provider.dart';
 
 class LabelInput extends StatelessWidget {
   const LabelInput();
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     final FormStore formStore = sl<FormStore>();
 
     return BottomModal(
       builder: (context, control) {
         return GestureDetector(
           onTap: () {
-            _textField(control, formStore);
+            _textField(control, formStore, theme);
           },
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             decoration: BoxDecoration(
-              color: Clrs.label.withOpacity(0.3),
+              color: theme.bgSecondary,
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             child: Observer(builder: (context) {
@@ -43,13 +46,17 @@ class LabelInput extends StatelessWidget {
     );
   }
 
-  void _textField(BottomModalControl control, FormStore formStore) {
+  void _textField(
+    BottomModalControl control,
+    FormStore formStore,
+    AppTheme theme,
+  ) {
     var content = formStore.label;
     final tf = Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       height: 50,
       decoration: BoxDecoration(
-        color: Clrs.label.withOpacity(0.3),
+        color: theme.bgSecondary,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -72,7 +79,7 @@ class LabelInput extends StatelessWidget {
                       {int currentLength, int maxLength, bool isFocused}) =>
                   null,
               decoration: InputDecoration.collapsed(hintText: null),
-              style: Style.body.md,
+              style: Style.body.md.clr(theme.textHeading),
               onChanged: (x) {
                 content = x.trim();
               },
@@ -95,7 +102,7 @@ class LabelInput extends StatelessWidget {
                 control.close();
               },
               child: Icon(MIcons.tick),
-              color: Clrs.primary,
+              color: theme.brand,
               radius: 20.0,
               size: 35.0,
             ),

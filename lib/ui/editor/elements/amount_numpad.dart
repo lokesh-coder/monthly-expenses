@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:monthlyexp/config/app.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/m_icons.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/helpers/currency_helper.dart';
 import 'package:monthlyexp/models/enums.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/settings/settings.store.dart';
 import 'package:monthlyexp/ui/common/amount.dart';
 import 'package:monthlyexp/ui/common/button.dart';
+import 'package:provider/provider.dart';
 
 class AmountNumpad extends StatefulWidget {
   final Function onSelect;
@@ -158,6 +159,7 @@ class _KeypadDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     Widget displayValue;
     if (value == '') {
       final placeholderText = 0.toStringAsFixed(AppConfig.maxDecimalsInAmount);
@@ -186,7 +188,7 @@ class _KeypadDisplay extends StatelessWidget {
             width: 50,
             child: Text(
               currencySymbol,
-              style: Style.label.lg.normal.secClr,
+              style: Style.label.lg.normal.clr(theme.brand),
               textAlign: TextAlign.center,
             ),
           ),
@@ -196,7 +198,8 @@ class _KeypadDisplay extends StatelessWidget {
             child: FlatButton(
               padding: EdgeInsets.all(0),
               onLongPress: onReset,
-              child: Icon(MIcons.delete_back_2_line, color: Clrs.label),
+              child:
+                  Icon(MIcons.delete_back_2_line, color: theme.textSubHeading),
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               onPressed: onClear,
@@ -205,8 +208,9 @@ class _KeypadDisplay extends StatelessWidget {
         ],
       ),
       decoration: BoxDecoration(
+        color: theme.bgPrimary,
         border: Border(
-          bottom: BorderSide(color: Clrs.labelActive.withOpacity(0.2)),
+          bottom: BorderSide(color: theme.textSubHeading.withOpacity(0.2)),
         ),
       ),
     );
@@ -220,13 +224,13 @@ class _KeypadButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     Widget child;
 
     if (keyname == 'ENTER') {
-      child = Icon(MIcons.tick, color: Clrs.secondary, size: 30);
+      child = Icon(MIcons.tick, color: theme.brand, size: 30);
     } else {
-      child = Text(keyname,
-          style: Style.numeric.lg.clr(Clrs.primary.withOpacity(0.7)));
+      child = Text(keyname, style: Style.numeric.lg.clr(theme.textHeading));
     }
 
     return Button(child: child, onPressed: onTap);

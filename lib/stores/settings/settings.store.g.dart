@@ -77,6 +77,23 @@ mixin _$SettingsStore on SettingsBase, Store {
     }, _$orderByAtom, name: '${_$orderByAtom.name}_set');
   }
 
+  final _$isLightThemeAtom = Atom(name: 'SettingsBase.isLightTheme');
+
+  @override
+  bool get isLightTheme {
+    _$isLightThemeAtom.context.enforceReadPolicy(_$isLightThemeAtom);
+    _$isLightThemeAtom.reportObserved();
+    return super.isLightTheme;
+  }
+
+  @override
+  set isLightTheme(bool value) {
+    _$isLightThemeAtom.context.conditionallyRunInAction(() {
+      super.isLightTheme = value;
+      _$isLightThemeAtom.reportChanged();
+    }, _$isLightThemeAtom, name: '${_$isLightThemeAtom.name}_set');
+  }
+
   final _$currencyAtom = Atom(name: 'SettingsBase.currency');
 
   @override
@@ -137,6 +154,16 @@ mixin _$SettingsStore on SettingsBase, Store {
   }
 
   @override
+  void toggleTheme() {
+    final _$actionInfo = _$SettingsBaseActionController.startAction();
+    try {
+      return super.toggleTheme();
+    } finally {
+      _$SettingsBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeCurrency(String locale, String currencyCode) {
     final _$actionInfo = _$SettingsBaseActionController.startAction();
     try {
@@ -149,7 +176,7 @@ mixin _$SettingsStore on SettingsBase, Store {
   @override
   String toString() {
     final string =
-        'isNewSetup: ${isNewSetup.toString()},monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()},orderBy: ${orderBy.toString()},currency: ${currency.toString()}';
+        'isNewSetup: ${isNewSetup.toString()},monthsViewRange: ${monthsViewRange.toString()},sortBy: ${sortBy.toString()},orderBy: ${orderBy.toString()},isLightTheme: ${isLightTheme.toString()},currency: ${currency.toString()}';
     return '{$string}';
   }
 }

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/dimensions.dart';
 import 'package:monthlyexp/helpers/date_helper.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/payments/payments.store.dart';
 import 'package:monthlyexp/stores/sandwiich/sandwich.store.dart';
 import 'package:monthlyexp/stores/settings/settings.store.dart';
 import 'package:monthlyexp/ui/core/pager.dart';
 import 'package:monthlyexp/ui/months/elements/months_carousal.dart';
 import 'package:monthlyexp/ui/months/elements/payments_carousal.dart';
+import 'package:provider/provider.dart';
 
 class Months extends StatelessWidget {
   const Months();
@@ -17,6 +18,7 @@ class Months extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsStore = sl<SettingsStore>();
+    final theme = Provider.of<ThemeChanger>(context).theme;
 
     return Observer(builder: (context) {
       final range = settingsStore.monthsViewRange;
@@ -49,7 +51,7 @@ class Months extends StatelessWidget {
                 child: Container(
                   height: 5,
                   decoration: BoxDecoration(
-                    color: Clrs.label.withOpacity(0.5),
+                    color: theme.textSubHeading.withOpacity(0.3),
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                 ),
@@ -59,10 +61,11 @@ class Months extends StatelessWidget {
           Container(
             height: Dimensions.monthsBarHeight,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: theme.bgPrimary,
               border: Border(
-                bottom: BorderSide(color: Clrs.border),
-                top: BorderSide(color: Clrs.border),
+                bottom:
+                    BorderSide(color: theme.textSubHeading.withOpacity(0.3)),
+                top: BorderSide(color: theme.textSubHeading.withOpacity(0.3)),
               ),
             ),
             child: Pager.master(

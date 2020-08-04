@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/helpers/layout_helper.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
+import 'package:provider/provider.dart';
 
 class ConfirmModalControl {
   Function() open;
@@ -53,6 +54,7 @@ class _ModalLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Material(
       color: Colors.transparent,
       child: Container(
@@ -63,7 +65,7 @@ class _ModalLayout extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
           boxShadow: [
             BoxShadow(
-              color: Clrs.dark.withOpacity(0.3),
+              color: theme.textSubHeading,
               blurRadius: 10,
               offset: Offset(0, 4),
             )
@@ -84,7 +86,8 @@ class _ModalContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final btnStyle = Style.body.sm.clr(Clrs.text.withOpacity(0.5));
+    final theme = Provider.of<ThemeChanger>(context).theme;
+    final btnStyle = Style.body.sm.clr(theme.textSubHeading);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -94,7 +97,7 @@ class _ModalContent extends StatelessWidget {
           child: Text(
             control.title,
             textAlign: TextAlign.center,
-            style: Style.body.bodyClr,
+            style: Style.body.clr(theme.textHeading),
           ),
         ),
         Row(
@@ -108,7 +111,7 @@ class _ModalContent extends StatelessWidget {
               },
               child: Text(
                 control.yesLabel.toUpperCase(),
-                style: btnStyle.copyWith(color: Clrs.secondary),
+                style: btnStyle.copyWith(color: theme.brand),
               ),
             ),
             FlatButton(

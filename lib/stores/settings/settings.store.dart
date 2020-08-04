@@ -24,6 +24,9 @@ abstract class SettingsBase with Store {
   int orderBy = 1;
 
   @observable
+  bool isLightTheme = true;
+
+  @observable
   String currency = '0=0';
 
   @action
@@ -48,6 +51,12 @@ abstract class SettingsBase with Store {
   void changeOrderBy(int id) {
     orderBy = id;
     repo.memory.changeOrderBy(id);
+  }
+
+  @action
+  void toggleTheme() {
+    isLightTheme = !isLightTheme;
+    repo.memory.toggleTheme();
   }
 
   @action

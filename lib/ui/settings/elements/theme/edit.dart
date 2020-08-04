@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/labels.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/services/service_locator.dart';
 import 'package:monthlyexp/services/theme_changer.dart';
-import 'package:monthlyexp/stores/payments/payments.store.dart';
+import 'package:monthlyexp/stores/settings/settings.store.dart';
 import 'package:provider/provider.dart';
 
-class DeleteAllEdit extends StatelessWidget {
-  const DeleteAllEdit();
+class ThemeEdit extends StatelessWidget {
+  const ThemeEdit();
 
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeChanger>(context).theme;
+    final SettingsStore store = sl<SettingsStore>();
     return FractionallySizedBox(
       widthFactor: 0.5,
       child: MaterialButton(
@@ -23,8 +24,13 @@ class DeleteAllEdit extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           side: BorderSide(color: theme.violet, width: 2),
         ),
-        onPressed: () => sl<PaymentsStore>().dropDb(),
-        child: Text(Labels.deleteForever, style: Style.body.clr(Colors.white)),
+        onPressed: () => sl<SettingsStore>().toggleTheme(),
+        child: Observer(builder: (context) {
+          return Text(
+            store.isLightTheme ? 'Dark' : 'Light',
+            style: Style.body.clr(Colors.white),
+          );
+        }),
       ),
     );
   }

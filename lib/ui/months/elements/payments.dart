@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/data/data_repository.dart';
 import 'package:monthlyexp/data/local/object/files/categories.dart';
@@ -8,12 +9,14 @@ import 'package:monthlyexp/models/category.dart';
 import 'package:monthlyexp/models/enums.dart';
 import 'package:monthlyexp/models/payment.model.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/payments/payments.store.dart';
 import 'package:monthlyexp/stores/sandwiich/sandwich.store.dart';
 import 'package:monthlyexp/ui/common/amount.dart';
 import 'package:monthlyexp/config/extension.dart';
 import 'package:monthlyexp/ui/common/empty.dart';
 import 'package:monthlyexp/ui/common/loader.dart';
+import 'package:provider/provider.dart';
 
 class Payments extends StatelessWidget {
   final Map data;
@@ -21,6 +24,7 @@ class Payments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     final paymentsStore = sl<PaymentsStore>();
     final String monthKeyName = DateHelper.getMonthYear(data['dateTime']);
 
@@ -39,7 +43,11 @@ class Payments extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             itemCount: payments == null ? 0 : payments.length,
             separatorBuilder: (_, __) => Divider(height: 1),
-            itemBuilder: (_, index) => _Payment(payments[index], onTap: _onTap),
+            itemBuilder: (_, index) => _Payment(
+              payments[index],
+              onTap: _onTap,
+              theme: theme,
+            ),
           );
         },
       ),
@@ -55,7 +63,8 @@ class Payments extends StatelessWidget {
 class _Payment extends StatelessWidget {
   final Payment data;
   final Function onTap;
-  const _Payment(this.data, {this.onTap});
+  final AppTheme theme;
+  const _Payment(this.data, {this.onTap, this.theme});
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +82,11 @@ class _Payment extends StatelessWidget {
       contentPadding: EdgeInsets.symmetric(horizontal: 0),
       leading: Image.asset(category.path, width: 30),
       onTap: () => onTap(data.id),
-      title: Text(data.label.capitalize(), style: Style.heading),
+      title: Text(data.label.capitalize(),
+          style: Style.heading.clr(theme.textHeading)),
       subtitle: Text(
         [category.name, date].join('  ·  ').toUpperCase(),
-        style: Style.label,
+        style: Style.label.clr(theme.textSubHeading),
       ),
       trailing: Amount(
         data.amount,

@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/dimensions.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/models/enums.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/payments/payments.store.dart';
+import 'package:provider/provider.dart';
 
 class FilterBar extends StatelessWidget {
   const FilterBar();
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     final PaymentsStore paymentsStore = sl<PaymentsStore>();
     return Container(
       height: Dimensions.filtersBarHeight,
-      color: Clrs.primary,
+      color: theme.bgPrimary,
       child: Observer(builder: (context) {
         final selectedFilter = paymentsStore.filterBy;
         return Row(
@@ -28,16 +31,19 @@ class FilterBar extends StatelessWidget {
               PaymentType.ALL,
               isActive: selectedFilter == PaymentType.ALL,
               onTap: _onTap,
+              theme: theme,
             ),
             _FilterItem(
               PaymentType.CREDIT,
               isActive: selectedFilter == PaymentType.CREDIT,
               onTap: _onTap,
+              theme: theme,
             ),
             _FilterItem(
               PaymentType.DEBIT,
               isActive: selectedFilter == PaymentType.DEBIT,
               onTap: _onTap,
+              theme: theme,
             ),
           ],
         );
@@ -54,12 +60,13 @@ class _FilterItem extends StatelessWidget {
   final PaymentType type;
   final bool isActive;
   final Function onTap;
+  final AppTheme theme;
 
-  const _FilterItem(this.type, {this.onTap, this.isActive = false});
+  const _FilterItem(this.type, {this.onTap, this.isActive = false, this.theme});
 
   @override
   Widget build(BuildContext context) {
-    final item = _filterItemsMap()[type];
+    final item = _filterItemsMap(theme)[type];
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -80,7 +87,7 @@ class _FilterItem extends StatelessWidget {
               Text(
                 item['name'],
                 style: Style.body.light.sm
-                    .clr(Clrs.bodyAlt.withOpacity(isActive ? 1.0 : 0.4)),
+                    .clr(theme.textHeading.withOpacity(isActive ? 1.0 : 0.4)),
               ),
             ],
           ),
@@ -89,19 +96,19 @@ class _FilterItem extends StatelessWidget {
     );
   }
 
-  Map _filterItemsMap() {
+  Map _filterItemsMap(AppTheme theme) {
     return {
       PaymentType.ALL: {
         'name': Labels.all.toUpperCase(),
-        'color': Clrs.yellow,
+        'color': theme.yellow,
       },
       PaymentType.DEBIT: {
         'name': Labels.debits.toUpperCase(),
-        'color': Clrs.red,
+        'color': theme.red,
       },
       PaymentType.CREDIT: {
         'name': Labels.credits.toUpperCase(),
-        'color': Clrs.green,
+        'color': theme.green,
       },
     };
   }

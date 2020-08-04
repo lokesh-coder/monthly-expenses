@@ -3,6 +3,8 @@ import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/ui/common/app-shell.dart';
 import 'package:monthlyexp/ui/common/expander.dart';
 import 'package:monthlyexp/ui/common/header.dart';
+import 'package:monthlyexp/ui/settings/elements/theme/display.dart';
+import 'package:monthlyexp/ui/settings/elements/theme/edit.dart';
 
 import 'elements/currency/display.dart';
 import 'elements/currency/edit.dart';
@@ -49,6 +51,10 @@ class Settings extends StatelessWidget {
           Expander(
             headBuilder: (_, dataCtx) => DeleteAllDisplay(dataCtx),
             bodyBuilder: (_, __) => DeleteAllEdit(),
+          ),
+          Expander(
+            headBuilder: (_, dataCtx) => ThemeDisplay(dataCtx),
+            bodyBuilder: (_, __) => ThemeEdit(),
           ),
           AppLinks()
         ],

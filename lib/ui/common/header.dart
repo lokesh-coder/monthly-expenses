@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
 import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/ui/common/hint.dart';
+import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
   final Widget leading;
@@ -12,9 +14,10 @@ class Header extends StatelessWidget with PreferredSizeWidget {
 
   @override
   PreferredSizeWidget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return AppBar(
       leading: leading,
-      title: Text(title, style: Style.heading.md.bodyAltClr),
+      title: Text(title, style: Style.heading.md.clr(theme.textHeading)),
       centerTitle: true,
       elevation: 0,
       actions: [

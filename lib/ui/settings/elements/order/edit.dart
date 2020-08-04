@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/data/data_repository.dart';
 import 'package:monthlyexp/data/local/object/files/sort_strategies.dart';
 import 'package:monthlyexp/models/enums.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/settings/settings.store.dart';
 import 'package:monthlyexp/ui/common/check.dart';
+import 'package:provider/provider.dart';
 
 class OrderEdit extends StatefulWidget {
   const OrderEdit();
@@ -29,20 +31,23 @@ class _OrderEditState extends State<OrderEdit> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Column(
-      children: _getItems(),
+      children: _getItems(theme),
     );
   }
 
-  Widget _getItem(Map data) {
+  Widget _getItem(Map data, AppTheme theme) {
     return ListTile(
-      title: Text(data['name'], style: Style.label.base.clr(Clrs.labelAlt)),
-      subtitle: Text(data['desc'], style: Style.label.sm),
+      title: Text(data['name'],
+          style: Style.label.base.light.clr(theme.textHeading)),
+      subtitle: Text(data['desc'],
+          style: Style.label.sm.light.clr(theme.textSubHeading)),
       leading: Container(
         height: double.infinity,
         child: Icon(
           data['icon'],
-          color: Clrs.inputValue.withOpacity(0.5),
+          color: theme.textSubHeading,
         ),
       ),
       trailing: data['id'] == _value ? Check() : SizedBox.shrink(),
@@ -55,7 +60,7 @@ class _OrderEditState extends State<OrderEdit> {
     );
   }
 
-  List _getItems() {
+  List _getItems(AppTheme theme) {
     final strategy = sl<DataRepo>()
         .obj
         .get<SortStrategies>('sorting')
@@ -75,6 +80,6 @@ class _OrderEditState extends State<OrderEdit> {
         'icon': MIcons.sort_desc
       },
     ];
-    return data.map(_getItem).toList();
+    return data.map((data) => _getItem(data, theme)).toList();
   }
 }

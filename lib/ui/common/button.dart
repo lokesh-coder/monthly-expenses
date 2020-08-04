@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:superellipse_shape/superellipse_shape.dart';
 
 class Button extends StatelessWidget {
@@ -17,14 +16,15 @@ class Button extends StatelessWidget {
     this.size,
     this.onPressed,
     this.color = Colors.transparent,
-    this.splashColor = Clrs.label,
-    this.highlightColor = Clrs.light,
+    this.splashColor,
+    this.highlightColor,
     this.radius = 35,
     this.hasShape = true,
   });
 
   @override
   Widget build(BuildContext context) {
+    // final theme = Provider.of<ThemeChanger>(context).theme;
     return Container(
       height: size,
       width: size,

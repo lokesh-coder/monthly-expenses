@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/data/data_repository.dart';
 import 'package:monthlyexp/data/local/object/files/sort_strategies.dart';
 import 'package:monthlyexp/models/sort_strategy.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/settings/settings.store.dart';
 import 'package:monthlyexp/ui/common/check.dart';
+import 'package:provider/provider.dart';
 
 class SortEdit extends StatefulWidget {
   const SortEdit();
@@ -33,14 +34,17 @@ class _SortEditState extends State<SortEdit> {
   }
 
   Widget _getItem(SortStrategy strategy) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return ListTile(
-      title: Text(strategy.name, style: Style.label.base.clr(Clrs.labelAlt)),
-      subtitle: Text(strategy.desc, style: Style.label.sm),
+      title: Text(strategy.name,
+          style: Style.label.base.light.clr(theme.textHeading)),
+      subtitle: Text(strategy.desc,
+          style: Style.label.sm.light.clr(theme.textSubHeading)),
       leading: Container(
         height: double.infinity,
         child: Icon(
           strategy.icon,
-          color: Clrs.inputValue.withOpacity(0.5),
+          color: theme.textSubHeading,
         ),
       ),
       trailing: strategy.id == _value ? Check() : SizedBox.shrink(),

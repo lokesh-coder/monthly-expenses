@@ -10,6 +10,7 @@ EmailManualHandler emailHandler =
 CatcherOptions debugOptions = CatcherOptions(dialogMode, [ConsoleHandler()]);
 CatcherOptions releaseOptions = CatcherOptions(dialogMode, [emailHandler]);
 
-void handleErrors(Widget rootWidget) {
+Widget handleErrors(Widget rootWidget) {
   Catcher(rootWidget, debugConfig: debugOptions, releaseConfig: releaseOptions);
+  return rootWidget;
 }

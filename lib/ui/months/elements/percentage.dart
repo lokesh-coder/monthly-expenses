@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/dimensions.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/models/enums.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/payments/payments.store.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class Percentage extends StatelessWidget {
   final double value;
@@ -15,6 +16,7 @@ class Percentage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     final PaymentsStore paymentsStore = sl<PaymentsStore>();
 
     return Observer(builder: (context) {
@@ -28,10 +30,11 @@ class Percentage extends StatelessWidget {
         percent: _getValue(data[0], data[1]),
         animation: true,
         animationDuration: 200,
-        center: Text(displayValue, style: Style.body.bodyAltClr.xs),
-        progressColor: data[2] == PaymentType.CREDIT ? Clrs.green : Clrs.red,
+        center:
+            Text(displayValue, style: Style.body.xs.clr(theme.textSubHeading)),
+        progressColor: data[2] == PaymentType.CREDIT ? theme.green : theme.red,
         circularStrokeCap: CircularStrokeCap.round,
-        backgroundColor: Colors.white12,
+        backgroundColor: theme.textPrimarySubHeading.withOpacity(0.3),
       );
     });
   }

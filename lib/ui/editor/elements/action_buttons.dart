@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/dimensions.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/form/form.store.dart';
 import 'package:monthlyexp/stores/payments/payments.store.dart';
 import 'package:monthlyexp/stores/sandwiich/sandwich.store.dart';
 import 'package:monthlyexp/ui/common/button.dart';
 import 'package:monthlyexp/ui/common/confirm_modal.dart';
 import 'package:monthlyexp/ui/common/hint.dart';
+import 'package:provider/provider.dart';
 
 class ActionButton extends StatelessWidget {
   final Function onSubmit;
@@ -20,23 +22,28 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Container(
       color: Colors.transparent,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Row(
         mainAxisSize: MainAxisSize.max,
-        children: <Widget>[_secondary(), _primary(), _tertiary()],
+        children: <Widget>[
+          _secondary(theme),
+          _primary(theme),
+          _tertiary(theme)
+        ],
       ),
     );
   }
 
-  Widget _primary() {
+  Widget _primary(AppTheme theme) {
     return Expanded(
       child: Center(
         child: Button(
           size: Dimensions.actionBtnSize,
-          color: Clrs.primary,
-          highlightColor: Clrs.dark,
+          color: theme.brand,
+          highlightColor: theme.green,
           onPressed: onSubmit,
           child: Icon(MIcons.tick, color: Colors.white70, size: 30),
         ),
@@ -44,11 +51,12 @@ class ActionButton extends StatelessWidget {
     );
   }
 
-  Widget _secondary() {
+  Widget _secondary(AppTheme theme) {
     if (sl<FormStore>().isNew) {
       return SizedBox(width: 35);
     }
-    final icon = Icon(MIcons.delete_bin_line, size: 26, color: Clrs.label);
+    final icon =
+        Icon(MIcons.delete_bin_line, size: 26, color: theme.textSubHeading);
 
     return ConfirmModal(
       builder: (context, control) {
@@ -80,11 +88,12 @@ class ActionButton extends StatelessWidget {
     );
   }
 
-  Widget _tertiary() {
+  Widget _tertiary(AppTheme theme) {
     return Hint(
       Labels.closeEditor,
       child: IconButton(
-        icon: Icon(MIcons.arrow_down_s_line, size: 30, color: Clrs.label),
+        icon: Icon(MIcons.arrow_down_s_line,
+            size: 30, color: theme.textSubHeading),
         onPressed: () {
           sl<SandwichStore>().changeVisibility(false);
         },

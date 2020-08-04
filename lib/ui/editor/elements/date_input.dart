@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/helpers/date_helper.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/form/form.store.dart';
 import 'package:monthlyexp/ui/common/bottom_modal.dart';
 import 'package:monthlyexp/ui/editor/elements/date_picker.dart';
 import 'package:monthlyexp/ui/editor/elements/icon_card.dart';
+import 'package:provider/provider.dart';
 
 class DateInput extends StatelessWidget {
   const DateInput();
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     final formStore = sl<FormStore>();
     return BottomModal(
       builder: (context, control) {
         return Observer(builder: (context) {
           return IconCard(
-            child: _icon(formStore),
+            child: _icon(formStore, theme),
             name: _displayDateMonth(formStore.date),
             onTap: () => _picker(control, formStore),
             storeKey: () => formStore.date,
@@ -46,20 +49,20 @@ class DateInput extends StatelessWidget {
     control.open(title, picker);
   }
 
-  Widget _icon(FormStore formStore) {
+  Widget _icon(FormStore formStore, AppTheme theme) {
     return Stack(
       alignment: Alignment.center,
       children: [
         Icon(
           MIcons.calendar_line_1,
           size: 35,
-          color: Clrs.blue,
+          color: theme.violet,
         ),
         Positioned(
           top: 10,
           child: Text(
             _displayDate(formStore.date),
-            style: Style.body.sm.clr(Clrs.blue).light,
+            style: Style.body.sm.clr(theme.violet).light,
           ),
         )
       ],

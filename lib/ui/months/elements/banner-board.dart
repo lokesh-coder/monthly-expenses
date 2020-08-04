@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/dimensions.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
@@ -10,6 +9,7 @@ import 'package:monthlyexp/helpers/date_helper.dart';
 import 'package:monthlyexp/helpers/layout_helper.dart';
 import 'package:monthlyexp/models/enums.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/payments/payments.store.dart';
 import 'package:monthlyexp/stores/sandwiich/sandwich.store.dart';
 import 'package:monthlyexp/ui/common/amount.dart';
@@ -18,12 +18,14 @@ import 'package:monthlyexp/ui/common/hint.dart';
 import 'package:monthlyexp/ui/months/elements/filter-bar.dart';
 import 'package:monthlyexp/ui/months/elements/percentage.dart';
 import 'package:monthlyexp/ui/settings/settings.dart';
+import 'package:provider/provider.dart';
 
 class BannerBoard extends StatelessWidget {
   const BannerBoard();
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     final paymentsStore = sl<PaymentsStore>();
     final sandwichStore = sl<SandwichStore>();
 
@@ -37,7 +39,7 @@ class BannerBoard extends StatelessWidget {
               return Container(
                 height: Dimensions.bannerBarHeight,
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                color: Clrs.primary,
+                color: theme.bgPrimary,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
@@ -59,12 +61,12 @@ class BannerBoard extends StatelessWidget {
                               Text(
                                 DateHelper.getMonthName(
                                     paymentsStore.activeMonth),
-                                style: Style.body.bodyAltClr.bold,
+                                style: Style.body.bold.clr(theme.textHeading),
                               ),
                               SizedBox(width: 5),
                               Text(
                                 DateHelper.getYear(paymentsStore.activeMonth),
-                                style: Style.body.bodyAltClr,
+                                style: Style.body.clr(theme.textSubHeading),
                               ),
                             ],
                           ),
@@ -82,13 +84,13 @@ class BannerBoard extends StatelessWidget {
                                 FadeRoute(Settings()),
                               );
                             },
-                            color: Colors.white.withOpacity(0.3),
+                            color: theme.textSubHeading,
                             icon: Icon(MIcons.settings_3_line, size: 27),
                           ),
                         ),
                         Observer(
                           builder: (context) {
-                            final clr = Colors.white.withOpacity(0.3);
+                            final clr = theme.textSubHeading;
                             if (sandwichStore.isOpen) {
                               return Hint(
                                 Labels.closeEditor,

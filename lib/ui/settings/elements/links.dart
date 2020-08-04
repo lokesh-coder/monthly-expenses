@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
 import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/ui/common/fade_transition.dart';
 import 'package:monthlyexp/ui/screens/app_info.dart';
-import 'package:monthlyexp/ui/screens/help.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
 class AppLinks extends StatelessWidget {
@@ -13,11 +13,12 @@ class AppLinks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-          color: Clrs.labelActive.withOpacity(0.05),
+          color: theme.bgSecondary,
           padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
           child: Text(
             Labels.aboutApp.toUpperCase(),

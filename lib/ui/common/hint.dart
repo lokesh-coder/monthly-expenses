@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:monthlyexp/config/colors.dart';
 import 'package:monthlyexp/config/typography.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
+import 'package:provider/provider.dart';
 
 class Hint extends StatelessWidget {
   final String message;
@@ -10,12 +11,13 @@ class Hint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Tooltip(
       decoration: BoxDecoration(
-        color: Clrs.dark,
+        color: theme.textHeading,
         borderRadius: BorderRadius.circular(4),
       ),
-      textStyle: Style.body.bodyAltClr.sm,
+      textStyle: Style.body.sm.clr(theme.textSubHeading),
       message: message,
       child: child,
     );

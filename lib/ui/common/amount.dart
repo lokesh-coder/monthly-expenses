@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:monthlyexp/config/colors.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/helpers/currency_helper.dart';
 import 'package:monthlyexp/models/enums.dart';
 import 'package:monthlyexp/services/service_locator.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/stores/settings/settings.store.dart';
+import 'package:provider/provider.dart';
 
 class Amount extends StatelessWidget {
   final dynamic value;
@@ -23,8 +25,9 @@ class Amount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final store = sl<SettingsStore>();
+    final theme = Provider.of<ThemeChanger>(context).theme;
 
-    final Color color = _colorMap()[type];
+    final Color color = _colorMap(theme)[type];
     final double fontSize = _fontSizeMap()[size];
 
     String displayText(currency) => format
@@ -52,13 +55,14 @@ class Amount extends StatelessWidget {
     };
   }
 
-  Map<dynamic, Color> _colorMap() {
+  Map<dynamic, Color> _colorMap(AppTheme theme) {
     return {
-      AmountDisplayType.CREDIT: Clrs.green,
-      AmountDisplayType.DEBIT: Clrs.red,
-      AmountDisplayType.INPUT: Clrs.dark,
-      AmountDisplayType.PLACEHOLDER: Clrs.label,
-      AmountDisplayType.SILENT: Colors.white.withOpacity(0.5),
+      AmountDisplayType.CREDIT: theme.green,
+      AmountDisplayType.DEBIT: theme.red,
+      AmountDisplayType.INPUT: theme.textHeading,
+      AmountDisplayType.PLACEHOLDER:
+          theme.textPrimarySubHeading.withOpacity(0.3),
+      AmountDisplayType.SILENT: theme.textPrimarySubHeading.withOpacity(0.3),
     };
   }
 }

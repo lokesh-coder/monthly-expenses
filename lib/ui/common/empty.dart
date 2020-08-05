@@ -32,7 +32,7 @@ class Empty extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(MIcons.widgets_24px, color: theme.textSubHeading, size: 35),
+        Icon(MIcons.bubble_chart_line, color: theme.textSubHeading, size: 35),
         SizedBox(height: 20),
         Text(message, style: Style.body.sm.clr(theme.textSubHeading)),
         FlatButton(

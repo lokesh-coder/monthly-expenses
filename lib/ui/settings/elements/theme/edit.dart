@@ -27,7 +27,7 @@ class ThemeEdit extends StatelessWidget {
         onPressed: () => sl<SettingsStore>().toggleTheme(),
         child: Observer(builder: (context) {
           return Text(
-            store.isLightTheme ? 'Dark' : 'Light',
+            'Switch to ${store.isLightTheme ? 'Dark' : 'Light'}',
             style: Style.body.clr(Colors.white),
           );
         }),

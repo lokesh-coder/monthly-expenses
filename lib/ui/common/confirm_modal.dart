@@ -23,6 +23,7 @@ class ConfirmModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Builder(
       builder: (context) {
         final control = ConfirmModalControl();
@@ -32,7 +33,7 @@ class ConfirmModal extends StatelessWidget {
             barrierDismissible: true,
             barrierLabel:
                 MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            barrierColor: Colors.black26.withOpacity(0.2),
+            barrierColor: theme.textSecondaryHeading.withOpacity(0.5),
             transitionDuration: const Duration(milliseconds: 200),
             pageBuilder: (BuildContext x, Animation y, Animation z) {
               return Center(child: _ModalLayout(control));
@@ -61,11 +62,11 @@ class _ModalLayout extends StatelessWidget {
         width: LayoutHelper.screenWidth / 1.5,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: theme.bgPrimary,
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
           boxShadow: [
             BoxShadow(
-              color: theme.textSubHeading,
+              color: theme.textHeading,
               blurRadius: 10,
               offset: Offset(0, 4),
             )

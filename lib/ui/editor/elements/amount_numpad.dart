@@ -73,7 +73,13 @@ class _AmountNumpadState extends State<AmountNumpad> {
   }
 
   void _onDone(newValue) {
-    widget.onSelect(num.parse(newValue));
+    try {
+      final val = num.parse(newValue);
+      widget.onSelect(val);
+    } catch (e) {
+      print('invalid input');
+      widget.onSelect(0);
+    }
   }
 
   void _onValueChange(newValue) {

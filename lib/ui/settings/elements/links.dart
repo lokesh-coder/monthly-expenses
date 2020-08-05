@@ -6,6 +6,7 @@ import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/ui/common/fade_transition.dart';
 import 'package:monthlyexp/ui/screens/app_info.dart';
+// import 'package:monthlyexp/ui/screens/help.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
@@ -29,7 +30,7 @@ class AppLinks extends StatelessWidget {
         _getItemTile(Labels.appInfo, theme, onTap: () {
           Navigator.push(context, FadeRoute(AppInfoScreen()));
         }),
-        // _getItemTile(Labels.help, onTap: () {
+        // _getItemTile(Labels.help, theme, onTap: () {
         //   Navigator.push(context, FadeRoute(HelpScreen()));
         // }),
         _getItemTile(

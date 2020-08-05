@@ -58,5 +58,5 @@ class Labels {
   /// share
   static String share = 'Share with your friends';
   static String shareMessage =
-      '''Monthlyexp - Friendly android app to manage monthly expenses without a hassle''';
+      '''Monthly exp - Minimal friendly app to manage monthly expenses without a hassle''';
 }

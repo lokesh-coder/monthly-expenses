@@ -38,7 +38,7 @@ class CurrencyScreen extends StatelessWidget {
         final x = currencies[index];
         final checked = store.currency == _getCurrencyTag(x) ? Check() : null;
         return ListTile(
-          title: Text(x.currencyName, style: Style.body),
+          title: Text(x.currencyName, style: Style.body.clr(theme.textHeading)),
           leading: Text(x.currencySymbol, style: Style.body.clr(theme.violet)),
           trailing: checked,
           onTap: () {

@@ -63,10 +63,6 @@ flutter:
       fonts:
         - asset: assets/fonts/MIcons.ttf
 
-    - family: CIcons
-      fonts:
-        - asset: assets/fonts/cat_icons.otf
-
     - family: CatIcons
       fonts:
         - asset: assets/fonts/Monexp.ttf

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:monthlyexp/config/dimensions.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/helpers/layout_helper.dart';
+import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/ui/core/slide_transform.dart';
+import 'package:provider/provider.dart';
 
 class SandwichContainer extends StatelessWidget {
   final Widget bottomChild;
@@ -24,8 +27,9 @@ class SandwichContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     return Stack(
-      children: [_bottomChild(), _middleChild(), _topChild()],
+      children: [_bottomChild(), _middleChild(theme), _topChild()],
     );
   }
 
@@ -36,7 +40,7 @@ class SandwichContainer extends StatelessWidget {
     );
   }
 
-  Widget _middleChild() {
+  Widget _middleChild(AppTheme theme) {
     return Builder(
       builder: (context) {
         final double topToBannerH = bannerBarH + statusBarH + appbarH;
@@ -50,7 +54,7 @@ class SandwichContainer extends StatelessWidget {
             constraints:
                 BoxConstraints(maxHeight: screenH - appbarH - statusBarH),
             child: Container(
-              color: Colors.white,
+              color: theme.bg,
               child: middleChild,
               margin:
                   EdgeInsets.only(top: bannerBarH + filtersBarH - statusBarH),

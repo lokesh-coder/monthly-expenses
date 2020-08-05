@@ -74,6 +74,11 @@ abstract class SettingsBase with Store {
       monthsViewRange = range;
     }
 
+    final theme = await repo.memory.isLightTheme;
+    if (theme != null) {
+      isLightTheme = theme;
+    }
+
     final orderByValue = await repo.memory.orderBy;
     if (orderByValue != null) {
       orderBy = orderByValue;

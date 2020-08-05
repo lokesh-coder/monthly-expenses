@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monthlyexp/config/labels.dart';
 import 'package:monthlyexp/config/m_icons.dart';
+import 'package:monthlyexp/config/themes.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/services/theme_changer.dart';
 import 'package:monthlyexp/ui/common/fade_transition.dart';
@@ -22,10 +23,10 @@ class AppLinks extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
           child: Text(
             Labels.aboutApp.toUpperCase(),
-            style: Style.label.sm,
+            style: Style.label.sm.clr(theme.textSubHeading),
           ),
         ),
-        _getItemTile(Labels.appInfo, onTap: () {
+        _getItemTile(Labels.appInfo, theme, onTap: () {
           Navigator.push(context, FadeRoute(AppInfoScreen()));
         }),
         // _getItemTile(Labels.help, onTap: () {
@@ -33,17 +34,19 @@ class AppLinks extends StatelessWidget {
         // }),
         _getItemTile(
           Labels.share,
+          theme,
           onTap: () => Share.share(Labels.shareMessage),
         )
       ],
     );
   }
 
-  Widget _getItemTile(String name, {Function onTap}) {
+  Widget _getItemTile(String name, AppTheme theme, {Function onTap}) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 35),
-      title: Text(name, style: Style.label.normal.base),
-      trailing: Icon(MIcons.arrow_drop_right_fill),
+      title: Text(name, style: Style.label.normal.base.clr(theme.textHeading)),
+      trailing: Icon(MIcons.arrow_drop_right_fill,
+          color: theme.textSubHeading.withOpacity(0.3)),
       onTap: onTap,
     );
   }

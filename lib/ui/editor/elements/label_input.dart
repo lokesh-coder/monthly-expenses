@@ -37,7 +37,7 @@ class LabelInput extends StatelessWidget {
                 formStore.label == null
                     ? 'add short name'
                     : formStore.label.toString(),
-                style: Style.label.normal.sm,
+                style: Style.label.normal.sm.clr(theme.textSubHeading),
               );
             }),
           ),

@@ -19,10 +19,11 @@ import 'package:provider/provider.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
+  final theme = sl<SettingsStore>().isLightTheme;
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<ThemeChanger>(
-        create: (_) => ThemeChanger(LightTheme()),
+        create: (_) => ThemeChanger(theme ? LightTheme() : DarkTheme()),
       ),
     ],
     child: handleErrors(MonthlyexpApp()),
@@ -53,9 +54,11 @@ class _MonthlyexpAppState extends State<MonthlyexpApp> {
     final theme = Provider.of<ThemeChanger>(context).theme;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: theme.bgPrimary,
-      statusBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness:
+          theme.name == 'light' ? Brightness.dark : Brightness.light,
       systemNavigationBarColor: theme.bgPrimary,
-      systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarIconBrightness:
+          theme.name == 'light' ? Brightness.dark : Brightness.light,
     ));
     return MaterialApp(
       title: Labels.appName,

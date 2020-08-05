@@ -24,7 +24,8 @@ class Header extends StatelessWidget with PreferredSizeWidget {
         Hint(
           Labels.closeScreen,
           child: IconButton(
-            icon: Icon(MIcons.close_line, color: Colors.white54, size: 27),
+            icon:
+                Icon(MIcons.close_line, color: theme.textSubHeading, size: 27),
             onPressed: () => Navigator.of(context).pop(),
           ),
         )

@@ -65,7 +65,7 @@ class _MonthRangeEditState extends State<MonthRangeEdit> {
         SizedBox(height: 10),
         Text(
           DateHelper.getMonthRangeDisplayText(_value.toInt()),
-          style: Style.label.normal.sm,
+          style: Style.label.normal.sm.clr(theme.textSubHeading),
         ),
       ],
     );

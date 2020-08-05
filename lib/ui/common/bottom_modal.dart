@@ -91,10 +91,11 @@ class _ModalLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).theme;
     final screenH = LayoutHelper.screenHeight;
     final container = Container(
       padding: EdgeInsets.all(hasPadding ? 20 : 0),
-      color: Colors.white,
+      color: theme.bg,
       child: _ModalContent(
         pop: pop,
         child: child,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:monthlyexp/config/c_icons.dart';
 import 'package:monthlyexp/config/labels.dart';
-import 'package:monthlyexp/config/m_icons.dart';
 import 'package:monthlyexp/config/typography.dart';
 import 'package:monthlyexp/models/enums.dart';
 import 'package:monthlyexp/services/service_locator.dart';
@@ -32,7 +32,7 @@ class Empty extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(MIcons.bubble_chart_line, color: theme.textSubHeading, size: 35),
+        Icon(CIcons.hanger, color: theme.textSubHeading, size: 35),
         SizedBox(height: 20),
         Text(message, style: Style.body.sm.clr(theme.textSubHeading)),
         FlatButton(

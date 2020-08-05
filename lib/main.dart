@@ -45,6 +45,14 @@ class _MonthlyexpAppState extends State<MonthlyexpApp> {
       print('changed to $isLightTheme');
       final th = isLightTheme ? LightTheme() : DarkTheme();
       Provider.of<ThemeChanger>(context, listen: false).setTheme(th);
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: th.bgPrimary,
+        statusBarIconBrightness:
+            th.name == 'light' ? Brightness.dark : Brightness.light,
+        systemNavigationBarColor: th.bgPrimary,
+        systemNavigationBarIconBrightness:
+            th.name == 'light' ? Brightness.dark : Brightness.light,
+      ));
       setState(() {});
     });
   }
@@ -52,14 +60,7 @@ class _MonthlyexpAppState extends State<MonthlyexpApp> {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeChanger>(context).theme;
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: theme.bgPrimary,
-      statusBarIconBrightness:
-          theme.name == 'light' ? Brightness.dark : Brightness.light,
-      systemNavigationBarColor: theme.bgPrimary,
-      systemNavigationBarIconBrightness:
-          theme.name == 'light' ? Brightness.dark : Brightness.light,
-    ));
+
     return MaterialApp(
       title: Labels.appName,
       navigatorKey: Catcher.navigatorKey,

@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
+
 class Category {
   String id;
   String name;
-  String path;
+  IconData icon;
   String group;
   String type;
 
   Category({
     this.id,
     this.name,
-    this.path,
+    this.icon,
     this.group,
     this.type,
   });
@@ -17,7 +19,7 @@ class Category {
     return Category(
       id: json['id'],
       name: json['name'],
-      path: json['path'],
+      icon: json['icon'],
       group: json['group'],
       type: json['type'],
     );
@@ -26,7 +28,7 @@ class Category {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'name': name,
-        'path': path,
+        'icon': icon,
         'group': group,
         'type': type,
       };

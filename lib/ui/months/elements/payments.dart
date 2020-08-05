@@ -80,7 +80,11 @@ class _Payment extends StatelessWidget {
       key: ValueKey(data.label),
       dense: true,
       contentPadding: EdgeInsets.symmetric(horizontal: 0),
-      leading: Image.asset(category.path, width: 30),
+      leading: Icon(
+        category.icon,
+        color: theme.textSubHeading,
+        size: 35,
+      ),
       onTap: () => onTap(data.id),
       title: Text(data.label.capitalize(),
           style: Style.heading.clr(theme.textHeading)),

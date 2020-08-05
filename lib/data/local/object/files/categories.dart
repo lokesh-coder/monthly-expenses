@@ -1,67 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:monthlyexp/config/monexp_icons.dart';
 import 'package:monthlyexp/models/category.dart';
 
 class Catagories {
   final List<Category> _debits = [
-    _getItem('General', 'general'),
-    _getItem('Card', 'card-payment'),
-    _getItem('Bill', 'request-service'),
-    _getItem('Home', 'house'),
-    _getItem('Food', 'restaurant'),
-    _getItem('Grocery', 'shopping-cart'),
-    _getItem('Education', 'student-male'),
-    _getItem('Fuel', 'charging-station'),
-    _getItem('Electricity', 'wall-socket-with-plug'),
-    _getItem('Baby', 'baby-bottle'),
+    _getItem('General', CatIcons.d_cash),
+    _getItem('Card', CatIcons.d_credit_card),
+    _getItem('Bill', CatIcons.d_receipt),
+    _getItem('Home', CatIcons.d_home),
+    _getItem('Food', CatIcons.d_food),
+    _getItem('Grocery', CatIcons.d_cart),
+    _getItem('Education', CatIcons.d_school),
+    _getItem('Fuel', CatIcons.d_fuel),
+    _getItem('Electricity', CatIcons.d_electricity),
+    _getItem('Baby', CatIcons.d_baby),
 //
-    _getItem('Tax', 'tax'),
-    _getItem('Invest', 'account'),
+    _getItem('Tax', CatIcons.d_tax),
+    _getItem('Invest', CatIcons.d_invest),
 //
-    _getItem('Lend', 'cash-in-hand'),
-    _getItem('Savings', 'money-box'),
+    _getItem('Lend', CatIcons.d_lend),
+    _getItem('Savings', CatIcons.d_saving),
 //
-    _getItem('Hair', 'barbershop'),
-    _getItem('Fitness', 'barbell'),
-    _getItem('Makeup', 'nail-polish'),
-    _getItem('Apparel', 't-shirt'),
-    _getItem('Fashion', 'women-shoes'),
+    _getItem('Hair', CatIcons.d_hair),
+    _getItem('Fitness', CatIcons.d_fitness),
+    _getItem('Makeup', CatIcons.d_lipstick),
+    _getItem('Apparel', CatIcons.d_shirt),
+    _getItem('Fashion', CatIcons.d_shoe),
 //
-    _getItem('E-Shop', 'online-shopping'),
-    _getItem('Shopping', 'online-store'),
+    _getItem('Shopping', CatIcons.d_shopping),
 //
-    _getItem('Mobile', 'phonelink-ring'),
-    _getItem('Repairs', 'wrench'),
+    _getItem('Mobile', CatIcons.d_phone),
+    _getItem('Repairs', CatIcons.d_repair),
 //
-    _getItem('Donation', 'donation'),
-    _getItem('Gift', 'gift'),
+    _getItem('Donation', CatIcons.d_charity),
+    _getItem('Gift', CatIcons.d_gift),
 //
-    _getItem('Travel', 'luggage'),
-    _getItem('Bike', 'scooter'),
-    _getItem('Train', 'subway'),
-    _getItem('Flight', 'airplane-take-off'),
-    _getItem('Vacation', 'beach-umbrella'),
-    _getItem('Taxi', 'taxi-back-view'),
+    _getItem('Travel', CatIcons.d_travel),
+    _getItem('Bike', CatIcons.d_bicycle),
+    _getItem('Train', CatIcons.d_travel),
+    _getItem('Flight', CatIcons.d_flight),
+    _getItem('Vacation', CatIcons.d_vacation),
+    _getItem('Taxi', CatIcons.d_taxi),
 //
-    _getItem('Party', 'the-toast'),
-    _getItem('Drinks', 'wine'),
+    _getItem('Party', CatIcons.d_party),
+    _getItem('Drinks', CatIcons.d_drinks),
 //
-    _getItem('Network', 'chip-card'),
-    _getItem('TV', 'tv-show'),
-    _getItem('Streaming', 'laptop-play-video'),
-    _getItem('Internet', 'website'),
-    _getItem('Movies', 'cinema'),
+    _getItem('Network', CatIcons.d_network),
+    _getItem('TV', CatIcons.d_tv),
+    _getItem('Streaming', CatIcons.d_stream),
+    _getItem('Internet', CatIcons.d_internet),
+    _getItem('Movies', CatIcons.d_movies),
 //
-    _getItem('Pet', 'dog'),
-    _getItem('Others', 'bill'),
+    _getItem('Pet', CatIcons.c_pet),
+    _getItem('Others', CatIcons.d_banking),
   ];
 
   final List<Category> _credits = [
-    _getItem('General', 'general', null, 'credit'),
-    _getItem('Salary', 'money-transfer', null, 'credit'),
-    _getItem('Returns', 'coin-in-hand', null, 'credit'),
-    _getItem('Interest', 'discount', null, 'credit'),
-    _getItem('Profit', 'profit', null, 'credit'),
-    _getItem('Youtuber', 'youtube', null, 'credit'),
-    _getItem('Other', 'stack-of-money', null, 'credit'),
+    _getItem('General', CatIcons.c_general, 'credit'),
+    _getItem('Salary', CatIcons.c_salary, 'credit'),
+    _getItem('Returns', CatIcons.c_return, 'credit'),
+    _getItem('Interest', CatIcons.c_interest, 'credit'),
+    _getItem('Profit', CatIcons.c_profit, 'credit'),
+    _getItem('Youtuber', CatIcons.c_youtube, 'credit'),
+    _getItem('Other', CatIcons.c_general, 'credit'),
   ];
 
   List<Category> _categories;
@@ -82,18 +83,18 @@ class Catagories {
         orElse: () => null,
       );
 
-  static Category _getItem(String title, String imgName,
-          [String category, String type = 'debit']) =>
+  static Category _getItem(
+    String title, [
+    IconData icon,
+    String type = 'debit',
+  ]) =>
       Category(
-        id: (category ?? title).toUpperCase(),
+        id: title.toUpperCase(),
         name: title,
-        path: _path(imgName, type),
+        icon: icon,
         group: '',
         type: type,
       );
 
   List<Category> _mixCategories() => [..._debits, ..._credits];
-
-  static String _path(name, [type = 'credit']) =>
-      'assets/icons/$type/icons8-$name-50.png';
 }

@@ -56,7 +56,11 @@ class _CategoryItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(cat.path, height: 35, cacheHeight: 35),
+          Icon(
+            cat.icon,
+            color: theme.textSubHeading,
+            size: 30,
+          ),
           SizedBox(height: 10),
           Text(cat.name,
               style: Style.label.sm.normal.clr(theme.textSubHeading)),

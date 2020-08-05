@@ -62,7 +62,7 @@ class Amount extends StatelessWidget {
       AmountDisplayType.INPUT: theme.textHeading,
       AmountDisplayType.PLACEHOLDER:
           theme.textPrimarySubHeading.withOpacity(0.3),
-      AmountDisplayType.SILENT: theme.textPrimarySubHeading.withOpacity(0.3),
+      AmountDisplayType.SILENT: theme.textPrimarySubHeading.withOpacity(0.5),
     };
   }
 }

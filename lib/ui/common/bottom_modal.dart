@@ -36,7 +36,7 @@ class BottomModal extends StatelessWidget {
           return showPopupWindow(
             context,
             gravity: KumiPopupGravity.centerBottom,
-            bgColor: theme.textHeading.withOpacity(0.4),
+            bgColor: theme.overlay,
             clickOutDismiss: false,
             clickBackDismiss: true,
             customAnimation: false,

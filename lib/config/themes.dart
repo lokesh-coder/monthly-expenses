@@ -23,6 +23,8 @@ abstract class AppTheme {
   Color bgSecondary;
   Color textSecondaryHeading;
   Color textSecondarySubHeading;
+
+  Color overlay;
 }
 
 class LightTheme extends AppTheme {
@@ -55,6 +57,9 @@ class LightTheme extends AppTheme {
 
   @override
   final Color textSecondarySubHeading = Color(0xff98a3b8);
+
+  @override
+  final Color overlay = Color(0xff4C566A).withOpacity(0.7);
 }
 
 class DarkTheme extends AppTheme {
@@ -87,4 +92,7 @@ class DarkTheme extends AppTheme {
 
   @override
   final Color textSecondarySubHeading = Color(0xff949cac);
+
+  @override
+  final Color overlay = Color(0xff2E3440).withOpacity(0.7);
 }

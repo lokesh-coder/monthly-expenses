@@ -25,7 +25,7 @@ class Style {
 
   static TextStyle get heading => TextStyle(
         fontSize: FontSize.base,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         letterSpacing: -0.5,
       );
   static TextStyle get body => TextStyle(

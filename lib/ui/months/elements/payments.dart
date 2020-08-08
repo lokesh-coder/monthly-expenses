@@ -83,7 +83,7 @@ class _Payment extends StatelessWidget {
       leading: Icon(
         category.icon,
         color: theme.textSubHeading,
-        size: 35,
+        size: 30,
       ),
       onTap: () => onTap(data.id),
       title: Text(data.label.capitalize(),

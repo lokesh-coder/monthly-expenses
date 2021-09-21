@@ -1,6 +1,6 @@
 # Monthly expenses app
 
-Flutter app to amanage monthly expences
+Flutter app to manage monthly expences
 
 https://www.producthunt.com/posts/monthly-expenses
 
